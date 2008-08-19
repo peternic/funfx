@@ -1,19 +1,28 @@
 require File.dirname(__FILE__) + '/../../spec_helper'
 
-describe "Button" do
-  it "should be clickable" do
+describe "DemoApp" do
+  before(:each) do
     browser = Watir::Browser.new
-
     browser.goto(DEMO_APP)
-    flex = browser.flex('DemoApp') # FunFX::FlexElement
-    text_input = flex.text_input(:id => 'tText')
+    @flex = browser.flex('DemoApp') # FunFX::FlexElement
+  end
+  
+  after(:each) do
+    sleep 2
+  end
+  
+  it "should have text_input" do
+    text_input = @flex.text_input(:id => 'tText')
     text_input.input("Hei")
-    tree = flex.tree(:id => 'objectTree')
+    text_input.text.should == 'Hei'
+  end
+
+  it "should have tree" do
+    tree = @flex.tree(:id => 'objectTree')
     tree.open('Button controls')
   end
   
-  it "should find in a path" do
-    tree = flex / :id => 'box' / tree(:id => 'objectTree')
-    #tree = flex.tree([{:id => 'box']}, {:id => 'objectTree']})    
+  xit "should support snazzy lookup syntax" do
+    tree = @flex / {:id => 'box'} / tree(:id => 'objectTree')
   end
 end
