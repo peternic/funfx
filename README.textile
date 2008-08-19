@@ -1,0 +1,4 @@
+h1. FunFX
+
+FunFX is a Ruby tool for functional testing of Flex applications.
+
