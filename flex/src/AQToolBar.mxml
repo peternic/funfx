@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:TitleWindow title="Automation" xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical">
+
+<mx:HBox>
+	<mx:Button label="Record" click="startRecording()" id="btnRecord" />
+	<mx:Button label="Stop"  mouseDown="stopRecording()" id="btnStop" enabled="false"/>
+	<mx:Button label="Play" click="startReplay()" id="btnReplay"/>
+</mx:HBox>
+
+	
+<mx:Script>
+	<![CDATA[
+	
+	    import mx.automation.IAutomationManager;
+	    import mx.automation.IAutomationObject;
+	    import mx.automation.AutomationID;
+	
+		private function startRecording():void
+		{
+			AQAdapter.aqAdapter.beginRecording();
+			btnRecord.enabled = false;
+			btnStop.enabled = true;
+			btnReplay.enabled = false;
+		}
+
+		private function stopRecording():void
+		{
+			AQAdapter.aqAdapter.endRecording();
+			output.text = AQAdapter.aqAdapter.getRecords();
+			invalidateSize();
+			validateNow();
+			btnRecord.enabled = true;
+			btnReplay.enabled = true;
+		}
+		
+		private var memoryTimer:Timer;
+		private var currentStep:int;
+		private function onMemoryTimer(e:TimerEvent):void
+		{
+			var records:XML = new XML(output.text);
+        	var step:XML = records.Step[currentStep];
+        	if(step)
+        	{
+        	    var am:IAutomationManager = AQAdapter.aqAdapter.automationManager;
+        	
+				if (!am.isSynchronized(null))
+					return ;
+
+                var rid:AutomationID = AutomationID.parse(step.@id.toString());
+
+	            var obj:IAutomationObject = am.resolveIDToSingleObject(rid);
+
+		        if (!obj || !am.isSynchronized(obj))
+					return ;
+
+	            if (!am.isVisible(obj as DisplayObject))
+					return ;
+        	
+	        	AQAdapter.aqAdapter.run(step.@id.toString(), 
+		        						step.@method.toString(), 
+		        						step.Args.@value.toString());
+	        	++currentStep;
+	        	memoryTimer.start();
+	        }
+	        else
+	        {	
+	        	memoryTimer.stop();
+	        	btnReplay.enabled = true;
+			    btnRecord.enabled = true;
+     	        btnStop.enabled = true;
+	        }
+		}
+		
+		private function startReplay():void
+		{
+			memoryTimer = new Timer(500,1);
+			memoryTimer.addEventListener(TimerEvent.TIMER_COMPLETE, onMemoryTimer);
+			memoryTimer.start();
+			currentStep = 0;
+			btnReplay.enabled = false;
+			btnRecord.enabled = false;
+			btnStop.enabled = false;
+		}
+		
+		
+		
+	]]>
+</mx:Script>
+
+<mx:TextArea id="output" />
+</mx:TitleWindow>
