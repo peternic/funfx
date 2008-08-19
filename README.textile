@@ -2,6 +2,11 @@ h1. FunFX
 
 FunFX is a Ruby tool for functional testing of Flex applications.
 
+h2. Building
+
+* cd flex ; build
+* cd ../demo-app ; build
+
 h2. Running FunFX against the demo app
 
 * Copy flex/src/AutoQuickEnv.xml to demo-app/lib/AutoQuickEnv.xml (This step will go away in the future)
@@ -11,4 +16,9 @@ h2. Running FunFX against the demo app
 h2. TODO
 
 * Package XML file in FunFX.swc - makes it easier to install and get started...
+* Use RCov and aim for 100% coverage of all generated methods
+
+h2. GOTCHAS
+
+* The showInAutomationHierarchy property seems to cause that elements can't be looked up. Investigate...
 

@@ -881,7 +881,8 @@ public class AQAdapter implements IAQCodecHelper
        
             setTestingEnvironment(loader.data);
 
-			//PopUpManager.createPopUp(DisplayObject(Application.application), AQToolBar);
+            // Disable the popup by commenting out the line below
+			PopUpManager.createPopUp(DisplayObject(Application.application), AQToolBar);
 			new Proxy();
         }
 

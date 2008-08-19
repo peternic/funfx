@@ -9,4 +9,9 @@ describe "Button" do
     tree = flex.tree(:id => 'objectTree')
     tree.open('Button controls')
   end
+  
+  it "should find in a path" do
+    tree = flex / :id => 'box' / tree(:id => 'objectTree')
+    #tree = flex.tree([{:id => 'box']}, {:id => 'objectTree']})    
+  end
 end
