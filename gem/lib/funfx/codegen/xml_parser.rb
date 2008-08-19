@@ -88,8 +88,11 @@ ruby = ordered_class_names.uniq.map do |class_name|
   classes[class_name]
 end.compact.join("\n")
 
-File.open(File.dirname(__FILE__) + "/../generated_elements.rb", "w") do |io| 
-  io.puts "module Funfx"
+File.open(File.dirname(__FILE__) + "/../flex/generated_elements.rb", "w") do |io| 
+  io.puts "require 'funfx/flex/element'"
+  io.puts "require 'funfx/flex/tabular_data'"
+  io.puts 
+  io.puts "module FunFX"
   io.puts "  module Flex"
   io.puts
   io.write(ruby)
