@@ -2,6 +2,12 @@ h1. FunFX
 
 FunFX is a Ruby tool for functional testing of Flex applications.
 
+h2. Running FunFX against the demo app
+
+* Copy flex/src/AutoQuickEnv.xml to demo-app/lib/AutoQuickEnv.xml (This step will go away in the future)
+* ruby demo-app/lib/httpd.rb (Start a little web server to serve the HTML/SWF)
+* ruby gem/spec/funfx/demo_app/button_spec.rb (Run some FunFX)
+
 h2. TODO
 
 * Package XML file in FunFX.swc - makes it easier to install and get started...
