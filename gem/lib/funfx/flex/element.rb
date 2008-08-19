@@ -20,8 +20,10 @@ module FunFX
       end
       
       def get_property_value(property, type)
-        raw_value = @flex_app.get_property_value("|#{@flex_id}", property)
-        if raw_value =~ /^____ERROR_FIELD_NOT_FOUND:(.*)/
+        raw_value = @flex_element.get_property_value("|#{@flex_id}", property)
+        if raw_value == "____ERROR_TARGET_NOT_FOUND"
+          raise %{Could not find element with Flex id "#{@flex_id}"}
+        elsif raw_value =~ /^____ERROR_FIELD_NOT_FOUND:(.*)/
           raise "Could not find field #{property}: #{$1}"
         end
         value = case(type)

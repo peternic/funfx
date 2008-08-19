@@ -7,8 +7,8 @@ package funfx {
     {
         public function Proxy()
         {
-            ExternalInterface.addCallback("fireEvent", fireEvent);
-            ExternalInterface.addCallback("getPropertyValue", getPropertyValue);
+            ExternalInterface.addCallback("fireFunFXEvent", fireEvent);
+            ExternalInterface.addCallback("getFunFXPropertyValue", getPropertyValue);
         }
 
         private function fireEvent(objID:String, eventName:String, args:String) : String
