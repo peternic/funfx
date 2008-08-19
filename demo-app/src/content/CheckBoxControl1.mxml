@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%">
+	<mx:Script>
+        <![CDATA[
+
+           import mx.controls.Alert;         
+         
+           // This event handler adds and deletes items from the shopping cart.
+           private function modifyCart():void 
+           {
+                cartItems.text = "";
+	    	
+    	    	if(milkCB.selected == true) {	    	  
+    	    	    cartItems.text += "milk" + '\n' ;
+	    	    }
+	   	
+	   	        if(eggsCB.selected == true) {
+    	    	    cartItems.text += "eggs" + '\n';
+	    	    }
+	    	
+	    	    if(breadCB.selected == true) { 
+    	    	    cartItems.text +="bread" + '\n';
+	    	    }
+      	    }
+        ]]>
+    </mx:Script>
+
+    <mx:Panel title="CheckBox Control Example" 
+        height="75%" width="75%" layout="horizontal"
+        paddingTop="10" paddingBottom="10" paddingLeft="10" paddingRight="10">
+
+        <mx:VBox>
+            <mx:CheckBox id="milkCB" label="milk" click="modifyCart()"/>
+            <mx:CheckBox id="eggsCB" label="eggs" click="modifyCart()"/>
+            <mx:CheckBox id="breadCB" label="bread" click="modifyCart()"/>
+        </mx:VBox>
+
+        <mx:VBox>
+            <mx:Label text="Items in my cart "/>
+            <mx:TextArea id="cartItems" width="300" height="50" verticalScrollPolicy="off"/>
+            <!-- Event handler sendMessages() is used to handle event click -->
+        </mx:VBox>
+    </mx:Panel>
+</mx:VBox>

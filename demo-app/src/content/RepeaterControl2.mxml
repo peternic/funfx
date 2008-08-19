@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%">
+	<mx:Script>
+        <![CDATA[
+        	import mx.collections.ArrayCollection;
+		
+		    import mx.controls.Alert;
+		    
+		    [Bindable] private var array:ArrayCollection = new ArrayCollection();
+		    [Bindable] private var i:int = 0;
+			
+			private function addItem():void{
+				array.addItem(new int(i++));
+			}
+        ]]>
+    </mx:Script>
+
+    <mx:Panel title="Repeater" width="75%" height="75%" 
+        paddingTop="10" paddingLeft="10" paddingRight="10" paddingBottom="10">
+  		
+  		<mx:Button id="bAddItem" label="Add item" click="addItem()"/>
+  		<mx:Label id="lLabelItems" text="Items:"/>
+        <mx:Repeater id="rp" dataProvider="{array}">
+            <mx:TextInput id="tTextInput"/>
+        </mx:Repeater>    
+    </mx:Panel>
+</mx:VBox>

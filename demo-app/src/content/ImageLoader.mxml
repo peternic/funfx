@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%">
+	<mx:Panel title="Image Control" 
+        height="75%" width="75%" horizontalAlign="center"
+        paddingTop="10" paddingLeft="10">
+
+        <mx:Label color="blue" text="Image embedded in the application."/>
+        <mx:Image id="image" source="@Embed('../assets/Nokia_6630.gif')" toolTip="Dette er et bilde"/>
+
+    </mx:Panel>
+</mx:VBox>

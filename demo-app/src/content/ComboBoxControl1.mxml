@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%">
+	<mx:Script>
+        <![CDATA[
+            import mx.collections.ArrayCollection;
+
+            [Bindable]
+            public var cards:ArrayCollection = new ArrayCollection(
+                [ {label:"Visa", data:1}, 
+                  {label:"MasterCard", data:2}, 
+                  {label:"American Express", data:3} ]);
+        
+            private function closeHandler(event:Event):void {
+                lSelectedCard.text = "You selected: " +  ComboBox(event.target).selectedItem.label;
+                lSelectedData.text = "Data: " +  ComboBox(event.target).selectedItem.data;
+            }     
+        ]]>
+    </mx:Script>
+
+    <mx:Panel title="ComboBox Control Example" 
+        height="75%" width="75%" layout="horizontal"
+        paddingTop="10" paddingBottom="10" paddingLeft="10" paddingRight="10">
+
+        <mx:ComboBox id="cbCards" dataProvider="{cards}" width="150" 
+            close="closeHandler(event);"/>
+
+        <mx:VBox width="250">
+            <mx:Text  width="200" color="blue" text="Select a type of credit card."/>
+            <mx:Label id="lSelectedCard" text="You selected:"/>
+            <mx:Label id="lSelectedData" text="Data:"/>
+        </mx:VBox>         
+
+    </mx:Panel>
+</mx:VBox>

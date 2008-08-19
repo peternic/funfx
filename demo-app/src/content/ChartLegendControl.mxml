@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%">
+	<mx:Script>
+        <![CDATA[
+
+        import mx.collections.ArrayCollection;
+
+        [Bindable]
+        private var expensesAC:ArrayCollection = new ArrayCollection( [
+            { Month: "Jan", Profit: 2000, Expenses: 1500, Amount: 450 },
+            { Month: "Feb", Profit: 1000, Expenses: 200, Amount: 600 },
+            { Month: "Mar", Profit: 1500, Expenses: 500, Amount: 300 } ]);
+        ]]>
+    </mx:Script>
+
+    <mx:Panel title="Legend" height="100%" width="100%">
+
+        <mx:PlotChart id="plot" height="100%" width="100%"
+            paddingLeft="5" paddingRight="5" 
+            showDataTips="true" dataProvider="{expensesAC}">
+                
+            <mx:series>
+                <mx:PlotSeries id="test" xField="Expenses" yField="Profit" displayName="Expenses/Profit"/>
+                <mx:PlotSeries xField="Amount" yField="Expenses" displayName="Amount/Expenses"/>
+                <mx:PlotSeries xField="Profit" yField="Amount" displayName="Profit/Amount"/>
+            </mx:series>
+        </mx:PlotChart>
+
+        <mx:Legend id="legend" dataProvider="{plot}"/>
+
+    </mx:Panel>
+</mx:VBox>

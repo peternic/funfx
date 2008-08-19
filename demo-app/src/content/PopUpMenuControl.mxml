@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%">
+	<mx:Script>
+        <![CDATA[
+        	import mx.collections.XMLListCollection;
+            import mx.events.*;
+            import mx.controls.*;
+            
+            private var treeDP2:XMLList =
+                <>
+                    <menuitem label="Inbox"/>
+			        <menuitem label="Calendar"/>
+			        <menuitem label="Deleted Items"/>
+                </>;
+			
+            //Event handler, invoked when you select from the menu.
+            public function itemClickHandler(event:MenuEvent):void {
+                Alert.show("Menu label: " + event.label
+                    + "  \n menu item index within parent menu: " + event.index, "Message");
+            }
+        ]]>
+    </mx:Script>
+
+    <mx:Panel title="PopUpMenuButton Control" height="100%" width="100%" 
+        paddingTop="10" paddingLeft="10" paddingRight="10">
+
+		<mx:Label width="100%" color="blue"
+		    text="Click the down arrow to open the menu."/>
+
+        <mx:PopUpMenuButton id="p2" 
+            dataProvider="{new XMLListCollection(treeDP2)}"
+            labelField="@label"
+            itemClick="itemClickHandler(event);"/>
+
+	</mx:Panel>
+</mx:VBox>

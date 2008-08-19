@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml"
+	width="100%" height="100%"
+	initialize="init()">
+	
+	<mx:Panel title="SyncTest" width="75%" horizontalAlign="center" paddingTop="10">
+		<mx:DataGrid id="dg" width="100%" creationComplete="complete()" dragEnabled="true" height="100%" rowCount="5" dataProvider="{hs.lastResult.synctests.synctest}">
+            <mx:columns>
+                <mx:DataGridColumn dataField="text" headerText="Synctest"/>
+            </mx:columns>
+        </mx:DataGrid>
+	</mx:Panel>
+	
+	<mx:HTTPService id="hs"
+			url="http://localhost:3000/synctests/list" 
+			useProxy="false" method="POST" fault="getFault();"/>
+			
+	<mx:Script>
+		<![CDATA[
+			import mx.automation.IAutomationObject;
+			
+			private function init():void
+			{
+				hs.send();
+			}
+			
+			private function getFault():void
+			{
+				trace("fault");
+			}
+			
+			private function complete():void
+			{
+				trace("complete");
+			}
+			
+		]]>
+	</mx:Script>
+</mx:VBox>

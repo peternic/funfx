@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%">
+	<mx:Script>
+        import mx.controls.Alert;
+    </mx:Script>
+
+    <mx:Panel title="RadioButton" height="75%" width="75%" 
+        paddingTop="10" paddingLeft="10" paddingRight="10">
+
+       <mx:Label width="100%" color="blue"
+           text="What year were women first allowed to compete in the Boston Marathon?"/>
+
+        <mx:RadioButton groupName="year" id="option1" label="1942"/>
+        <mx:RadioButton groupName="year" id="option2" label="1952"/>
+        <mx:RadioButton groupName="year" id="option3" label="1962"/>
+        <mx:RadioButton groupName="year" id="option4" label="1972"/>
+
+        <mx:Button label="Check Answer" 
+            click="Alert.show(option4.selected?'Correct Answer!':'Wrong Answer', 'Result')"/>
+    
+    </mx:Panel>
+</mx:VBox>

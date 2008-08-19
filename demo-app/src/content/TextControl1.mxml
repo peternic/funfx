@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%">
+	<mx:Panel title="Text Control Example" height="75%" width="75%" 
+        paddingTop="10" paddingLeft="10" paddingRight="10">
+
+        <mx:Text id="tText" width="100%">
+            <mx:text>
+                This is a multiline, non-editable text component. 
+            </mx:text>
+        </mx:Text>
+   </mx:Panel>
+</mx:VBox>
