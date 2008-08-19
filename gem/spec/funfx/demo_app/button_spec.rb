@@ -6,7 +6,7 @@ describe "Button" do
 
     safari.goto(DEMO_APP)
     flex = safari.flex('DemoApp') # FunFX::FlexElement
-    text_input = flex.text_input(:id => 'searchTerms')
-    text_input.input("Yo")
+    text_input = flex.text_input(:id => 'whatever')
+    text_input.input("Hallo")
   end
 end
