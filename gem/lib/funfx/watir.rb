@@ -4,25 +4,6 @@ require 'funfx/flex/generated_elements'
 
 
 module Watir
-  # We're adding some methods to this class, which is defined in SafariWatir
-  class AppleScripter #:nodoc:
-    
-    # Finds the Flex element with +id+ inside the +flex_element+ app and
-    # fires an event with name +event_name+ and arguments +args+
-    def fire_flex_event(flex_element, id, event_name, args)
-      
-      #javascript = %|return element.fireEvent("#{id}", "#{event_name}", "#{args}")|
-      #execute(flex_element.operate { javascript }, flex_element)
-    end
-
-    # Finds the Flex element with +id+ inside the +flex_element+ app and
-    # returns the value of its +property+ property.
-    def get_flex_property_value(flex_element, id, property)
-      #javascript = %|return element.getPropertyValue("#{id}", "#{property}")|
-      #execute(flex_element.operate { javascript }, flex_element)
-    end
-  end
-  
   module Container
     # An HTML element hosting a Flex app.
     class FlexElement < Element
