@@ -6,6 +6,8 @@ describe "Button" do
 
     browser.goto(DEMO_APP)
     flex = browser.flex('DemoApp') # FunFX::FlexElement
+    text_input = flex.text_input(:id => 'tText')
+    text_input.input("Hei")
     tree = flex.tree(:id => 'objectTree')
     tree.open('Button controls')
   end
