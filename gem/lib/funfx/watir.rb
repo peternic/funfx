@@ -2,7 +2,6 @@ require 'rubygems'
 require 'watir'
 require 'funfx/flex/generated_elements'
 
-
 module Watir
   module Container
     # An HTML element hosting a Flex app.

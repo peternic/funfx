@@ -1,6 +1,14 @@
 h1. FunFX
 
-FunFX is a Ruby tool for functional testing of Flex applications.
+FunFX is a functional testing tool for Flex applications. FunFX lets you click buttons, menus, trees
+and send any kind of event to any kind of element inside a swf. It also lets you retrieve values from
+elements so that you can compare them with expected results.
+
+h2. Example
+
+browser.goto('http://funfx.rubyforge.org/DemoApp.html')
+flex = browser.flex('DemoApp')
+
 
 h2. Building
 

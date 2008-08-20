@@ -73,8 +73,8 @@ doc.find('/TypeInformation/ClassInfo').each do |class_info|
     if impl['Class'] =~ /.*::(.*)/
       meth = $1.underscore
 
-      class_def << "    def #{meth}(id)\n"
-      class_def << "      #{class_name}.new(self, id)\n"
+      class_def << "    def #{meth}(*locator_hashes)\n"
+      class_def << "      #{class_name}.new(self, *locator_hashes)\n"
       class_def << "    end\n"
     else
       raise "Couldn't recognize #{impl}"

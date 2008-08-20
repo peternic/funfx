@@ -54,8 +54,8 @@ module FunFX
       end
 
     end
-    def display_object(id)
-      FlexDisplayObject.new(self, id)
+    def display_object(*locator_hashes)
+      FlexDisplayObject.new(self, *locator_hashes)
     end
 
     class FlexObject < FlexDisplayObject
@@ -136,8 +136,8 @@ module FunFX
       end
 
     end
-    def ui_component(id)
-      FlexObject.new(self, id)
+    def ui_component(*locator_hashes)
+      FlexObject.new(self, *locator_hashes)
     end
 
     class FlexContainer < FlexObject
@@ -224,24 +224,24 @@ module FunFX
       end
 
     end
-    def container(id)
-      FlexContainer.new(self, id)
+    def container(*locator_hashes)
+      FlexContainer.new(self, *locator_hashes)
     end
 
     class FlexForm < FlexContainer
       include TabularData
 
     end
-    def form(id)
-      FlexForm.new(self, id)
+    def form(*locator_hashes)
+      FlexForm.new(self, *locator_hashes)
     end
 
     class FlexCanvas < FlexContainer
       include TabularData
 
     end
-    def canvas(id)
-      FlexCanvas.new(self, id)
+    def canvas(*locator_hashes)
+      FlexCanvas.new(self, *locator_hashes)
     end
 
     class FlexBox < FlexContainer
@@ -260,11 +260,11 @@ module FunFX
       end
 
     end
-    def box(id)
-      FlexBox.new(self, id)
+    def box(*locator_hashes)
+      FlexBox.new(self, *locator_hashes)
     end
-    def tile(id)
-      FlexBox.new(self, id)
+    def tile(*locator_hashes)
+      FlexBox.new(self, *locator_hashes)
     end
 
     class FlexProgressBar < FlexObject
@@ -361,8 +361,8 @@ module FunFX
       end
 
     end
-    def progress_bar(id)
-      FlexProgressBar.new(self, id)
+    def progress_bar(*locator_hashes)
+      FlexProgressBar.new(self, *locator_hashes)
     end
 
     class FlexAccordion < FlexContainer
@@ -409,8 +409,8 @@ module FunFX
       end
 
     end
-    def accordion(id)
-      FlexAccordion.new(self, id)
+    def accordion(*locator_hashes)
+      FlexAccordion.new(self, *locator_hashes)
     end
 
     class FlexButton < FlexObject
@@ -495,8 +495,8 @@ module FunFX
       end
 
     end
-    def button(id)
-      FlexButton.new(self, id)
+    def button(*locator_hashes)
+      FlexButton.new(self, *locator_hashes)
     end
 
     class FlexPopUpButton < FlexButton
@@ -509,14 +509,14 @@ module FunFX
       end
 
     end
-    def pop_up_button(id)
-      FlexPopUpButton.new(self, id)
+    def pop_up_button(*locator_hashes)
+      FlexPopUpButton.new(self, *locator_hashes)
     end
 
     class FlexCheckBox < FlexButton
     end
-    def check_box(id)
-      FlexCheckBox.new(self, id)
+    def check_box(*locator_hashes)
+      FlexCheckBox.new(self, *locator_hashes)
     end
 
     class FlexRadioButton < FlexButton
@@ -529,8 +529,8 @@ module FunFX
       end
 
     end
-    def radio_button(id)
-      FlexRadioButton.new(self, id)
+    def radio_button(*locator_hashes)
+      FlexRadioButton.new(self, *locator_hashes)
     end
 
     class FlexScrollBase < FlexObject
@@ -539,8 +539,8 @@ module FunFX
       end
 
     end
-    def scroll_control_base(id)
-      FlexScrollBase.new(self, id)
+    def scroll_control_base(*locator_hashes)
+      FlexScrollBase.new(self, *locator_hashes)
     end
 
     class FlexListBase < FlexScrollBase
@@ -701,8 +701,8 @@ module FunFX
       end
 
     end
-    def list_base(id)
-      FlexListBase.new(self, id)
+    def list_base(*locator_hashes)
+      FlexListBase.new(self, *locator_hashes)
     end
 
     class FlexDataGrid < FlexListBase
@@ -761,8 +761,8 @@ module FunFX
       end
 
     end
-    def data_grid(id)
-      FlexDataGrid.new(self, id)
+    def data_grid(*locator_hashes)
+      FlexDataGrid.new(self, *locator_hashes)
     end
 
     class FlexList < FlexListBase
@@ -773,14 +773,14 @@ module FunFX
       end
 
     end
-    def list(id)
-      FlexList.new(self, id)
+    def list(*locator_hashes)
+      FlexList.new(self, *locator_hashes)
     end
-    def horizontal_list(id)
-      FlexList.new(self, id)
+    def horizontal_list(*locator_hashes)
+      FlexList.new(self, *locator_hashes)
     end
-    def tile_list(id)
-      FlexList.new(self, id)
+    def tile_list(*locator_hashes)
+      FlexList.new(self, *locator_hashes)
     end
 
     class FlexTree < FlexListBase
@@ -815,8 +815,8 @@ module FunFX
       end
 
     end
-    def tree(id)
-      FlexTree.new(self, id)
+    def tree(*locator_hashes)
+      FlexTree.new(self, *locator_hashes)
     end
 
     class FlexApplication < FlexBox
@@ -827,8 +827,8 @@ module FunFX
       end
 
     end
-    def application(id)
-      FlexApplication.new(self, id)
+    def application(*locator_hashes)
+      FlexApplication.new(self, *locator_hashes)
     end
 
     class FlexScrollBar < FlexObject
@@ -857,11 +857,11 @@ module FunFX
       end
 
     end
-    def h_scroll_bar(id)
-      FlexScrollBar.new(self, id)
+    def h_scroll_bar(*locator_hashes)
+      FlexScrollBar.new(self, *locator_hashes)
     end
-    def v_scroll_bar(id)
-      FlexScrollBar.new(self, id)
+    def v_scroll_bar(*locator_hashes)
+      FlexScrollBar.new(self, *locator_hashes)
     end
 
     class FlexNumericStepper < FlexObject
@@ -946,8 +946,8 @@ module FunFX
       end
 
     end
-    def numeric_stepper(id)
-      FlexNumericStepper.new(self, id)
+    def numeric_stepper(*locator_hashes)
+      FlexNumericStepper.new(self, *locator_hashes)
     end
 
     class FlexVideoDisplay < FlexObject
@@ -964,8 +964,8 @@ module FunFX
       end
 
     end
-    def video_display(id)
-      FlexVideoDisplay.new(self, id)
+    def video_display(*locator_hashes)
+      FlexVideoDisplay.new(self, *locator_hashes)
     end
 
     class FlexLoader < FlexObject
@@ -974,14 +974,14 @@ module FunFX
       end
 
     end
-    def swf_loader(id)
-      FlexLoader.new(self, id)
+    def swf_loader(*locator_hashes)
+      FlexLoader.new(self, *locator_hashes)
     end
 
     class FlexImage < FlexLoader
     end
-    def image(id)
-      FlexImage.new(self, id)
+    def image(*locator_hashes)
+      FlexImage.new(self, *locator_hashes)
     end
 
     class FlexSlider < FlexObject
@@ -1058,11 +1058,11 @@ module FunFX
       end
 
     end
-    def v_slider(id)
-      FlexSlider.new(self, id)
+    def v_slider(*locator_hashes)
+      FlexSlider.new(self, *locator_hashes)
     end
-    def h_slider(id)
-      FlexSlider.new(self, id)
+    def h_slider(*locator_hashes)
+      FlexSlider.new(self, *locator_hashes)
     end
 
     class FlexComboBase < FlexObject
@@ -1199,8 +1199,8 @@ module FunFX
       end
 
     end
-    def combo_base(id)
-      FlexComboBase.new(self, id)
+    def combo_base(*locator_hashes)
+      FlexComboBase.new(self, *locator_hashes)
     end
 
     class FlexComboBox < FlexComboBase
@@ -1247,8 +1247,8 @@ module FunFX
       end
 
     end
-    def combo_box(id)
-      FlexComboBox.new(self, id)
+    def combo_box(*locator_hashes)
+      FlexComboBox.new(self, *locator_hashes)
     end
 
     class FlexDateField < FlexComboBase
@@ -1317,8 +1317,8 @@ module FunFX
       end
 
     end
-    def date_field(id)
-      FlexDateField.new(self, id)
+    def date_field(*locator_hashes)
+      FlexDateField.new(self, *locator_hashes)
     end
 
     class FlexDateChooser < FlexObject
@@ -1451,8 +1451,8 @@ module FunFX
       end
 
     end
-    def date_chooser(id)
-      FlexDateChooser.new(self, id)
+    def date_chooser(*locator_hashes)
+      FlexDateChooser.new(self, *locator_hashes)
     end
 
     class FlexColorPicker < FlexComboBase
@@ -1481,8 +1481,8 @@ module FunFX
       end
 
     end
-    def color_picker(id)
-      FlexColorPicker.new(self, id)
+    def color_picker(*locator_hashes)
+      FlexColorPicker.new(self, *locator_hashes)
     end
 
     class FlexTextArea < FlexScrollBase
@@ -1567,11 +1567,11 @@ module FunFX
       end
 
     end
-    def text_area(id)
-      FlexTextArea.new(self, id)
+    def text_area(*locator_hashes)
+      FlexTextArea.new(self, *locator_hashes)
     end
-    def text_input(id)
-      FlexTextArea.new(self, id)
+    def text_input(*locator_hashes)
+      FlexTextArea.new(self, *locator_hashes)
     end
 
     class FlexPanel < FlexContainer
@@ -1602,8 +1602,8 @@ module FunFX
       end
 
     end
-    def panel(id)
-      FlexPanel.new(self, id)
+    def panel(*locator_hashes)
+      FlexPanel.new(self, *locator_hashes)
     end
 
     class FlexTitleWindow < FlexPanel
@@ -1614,8 +1614,8 @@ module FunFX
       end
 
     end
-    def title_window(id)
-      FlexTitleWindow.new(self, id)
+    def title_window(*locator_hashes)
+      FlexTitleWindow.new(self, *locator_hashes)
     end
 
     class FlexAlert < FlexPanel
@@ -1648,8 +1648,8 @@ module FunFX
       end
 
     end
-    def alert(id)
-      FlexAlert.new(self, id)
+    def alert(*locator_hashes)
+      FlexAlert.new(self, *locator_hashes)
     end
 
     class FlexDividedBox < FlexBox
@@ -1672,8 +1672,8 @@ module FunFX
       end
 
     end
-    def divided_box(id)
-      FlexDividedBox.new(self, id)
+    def divided_box(*locator_hashes)
+      FlexDividedBox.new(self, *locator_hashes)
     end
 
     class FlexMenu < FlexObject
@@ -1724,8 +1724,8 @@ module FunFX
       end
 
     end
-    def menu(id)
-      FlexMenu.new(self, id)
+    def menu(*locator_hashes)
+      FlexMenu.new(self, *locator_hashes)
     end
 
     class FlexMenuBar < FlexObject
@@ -1804,8 +1804,8 @@ module FunFX
       end
 
     end
-    def menu_bar(id)
-      FlexMenuBar.new(self, id)
+    def menu_bar(*locator_hashes)
+      FlexMenuBar.new(self, *locator_hashes)
     end
 
     class FlexRepeater < Element
@@ -1832,8 +1832,8 @@ module FunFX
       end
 
     end
-    def repeater(id)
-      FlexRepeater.new(self, id)
+    def repeater(*locator_hashes)
+      FlexRepeater.new(self, *locator_hashes)
     end
 
     class FlexLabel < FlexObject
@@ -1886,8 +1886,8 @@ module FunFX
       end
 
     end
-    def label(id)
-      FlexLabel.new(self, id)
+    def label(*locator_hashes)
+      FlexLabel.new(self, *locator_hashes)
     end
 
     class FlexRule < FlexObject
@@ -1900,11 +1900,11 @@ module FunFX
       end
 
     end
-    def h_rule(id)
-      FlexRule.new(self, id)
+    def h_rule(*locator_hashes)
+      FlexRule.new(self, *locator_hashes)
     end
-    def v_rule(id)
-      FlexRule.new(self, id)
+    def v_rule(*locator_hashes)
+      FlexRule.new(self, *locator_hashes)
     end
 
     class FlexFormItem < FlexContainer
@@ -1913,8 +1913,8 @@ module FunFX
       end
 
     end
-    def form_item(id)
-      FlexFormItem.new(self, id)
+    def form_item(*locator_hashes)
+      FlexFormItem.new(self, *locator_hashes)
     end
 
     class FlexViewStack < FlexContainer
@@ -1933,8 +1933,8 @@ module FunFX
       end
 
     end
-    def view_stack(id)
-      FlexViewStack.new(self, id)
+    def view_stack(*locator_hashes)
+      FlexViewStack.new(self, *locator_hashes)
     end
 
     class FlexTabNavigator < FlexViewStack
@@ -1961,8 +1961,8 @@ module FunFX
       end
 
     end
-    def tab_navigator(id)
-      FlexTabNavigator.new(self, id)
+    def tab_navigator(*locator_hashes)
+      FlexTabNavigator.new(self, *locator_hashes)
     end
 
     class FlexNavigationBar < FlexBox
@@ -1985,8 +1985,8 @@ module FunFX
       end
 
     end
-    def nav_bar(id)
-      FlexNavigationBar.new(self, id)
+    def nav_bar(*locator_hashes)
+      FlexNavigationBar.new(self, *locator_hashes)
     end
 
     class FlexLinkBar < FlexNavigationBar
@@ -2001,8 +2001,8 @@ module FunFX
       end
 
     end
-    def link_bar(id)
-      FlexLinkBar.new(self, id)
+    def link_bar(*locator_hashes)
+      FlexLinkBar.new(self, *locator_hashes)
     end
 
     class FlexButtonBar < FlexNavigationBar
@@ -2017,8 +2017,8 @@ module FunFX
       end
 
     end
-    def button_bar(id)
-      FlexButtonBar.new(self, id)
+    def button_bar(*locator_hashes)
+      FlexButtonBar.new(self, *locator_hashes)
     end
 
     class FlexToggleButtonBar < FlexButtonBar
@@ -2033,8 +2033,8 @@ module FunFX
       end
 
     end
-    def toggle_button_bar(id)
-      FlexToggleButtonBar.new(self, id)
+    def toggle_button_bar(*locator_hashes)
+      FlexToggleButtonBar.new(self, *locator_hashes)
     end
 
     class FlexChart < FlexObject
@@ -2097,8 +2097,8 @@ module FunFX
       end
 
     end
-    def chart_base(id)
-      FlexChart.new(self, id)
+    def chart_base(*locator_hashes)
+      FlexChart.new(self, *locator_hashes)
     end
 
     class FlexCartesianChart < FlexChart
@@ -2129,8 +2129,8 @@ module FunFX
       end
 
     end
-    def cartesian_chart(id)
-      FlexCartesianChart.new(self, id)
+    def cartesian_chart(*locator_hashes)
+      FlexCartesianChart.new(self, *locator_hashes)
     end
 
     class FlexAreaChart < FlexCartesianChart
@@ -2141,8 +2141,8 @@ module FunFX
       end
 
     end
-    def area_chart(id)
-      FlexAreaChart.new(self, id)
+    def area_chart(*locator_hashes)
+      FlexAreaChart.new(self, *locator_hashes)
     end
 
     class FlexBarChart < FlexCartesianChart
@@ -2157,8 +2157,8 @@ module FunFX
       end
 
     end
-    def bar_chart(id)
-      FlexBarChart.new(self, id)
+    def bar_chart(*locator_hashes)
+      FlexBarChart.new(self, *locator_hashes)
     end
 
     class FlexColumnChart < FlexCartesianChart
@@ -2173,8 +2173,8 @@ module FunFX
       end
 
     end
-    def column_chart(id)
-      FlexColumnChart.new(self, id)
+    def column_chart(*locator_hashes)
+      FlexColumnChart.new(self, *locator_hashes)
     end
 
     class FlexHLOCChart < FlexCartesianChart
@@ -2189,16 +2189,16 @@ module FunFX
       end
 
     end
-    def hloc_chart(id)
-      FlexHLOCChart.new(self, id)
+    def hloc_chart(*locator_hashes)
+      FlexHLOCChart.new(self, *locator_hashes)
     end
 
     class FlexLineChart < FlexCartesianChart
       include TabularData
 
     end
-    def line_chart(id)
-      FlexLineChart.new(self, id)
+    def line_chart(*locator_hashes)
+      FlexLineChart.new(self, *locator_hashes)
     end
 
     class FlexPieChart < FlexChart
@@ -2213,8 +2213,8 @@ module FunFX
       end
 
     end
-    def pie_chart(id)
-      FlexPieChart.new(self, id)
+    def pie_chart(*locator_hashes)
+      FlexPieChart.new(self, *locator_hashes)
     end
 
     class FlexChartSeries < FlexObject
@@ -2233,8 +2233,8 @@ module FunFX
       end
 
     end
-    def series(id)
-      FlexChartSeries.new(self, id)
+    def series(*locator_hashes)
+      FlexChartSeries.new(self, *locator_hashes)
     end
 
     class FlexAreaSeries < FlexChartSeries
@@ -2261,8 +2261,8 @@ module FunFX
       end
 
     end
-    def area_series(id)
-      FlexAreaSeries.new(self, id)
+    def area_series(*locator_hashes)
+      FlexAreaSeries.new(self, *locator_hashes)
     end
 
     class FlexBarSeries < FlexChartSeries
@@ -2293,8 +2293,8 @@ module FunFX
       end
 
     end
-    def bar_series(id)
-      FlexBarSeries.new(self, id)
+    def bar_series(*locator_hashes)
+      FlexBarSeries.new(self, *locator_hashes)
     end
 
     class FlexBubbleSeries < FlexChartSeries
@@ -2317,8 +2317,8 @@ module FunFX
       end
 
     end
-    def bubble_series(id)
-      FlexBubbleSeries.new(self, id)
+    def bubble_series(*locator_hashes)
+      FlexBubbleSeries.new(self, *locator_hashes)
     end
 
     class FlexColumnSeries < FlexChartSeries
@@ -2353,8 +2353,8 @@ module FunFX
       end
 
     end
-    def column_series(id)
-      FlexColumnSeries.new(self, id)
+    def column_series(*locator_hashes)
+      FlexColumnSeries.new(self, *locator_hashes)
     end
 
     class FlexLineSeries < FlexChartSeries
@@ -2381,8 +2381,8 @@ module FunFX
       end
 
     end
-    def line_series(id)
-      FlexLineSeries.new(self, id)
+    def line_series(*locator_hashes)
+      FlexLineSeries.new(self, *locator_hashes)
     end
 
     class FlexPieSeries < FlexChartSeries
@@ -2433,8 +2433,8 @@ module FunFX
       end
 
     end
-    def pie_series(id)
-      FlexPieSeries.new(self, id)
+    def pie_series(*locator_hashes)
+      FlexPieSeries.new(self, *locator_hashes)
     end
 
     class FlexPlotSeries < FlexChartSeries
@@ -2453,8 +2453,8 @@ module FunFX
       end
 
     end
-    def plot_series(id)
-      FlexPlotSeries.new(self, id)
+    def plot_series(*locator_hashes)
+      FlexPlotSeries.new(self, *locator_hashes)
     end
 
     class FlexAxisRenderer < FlexObject
@@ -2521,8 +2521,8 @@ module FunFX
       end
 
     end
-    def axis_renderer(id)
-      FlexAxisRenderer.new(self, id)
+    def axis_renderer(*locator_hashes)
+      FlexAxisRenderer.new(self, *locator_hashes)
     end
 
     class FlexChartLegend < FlexObject
@@ -2569,8 +2569,8 @@ module FunFX
       end
 
     end
-    def legend(id)
-      FlexChartLegend.new(self, id)
+    def legend(*locator_hashes)
+      FlexChartLegend.new(self, *locator_hashes)
     end
 
     class FlexListLabel < FlexDisplayObject
@@ -2591,23 +2591,23 @@ module FunFX
       end
 
     end
-    def menu_item_renderer(id)
-      FlexListLabel.new(self, id)
+    def menu_item_renderer(*locator_hashes)
+      FlexListLabel.new(self, *locator_hashes)
     end
-    def menu_bar_item(id)
-      FlexListLabel.new(self, id)
+    def menu_bar_item(*locator_hashes)
+      FlexListLabel.new(self, *locator_hashes)
     end
-    def tree_item_renderer(id)
-      FlexListLabel.new(self, id)
+    def tree_item_renderer(*locator_hashes)
+      FlexListLabel.new(self, *locator_hashes)
     end
-    def list_item_renderer(id)
-      FlexListLabel.new(self, id)
+    def list_item_renderer(*locator_hashes)
+      FlexListLabel.new(self, *locator_hashes)
     end
-    def data_grid_item_renderer(id)
-      FlexListLabel.new(self, id)
+    def data_grid_item_renderer(*locator_hashes)
+      FlexListLabel.new(self, *locator_hashes)
     end
-    def tile_list_item_renderer(id)
-      FlexListLabel.new(self, id)
+    def tile_list_item_renderer(*locator_hashes)
+      FlexListLabel.new(self, *locator_hashes)
     end
   end
 end

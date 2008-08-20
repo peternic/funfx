@@ -22,7 +22,8 @@ describe "DemoApp" do
     tree.open('Button controls')
   end
   
-  xit "should support snazzy lookup syntax" do
-    tree = @flex / {:id => 'box'} / tree(:id => 'objectTree')
+  it "should support snazzy lookup syntax" do
+    tree = @flex.tree({:id => 'box'}, {:id => 'objectTree'})
+    tree.open('Button controls')
   end
 end
