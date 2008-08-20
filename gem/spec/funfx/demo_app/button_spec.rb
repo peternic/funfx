@@ -4,7 +4,7 @@ describe "DemoApp" do
   before(:each) do
     browser = Watir::Browser.new
     browser.goto(DEMO_APP)
-    @flex = browser.flex('DemoApp') # FunFX::FlexElement
+    @flex = browser.flex_app('DemoApp')
   end
   
   after(:each) do

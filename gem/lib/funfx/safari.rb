@@ -5,22 +5,21 @@ require 'funfx/flex/generated_elements'
 module Watir
   module Container
     # An HTML element hosting a Flex app.
-    class FlexElement < HtmlElement
+    class FlexApp < HtmlElement
       include FunFX::Flex
 
-      # Called by a Flex component to fire an event
-      def fire_event(id, type, value) # :nodoc:
-        @scripter.fire_flex_event(self, id, type, value)
+      def fire_event(flex_id, type, value) # :nodoc:
+        @scripter.fire_flex_event(self, flex_id, type, value)
       end
 
-      # Called by a Flex component to get a value
-      def get_property_value(id, property) # :nodoc:
-        @scripter.get_flex_property_value(self, id, property)
+      def get_property_value(flex_id, property) # :nodoc:
+        @scripter.get_flex_property_value(self, flex_id, property)
       end
     end
 
-    def flex(id)
-      FlexElement.new(scripter, :id, id)
+    # Returns a FlexApp identified by +dom_id+
+    def flex_app(dom_id)
+      FlexApp.new(scripter, :id, dom_id)
     end
   end
 
