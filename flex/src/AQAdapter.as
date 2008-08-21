@@ -59,6 +59,7 @@ import mx.controls.Button;
 import mx.managers.PopUpManager;
 import flash.xml.XMLNode;
 import mx.controls.Alert;
+import mx.containers.TitleWindow;
 
 use namespace mx_internal;
 
@@ -883,6 +884,8 @@ public class AQAdapter implements IAQCodecHelper
 
             // Disable the popup by commenting out the line below
 			PopUpManager.createPopUp(DisplayObject(Application.application), AQToolBar);
+			//panel.x = Application.application.width - panel.width;
+			//panel.y = Application.application.height - panel.height;
 			new Proxy();
         }
 

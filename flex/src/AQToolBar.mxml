@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:TitleWindow title="Automation" xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical">
+<mx:TitleWindow title="Automation" xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical"
+	creationComplete="position()">
 
 <mx:HBox>
 	<mx:Button label="Record" click="startRecording()" id="btnRecord" />
@@ -14,6 +15,12 @@
 	    import mx.automation.IAutomationManager;
 	    import mx.automation.IAutomationObject;
 	    import mx.automation.AutomationID;
+		import mx.core.Application;
+		
+		private function position():void{
+			this.x = Application.application.width - this.width;
+			this.y = Application.application.height - this. height;
+		}
 	
 		private function startRecording():void
 		{

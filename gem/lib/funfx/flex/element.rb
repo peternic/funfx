@@ -16,7 +16,9 @@ module FunFX
       # Fires and
       def fire_event(event_name, *args)
         flex_args = args.join("_ARG_SEP_")
+		puts "@flex_id #{@flex_id}, event_name #{event_name}, flex_args #{flex_args}"
         result = @flex_app.fire_event(@flex_id, event_name, flex_args)
+		puts "Result=" + result
         if result == "____ERROR_TARGET_NOT_FOUND"
           raise %{Could not find element with Flex id "#{@flex_id}"}
         end

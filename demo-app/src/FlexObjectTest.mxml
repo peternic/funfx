@@ -7,16 +7,13 @@
 	width="100%" height="100%" viewSourceURL="srcview/index.html">
 	
 	<mx:Style source="styles/general.css"/>
-  <mx:VBox width="100%" height="100%">
 	<mx:HBox height="100%" width="100%" id="box">
-  <mx:TextInput id="tText"/>
 		<mx:Tree id="objectTree" dataProvider="{treeData}" labelField="@label"
 				width="20%" height="100%" change="showComponent(event)"/>
-		<mx:VBox id="contentBox" height="80%" width="100%" showInAutomationHierarchy="true" >
+		<mx:VBox id="contentBox" height="80%" width="100%" >
 
 		</mx:VBox>
 	</mx:HBox>
-	</mx:VBox>
 	<mx:XMLList id="treeData">
         <node label="General controls">
             <node label="Alert1" data="content.AlertControl"/>

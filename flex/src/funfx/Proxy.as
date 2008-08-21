@@ -18,7 +18,7 @@ package funfx {
                 var result:Object = AQAdapter.aqAdapter.replay(target, eventName, convertArrayFromStringToAs(args));
     	        return "OK";
     	    } catch(e:Error) {
-                return "____ERROR_TARGET_NOT_FOUND";
+                return "____ERROR_TARGET_NOT_FOUND " + e.message;
     	    }
     	    return null;
         }
