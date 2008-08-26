@@ -26,9 +26,5 @@ module Watir
     def flex_app(dom_id)
       FlexApp.new(self, dom_id)
     end
-	
-	def close
-		puts "tilllll"
-	end
   end
 end

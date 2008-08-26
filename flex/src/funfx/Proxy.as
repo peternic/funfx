@@ -13,19 +13,19 @@ package funfx {
 
         private function fireEvent(objID:String, eventName:String, args:String) : String
         {
-    	    try {
+            try {
                 var target:IAutomationObject = findAutomationObject(objID);
                 var result:Object = AQAdapter.aqAdapter.replay(target, eventName, convertArrayFromStringToAs(args));
-    	        return "OK";
-    	    } catch(e:Error) {
-                return "____ERROR_TARGET_NOT_FOUND " + e.message;
-    	    }
-    	    return null;
+                return "OK";
+            } catch(e:Error) {
+                return "____ERROR_TARGET_NOT_FOUND:" + e.message;
+            }
+            return null;
         }
 
-    	private function getPropertyValue(objID:String, fieldName:String) : String
-    	{
-    	    try {
+        private function getPropertyValue(objID:String, fieldName:String) : String
+        {
+            try {
                 var target:IAutomationObject = findAutomationObject(objID);
                 var o:Object = Object(target);
                 if (o.hasOwnProperty(fieldName)) {
@@ -33,14 +33,14 @@ package funfx {
                 } else {
                     return "____ERROR_FIELD_NOT_FOUND:class=" + o.className();
                 }
-    	    } catch(e:Error) {
-                return "____ERROR_TARGET_NOT_FOUND";
-    	    }
-    	    return null;
-	    }
-    	
-    	private function findAutomationObject(objID:String) : IAutomationObject
-    	{
+            } catch(e:Error) {
+                return "____ERROR_TARGET_NOT_FOUND:" + e.message;
+            }
+            return null;
+        }
+
+        private function findAutomationObject(objID:String) : IAutomationObject
+        {
             var rid:AutomationID = AutomationID.parse(objID);
             var target:IAutomationObject = AQAdapter.aqAdapter.automationManager.resolveIDToSingleObject(rid);
             if (!target)
@@ -51,7 +51,7 @@ package funfx {
             {
                 return target;
             }
-    	}
+        }
 
         private function convertArrayFromStringToAs(a:String):Array
         {

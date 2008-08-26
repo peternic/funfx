@@ -16,21 +16,14 @@ module FunFX
       # Fires and
       def fire_event(event_name, *args)
         flex_args = args.join("_ARG_SEP_")
-		puts "@flex_id #{@flex_id}, event_name #{event_name}, flex_args #{flex_args}"
         result = @flex_app.fire_event(@flex_id, event_name, flex_args)
-		puts "Result=" + result
-        if result == "____ERROR_TARGET_NOT_FOUND"
-          raise %{Could not find element with Flex id "#{@flex_id}"}
-        end
+        check_result(result)
       end
       
       def get_property_value(property, type)
         raw_value = @flex_app.get_property_value(@flex_id, property)
-        if raw_value == "____ERROR_TARGET_NOT_FOUND"
-          raise %{Could not find element with Flex id "#{@flex_id}"}
-        elsif raw_value =~ /^____ERROR_FIELD_NOT_FOUND:(.*)/
-          raise "Could not find field #{property}: #{$1}"
-        end
+        check_result(raw_value)
+
         value = case(type)
         when :string
           raw_value
@@ -45,6 +38,16 @@ module FunFX
           raise "I don't know how to convert to #{type}"
         end
         value
+      end
+      
+      def check_result(result)
+        if result =~ /^____ERROR_TARGET_NOT_FOUND:(.*)/
+          raise %{Could not find element with Flex id "#{@flex_id}. Flex says:\n#{$1}"}
+        elsif result =~ /^____ERROR_FIELD_NOT_FOUND:(.*)/
+          raise "Could not find field #{property}. Flex says:\n#{$1}"
+        else
+          result
+        end
       end
     end
   end

@@ -4,11 +4,39 @@ FunFX is a functional testing tool for Flex applications. FunFX lets you click b
 and send any kind of event to any kind of element inside a swf. It also lets you retrieve values from
 elements so that you can compare them with expected results.
 
+h2. Installation
+
+First, install "Ruby":http://ruby-lang.org/
+
+Second install Watir (IE/Windows) or Safariwatir (Safari/OS X)
+
+<pre><code>gem install watir
+</code></pre>
+
+or
+
+<pre><code>gem install safariwatir
+</code></pre>
+
+Last - install FunFX:
+
+<pre><code>gem install funfx
+</code></pre>
+
 h2. Example
 
-browser.goto('http://funfx.rubyforge.org/DemoApp.html')
-flex = browser.flex('DemoApp')
+<pre><code>browser.goto('http://funfx.rubyforge.org/DemoApp.html')
+flex = browser.flex_app('DemoApp')
 
+tree = flex.tree({:id => 'box'}, {:id => 'objectTree'})
+tree.open('Button controls')
+tree.select('Button1')
+
+button = @flex.button(:label => 'Default Button')
+if button.enabled?
+  raise "Uhm, I expected this button to be disabled..."
+end
+</code></pre>
 
 h2. Building
 
