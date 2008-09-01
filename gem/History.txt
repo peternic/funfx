@@ -2,7 +2,7 @@
 
 Complete rewrite of FunFX.
 
-* 10 major enhancements:
+* 12 major enhancements:
   * FunFX is a plugin to Watir/SafariWatir
   * The FunFX API is statically generated code instead of dynamically generated
   * Hash based lookup of elements
