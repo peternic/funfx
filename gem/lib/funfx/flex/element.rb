@@ -1,5 +1,6 @@
 module FunFX
   module Flex
+    class FunFXError < StandardError; end
     
     # Base class for all Flex proxy elements
     class Element
@@ -13,16 +14,15 @@ module FunFX
         @flex_id = "|" + ids.join("|")
       end
 
-      # Fires and
       def fire_event(event_name, *args)
         flex_args = args.join("_ARG_SEP_")
         result = @flex_app.fire_event(@flex_id, event_name, flex_args)
-        check_result(result)
+        raise_if_funfx_error(result)
       end
       
       def get_property_value(property, type)
         raw_value = @flex_app.get_property_value(@flex_id, property)
-        check_result(raw_value)
+        raise_if_funfx_error(raw_value)
 
         value = case(type)
         when :string
@@ -40,11 +40,30 @@ module FunFX
         value
       end
       
-      def check_result(result)
-        if result =~ /^____ERROR_TARGET_NOT_FOUND:(.*)/
-          raise %{Could not find element with Flex id "#{@flex_id}. Flex says:\n#{$1}"}
-        elsif result =~ /^____ERROR_FIELD_NOT_FOUND:(.*)/
-          raise "Could not find field #{property}. Flex says:\n#{$1}"
+      def raise_if_funfx_error(result)
+        if result =~ /^____FUNFX_ERROR:\n(.*)/m
+          lines = $1.split("\n")
+          message = lines[0]
+          trace = lines[1..-1].map do |line|
+            if line =~ /^\s+at (.+\(\))\[(.+)\]$/
+              meth = $1
+              file_line = $2.gsub(/\\/, '/')
+            elsif
+              line =~ /^\s+at (.+\(\))$/
+              meth = $1
+              file_line = "UNKNOWN"
+            else
+              raise "Unmatched line: #{line}"
+            end
+            "#{file_line}:in `#{meth}'"
+          end
+          e = FunFXError.new(message)
+          begin
+            raise e
+          rescue => e
+            e.backtrace.unshift(trace).flatten!
+            raise e
+          end
         else
           result
         end

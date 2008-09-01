@@ -14,6 +14,35 @@ module FunFX
         value = element.get_property_value('WhatEver', :boolean)
         value.should == true
       end
+      
+      it "should raise error with Flex backtrace formatted as Ruby backtrace" do
+        flex_error = %{____FUNFX_ERROR:
+Error: Unable to resolve child for part 'undefined':'undefined' in parent 'FlexObjectTest'.
+        at mx.automation::AutomationManager/resolveID()[C:\\work\\flex\\dmv_automation\\projects\\automation\\src\\mx\\automation\\AutomationManager.as:1332]
+        at mx.automation::AutomationManager/resolveIDToSingleObject()[C:\\work\\flex\\dmv_automation\\projects\\automation\\src\\mx\\automation\\AutomationManager.as:1238]
+        at funfx::Proxy/findAutomationObject()[C:\\scm\\funfx\\flex\\src\\funfx\\Proxy.as:46]
+        at funfx::Proxy/fireEvent()[C:\\scm\\funfx\\flex\\src\\funfx\\Proxy.as:18]
+        at Function/http://adobe.com/AS3/2006/builtin::apply()
+        at <anonymous>()
+        at flash.external::ExternalInterface$/_callIn()
+        at <anonymous>()}
+
+        element = Element.new(nil, {})
+        begin
+          element.raise_if_funfx_error(flex_error)
+          violated
+        rescue => e
+          e.message.should == "Error: Unable to resolve child for part 'undefined':'undefined' in parent 'FlexObjectTest'."
+          e.backtrace.join("\n").should == %{C:/work/flex/dmv_automation/projects/automation/src/mx/automation/AutomationManager.as:1332:in `mx.automation::AutomationManager/resolveID()'
+C:/work/flex/dmv_automation/projects/automation/src/mx/automation/AutomationManager.as:1238:in `mx.automation::AutomationManager/resolveIDToSingleObject()'
+C:/scm/funfx/flex/src/funfx/Proxy.as:46:in `funfx::Proxy/findAutomationObject()'
+C:/scm/funfx/flex/src/funfx/Proxy.as:18:in `funfx::Proxy/fireEvent()'
+UNKNOWN:in `Function/http://adobe.com/AS3/2006/builtin::apply()'
+UNKNOWN:in `<anonymous>()'
+UNKNOWN:in `flash.external::ExternalInterface$/_callIn()'
+UNKNOWN:in `<anonymous>()'}
+        end
+      end
     end
   end
 end

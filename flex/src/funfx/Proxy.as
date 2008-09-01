@@ -1,7 +1,8 @@
 package funfx {
     import flash.external.ExternalInterface;
-    import mx.automation.IAutomationObject;
+    
     import mx.automation.AutomationID;
+    import mx.automation.IAutomationObject;
     
     public class Proxy
     {
@@ -18,7 +19,7 @@ package funfx {
                 var result:Object = AQAdapter.aqAdapter.replay(target, eventName, convertArrayFromStringToAs(args));
                 return "OK";
             } catch(e:Error) {
-                return "____ERROR_TARGET_NOT_FOUND:" + e.message;
+                return errorMessage(e);
             }
             return null;
         }
@@ -31,26 +32,37 @@ package funfx {
                 if (o.hasOwnProperty(fieldName)) {
                     return o[fieldName];
                 } else {
-                    return "____ERROR_FIELD_NOT_FOUND:class=" + o.className();
+                    throw new Error("Field not found: " + objID + ". Class=" + o.className());
                 }
             } catch(e:Error) {
-                return "____ERROR_TARGET_NOT_FOUND:" + e.message;
+                return errorMessage(e);
             }
             return null;
         }
 
         private function findAutomationObject(objID:String) : IAutomationObject
         {
-            var rid:AutomationID = AutomationID.parse(objID);
-            var target:IAutomationObject = AQAdapter.aqAdapter.automationManager.resolveIDToSingleObject(rid);
-            if (!target)
-            {
-                throw new Error("Target not found");
-            } 
-            else 
-            {
-                return target;
+            try {
+                var rid:AutomationID = AutomationID.parse(objID);
+                var target:IAutomationObject = AQAdapter.aqAdapter.automationManager.resolveIDToSingleObject(rid);
+                if (!target)
+                {
+                    // We probably never get here...
+                    throw new Error("Target not found: " + objID);
+                } 
+                else 
+                {
+                    return target;
+                }
+            } catch(e:Error) {
+                throw new Error("Target not found: " + objID);
             }
+            return null;
+        }
+        
+        private function errorMessage(e:Error) : String {
+            // We have to escape backslashes or else they get interpreted as meta characters on the Ruby side.
+            return "____FUNFX_ERROR:\n" + e.getStackTrace().replace(/\\/gm, "\\\\");
         }
 
         private function convertArrayFromStringToAs(a:String):Array

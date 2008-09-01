@@ -1,4 +1,17 @@
-== 0.0.1 2008-08-19
+== 0.2.0 yyyy-mm-dd
 
-* 1 major enhancement:
-  * Initial release
+Complete rewrite of FunFX.
+
+* 10 major enhancements:
+  * FunFX is a plugin to Watir/SafariWatir
+  * The FunFX API is statically generated code instead of dynamically generated
+  * Hash based lookup of elements
+  * Flex stacktrace is included in Ruby stack trace
+  * Elements can be looked up by a "path" of ids: several hashes
+  * Types are coerced back to correct Ruby types when asking for properties
+  * Full demo app included in the source tree
+  * Moved to Git
+  * Automated build using Rake
+  * Proper packaging as a Ruby gem (NEEDS WORK TO INCLUDE THE FUNFX.SWC)
+  * Automated testing using RSpec
+  * The code is largely based on Adobe's AutoQuick example

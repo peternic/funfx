@@ -36,6 +36,6 @@ describe "DemoApp" do
     tree = @flex.tree({:id => 'gibberish'}, {:id => 'nonsense'})
     lambda do
       tree.open('Button controls')
-    end.should raise_error(%r{Could not find element with Flex id "|id\{gibberish string\}|id\{nonsense string\}})
+    end.should raise_error("Error: Target not found: |id{gibberish string}|id{nonsense string}")
   end
 end
