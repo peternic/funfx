@@ -49,10 +49,73 @@ h2. Running FunFX against the demo app
 * ruby demo-app/lib/httpd.rb (Start a little web server to serve the HTML/SWF)
 * ruby gem/spec/funfx/demo_app/button_spec.rb (Run some FunFX)
 
+h2. Getting a reference to a Flex application
+
+In order to fire events and get values from Flex objects, you first have to create a reference to the Flex application itself:
+
+*Watir*
+
+<pre><code>require 'funfx/watir'
+
+browser = Watir::IE.new
+browser.goto(URL) # The URL containing your Flex app
+flex = browser.flex_app('DemoApp')
+</code></pre>
+
+*SafariWatir*
+
+<pre><code>require 'funfx/safariwatir'
+
+browser = Watir::Safari.new
+browser.goto(URL) # The URL containing your Flex app
+flex = browser.flex_app('DemoApp')
+</code></pre>
+
+h2. Looking up Flex elements with Automation IDs
+
+Once you have a reference to the Flex app, FunFX lets you look up a Flex element using a Hash:
+
+<pre><code>message = @flex.text_area({:id => 'message'})
+</code></pre>
+
+or an Array of Hashes:
+
+<pre><code>message = @flex.text_area({:automationName => "Button Control Example"}, {:id => 'message'})
+</code></pre>
+
+There is a lookup method for each element type. See the FunFX API or cheat sheet for more details.
+
+FunFX will translate the arguments you pass to the "Adobe Flex Automation ID format":http://livedocs.adobe.com/flex/3/langref/mx/automation/AutomationID.html.
+For example, the last example would be translated to the following:
+
+<pre><code>id{DemoApp string}|automationName{Button%20Control%20Example string}|id{message string}
+</code></pre>
+
+h3. When an automation object is not found
+
+FunFX will raise an error if you try to interact with an automation object that cannot be found.
+
+Note that FunFX will *not* raise any errors when you *look up* a Flex automation object that doesn't exist. It's only when you fire an event or ask for a property
+that an error will be raised.
+
 h2. TODO
 
 * Package XML file in FunFX.swc - makes it easier to install and get started...
+* Use IAutomationManager.isSynchronized and a Timer - as in AQToolBar.mxml
+** See http://livedocs.adobe.com/flex/3/html/help.html?content=functest_components2_10.html
+* Get rid of the AutoQuick codebase - base FunFX only on the automation API
 * Use RCov and aim for 100% coverage of all generated methods
+* Allow lookup of elements from elements:
+** tree = @flex.tree({:id => 'objectTree'})
+** button = tree.button(:label => 'Default Button')
+* Add method to retrieve screenshot
+** http://blog.flexexamples.com/2007/11/16/taking-screenshots-in-flex-using-the-imagesnapshotcaptureimage-method/
+* Put the Flex app's ID in the beginning of the @flex_id
+
+h2. Links
+
+* http://livedocs.adobe.com/flex/3/langref/mx/automation/AutomationID.html
+* http://livedocs.adobe.com/flex/3/langref/mx/automation/IAutomationManager.html
 
 h2. GOTCHAS
 

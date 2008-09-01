@@ -1,3 +1,4 @@
+require 'funfx'
 require 'funfx/flex/element'
 require 'funfx/flex/tabular_data'
 

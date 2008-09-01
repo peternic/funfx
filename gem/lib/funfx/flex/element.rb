@@ -1,29 +1,67 @@
+require 'uri'
+
 module FunFX
   module Flex
     class FunFXError < StandardError; end
     
     # Base class for all Flex proxy elements
     class Element
+      MAX_TRIES = 10
+
       def initialize(flex_app, *locator_hashes)
         @flex_app = flex_app
         ids = locator_hashes.map do |locator_hash|
           locator_hash.map do |key, value|
-            "#{key}{#{value} string}"
+            "#{key}{#{URI.escape(value)} string}"
           end.join
         end
         @flex_id = "|" + ids.join("|")
+        @tries = 0
       end
 
       def fire_event(event_name, *args)
         flex_args = args.join("_ARG_SEP_")
-        result = @flex_app.fire_event(@flex_id, event_name, flex_args)
-        raise_if_funfx_error(result)
+        FunFX.debug "FIRE EVENT"
+        FunFX.debug "  ID:#{@flex_id}"
+        FunFX.debug "  EVENT NAME:#{event_name}"
+        FunFX.debug "  FLEX ARGS:#{flex_args}"
+        raw_value = @flex_app.fire_event(@flex_id, event_name, flex_args)
+
+        if raw_value.nil?
+          @tries += 1
+          if @tries < MAX_TRIES
+            sleep 0.1
+            fire_event(event_name, *args)
+          else
+            raise "Flex app is busy and seems to stay busy!"
+          end
+        end
+        FunFX.debug "Passed after #{@tries} tries"
+        @tries = 0
+
+        raise_if_funfx_error(raw_value)
       end
       
       def get_property_value(property, type)
         raw_value = @flex_app.get_property_value(@flex_id, property)
-        raise_if_funfx_error(raw_value)
 
+        if raw_value.nil?
+          @tries += 1
+          if @tries < MAX_TRIES
+            sleep 0.1
+            get_property_value(property, type)
+          else
+            raise "Flex app is busy and seems to stay busy!"
+          end
+        end
+        FunFX.debug "Passed after #{@tries} tries"
+        @tries = 0
+
+        raise_if_funfx_error(raw_value)
+        coerce(raw_value, type)
+      end
+      
+      def coerce(raw_value, type)
         value = case(type)
         when :string
           raw_value

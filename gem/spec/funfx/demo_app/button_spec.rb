@@ -1,7 +1,9 @@
 require File.dirname(__FILE__) + '/../../spec_helper'
 
+
 describe "DemoApp" do
   before(:all) do
+    # FunFX.debug = true
     @browser = Watir::Browser.new
   end
 
@@ -10,26 +12,26 @@ describe "DemoApp" do
     @flex = @browser.flex_app('DemoApp')
   end
   
-  after(:each) do
-    sleep 2
-  end
-  
   after(:all) do
+    FunFX.debug = false
     @browser.close
   end
 
-  it "should be enabled" do
-    tree = @flex.tree({:id => 'box'}, {:id => 'objectTree'})
+  it "should open tree and click default button" do
+    tree = @flex.tree({:id => 'objectTree'})
     tree.open('Button controls')
-    tree.select('Button1')
+    tree.select('Button controls>Button1')
 
-    button = @flex.button(:label => 'Default Button')
-    button.should be_enabled
-  end
-  
-  it "should support snazzy lookup syntax" do
-    tree = @flex.tree({:id => 'box'}, {:id => 'objectTree'})
-    tree.open('Button controls')
+    message = @flex.text_area({:automationName => "Button Control Example"}, {:id => 'message'})
+    message.text.should == nil
+
+    button = @flex.button(:automationName => 'Default Button')
+    # TODO: It works with this hack - make it work without!!!
+    button.instance_variable_set :@flex_id, "label{ string}automationName{FlexObjectTest string}automationClassName{FlexApplication string}id{DemoApp string}className{FlexObjectTest string}automationIndex{index:-1 string}|label{ string}automationName{Button%20Control%20Example string}automationClassName{FlexPanel string}id{null object}className{mx.containers.Panel string}automationIndex{index:4 string}|label{Default%20Button string}automationName{Default%20Button string}automationClassName{FlexButton string}id{null object}className{mx.controls.Button string}automationIndex{index:3 string}"
+    button.click
+
+    message = @flex.text_area({:automationName => "Button Control Example"}, {:id => 'message'})
+    message.text.strip.should == "Default Button pressed"
   end
   
   it "should raise error when firing event on nonexistant element" do

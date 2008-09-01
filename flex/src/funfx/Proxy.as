@@ -3,6 +3,7 @@ package funfx {
     
     import mx.automation.AutomationID;
     import mx.automation.IAutomationObject;
+    import mx.automation.IAutomationManager;
     
     public class Proxy
     {
@@ -14,6 +15,9 @@ package funfx {
 
         private function fireEvent(objID:String, eventName:String, args:String) : String
         {
+            if(!automationManager.isSynchronized(null)) {
+                return null;
+            }
             try {
                 var target:IAutomationObject = findAutomationObject(objID);
                 var result:Object = AQAdapter.aqAdapter.replay(target, eventName, convertArrayFromStringToAs(args));
@@ -26,13 +30,16 @@ package funfx {
 
         private function getPropertyValue(objID:String, fieldName:String) : String
         {
+            if(!automationManager.isSynchronized(null)) {
+                return null;
+            }
             try {
                 var target:IAutomationObject = findAutomationObject(objID);
                 var o:Object = Object(target);
                 if (o.hasOwnProperty(fieldName)) {
                     return o[fieldName];
                 } else {
-                    throw new Error("Field not found: " + objID + ". Class=" + o.className());
+                    throw new Error("Field not found: " + target + " doesn't have a field named '" + fieldName + "'");
                 }
             } catch(e:Error) {
                 return errorMessage(e);
@@ -40,20 +47,14 @@ package funfx {
             return null;
         }
 
+        /** 
+         * Returns an automation object. If we're not synched, returns null, in which case the client must try again.
+         */
         private function findAutomationObject(objID:String) : IAutomationObject
         {
             try {
                 var rid:AutomationID = AutomationID.parse(objID);
-                var target:IAutomationObject = AQAdapter.aqAdapter.automationManager.resolveIDToSingleObject(rid);
-                if (!target)
-                {
-                    // We probably never get here...
-                    throw new Error("Target not found: " + objID);
-                } 
-                else 
-                {
-                    return target;
-                }
+                return automationManager.resolveIDToSingleObject(rid);
             } catch(e:Error) {
                 throw new Error("Target not found: " + objID);
             }
@@ -70,5 +71,11 @@ package funfx {
             var result:Array = a.split("_ARG_SEP_");
             return result;
         }
+
+        private function get automationManager():IAutomationManager
+        {
+            return AQAdapter.aqAdapter.automationManager;
+        }
+
     }
 }
