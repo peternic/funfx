@@ -25,31 +25,31 @@ module FunFX
         FunFX.debug "  ID:#{@flex_id}"
         FunFX.debug "  EVENT NAME:#{event_name}"
         FunFX.debug "  FLEX ARGS:#{flex_args}"
-        raw_value = @flex_app.fire_event(@flex_id, event_name, flex_args)
 
-        if raw_value.nil?
-          @tries += 1
-          if @tries < MAX_TRIES
-            sleep 0.1
-            fire_event(event_name, *args)
-          else
-            raise "Flex app is busy and seems to stay busy!"
-          end
+        flex_invoke do
+          @flex_app.fire_event(@flex_id, event_name, flex_args)
         end
-        FunFX.debug "Passed after #{@tries} tries"
-        @tries = 0
+        sleep FunFX.latency unless FunFX.latency.nil?
+      end
 
-        raise_if_funfx_error(raw_value)
+      def get_property_value(property, type)
+        FunFX.debug "GET PROPERTY VALUE"
+        FunFX.debug "  PROPERTY:#{property}"
+        FunFX.debug "  TYPE:#{type}"
+
+        raw_value = flex_invoke do
+          @flex_app.get_property_value(@flex_id, property)
+        end
+        coerce(raw_value, type)
       end
       
-      def get_property_value(property, type)
-        raw_value = @flex_app.get_property_value(@flex_id, property)
-
+      def flex_invoke
+        @tries += 1
+        raw_value = yield
         if raw_value.nil?
-          @tries += 1
           if @tries < MAX_TRIES
             sleep 0.1
-            get_property_value(property, type)
+            raw_value = yield
           else
             raise "Flex app is busy and seems to stay busy!"
           end
@@ -58,7 +58,6 @@ module FunFX
         @tries = 0
 
         raise_if_funfx_error(raw_value)
-        coerce(raw_value, type)
       end
       
       def coerce(raw_value, type)

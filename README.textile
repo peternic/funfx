@@ -32,7 +32,7 @@ tree = flex.tree({:id => 'box'}, {:id => 'objectTree'})
 tree.open('Button controls')
 tree.select('Button1')
 
-button = @flex.button(:label => 'Default Button')
+button = flex.button(:label => 'Default Button')
 if button.enabled?
   raise "Uhm, I expected this button to be disabled..."
 end
@@ -67,6 +67,15 @@ flex = browser.flex_app('DemoApp')
 <pre><code>require 'funfx/safariwatir'
 
 browser = Watir::Safari.new
+browser.goto(URL) # The URL containing your Flex app
+flex = browser.flex_app('DemoApp')
+</code></pre>
+
+*FireWatir*
+
+<pre><code>require 'funfx/firewatir'
+
+browser = FireWatir::Firefox.new
 browser.goto(URL) # The URL containing your Flex app
 flex = browser.flex_app('DemoApp')
 </code></pre>

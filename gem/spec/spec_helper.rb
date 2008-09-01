@@ -6,18 +6,22 @@ rescue LoadError
   require 'spec'
 end
 
-unless defined?(Watir::Browser)
+unless defined?(Browser)
   $:.unshift(File.dirname(__FILE__) + '/../lib')
-  case PLATFORM
-  when /darwin/
-    require 'funfx/safari'
-    Watir::Browser = Watir::Safari
-  when /win32|mingw/
-    puts caller.inspect
-    require 'funfx/watir'
-    Watir::Browser = Watir::IE
+  if ENV['FIREWATIR']
+    require 'funfx/firewatir'
+    Browser = FireWatir::Firefox
   else
-    raise "This platform is not supported (#{PLATFORM})"
+    case PLATFORM
+    when /darwin/
+      require 'funfx/safari'
+      Browser = Watir::Safari
+    when /win32|mingw/
+      require 'funfx/watir'
+      Browser = Watir::IE
+    else
+      raise "This platform is not supported (#{PLATFORM})"
+    end
   end
 
   DEMO_APP = "http://localhost:9851/DemoApp.html"

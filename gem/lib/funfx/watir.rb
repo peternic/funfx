@@ -13,8 +13,8 @@ module Watir
         @flex_object = ole_object.ie.Document.getElementsByName(dom_id).item(0)
       end
       
-      def fire_event(flex_id, type, value) # :nodoc:
-        @flex_object.fireFunFXEvent(flex_id, type, value)
+      def fire_event(flex_id, event_name, args) # :nodoc:
+        @flex_object.fireFunFXEvent(flex_id, event_name, args)
       end
 
       def get_property_value(flex_id, property) # :nodoc:

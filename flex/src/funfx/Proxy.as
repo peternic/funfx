@@ -9,11 +9,11 @@ package funfx {
     {
         public function Proxy()
         {
-            ExternalInterface.addCallback("fireFunFXEvent", fireEvent);
-            ExternalInterface.addCallback("getFunFXPropertyValue", getPropertyValue);
+            ExternalInterface.addCallback("fireFunFXEvent", fireFunFXEvent);
+            ExternalInterface.addCallback("getFunFXPropertyValue", getFunFXPropertyValue);
         }
 
-        private function fireEvent(objID:String, eventName:String, args:String) : String
+        private function fireFunFXEvent(objID:String, eventName:String, args:String) : String
         {
             if(!automationManager.isSynchronized(null)) {
                 return null;
@@ -28,7 +28,7 @@ package funfx {
             return null;
         }
 
-        private function getPropertyValue(objID:String, fieldName:String) : String
+        private function getFunFXPropertyValue(objID:String, fieldName:String) : String
         {
             if(!automationManager.isSynchronized(null)) {
                 return null;
@@ -56,7 +56,8 @@ package funfx {
                 var rid:AutomationID = AutomationID.parse(objID);
                 return automationManager.resolveIDToSingleObject(rid);
             } catch(e:Error) {
-                throw new Error("Target not found: " + objID);
+                throw e;
+//                throw new Error("Target not found: " + objID);
             }
             return null;
         }

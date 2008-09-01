@@ -12,5 +12,13 @@ module FunFX
         puts s
       end
     end
+
+    def latency=(t)
+      @latency = t
+    end
+    
+    def latency
+      @latency || 0.5
+    end
   end
 end
