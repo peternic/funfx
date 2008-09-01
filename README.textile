@@ -101,8 +101,6 @@ that an error will be raised.
 h2. TODO
 
 * Package XML file in FunFX.swc - makes it easier to install and get started...
-* Use IAutomationManager.isSynchronized and a Timer - as in AQToolBar.mxml
-** See http://livedocs.adobe.com/flex/3/html/help.html?content=functest_components2_10.html
 * Get rid of the AutoQuick codebase - base FunFX only on the automation API
 * Use RCov and aim for 100% coverage of all generated methods
 * Allow lookup of elements from elements:
