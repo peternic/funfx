@@ -29,8 +29,8 @@ h2. Example
 flex = browser.flex_app('DemoApp')
 
 tree = flex.tree({:id => 'box'}, {:id => 'objectTree'})
-tree.open('Button controls')
-tree.select('Button1')
+tree.open!('Button controls')
+tree.select!('Button1')
 
 button = flex.button(:label => 'Default Button')
 if button.enabled?
@@ -107,10 +107,30 @@ FunFX will raise an error if you try to interact with an automation object that 
 Note that FunFX will *not* raise any errors when you *look up* a Flex automation object that doesn't exist. It's only when you fire an event or ask for a property
 that an error will be raised.
 
+h2. Hacking
+
+If you want to hack on FunFX (fix bugs, add features), start by building everything and running the specs.
+Go to the top level directory and open two console windows.
+
+* Window 1 *
+
+<pre><code>ruby demo-app/lib/httpd.rb</code></pre>
+
+* Window 2 *
+
+<pre><code>rake everything</code></pre>
+
+After you've worked yourself through the first couple of error messages (you'll be told to
+install some additional ruby gems), you should see green output telling you that everything is ok.
+
+Now add some more specs, hack away and let us know when you've fixed something (specs should still be green).
+
 h2. TODO
 
 * Package XML file in FunFX.swc - makes it easier to install and get started...
 * Get rid of the AutoQuick codebase - base FunFX only on the automation API
+* Refactor the awful duplication in Proxy.as
+** eval() is gone from AS3, but we can fake it... with apply and our own dotted syntax.
 * Use RCov and aim for 100% coverage of all generated methods
 * Allow lookup of elements from elements:
 ** tree = @flex.tree({:id => 'objectTree'})
@@ -118,6 +138,8 @@ h2. TODO
 * Add method to retrieve screenshot
 ** http://blog.flexexamples.com/2007/11/16/taking-screenshots-in-flex-using-the-imagesnapshotcaptureimage-method/
 * Put the Flex app's ID in the beginning of the @flex_id
+* Extract a Codec class
+* Get rid of ARG_SEP - use varargs instead.
 
 h2. Links
 

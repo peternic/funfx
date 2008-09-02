@@ -21,10 +21,6 @@ module FunFX
 
       def fire_event(event_name, *args)
         flex_args = args.join("_ARG_SEP_")
-        FunFX.debug "FIRE EVENT"
-        FunFX.debug "  ID:#{@flex_id}"
-        FunFX.debug "  EVENT NAME:#{event_name}"
-        FunFX.debug "  FLEX ARGS:#{flex_args}"
 
         flex_invoke do
           @flex_app.fire_event(@flex_id, event_name, flex_args)
@@ -32,17 +28,30 @@ module FunFX
         sleep FunFX.latency unless FunFX.latency.nil?
       end
 
-      def get_property_value(property, type)
-        FunFX.debug "GET PROPERTY VALUE"
-        FunFX.debug "  PROPERTY:#{property}"
-        FunFX.debug "  TYPE:#{type}"
-
+      def get_property_value(property, ruby_type, codec)
         raw_value = flex_invoke do
           @flex_app.get_property_value(@flex_id, property)
         end
-        coerce(raw_value, type)
+        value = coerce(raw_value, ruby_type)
+        decode(value, codec)
       end
       
+      def get_tabular_property_value(property, ruby_type, codec)
+        raw_value = flex_invoke do
+          @flex_app.get_tabular_property_value(@flex_id, property)
+        end
+        value = coerce(raw_value, ruby_type)
+        decode(value, codec)
+      end
+      
+      def invoke_tabular_method(method_name, ruby_type, codec, *args)
+        raw_value = flex_invoke do
+          @flex_app.invoke_tabular_method(@flex_id, method_name, *args)
+        end
+        value = coerce(raw_value, ruby_type)
+        decode(value, codec)
+      end
+
       def flex_invoke
         @tries += 1
         raw_value = yield
@@ -60,21 +69,29 @@ module FunFX
         raise_if_funfx_error(raw_value)
       end
       
-      def coerce(raw_value, type)
-        value = case(type)
+      # TODO: Use classes, not symbols (use TrueClass for :true)
+      # TODO, make return type the first arg
+      def coerce(string_value, ruby_type)
+        case(ruby_type)
         when :string
-          raw_value
+          string_value
         when :number
         when :int
-          raw_value.to_i
+          string_value.to_i
         when :boolean
-          raw_value == "true"
-        when :enumeration
-          [raw_value]
+          string_value == "true"
         else
-          raise "I don't know how to convert to #{type}"
+          raise "I don't know how to convert #{string_value.inspect} to #{ruby_type.inspect}"
         end
-        value
+      end
+      
+      def decode(value, codec)
+        case(codec)
+        when :object_array
+          value.split(",")
+        else
+          value
+        end
       end
       
       def raise_if_funfx_error(result)

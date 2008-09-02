@@ -11,7 +11,7 @@ module FunFX
           with('|id{box string}|automationName{Button%20Control%20Example string}', 'WhatEver').
           and_return('true')
 
-        value = element.get_property_value('WhatEver', :boolean)
+        value = element.get_property_value('WhatEver', :boolean, nil)
         value.should == true
       end
       

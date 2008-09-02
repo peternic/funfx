@@ -20,6 +20,14 @@ module Watir
       def get_property_value(flex_id, property) # :nodoc:
         @flex_object.getFunFXPropertyValue(flex_id, property)
       end
+
+      def get_tabular_property_value(flex_id, property) # :nodoc:
+        @flex_object.getFunFXTabularPropertyValue(flex_id, property)
+      end
+
+      def invoke_tabular_method(flex_id, *args) # :nodoc:
+        @flex_object.invokeFunFXTabularMethod(flex_id, *args)
+      end
     end
 
     # Returns a FlexApp identified by +dom_id+

@@ -4,6 +4,7 @@ package funfx {
     import mx.automation.AutomationID;
     import mx.automation.IAutomationObject;
     import mx.automation.IAutomationManager;
+    import mx.automation.IAutomationTabularData
     
     public class Proxy
     {
@@ -11,6 +12,8 @@ package funfx {
         {
             ExternalInterface.addCallback("fireFunFXEvent", fireFunFXEvent);
             ExternalInterface.addCallback("getFunFXPropertyValue", getFunFXPropertyValue);
+            ExternalInterface.addCallback("getFunFXTabularPropertyValue", getFunFXTabularPropertyValue);
+            ExternalInterface.addCallback("invokeFunFXTabularMethod", invokeFunFXTabularMethod);
         }
 
         private function fireFunFXEvent(objID:String, eventName:String, args:String) : String
@@ -40,6 +43,46 @@ package funfx {
                     return o[fieldName];
                 } else {
                     throw new Error("Field not found: " + target + " doesn't have a field named '" + fieldName + "'");
+                }
+            } catch(e:Error) {
+                return errorMessage(e);
+            }
+            return null;
+        }
+
+        private function getFunFXTabularPropertyValue(objID:String, fieldName:String) : String
+        {
+            if(!automationManager.isSynchronized(null)) {
+                return null;
+            }
+            try {
+                var target:IAutomationObject = findAutomationObject(objID);
+                var tab:Object = target.automationTabularData;
+                var o:Object = Object(tab);
+                if (o.hasOwnProperty(fieldName)) {
+                    return o[fieldName];
+                } else {
+                    throw new Error("Field not found: " + target + " doesn't have a field named '" + fieldName + "'");
+                }
+            } catch(e:Error) {
+                return errorMessage(e);
+            }
+            return null;
+        }
+
+        private function invokeFunFXTabularMethod(objID:String, methodName:String, ... args) : String
+        {
+            if(!automationManager.isSynchronized(null)) {
+                return null;
+            }
+            try {
+                var target:IAutomationObject = findAutomationObject(objID);
+                var tab:Object = target.automationTabularData;
+                var o:Object = Object(tab);
+                if (o.hasOwnProperty(methodName)) {
+                    return o[methodName].apply(null, args);
+                } else {
+                    throw new Error("Method not found: " + target + " doesn't have a method named '" + methodName + "'");
                 }
             } catch(e:Error) {
                 return errorMessage(e);

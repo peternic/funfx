@@ -1,5 +1,9 @@
 require 'rubygems'
-require 'libxml'
+begin
+  require 'libxml'
+rescue LoadError
+  STDERR.puts "LibXML not installed. gem install libxml-ruby"
+end
 require 'active_support'
 
 # Generates Ruby proxy classes for the Flex Automation API
@@ -51,20 +55,25 @@ doc.find('/TypeInformation/ClassInfo').each do |class_info|
     end
     
     argdef = args.empty? ? "" : "(#{args.join(', ')})"
-    class_def << "      def #{event_name.underscore}#{argdef}\n"
+    class_def << "      def #{event_name.underscore}!#{argdef}\n"
     invoked_args = ["\"#{event_name}\""] + arglist
     class_def << "        fire_event(#{invoked_args.join(', ')})\n"
     class_def << "      end\n\n"
   end
   
   class_info.find('Properties/Property').each do |property|
-    property_name = property['Name']
-    property_type = property.find('PropertyType').first['Type']
-    method_name   = property_type == "Boolean" ? "#{property_name.underscore}?" : property_name.underscore
+    property_name  = property['Name']
+    property_type  = property.find('PropertyType').first['Type']
+    property_type  = ":#{property_type.underscore}"
+    property_codec = property.find('PropertyType').first['Codec']
+    property_codec = property_codec ? ":#{property_codec.gsub(/\[\]/, '_array').underscore}" : "nil"
+    method_name    = property_type == ":boolean" ? "#{property_name.underscore}?" : property_name.underscore
 
-    class_def << "      def #{method_name}\n"
-    class_def << "        get_property_value(\"#{property_name}\", :#{property_type.underscore})\n"
-    class_def << "      end\n\n"
+    unless ['columnNames'].index(property_name)
+      class_def << "      def #{method_name}\n"
+      class_def << "        get_property_value(\"#{property_name}\", #{property_type}, #{property_codec})\n"
+      class_def << "      end\n\n"
+    end
   end
   
   class_def << "    end\n"
@@ -88,7 +97,8 @@ ruby = ordered_class_names.uniq.map do |class_name|
   classes[class_name]
 end.compact.join("\n")
 
-File.open(File.dirname(__FILE__) + "/../flex/generated_elements.rb", "w") do |io| 
+File.open(File.dirname(__FILE__) + "/../flex/generated_elements.rb", "wb") do |io| 
+  io.puts "require 'funfx'"
   io.puts "require 'funfx/flex/element'"
   io.puts "require 'funfx/flex/tabular_data'"
   io.puts 

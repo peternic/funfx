@@ -6,52 +6,52 @@ module FunFX
   module Flex
 
     class FlexDisplayObject < Element
-      def mouse_move(local_x=0, local_y=0, key_modifier=[0])
+      def mouse_move!(local_x=0, local_y=0, key_modifier=[0])
         fire_event("MouseMove", local_x, local_y, key_modifier)
       end
 
-      def click(key_modifier=[0])
+      def click!(key_modifier=[0])
         fire_event("Click", key_modifier)
       end
 
       def tab_children?
-        get_property_value("tabChildren", :boolean)
+        get_property_value("tabChildren", :boolean, nil)
       end
 
       def tab_enabled?
-        get_property_value("tabEnabled", :boolean)
+        get_property_value("tabEnabled", :boolean, nil)
       end
 
       def tab_index
-        get_property_value("tabIndex", :int)
+        get_property_value("tabIndex", :int, nil)
       end
 
       def mouse_enabled?
-        get_property_value("mouseEnabled", :boolean)
+        get_property_value("mouseEnabled", :boolean, nil)
       end
 
       def alpha
-        get_property_value("alpha", :number)
+        get_property_value("alpha", :number, nil)
       end
 
       def height
-        get_property_value("height", :number)
+        get_property_value("height", :number, nil)
       end
 
       def visible?
-        get_property_value("visible", :boolean)
+        get_property_value("visible", :boolean, nil)
       end
 
       def width
-        get_property_value("width", :number)
+        get_property_value("width", :number, nil)
       end
 
       def x
-        get_property_value("x", :number)
+        get_property_value("x", :number, nil)
       end
 
       def y
-        get_property_value("y", :number)
+        get_property_value("y", :number, nil)
       end
 
     end
@@ -60,80 +60,80 @@ module FunFX
     end
 
     class FlexObject < FlexDisplayObject
-      def change_focus(shift_key, key_code="TAB")
+      def change_focus!(shift_key, key_code="TAB")
         fire_event("ChangeFocus", shift_key, key_code)
       end
 
       def automation_name
-        get_property_value("automationName", :string)
+        get_property_value("automationName", :string, nil)
       end
 
       def automation_class_name
-        get_property_value("automationClassName", :string)
+        get_property_value("automationClassName", :string, nil)
       end
 
       def id
-        get_property_value("id", :string)
+        get_property_value("id", :string, nil)
       end
 
       def class_name
-        get_property_value("className", :string)
+        get_property_value("className", :string, nil)
       end
 
       def automation_index
-        get_property_value("automationIndex", :string)
+        get_property_value("automationIndex", :string, nil)
       end
 
       def current_state
-        get_property_value("currentState", :string)
+        get_property_value("currentState", :string, nil)
       end
 
       def focus_enabled?
-        get_property_value("focusEnabled", :boolean)
+        get_property_value("focusEnabled", :boolean, nil)
       end
 
       def tool_tip
-        get_property_value("toolTip", :string)
+        get_property_value("toolTip", :string, nil)
       end
 
       def error_string
-        get_property_value("errorString", :string)
+        get_property_value("errorString", :string, nil)
       end
 
       def percent_height
-        get_property_value("percentHeight", :number)
+        get_property_value("percentHeight", :number, nil)
       end
 
       def percent_width
-        get_property_value("percentWidth", :number)
+        get_property_value("percentWidth", :number, nil)
       end
 
       def scale_x
-        get_property_value("scaleX", :number)
+        get_property_value("scaleX", :number, nil)
       end
 
       def scale_y
-        get_property_value("scaleY", :number)
+        get_property_value("scaleY", :number, nil)
       end
 
       def error_color
-        get_property_value("errorColor", :string)
+        get_property_value("errorColor", :string, :color)
       end
 
       def theme_color
-        get_property_value("themeColor", :string)
+        get_property_value("themeColor", :string, :color)
       end
 
       def enabled?
-        get_property_value("enabled", :boolean)
+        get_property_value("enabled", :boolean, nil)
       end
 
       def use_hand_cursor?
-        get_property_value("useHandCursor", :boolean)
+        get_property_value("useHandCursor", :boolean, nil)
       end
 
       def num_automation_children
-        get_property_value("numAutomationChildren", :int)
+        get_property_value("numAutomationChildren", :int, nil)
       end
 
     end
@@ -144,84 +144,84 @@ module FunFX
     class FlexContainer < FlexObject
       include TabularData
 
-      def mouse_scroll(delta=0)
+      def mouse_scroll!(delta=0)
         fire_event("MouseScroll", delta)
       end
 
-      def scroll(position, direction, detail=[0])
+      def scroll!(position, direction, detail=[0])
         fire_event("Scroll", position, direction, detail)
       end
 
-      def drag_start(dragged_item, key_modifier=[0])
+      def drag_start!(dragged_item, key_modifier=[0])
         fire_event("DragStart", dragged_item, key_modifier)
       end
 
-      def drag_drop(action, dragged_item="", key_modifier=[0])
+      def drag_drop!(action, dragged_item="", key_modifier=[0])
         fire_event("DragDrop", action, dragged_item, key_modifier)
       end
 
-      def drag_cancel(key_modifier=[0])
+      def drag_cancel!(key_modifier=[0])
         fire_event("DragCancel", key_modifier)
       end
 
       def num_children
-        get_property_value("numChildren", :int)
+        get_property_value("numChildren", :int, nil)
       end
 
       def label
-        get_property_value("label", :string)
+        get_property_value("label", :string, nil)
       end
 
       def creation_policy
-        get_property_value("creationPolicy", :string)
+        get_property_value("creationPolicy", :string, nil)
       end
 
       def creation_index
-        get_property_value("creationIndex", :int)
+        get_property_value("creationIndex", :int, nil)
       end
 
       def background_alpha
-        get_property_value("backgroundAlpha", :number)
+        get_property_value("backgroundAlpha", :number, nil)
       end
 
       def background_color
-        get_property_value("backgroundColor", :string)
+        get_property_value("backgroundColor", :string, :color)
       end
 
       def background_disabled_color
-        get_property_value("backgroundDisabledColor", :string)
+        get_property_value("backgroundDisabledColor", :string, :color)
       end
 
       def background_image
-        get_property_value("backgroundImage", :string)
+        get_property_value("backgroundImage", :string, :asset)
       end
 
       def background_size
-        get_property_value("backgroundSize", :string)
+        get_property_value("backgroundSize", :string, nil)
       end
 
       def font_family
-        get_property_value("fontFamily", :string)
+        get_property_value("fontFamily", :string, nil)
       end
 
       def font_size
-        get_property_value("fontSize", :number)
+        get_property_value("fontSize", :number, nil)
       end
 
       def font_style
-        get_property_value("fontStyle", :string)
+        get_property_value("fontStyle", :string, nil)
       end
 
       def font_weight
-        get_property_value("fontWeight", :string)
+        get_property_value("fontWeight", :string, nil)
       end
 
       def fill_alphas
-        get_property_value("fillAlphas", :string)
+        get_property_value("fillAlphas", :string, :object_array)
       end
 
       def fill_colors
-        get_property_value("fillColors", :string)
+        get_property_value("fillColors", :string, :color_array)
       end
 
     end
@@ -249,15 +249,15 @@ module FunFX
       include TabularData
 
       def direction
-        get_property_value("direction", :string)
+        get_property_value("direction", :string, nil)
       end
 
       def horizontal_align
-        get_property_value("horizontalAlign", :string)
+        get_property_value("horizontalAlign", :string, nil)
       end
 
       def vertical_align
-        get_property_value("verticalAlign", :string)
+        get_property_value("verticalAlign", :string, nil)
       end
 
     end
@@ -270,95 +270,95 @@ module FunFX
 
     class FlexProgressBar < FlexObject
       def conversion
-        get_property_value("conversion", :number)
+        get_property_value("conversion", :number, nil)
       end
 
       def direction
-        get_property_value("direction", :string)
+        get_property_value("direction", :string, nil)
       end
 
       def indeterminate?
-        get_property_value("indeterminate", :boolean)
+        get_property_value("indeterminate", :boolean, nil)
       end
 
       def label
-        get_property_value("label", :string)
+        get_property_value("label", :string, nil)
       end
 
       def label_placement
-        get_property_value("labelPlacement", :string)
+        get_property_value("labelPlacement", :string, nil)
       end
 
       def maximum
-        get_property_value("maximum", :number)
+        get_property_value("maximum", :number, nil)
       end
 
       def minimum
-        get_property_value("minimum", :number)
+        get_property_value("minimum", :number, nil)
       end
 
       def percent_complete
-        get_property_value("percentComplete", :number)
+        get_property_value("percentComplete", :number, nil)
       end
 
       def value
-        get_property_value("value", :number)
+        get_property_value("value", :number, nil)
       end
 
       def bar_color
-        get_property_value("barColor", :string)
+        get_property_value("barColor", :string, :color)
       end
 
       def border_color
-        get_property_value("borderColor", :string)
+        get_property_value("borderColor", :string, :color)
       end
 
       def color
-        get_property_value("color", :string)
+        get_property_value("color", :string, :color)
       end
 
       def disabled_color
-        get_property_value("disabledColor", :string)
+        get_property_value("disabledColor", :string, :color)
       end
 
       def fill_colors
-        get_property_value("fillColors", :string)
+        get_property_value("fillColors", :string, :color_array)
       end
 
       def font_family
-        get_property_value("fontFamily", :string)
+        get_property_value("fontFamily", :string, nil)
       end
 
       def font_size
-        get_property_value("fontSize", :number)
+        get_property_value("fontSize", :number, nil)
       end
 
       def font_style
-        get_property_value("fontStyle", :string)
+        get_property_value("fontStyle", :string, nil)
       end
 
       def font_weight
-        get_property_value("fontWeight", :string)
+        get_property_value("fontWeight", :string, nil)
       end
 
       def label_width
-        get_property_value("labelWidth", :number)
+        get_property_value("labelWidth", :number, nil)
       end
 
       def text_align
-        get_property_value("textAlign", :string)
+        get_property_value("textAlign", :string, nil)
       end
 
       def text_decoration
-        get_property_value("textDecoration", :string)
+        get_property_value("textDecoration", :string, nil)
       end
 
       def text_indent
-        get_property_value("textIndent", :number)
+        get_property_value("textIndent", :number, nil)
       end
 
       def theme_color
-        get_property_value("themeColor", :string)
+        get_property_value("themeColor", :string, :color)
       end
 
     end
@@ -369,44 +369,44 @@ module FunFX
     class FlexAccordion < FlexContainer
       include TabularData
 
-      def change(related_object="mouse")
+      def change!(related_object="mouse")
         fire_event("Change", related_object)
       end
 
-      def type(key_code, key_modifier=[0])
+      def type!(key_code, key_modifier=[0])
         fire_event("Type", key_code, key_modifier)
       end
 
       def selected_index
-        get_property_value("selectedIndex", :int)
+        get_property_value("selectedIndex", :int, nil)
       end
 
       def selected_child
-        get_property_value("selectedChild", :string)
+        get_property_value("selectedChild", :string, :automation_object)
       end
 
       def header_height
-        get_property_value("headerHeight", :int)
+        get_property_value("headerHeight", :int, nil)
       end
 
       def horizontal_gap
-        get_property_value("horizontalGap", :number)
+        get_property_value("horizontalGap", :number, nil)
       end
 
       def padding_top
-        get_property_value("paddingTop", :number)
+        get_property_value("paddingTop", :number, nil)
       end
 
       def padding_bottom
-        get_property_value("paddingBottom", :number)
+        get_property_value("paddingBottom", :number, nil)
       end
 
       def text_selected_color
-        get_property_value("textSelectedColor", :string)
+        get_property_value("textSelectedColor", :string, :color)
       end
 
       def vertical_gap
-        get_property_value("verticalGap", :number)
+        get_property_value("verticalGap", :number, nil)
       end
 
     end
@@ -415,84 +415,84 @@ module FunFX
     end
 
     class FlexButton < FlexObject
-      def type(key_code, key_modifier=[0])
+      def type!(key_code, key_modifier=[0])
         fire_event("Type", key_code, key_modifier)
       end
 
       def enabled?
-        get_property_value("enabled", :boolean)
+        get_property_value("enabled", :boolean, nil)
       end
 
       def label
-        get_property_value("label", :string)
+        get_property_value("label", :string, nil)
       end
 
       def label_placement
-        get_property_value("labelPlacement", :string)
+        get_property_value("labelPlacement", :string, nil)
       end
 
       def selected?
-        get_property_value("selected", :boolean)
+        get_property_value("selected", :boolean, nil)
       end
 
       def toggle?
-        get_property_value("toggle", :boolean)
+        get_property_value("toggle", :boolean, nil)
       end
 
       def color
-        get_property_value("color", :string)
+        get_property_value("color", :string, :color)
       end
 
       def disabled_color
-        get_property_value("disabledColor", :string)
+        get_property_value("disabledColor", :string, :color)
       end
 
       def font_family
-        get_property_value("fontFamily", :string)
+        get_property_value("fontFamily", :string, nil)
       end
 
       def font_size
-        get_property_value("fontSize", :number)
+        get_property_value("fontSize", :number, nil)
       end
 
       def font_style
-        get_property_value("fontStyle", :string)
+        get_property_value("fontStyle", :string, nil)
       end
 
       def font_weight
-        get_property_value("fontWeight", :string)
+        get_property_value("fontWeight", :string, nil)
       end
 
       def fill_alphas
-        get_property_value("fillAlphas", :string)
+        get_property_value("fillAlphas", :string, :object_array)
       end
 
       def fill_colors
-        get_property_value("fillColors", :string)
+        get_property_value("fillColors", :string, :color_array)
       end
 
       def focus_alpha
-        get_property_value("focusAlpha", :number)
+        get_property_value("focusAlpha", :number, nil)
       end
 
       def text_align
-        get_property_value("textAlign", :string)
+        get_property_value("textAlign", :string, nil)
       end
 
       def text_decoration
-        get_property_value("textDecoration", :string)
+        get_property_value("textDecoration", :string, nil)
       end
 
       def text_indent
-        get_property_value("textIndent", :number)
+        get_property_value("textIndent", :number, nil)
       end
 
       def text_roll_over_color
-        get_property_value("textRollOverColor", :string)
+        get_property_value("textRollOverColor", :string, :color)
       end
 
       def text_selected_color
-        get_property_value("textSelectedColor", :string)
+        get_property_value("textSelectedColor", :string, :color)
       end
 
     end
@@ -501,11 +501,11 @@ module FunFX
     end
 
     class FlexPopUpButton < FlexButton
-      def open(trigger_event=[1])
+      def open!(trigger_event=[1])
         fire_event("Open", trigger_event)
       end
 
-      def close(trigger_event=[1])
+      def close!(trigger_event=[1])
         fire_event("Close", trigger_event)
       end
 
@@ -522,11 +522,11 @@ module FunFX
 
     class FlexRadioButton < FlexButton
       def group_name
-        get_property_value("groupName", :string)
+        get_property_value("groupName", :string, nil)
       end
 
       def label_placement
-        get_property_value("labelPlacement", :string)
+        get_property_value("labelPlacement", :string, nil)
       end
 
     end
@@ -535,7 +535,7 @@ module FunFX
     end
 
     class FlexScrollBase < FlexObject
-      def mouse_scroll(delta=0)
+      def mouse_scroll!(delta=0)
         fire_event("MouseScroll", delta)
       end
 
@@ -545,160 +545,160 @@ module FunFX
     end
 
     class FlexListBase < FlexScrollBase
-      def mouse_scroll(delta=0)
+      def mouse_scroll!(delta=0)
         fire_event("MouseScroll", delta)
       end
 
-      def drag_start(dragged_item, key_modifier=[0])
+      def drag_start!(dragged_item, key_modifier=[0])
         fire_event("DragStart", dragged_item, key_modifier)
       end
 
-      def drag_drop(action, dragged_item="", key_modifier=[0])
+      def drag_drop!(action, dragged_item="", key_modifier=[0])
         fire_event("DragDrop", action, dragged_item, key_modifier)
       end
 
-      def drag_cancel(key_modifier=[0])
+      def drag_cancel!(key_modifier=[0])
         fire_event("DragCancel", key_modifier)
       end
 
-      def select(item_renderer, trigger_event=[1], key_modifier=[0])
+      def select!(item_renderer, trigger_event=[1], key_modifier=[0])
         fire_event("Select", item_renderer, trigger_event, key_modifier)
       end
 
-      def multi_select(item_renderer, trigger_event=[1], key_modifier=[0])
+      def multi_select!(item_renderer, trigger_event=[1], key_modifier=[0])
         fire_event("MultiSelect", item_renderer, trigger_event, key_modifier)
       end
 
-      def deselect(item_renderer, trigger_event=[1], key_modifier=[0])
+      def deselect!(item_renderer, trigger_event=[1], key_modifier=[0])
         fire_event("Deselect", item_renderer, trigger_event, key_modifier)
       end
 
-      def scroll(position, direction, detail=[0])
+      def scroll!(position, direction, detail=[0])
         fire_event("Scroll", position, direction, detail)
       end
 
-      def type(key_code, key_modifier=[0])
+      def type!(key_code, key_modifier=[0])
         fire_event("Type", key_code, key_modifier)
       end
 
-      def double_click(item_renderer)
+      def double_click!(item_renderer)
         fire_event("DoubleClick", item_renderer)
       end
 
       def column_count
-        get_property_value("columnCount", :int)
+        get_property_value("columnCount", :int, nil)
       end
 
       def column_width
-        get_property_value("columnWidth", :number)
+        get_property_value("columnWidth", :number, nil)
       end
 
       def data_tip_field
-        get_property_value("dataTipField", :string)
+        get_property_value("dataTipField", :string, nil)
       end
 
       def icon_field
-        get_property_value("iconField", :string)
+        get_property_value("iconField", :string, nil)
       end
 
       def label_field
-        get_property_value("labelField", :string)
+        get_property_value("labelField", :string, nil)
       end
 
       def locked_column_count
-        get_property_value("lockedColumnCount", :int)
+        get_property_value("lockedColumnCount", :int, nil)
       end
 
       def locked_row_count
-        get_property_value("lockedRowCount", :int)
+        get_property_value("lockedRowCount", :int, nil)
       end
 
       def allow_multiple_selection?
-        get_property_value("allowMultipleSelection", :boolean)
+        get_property_value("allowMultipleSelection", :boolean, nil)
       end
 
       def num_automation_children
-        get_property_value("numAutomationChildren", :int)
+        get_property_value("numAutomationChildren", :int, nil)
       end
 
       def row_count
-        get_property_value("rowCount", :int)
+        get_property_value("rowCount", :int, nil)
       end
 
       def row_height
-        get_property_value("rowHeight", :number)
+        get_property_value("rowHeight", :number, nil)
       end
 
       def selectable?
-        get_property_value("selectable", :boolean)
+        get_property_value("selectable", :boolean, nil)
       end
 
       def selected_index
-        get_property_value("selectedIndex", :int)
+        get_property_value("selectedIndex", :int, nil)
       end
 
       def selected_indices
-        get_property_value("selectedIndices", :string)
+        get_property_value("selectedIndices", :string, :object_array)
       end
 
       def selected_item
-        get_property_value("selectedItem", :string)
+        get_property_value("selectedItem", :string, :list_data_object)
       end
 
       def selected_items
-        get_property_value("selectedItems", :string)
+        get_property_value("selectedItems", :string, :list_data_object_array)
       end
 
       def show_data_tips?
-        get_property_value("showDataTips", :boolean)
+        get_property_value("showDataTips", :boolean, nil)
       end
 
       def variable_row_height?
-        get_property_value("variableRowHeight", :boolean)
+        get_property_value("variableRowHeight", :boolean, nil)
       end
 
       def word_wrap?
-        get_property_value("wordWrap", :boolean)
+        get_property_value("wordWrap", :boolean, nil)
       end
 
       def alternating_row_colors
-        get_property_value("alternatingRowColors", :string)
+        get_property_value("alternatingRowColors", :string, :color_array)
       end
 
       def focus_alpha
-        get_property_value("focusAlpha", :number)
+        get_property_value("focusAlpha", :number, nil)
       end
 
       def roll_over_color
-        get_property_value("rollOverColor", :string)
+        get_property_value("rollOverColor", :string, :color)
       end
 
       def selection_color
-        get_property_value("selectionColor", :string)
+        get_property_value("selectionColor", :string, :color)
       end
 
       def selection_disabled_color
-        get_property_value("selectionDisabledColor", :string)
+        get_property_value("selectionDisabledColor", :string, :color)
       end
 
       def text_roll_over_color
-        get_property_value("textRollOverColor", :string)
+        get_property_value("textRollOverColor", :string, :color)
       end
 
       def text_selected_color
-        get_property_value("textSelectedColor", :string)
+        get_property_value("textSelectedColor", :string, :color)
       end
 
       def background_disabled_color
-        get_property_value("backgroundDisabledColor", :string)
+        get_property_value("backgroundDisabledColor", :string, :color)
       end
 
       def use_roll_over?
-        get_property_value("useRollOver", :boolean)
+        get_property_value("useRollOver", :boolean, nil)
       end
 
       def vertical_align
-        get_property_value("verticalAlign", :string)
+        get_property_value("verticalAlign", :string, nil)
       end
 
     end
@@ -709,56 +709,52 @@ module FunFX
     class FlexDataGrid < FlexListBase
       include TabularData
 
-      def header_click(column_index)
+      def header_click!(column_index)
         fire_event("HeaderClick", column_index)
       end
 
-      def column_stretch(column_index, local_x)
+      def column_stretch!(column_index, local_x)
         fire_event("ColumnStretch", column_index, local_x)
       end
 
-      def header_shift(new_index, old_index, trigger_event=[1])
+      def header_shift!(new_index, old_index, trigger_event=[1])
         fire_event("HeaderShift", new_index, old_index, trigger_event)
       end
 
-      def edit(item_renderer, row_index, column_index)
+      def edit!(item_renderer, row_index, column_index)
         fire_event("Edit", item_renderer, row_index, column_index)
       end
 
       def editable?
-        get_property_value("editable", :boolean)
-      end
-
-      def column_names
-        get_property_value("columnNames", :string)
+        get_property_value("editable", :boolean, nil)
       end
 
       def min_column_width
-        get_property_value("minColumnWidth", :number)
+        get_property_value("minColumnWidth", :number, nil)
       end
 
       def resizable_columns?
-        get_property_value("resizableColumns", :boolean)
+        get_property_value("resizableColumns", :boolean, nil)
       end
 
       def sortable_columns?
-        get_property_value("sortableColumns", :boolean)
+        get_property_value("sortableColumns", :boolean, nil)
       end
 
       def header_colors
-        get_property_value("headerColors", :string)
+        get_property_value("headerColors", :string, :color_array)
       end
 
       def header_style
-        get_property_value("headerStyle", :string)
+        get_property_value("headerStyle", :string, nil)
       end
 
       def v_grid_line_color
-        get_property_value("vGridLineColor", :string)
+        get_property_value("vGridLineColor", :string, :color)
       end
 
       def v_grid_lines?
-        get_property_value("vGridLines", :boolean)
+        get_property_value("vGridLines", :boolean, nil)
       end
 
     end
@@ -769,7 +765,7 @@ module FunFX
     class FlexList < FlexListBase
       include TabularData
 
-      def edit(item_renderer, row_index, column_index)
+      def edit!(item_renderer, row_index, column_index)
         fire_event("Edit", item_renderer, row_index, column_index)
       end
 
@@ -787,32 +783,32 @@ module FunFX
     class FlexTree < FlexListBase
       include TabularData
 
-      def drag_drop(action, drop_parent="", dragged_item="", key_modifier=[0])
+      def drag_drop!(action, drop_parent="", dragged_item="", key_modifier=[0])
         fire_event("DragDrop", action, drop_parent, dragged_item, key_modifier)
       end
 
-      def open(item_renderer, trigger_event=[1])
+      def open!(item_renderer, trigger_event=[1])
         fire_event("Open", item_renderer, trigger_event)
       end
 
-      def close(item_renderer, trigger_event=[1])
+      def close!(item_renderer, trigger_event=[1])
         fire_event("Close", item_renderer, trigger_event)
       end
 
       def editable?
-        get_property_value("editable", :boolean)
+        get_property_value("editable", :boolean, nil)
       end
 
       def depth_colors
-        get_property_value("depthColors", :string)
+        get_property_value("depthColors", :string, :color_array)
       end
 
       def indentation
-        get_property_value("indentation", :number)
+        get_property_value("indentation", :number, nil)
       end
 
       def text_disabled_color
-        get_property_value("textDisabledColor", :string)
+        get_property_value("textDisabledColor", :string, :color)
       end
 
     end
@@ -824,7 +820,7 @@ module FunFX
       include TabularData
 
       def url
-        get_property_value("url", :string)
+        get_property_value("url", :string, nil)
       end
 
     end
@@ -833,28 +829,28 @@ module FunFX
     end
 
     class FlexScrollBar < FlexObject
-      def scroll(position, direction, detail=[0])
+      def scroll!(position, direction, detail=[0])
         fire_event("Scroll", position, direction, detail)
       end
 
       def line_scroll_size
-        get_property_value("lineScrollSize", :number)
+        get_property_value("lineScrollSize", :number, nil)
       end
 
       def page_scroll_size
-        get_property_value("pageScrollSize", :number)
+        get_property_value("pageScrollSize", :number, nil)
       end
 
       def scroll_position
-        get_property_value("scrollPosition", :string)
+        get_property_value("scrollPosition", :string, nil)
       end
 
       def track_colors
-        get_property_value("trackColors", :string)
+        get_property_value("trackColors", :string, :color_array)
       end
 
       def fill_colors
-        get_property_value("fillColors", :string)
+        get_property_value("fillColors", :string, :color_array)
       end
 
     end
@@ -866,84 +862,84 @@ module FunFX
     end
 
     class FlexNumericStepper < FlexObject
-      def change(value)
+      def change!(value)
         fire_event("Change", value)
       end
 
-      def input(text)
+      def input!(text)
         fire_event("Input", text)
       end
 
-      def select_text(begin_index, end_index)
+      def select_text!(begin_index, end_index)
         fire_event("SelectText", begin_index, end_index)
       end
 
-      def type(key_code, key_modifier=[0])
+      def type!(key_code, key_modifier=[0])
         fire_event("Type", key_code, key_modifier)
       end
 
       def value
-        get_property_value("value", :number)
+        get_property_value("value", :number, nil)
       end
 
       def minimum
-        get_property_value("minimum", :number)
+        get_property_value("minimum", :number, nil)
       end
 
       def maximum
-        get_property_value("maximum", :number)
+        get_property_value("maximum", :number, nil)
       end
 
       def next_value
-        get_property_value("nextValue", :number)
+        get_property_value("nextValue", :number, nil)
       end
 
       def previous_value
-        get_property_value("previousValue", :number)
+        get_property_value("previousValue", :number, nil)
       end
 
       def step_size
-        get_property_value("stepSize", :number)
+        get_property_value("stepSize", :number, nil)
       end
 
       def color
-        get_property_value("color", :int)
+        get_property_value("color", :int, :color)
       end
 
       def disabled_color
-        get_property_value("disabledColor", :string)
+        get_property_value("disabledColor", :string, :color)
       end
 
       def fill_colors
-        get_property_value("fillColors", :string)
+        get_property_value("fillColors", :string, :color_array)
       end
 
       def font_family
-        get_property_value("fontFamily", :string)
+        get_property_value("fontFamily", :string, nil)
       end
 
       def font_size
-        get_property_value("fontSize", :number)
+        get_property_value("fontSize", :number, nil)
       end
 
       def font_style
-        get_property_value("fontStyle", :string)
+        get_property_value("fontStyle", :string, nil)
       end
 
       def font_weight
-        get_property_value("fontWeight", :string)
+        get_property_value("fontWeight", :string, nil)
       end
 
       def text_align
-        get_property_value("textAlign", :string)
+        get_property_value("textAlign", :string, nil)
       end
 
       def text_decoration
-        get_property_value("textDecoration", :string)
+        get_property_value("textDecoration", :string, nil)
       end
 
       def text_indent
-        get_property_value("textIndent", :int)
+        get_property_value("textIndent", :int, nil)
       end
 
     end
@@ -953,15 +949,15 @@ module FunFX
 
     class FlexVideoDisplay < FlexObject
       def source
-        get_property_value("source", :string)
+        get_property_value("source", :string, :asset)
       end
 
       def total_time
-        get_property_value("totalTime", :number)
+        get_property_value("totalTime", :number, nil)
       end
 
       def volume
-        get_property_value("volume", :number)
+        get_property_value("volume", :number, nil)
       end
 
     end
@@ -971,7 +967,7 @@ module FunFX
 
     class FlexLoader < FlexObject
       def source
-        get_property_value("source", :string)
+        get_property_value("source", :string, :asset)
       end
 
     end
@@ -986,76 +982,76 @@ module FunFX
     end
 
     class FlexSlider < FlexObject
-      def change(value, thumb_index=0, click_target="thumb", trigger_event=[1], key_code="")
+      def change!(value, thumb_index=0, click_target="thumb", trigger_event=[1], key_code="")
         fire_event("Change", value, thumb_index, click_target, trigger_event, key_code)
       end
 
       def direction
-        get_property_value("direction", :string)
+        get_property_value("direction", :string, nil)
       end
 
       def value
-        get_property_value("value", :number)
+        get_property_value("value", :number, nil)
       end
 
       def values
-        get_property_value("values", :string)
+        get_property_value("values", :string, :object_array)
       end
 
       def maximum
-        get_property_value("maximum", :number)
+        get_property_value("maximum", :number, nil)
       end
 
       def minimum
-        get_property_value("minimum", :number)
+        get_property_value("minimum", :number, nil)
       end
 
       def thumb_count
-        get_property_value("thumbCount", :int)
+        get_property_value("thumbCount", :int, nil)
       end
 
       def labels
-        get_property_value("labels", :string)
+        get_property_value("labels", :string, :object_array)
       end
 
       def live_dragging?
-        get_property_value("liveDragging", :boolean)
+        get_property_value("liveDragging", :boolean, nil)
       end
 
       def tool_tip_show?
-        get_property_value("toolTipShow", :boolean)
+        get_property_value("toolTipShow", :boolean, nil)
       end
 
       def snap_interval
-        get_property_value("snapInterval", :number)
+        get_property_value("snapInterval", :number, nil)
       end
 
       def fill_colors
-        get_property_value("fillColors", :string)
+        get_property_value("fillColors", :string, :colors_array)
       end
 
       def label_style_name
-        get_property_value("labelStyleName", :string)
+        get_property_value("labelStyleName", :string, nil)
       end
 
       def tick_color
-        get_property_value("tickColor", :string)
+        get_property_value("tickColor", :string, :color)
       end
 
       def tick_length
-        get_property_value("tickLength", :number)
+        get_property_value("tickLength", :number, nil)
       end
 
       def tick_thickness
-        get_property_value("tickThickness", :number)
+        get_property_value("tickThickness", :number, nil)
       end
 
       def data_tip_precision
-        get_property_value("dataTipPrecision", :number)
+        get_property_value("dataTipPrecision", :number, nil)
       end
 
       def track_colors
-        get_property_value("trackColors", :string)
+        get_property_value("trackColors", :string, :color_array)
       end
 
     end
@@ -1067,136 +1063,136 @@ module FunFX
     end
 
     class FlexComboBase < FlexObject
-      def open(trigger_event=[1])
+      def open!(trigger_event=[1])
         fire_event("Open", trigger_event)
       end
 
-      def close(trigger_event=[1])
+      def close!(trigger_event=[1])
         fire_event("Close", trigger_event)
       end
 
-      def scroll(position, direction, detail=[0])
+      def scroll!(position, direction, detail=[0])
         fire_event("Scroll", position, direction, detail)
       end
 
-      def input(text)
+      def input!(text)
         fire_event("Input", text)
       end
 
-      def select_text(begin_index, end_index)
+      def select_text!(begin_index, end_index)
         fire_event("SelectText", begin_index, end_index)
       end
 
-      def type(key_code, key_modifier=[0])
+      def type!(key_code, key_modifier=[0])
         fire_event("Type", key_code, key_modifier)
       end
 
       def text
-        get_property_value("text", :string)
+        get_property_value("text", :string, nil)
       end
 
       def restrict
-        get_property_value("restrict", :string)
+        get_property_value("restrict", :string, nil)
       end
 
       def editable?
-        get_property_value("editable", :boolean)
+        get_property_value("editable", :boolean, nil)
       end
 
       def selected_index
-        get_property_value("selectedIndex", :int)
+        get_property_value("selectedIndex", :int, nil)
       end
 
       def horizontal_scroll_position
-        get_property_value("horizontalScrollPosition", :int)
+        get_property_value("horizontalScrollPosition", :int, nil)
       end
 
       def horizontal_scroll_policy
-        get_property_value("horizontalScrollPolicy", :string)
+        get_property_value("horizontalScrollPolicy", :string, nil)
       end
 
       def live_scrolling?
-        get_property_value("liveScrolling", :boolean)
+        get_property_value("liveScrolling", :boolean, nil)
       end
 
       def show_scroll_tips?
-        get_property_value("showScrollTips", :boolean)
+        get_property_value("showScrollTips", :boolean, nil)
       end
 
       def vertical_scroll_position
-        get_property_value("verticalScrollPosition", :int)
+        get_property_value("verticalScrollPosition", :int, nil)
       end
 
       def vertical_scroll_policy
-        get_property_value("verticalScrollPolicy", :string)
+        get_property_value("verticalScrollPolicy", :string, nil)
       end
 
       def background_alpha
-        get_property_value("backgroundAlpha", :number)
+        get_property_value("backgroundAlpha", :number, nil)
       end
 
       def background_color
-        get_property_value("backgroundColor", :string)
+        get_property_value("backgroundColor", :string, :color)
       end
 
       def background_image
-        get_property_value("backgroundImage", :string)
+        get_property_value("backgroundImage", :string, :asset)
       end
 
       def background_size
-        get_property_value("backgroundSize", :string)
+        get_property_value("backgroundSize", :string, nil)
       end
 
       def color
-        get_property_value("color", :int)
+        get_property_value("color", :int, :color)
       end
 
       def disabled_color
-        get_property_value("disabledColor", :string)
+        get_property_value("disabledColor", :string, :color)
       end
 
       def drop_shadow_enabled?
-        get_property_value("dropShadowEnabled", :boolean)
+        get_property_value("dropShadowEnabled", :boolean, nil)
       end
 
       def fill_alphas
-        get_property_value("fillAlphas", :string)
+        get_property_value("fillAlphas", :string, :object_array)
       end
 
       def fill_colors
-        get_property_value("fillColors", :string)
+        get_property_value("fillColors", :string, :color_array)
       end
 
       def font_family
-        get_property_value("fontFamily", :string)
+        get_property_value("fontFamily", :string, nil)
       end
 
       def font_size
-        get_property_value("fontSize", :number)
+        get_property_value("fontSize", :number, nil)
       end
 
       def font_style
-        get_property_value("fontStyle", :string)
+        get_property_value("fontStyle", :string, nil)
       end
 
       def font_weight
-        get_property_value("fontWeight", :string)
+        get_property_value("fontWeight", :string, nil)
       end
 
       def highlight_color
-        get_property_value("highlightColor", :string)
+        get_property_value("highlightColor", :string, :color)
       end
 
       def text_align
-        get_property_value("textAlign", :string)
+        get_property_value("textAlign", :string, nil)
       end
 
       def text_decoration
-        get_property_value("textDecoration", :string)
+        get_property_value("textDecoration", :string, nil)
       end
 
       def text_indent
-        get_property_value("textIndent", :int)
+        get_property_value("textIndent", :int, nil)
       end
 
     end
@@ -1207,44 +1203,44 @@ module FunFX
     class FlexComboBox < FlexComboBase
       include TabularData
 
-      def select(item_renderer, trigger_event=[1], key_modifier=[0])
+      def select!(item_renderer, trigger_event=[1], key_modifier=[0])
         fire_event("Select", item_renderer, trigger_event, key_modifier)
       end
 
-      def type(key_code, key_modifier=[0])
+      def type!(key_code, key_modifier=[0])
         fire_event("Type", key_code, key_modifier)
       end
 
-      def input(text)
+      def input!(text)
         fire_event("Input", text)
       end
 
       def text
-        get_property_value("text", :string)
+        get_property_value("text", :string, nil)
       end
 
       def selected_index
-        get_property_value("selectedIndex", :int)
+        get_property_value("selectedIndex", :int, nil)
       end
 
       def editable?
-        get_property_value("editable", :boolean)
+        get_property_value("editable", :boolean, nil)
       end
 
       def alternating_row_colors
-        get_property_value("alternatingRowColors", :string)
+        get_property_value("alternatingRowColors", :string, :color_array)
       end
 
       def fill_colors
-        get_property_value("fillColors", :string)
+        get_property_value("fillColors", :string, :color_array)
       end
 
       def roll_over_color?
-        get_property_value("rollOverColor", :boolean)
+        get_property_value("rollOverColor", :boolean, :color)
       end
 
       def selection_color?
-        get_property_value("selectionColor", :boolean)
+        get_property_value("selectionColor", :boolean, :color)
       end
 
     end
@@ -1253,68 +1249,68 @@ module FunFX
     end
 
     class FlexDateField < FlexComboBase
-      def change(new_date)
+      def change!(new_date)
         fire_event("Change", new_date)
       end
 
-      def scroll(detail)
+      def scroll!(detail)
         fire_event("Scroll", detail)
       end
 
-      def type(key_code, key_modifier=[0])
+      def type!(key_code, key_modifier=[0])
         fire_event("Type", key_code, key_modifier)
       end
 
       def selected_date
-        get_property_value("selectedDate", :date)
+        get_property_value("selectedDate", :date, :date_object)
       end
 
       def disabled_days
-        get_property_value("disabledDays", :string)
+        get_property_value("disabledDays", :string, :object_array)
       end
 
       def disabled_ranges
-        get_property_value("disabledRanges", :string)
+        get_property_value("disabledRanges", :string, :object_array)
       end
 
       def displayed_month
-        get_property_value("displayedMonth", :number)
+        get_property_value("displayedMonth", :number, nil)
       end
 
       def displayed_year
-        get_property_value("displayedYear", :number)
+        get_property_value("displayedYear", :number, nil)
       end
 
       def first_day_of_week
-        get_property_value("firstDayOfWeek", :number)
+        get_property_value("firstDayOfWeek", :number, nil)
       end
 
       def max_year
-        get_property_value("maxYear", :number)
+        get_property_value("maxYear", :number, nil)
       end
 
       def min_year
-        get_property_value("minYear", :number)
+        get_property_value("minYear", :number, nil)
       end
 
       def show_today?
-        get_property_value("showToday", :boolean)
+        get_property_value("showToday", :boolean, nil)
       end
 
       def year_navigation_enabled?
-        get_property_value("yearNavigationEnabled", :boolean)
+        get_property_value("yearNavigationEnabled", :boolean, nil)
       end
 
       def header_colors
-        get_property_value("headerColors", :string)
+        get_property_value("headerColors", :string, :color_array)
       end
 
       def roll_over_color
-        get_property_value("rollOverColor", :string)
+        get_property_value("rollOverColor", :string, :color)
       end
 
       def today_color
-        get_property_value("todayColor", :string)
+        get_property_value("todayColor", :string, :color)
       end
 
     end
@@ -1323,132 +1319,132 @@ module FunFX
     end
 
     class FlexDateChooser < FlexObject
-      def change(new_date)
+      def change!(new_date)
         fire_event("Change", new_date)
       end
 
-      def scroll(detail)
+      def scroll!(detail)
         fire_event("Scroll", detail)
       end
 
-      def type(key_code, key_modifier=[0])
+      def type!(key_code, key_modifier=[0])
         fire_event("Type", key_code, key_modifier)
       end
 
       def selected_date
-        get_property_value("selectedDate", :date)
+        get_property_value("selectedDate", :date, :date_object)
       end
 
       def disabled_days
-        get_property_value("disabledDays", :string)
+        get_property_value("disabledDays", :string, :object_array)
       end
 
       def disabled_ranges
-        get_property_value("disabledRanges", :string)
+        get_property_value("disabledRanges", :string, :date_range_array)
       end
 
       def allow_disjoint_selection?
-        get_property_value("allowDisjointSelection", :boolean)
+        get_property_value("allowDisjointSelection", :boolean, nil)
       end
 
       def displayed_month
-        get_property_value("displayedMonth", :number)
+        get_property_value("displayedMonth", :number, nil)
       end
 
       def displayed_year
-        get_property_value("displayedYear", :number)
+        get_property_value("displayedYear", :number, nil)
       end
 
       def first_day_of_week
-        get_property_value("firstDayOfWeek", :number)
+        get_property_value("firstDayOfWeek", :number, nil)
       end
 
       def max_year
-        get_property_value("maxYear", :number)
+        get_property_value("maxYear", :number, nil)
       end
 
       def min_year
-        get_property_value("minYear", :number)
+        get_property_value("minYear", :number, nil)
       end
 
       def allow_multiple_selection?
-        get_property_value("allowMultipleSelection", :boolean)
+        get_property_value("allowMultipleSelection", :boolean, nil)
       end
 
       def selected_ranges
-        get_property_value("selectedRanges", :string)
+        get_property_value("selectedRanges", :string, :date_range_array)
       end
 
       def show_today?
-        get_property_value("showToday", :boolean)
+        get_property_value("showToday", :boolean, nil)
       end
 
       def year_navigation_enabled?
-        get_property_value("yearNavigationEnabled", :boolean)
+        get_property_value("yearNavigationEnabled", :boolean, nil)
       end
 
       def header_colors
-        get_property_value("headerColors", :string)
+        get_property_value("headerColors", :string, :color_array)
       end
 
       def roll_over_color
-        get_property_value("rollOverColor", :string)
+        get_property_value("rollOverColor", :string, :color)
       end
 
       def today_color
-        get_property_value("todayColor", :string)
+        get_property_value("todayColor", :string, :color)
       end
 
       def color
-        get_property_value("color", :string)
+        get_property_value("color", :string, :color)
       end
 
       def disabled_color
-        get_property_value("disabledColor", :string)
+        get_property_value("disabledColor", :string, :color)
       end
 
       def fill_colors
-        get_property_value("fillColors", :string)
+        get_property_value("fillColors", :string, :color_array)
       end
 
       def font_family
-        get_property_value("fontFamily", :string)
+        get_property_value("fontFamily", :string, nil)
       end
 
       def font_size
-        get_property_value("fontSize", :number)
+        get_property_value("fontSize", :number, nil)
       end
 
       def font_style
-        get_property_value("fontStyle", :string)
+        get_property_value("fontStyle", :string, nil)
       end
 
       def font_weight
-        get_property_value("fontWeight", :string)
+        get_property_value("fontWeight", :string, nil)
       end
 
       def text_align
-        get_property_value("textAlign", :string)
+        get_property_value("textAlign", :string, nil)
       end
 
       def text_decoration
-        get_property_value("textDecoration", :string)
+        get_property_value("textDecoration", :string, nil)
       end
 
       def text_indent
-        get_property_value("textIndent", :int)
+        get_property_value("textIndent", :int, nil)
       end
 
       def header_colors
-        get_property_value("headerColors", :string)
+        get_property_value("headerColors", :string, :color_array)
       end
 
       def roll_over_color
-        get_property_value("rollOverColor", :string)
+        get_property_value("rollOverColor", :string, :color)
       end
 
       def selection_color
-        get_property_value("selectionColor", :string)
+        get_property_value("selectionColor", :string, :color)
       end
 
     end
@@ -1457,28 +1453,28 @@ module FunFX
     end
 
     class FlexColorPicker < FlexComboBase
-      def open(trigger_event=[1])
+      def open!(trigger_event=[1])
         fire_event("Open", trigger_event)
       end
 
-      def close(trigger_event=[1])
+      def close!(trigger_event=[1])
         fire_event("Close", trigger_event)
       end
 
-      def change(color)
+      def change!(color)
         fire_event("Change", color)
       end
 
       def selected_color
-        get_property_value("selectedColor", :int)
+        get_property_value("selectedColor", :int, :color)
       end
 
       def show_text_field?
-        get_property_value("showTextField", :boolean)
+        get_property_value("showTextField", :boolean, nil)
       end
 
       def column_count
-        get_property_value("columnCount", :int)
+        get_property_value("columnCount", :int, nil)
       end
 
     end
@@ -1487,84 +1483,84 @@ module FunFX
     end
 
     class FlexTextArea < FlexScrollBase
-      def input(text)
+      def input!(text)
         fire_event("Input", text)
       end
 
-      def select_text(begin_index, end_index)
+      def select_text!(begin_index, end_index)
         fire_event("SelectText", begin_index, end_index)
       end
 
-      def type(key_code, key_modifier=[0])
+      def type!(key_code, key_modifier=[0])
         fire_event("Type", key_code, key_modifier)
       end
 
-      def scroll(position, direction, detail=[0])
+      def scroll!(position, direction, detail=[0])
         fire_event("Scroll", position, direction, detail)
       end
 
       def editable?
-        get_property_value("editable", :boolean)
+        get_property_value("editable", :boolean, nil)
       end
 
       def display_as_password?
-        get_property_value("displayAsPassword", :boolean)
+        get_property_value("displayAsPassword", :boolean, nil)
       end
 
       def text
-        get_property_value("text", :string)
+        get_property_value("text", :string, nil)
       end
 
       def color
-        get_property_value("color", :int)
+        get_property_value("color", :int, :color)
       end
 
       def horizontal_scroll_policy
-        get_property_value("horizontalScrollPolicy", :string)
+        get_property_value("horizontalScrollPolicy", :string, nil)
       end
 
       def html_text
-        get_property_value("htmlText", :string)
+        get_property_value("htmlText", :string, nil)
       end
 
       def length
-        get_property_value("length", :number)
+        get_property_value("length", :number, nil)
       end
 
       def max_chars
-        get_property_value("maxChars", :number)
+        get_property_value("maxChars", :number, nil)
       end
 
       def restrict
-        get_property_value("restrict", :string)
+        get_property_value("restrict", :string, nil)
       end
 
       def selection
-        get_property_value("selection", :string)
+        get_property_value("selection", :string, nil)
       end
 
       def word_wrap?
-        get_property_value("wordWrap", :boolean)
+        get_property_value("wordWrap", :boolean, nil)
       end
 
       def disabled_color
-        get_property_value("disabledColor", :string)
+        get_property_value("disabledColor", :string, :color)
       end
 
       def font_family
-        get_property_value("fontFamily", :string)
+        get_property_value("fontFamily", :string, nil)
       end
 
       def font_size
-        get_property_value("fontSize", :number)
+        get_property_value("fontSize", :number, nil)
       end
 
       def font_style
-        get_property_value("fontStyle", :string)
+        get_property_value("fontStyle", :string, nil)
       end
 
       def font_weight
-        get_property_value("fontWeight", :string)
+        get_property_value("fontWeight", :string, nil)
       end
 
     end
@@ -1579,27 +1575,27 @@ module FunFX
       include TabularData
 
       def title
-        get_property_value("title", :string)
+        get_property_value("title", :string, nil)
       end
 
       def status
-        get_property_value("status", :string)
+        get_property_value("status", :string, nil)
       end
 
       def drop_shadow_enabled?
-        get_property_value("dropShadowEnabled", :boolean)
+        get_property_value("dropShadowEnabled", :boolean, nil)
       end
 
       def footer_colors
-        get_property_value("footerColors", :string)
+        get_property_value("footerColors", :string, :color_array)
       end
 
       def header_colors
-        get_property_value("headerColors", :string)
+        get_property_value("headerColors", :string, :color_array)
       end
 
       def header_height
-        get_property_value("headerHeight", :int)
+        get_property_value("headerHeight", :int, nil)
       end
 
     end
@@ -1611,7 +1607,7 @@ module FunFX
       include TabularData
 
       def show_close_button?
-        get_property_value("showCloseButton", :boolean)
+        get_property_value("showCloseButton", :boolean, nil)
       end
 
     end
@@ -1620,32 +1616,32 @@ module FunFX
     end
 
     class FlexAlert < FlexPanel
-      def type(key_code, key_modifier=[0])
+      def type!(key_code, key_modifier=[0])
         fire_event("Type", key_code, key_modifier)
       end
 
       def text
-        get_property_value("text", :string)
+        get_property_value("text", :string, nil)
       end
 
       def cancel_label
-        get_property_value("cancelLabel", :string)
+        get_property_value("cancelLabel", :string, nil)
       end
 
       def default_button_flag
-        get_property_value("defaultButtonFlag", :number)
+        get_property_value("defaultButtonFlag", :number, nil)
       end
 
       def no_label
-        get_property_value("noLabel", :string)
+        get_property_value("noLabel", :string, nil)
       end
 
       def ok_label
-        get_property_value("okLabel", :string)
+        get_property_value("okLabel", :string, nil)
       end
 
       def yes_label
-        get_property_value("yesLabel", :string)
+        get_property_value("yesLabel", :string, nil)
       end
 
     end
@@ -1656,20 +1652,20 @@ module FunFX
     class FlexDividedBox < FlexBox
       include TabularData
 
-      def pressed(divider_index, delta)
+      def pressed!(divider_index, delta)
         fire_event("Pressed", divider_index, delta)
       end
 
-      def dragged(divider_index, delta)
+      def dragged!(divider_index, delta)
         fire_event("Dragged", divider_index, delta)
       end
 
-      def released(divider_index, delta)
+      def released!(divider_index, delta)
         fire_event("Released", divider_index, delta)
       end
 
       def resize_to_content?
-        get_property_value("resizeToContent", :boolean)
+        get_property_value("resizeToContent", :boolean, nil)
       end
 
     end
@@ -1680,48 +1676,48 @@ module FunFX
     class FlexMenu < FlexObject
       include TabularData
 
-      def type(key_code, key_modifier=[0])
+      def type!(key_code, key_modifier=[0])
         fire_event("Type", key_code, key_modifier)
       end
 
-      def show(item_renderer)
+      def show!(item_renderer)
         fire_event("Show", item_renderer)
       end
 
-      def hide
+      def hide!
         fire_event("Hide")
       end
 
-      def select(item_renderer)
+      def select!(item_renderer)
         fire_event("Select", item_renderer)
       end
 
       def row_count
-        get_property_value("rowCount", :int)
+        get_property_value("rowCount", :int, nil)
       end
 
       def selected_index
-        get_property_value("selectedIndex", :int)
+        get_property_value("selectedIndex", :int, nil)
       end
 
       def alternating_row_colors
-        get_property_value("alternatingRowColors", :string)
+        get_property_value("alternatingRowColors", :string, :color_array)
       end
 
       def roll_over_color
-        get_property_value("rollOverColor", :string)
+        get_property_value("rollOverColor", :string, :color_array)
       end
 
       def selection_color
-        get_property_value("selectionColor", :string)
+        get_property_value("selectionColor", :string, :color_array)
       end
 
       def text_roll_over_color
-        get_property_value("textRollOverColor", :string)
+        get_property_value("textRollOverColor", :string, :color_array)
       end
 
       def text_selected_color
-        get_property_value("textSelectedColor", :string)
+        get_property_value("textSelectedColor", :string, :color_array)
       end
 
     end
@@ -1732,76 +1728,76 @@ module FunFX
     class FlexMenuBar < FlexObject
       include TabularData
 
-      def type(key_code, key_modifier=[0])
+      def type!(key_code, key_modifier=[0])
         fire_event("Type", key_code, key_modifier)
       end
 
-      def show(item_renderer)
+      def show!(item_renderer)
         fire_event("Show", item_renderer)
       end
 
-      def hide
+      def hide!
         fire_event("Hide")
       end
 
       def num_children
-        get_property_value("numChildren", :int)
+        get_property_value("numChildren", :int, nil)
       end
 
       def selected_index
-        get_property_value("selectedIndex", :number)
+        get_property_value("selectedIndex", :number, nil)
       end
 
       def background_color
-        get_property_value("backgroundColor", :string)
+        get_property_value("backgroundColor", :string, :color)
       end
 
       def color
-        get_property_value("color", :string)
+        get_property_value("color", :string, :color)
       end
 
       def disabled_color
-        get_property_value("disabledColor", :string)
+        get_property_value("disabledColor", :string, :color)
       end
 
       def fill_colors
-        get_property_value("fillColors", :string)
+        get_property_value("fillColors", :string, :color_array)
       end
 
       def font_family
-        get_property_value("fontFamily", :string)
+        get_property_value("fontFamily", :string, nil)
       end
 
       def font_size
-        get_property_value("fontSize", :number)
+        get_property_value("fontSize", :number, nil)
       end
 
       def font_style
-        get_property_value("fontStyle", :string)
+        get_property_value("fontStyle", :string, nil)
       end
 
       def font_weight
-        get_property_value("fontWeight", :string)
+        get_property_value("fontWeight", :string, nil)
       end
 
       def text_align
-        get_property_value("textAlign", :string)
+        get_property_value("textAlign", :string, nil)
       end
 
       def text_decoration
-        get_property_value("textDecoration", :string)
+        get_property_value("textDecoration", :string, nil)
       end
 
       def roll_over_color
-        get_property_value("rollOverColor", :string)
+        get_property_value("rollOverColor", :string, :color)
       end
 
       def selection_color
-        get_property_value("selectionColor", :string)
+        get_property_value("selectionColor", :string, :color)
       end
 
       def text_indent
-        get_property_value("textIndent", :int)
+        get_property_value("textIndent", :int, nil)
       end
 
     end
@@ -1813,23 +1809,23 @@ module FunFX
       include TabularData
 
       def automation_name
-        get_property_value("automationName", :string)
+        get_property_value("automationName", :string, nil)
       end
 
       def id
-        get_property_value("id", :string)
+        get_property_value("id", :string, nil)
       end
 
       def class_name
-        get_property_value("className", :string)
+        get_property_value("className", :string, nil)
       end
 
       def automation_index
-        get_property_value("automationIndex", :string)
+        get_property_value("automationIndex", :string, nil)
       end
 
       def count
-        get_property_value("count", :string)
+        get_property_value("count", :string, nil)
       end
 
     end
@@ -1838,52 +1834,52 @@ module FunFX
     end
 
     class FlexLabel < FlexObject
-      def click(ctrl_key, alt_key, shift_key)
+      def click!(ctrl_key, alt_key, shift_key)
         fire_event("Click", ctrl_key, alt_key, shift_key)
       end
 
       def text
-        get_property_value("text", :string)
+        get_property_value("text", :string, nil)
       end
 
       def html_text
-        get_property_value("htmlText", :string)
+        get_property_value("htmlText", :string, nil)
       end
 
       def color
-        get_property_value("color", :string)
+        get_property_value("color", :string, :color)
       end
 
       def disabled_color
-        get_property_value("disabledColor", :string)
+        get_property_value("disabledColor", :string, :color)
       end
 
       def font_family
-        get_property_value("fontFamily", :string)
+        get_property_value("fontFamily", :string, nil)
       end
 
       def font_size
-        get_property_value("fontSize", :number)
+        get_property_value("fontSize", :number, nil)
       end
 
       def font_style
-        get_property_value("fontStyle", :string)
+        get_property_value("fontStyle", :string, nil)
       end
 
       def font_weight
-        get_property_value("fontWeight", :string)
+        get_property_value("fontWeight", :string, nil)
       end
 
       def text_align
-        get_property_value("textAlign", :string)
+        get_property_value("textAlign", :string, nil)
       end
 
       def text_decoration
-        get_property_value("textDecoration", :string)
+        get_property_value("textDecoration", :string, nil)
       end
 
       def text_indent
-        get_property_value("textIndent", :int)
+        get_property_value("textIndent", :int, nil)
       end
 
     end
@@ -1893,11 +1889,11 @@ module FunFX
 
     class FlexRule < FlexObject
       def color
-        get_property_value("color", :string)
+        get_property_value("color", :string, :color)
       end
 
       def stroke_width
-        get_property_value("strokeWidth", :number)
+        get_property_value("strokeWidth", :number, nil)
       end
 
     end
@@ -1910,7 +1906,7 @@ module FunFX
 
     class FlexFormItem < FlexContainer
       def horizontal_align
-        get_property_value("horizontalAlign", :string)
+        get_property_value("horizontalAlign", :string, nil)
       end
 
     end
@@ -1921,16 +1917,16 @@ module FunFX
     class FlexViewStack < FlexContainer
       include TabularData
 
-      def type(key_code, key_modifier=[0])
+      def type!(key_code, key_modifier=[0])
         fire_event("Type", key_code, key_modifier)
       end
 
       def selected_index
-        get_property_value("selectedIndex", :int)
+        get_property_value("selectedIndex", :int, nil)
       end
 
       def selected_child
-        get_property_value("selectedChild", :string)
+        get_property_value("selectedChild", :string, :automation_object)
       end
 
     end
@@ -1941,24 +1937,24 @@ module FunFX
     class FlexTabNavigator < FlexViewStack
       include TabularData
 
-      def change(related_object)
+      def change!(related_object)
         fire_event("Change", related_object)
       end
 
       def horizontal_align
-        get_property_value("horizontalAlign", :string)
+        get_property_value("horizontalAlign", :string, nil)
       end
 
       def horizontal_gap
-        get_property_value("horizontalGap", :number)
+        get_property_value("horizontalGap", :number, nil)
       end
 
       def tab_height
-        get_property_value("tabHeight", :number)
+        get_property_value("tabHeight", :number, nil)
       end
 
       def tab_width
-        get_property_value("tabWidth", :number)
+        get_property_value("tabWidth", :number, nil)
       end
 
     end
@@ -1969,20 +1965,20 @@ module FunFX
     class FlexNavigationBar < FlexBox
       include TabularData
 
-      def change(related_object)
+      def change!(related_object)
         fire_event("Change", related_object)
       end
 
-      def type(key_code, key_modifier=[0])
+      def type!(key_code, key_modifier=[0])
         fire_event("Type", key_code, key_modifier)
       end
 
       def direction
-        get_property_value("direction", :string)
+        get_property_value("direction", :string, nil)
       end
 
       def selected_index
-        get_property_value("selectedIndex", :int)
+        get_property_value("selectedIndex", :int, nil)
       end
 
     end
@@ -1994,11 +1990,11 @@ module FunFX
       include TabularData
 
       def selected_index
-        get_property_value("selectedIndex", :int)
+        get_property_value("selectedIndex", :int, nil)
       end
 
       def num_children
-        get_property_value("numChildren", :int)
+        get_property_value("numChildren", :int, nil)
       end
 
     end
@@ -2010,11 +2006,11 @@ module FunFX
       include TabularData
 
       def selected_index
-        get_property_value("selectedIndex", :string)
+        get_property_value("selectedIndex", :string, :automation_object)
       end
 
       def num_children
-        get_property_value("numChildren", :string)
+        get_property_value("numChildren", :string, :automation_object)
       end
 
     end
@@ -2026,11 +2022,11 @@ module FunFX
       include TabularData
 
       def selected_index
-        get_property_value("selectedIndex", :string)
+        get_property_value("selectedIndex", :string, nil)
       end
 
       def num_children
-        get_property_value("numChildren", :string)
+        get_property_value("numChildren", :string, nil)
       end
 
     end
@@ -2042,59 +2038,59 @@ module FunFX
       include TabularData
 
       def description
-        get_property_value("description", :string)
+        get_property_value("description", :string, nil)
       end
 
       def clip_content?
-        get_property_value("clipContent", :boolean)
+        get_property_value("clipContent", :boolean, nil)
       end
 
       def data_tip_layer_index
-        get_property_value("dataTipLayerIndex", :int)
+        get_property_value("dataTipLayerIndex", :int, nil)
       end
 
       def data_tip_mode
-        get_property_value("dataTipMode", :string)
+        get_property_value("dataTipMode", :string, nil)
       end
 
       def mouse_sensitivity
-        get_property_value("mouseSensitivity", :int)
+        get_property_value("mouseSensitivity", :int, nil)
       end
 
       def show_data_tips?
-        get_property_value("showDataTips", :boolean)
+        get_property_value("showDataTips", :boolean, nil)
       end
 
       def font_family
-        get_property_value("fontFamily", :string)
+        get_property_value("fontFamily", :string, nil)
       end
 
       def font_size
-        get_property_value("fontSize", :int)
+        get_property_value("fontSize", :int, nil)
       end
 
       def maximum_data_tip_count
-        get_property_value("maximumDataTipCount", :int)
+        get_property_value("maximumDataTipCount", :int, nil)
       end
 
       def padding_bottom
-        get_property_value("paddingBottom", :int)
+        get_property_value("paddingBottom", :int, nil)
       end
 
       def padding_top
-        get_property_value("paddingTop", :int)
+        get_property_value("paddingTop", :int, nil)
       end
 
       def padding_left
-        get_property_value("paddingLeft", :int)
+        get_property_value("paddingLeft", :int, nil)
       end
 
       def padding_right
-        get_property_value("paddingRight", :int)
+        get_property_value("paddingRight", :int, nil)
       end
 
       def show_data_tip_targets?
-        get_property_value("showDataTipTargets", :boolean)
+        get_property_value("showDataTipTargets", :boolean, nil)
       end
 
     end
@@ -2106,27 +2102,27 @@ module FunFX
       include TabularData
 
       def horizontal_axis_ratio
-        get_property_value("horizontalAxisRatio", :number)
+        get_property_value("horizontalAxisRatio", :number, nil)
       end
 
       def gutter_left
-        get_property_value("gutterLeft", :int)
+        get_property_value("gutterLeft", :int, nil)
       end
 
       def gutter_right
-        get_property_value("gutterRight", :int)
+        get_property_value("gutterRight", :int, nil)
       end
 
       def gutter_bottom
-        get_property_value("gutterBottom", :int)
+        get_property_value("gutterBottom", :int, nil)
       end
 
       def gutter_top
-        get_property_value("gutterTop", :int)
+        get_property_value("gutterTop", :int, nil)
       end
 
       def text_align
-        get_property_value("textAlign", :string)
+        get_property_value("textAlign", :string, nil)
       end
 
     end
@@ -2138,7 +2134,7 @@ module FunFX
       include TabularData
 
       def type
-        get_property_value("type", :string)
+        get_property_value("type", :string, nil)
       end
 
     end
@@ -2150,11 +2146,11 @@ module FunFX
       include TabularData
 
       def bar_width_ratio
-        get_property_value("barWidthRatio", :number)
+        get_property_value("barWidthRatio", :number, nil)
       end
 
       def max_bar_width
-        get_property_value("maxBarWidth", :number)
+        get_property_value("maxBarWidth", :number, nil)
       end
 
     end
@@ -2166,11 +2162,11 @@ module FunFX
       include TabularData
 
       def column_width_ratio
-        get_property_value("columnWidthRatio", :number)
+        get_property_value("columnWidthRatio", :number, nil)
       end
 
       def max_column_width
-        get_property_value("maxColumnWidth", :number)
+        get_property_value("maxColumnWidth", :number, nil)
       end
 
     end
@@ -2182,11 +2178,11 @@ module FunFX
       include TabularData
 
       def column_width_ratio
-        get_property_value("columnWidthRatio", :number)
+        get_property_value("columnWidthRatio", :number, nil)
       end
 
       def max_column_width
-        get_property_value("maxColumnWidth", :number)
+        get_property_value("maxColumnWidth", :number, nil)
       end
 
     end
@@ -2206,11 +2202,11 @@ module FunFX
       include TabularData
 
       def inner_radius
-        get_property_value("innerRadius", :number)
+        get_property_value("innerRadius", :number, nil)
       end
 
       def text_align
-        get_property_value("textAlign", :string)
+        get_property_value("textAlign", :string, nil)
       end
 
     end
@@ -2221,15 +2217,15 @@ module FunFX
     class FlexChartSeries < FlexObject
       include TabularData
 
-      def click(hit_set)
+      def click!(hit_set)
         fire_event("Click", hit_set)
       end
 
-      def double_click(hit_set)
+      def double_click!(hit_set)
         fire_event("DoubleClick", hit_set)
       end
 
-      def item_roll_over(hit_set)
+      def item_roll_over!(hit_set)
         fire_event("ItemRollOver", hit_set)
       end
 
@@ -2242,23 +2238,23 @@ module FunFX
       include TabularData
 
       def min_field
-        get_property_value("minField", :string)
+        get_property_value("minField", :string, nil)
       end
 
       def x_field
-        get_property_value("xField", :string)
+        get_property_value("xField", :string, nil)
       end
 
       def y_field
-        get_property_value("yField", :string)
+        get_property_value("yField", :string, nil)
       end
 
       def form
-        get_property_value("form", :string)
+        get_property_value("form", :string, nil)
       end
 
       def radius
-        get_property_value("radius", :number)
+        get_property_value("radius", :number, nil)
       end
 
     end
@@ -2270,27 +2266,27 @@ module FunFX
       include TabularData
 
       def bar_width_ratio
-        get_property_value("barWidthRatio", :number)
+        get_property_value("barWidthRatio", :number, nil)
       end
 
       def max_bar_width
-        get_property_value("maxBarWidth", :number)
+        get_property_value("maxBarWidth", :number, nil)
       end
 
       def min_field
-        get_property_value("minField", :string)
+        get_property_value("minField", :string, nil)
       end
 
       def offset
-        get_property_value("offset", :number)
+        get_property_value("offset", :number, nil)
       end
 
       def x_field
-        get_property_value("xField", :string)
+        get_property_value("xField", :string, nil)
       end
 
       def y_field
-        get_property_value("yField", :string)
+        get_property_value("yField", :string, nil)
       end
 
     end
@@ -2302,19 +2298,19 @@ module FunFX
       include TabularData
 
       def max_radius
-        get_property_value("maxRadius", :number)
+        get_property_value("maxRadius", :number, nil)
       end
 
       def radius_field
-        get_property_value("radiusField", :string)
+        get_property_value("radiusField", :string, nil)
       end
 
       def x_field
-        get_property_value("xField", :string)
+        get_property_value("xField", :string, nil)
       end
 
       def y_field
-        get_property_value("yField", :string)
+        get_property_value("yField", :string, nil)
       end
 
     end
@@ -2326,31 +2322,31 @@ module FunFX
       include TabularData
 
       def column_width_ratio
-        get_property_value("columnWidthRatio", :number)
+        get_property_value("columnWidthRatio", :number, nil)
       end
 
       def max_column_width
-        get_property_value("maxColumnWidth", :number)
+        get_property_value("maxColumnWidth", :number, nil)
       end
 
       def offset
-        get_property_value("offset", :number)
+        get_property_value("offset", :number, nil)
       end
 
       def sort_on_x_field?
-        get_property_value("sortOnXField", :boolean)
+        get_property_value("sortOnXField", :boolean, nil)
       end
 
       def min_field
-        get_property_value("minField", :string)
+        get_property_value("minField", :string, nil)
       end
 
       def x_field
-        get_property_value("xField", :string)
+        get_property_value("xField", :string, nil)
       end
 
       def y_field
-        get_property_value("yField", :string)
+        get_property_value("yField", :string, nil)
       end
 
     end
@@ -2362,23 +2358,23 @@ module FunFX
       include TabularData
 
       def form
-        get_property_value("form", :string)
+        get_property_value("form", :string, nil)
       end
 
       def radius
-        get_property_value("radius", :number)
+        get_property_value("radius", :number, nil)
       end
 
       def sort_on_x_field?
-        get_property_value("sortOnXField", :boolean)
+        get_property_value("sortOnXField", :boolean, nil)
       end
 
       def x_field
-        get_property_value("xField", :string)
+        get_property_value("xField", :string, nil)
       end
 
       def y_field
-        get_property_value("yField", :string)
+        get_property_value("yField", :string, nil)
       end
 
     end
@@ -2390,47 +2386,47 @@ module FunFX
       include TabularData
 
       def explode_radius
-        get_property_value("explodeRadius", :number)
+        get_property_value("explodeRadius", :number, nil)
       end
 
       def field
-        get_property_value("field", :string)
+        get_property_value("field", :string, nil)
       end
 
       def max_label_radius
-        get_property_value("maxLabelRadius", :number)
+        get_property_value("maxLabelRadius", :number, nil)
       end
 
       def name_field
-        get_property_value("nameField", :string)
+        get_property_value("nameField", :string, nil)
       end
 
       def outer_radius
-        get_property_value("outerRadius", :number)
+        get_property_value("outerRadius", :number, nil)
       end
 
       def inside_label_size_limit
-        get_property_value("insideLabelSizeLimit", :number)
+        get_property_value("insideLabelSizeLimit", :number, nil)
       end
 
       def inner_radius
-        get_property_value("innerRadius", :number)
+        get_property_value("innerRadius", :number, nil)
       end
 
       def font_size
-        get_property_value("fontSize", :int)
+        get_property_value("fontSize", :int, nil)
       end
 
       def callout_gap
-        get_property_value("calloutGap", :number)
+        get_property_value("calloutGap", :number, nil)
       end
 
       def start_angle
-        get_property_value("startAngle", :number)
+        get_property_value("startAngle", :number, nil)
       end
 
       def label_position
-        get_property_value("labelPosition", :string)
+        get_property_value("labelPosition", :string, nil)
       end
 
     end
@@ -2442,15 +2438,15 @@ module FunFX
       include TabularData
 
       def radius
-        get_property_value("radius", :number)
+        get_property_value("radius", :number, nil)
       end
 
       def x_field
-        get_property_value("xField", :string)
+        get_property_value("xField", :string, nil)
       end
 
       def y_field
-        get_property_value("yField", :string)
+        get_property_value("yField", :string, nil)
       end
 
     end
@@ -2462,63 +2458,63 @@ module FunFX
       include TabularData
 
       def height_limit
-        get_property_value("heightLimit", :number)
+        get_property_value("heightLimit", :number, nil)
       end
 
       def length
-        get_property_value("length", :number)
+        get_property_value("length", :number, nil)
       end
 
       def placement
-        get_property_value("placement", :string)
+        get_property_value("placement", :string, nil)
       end
 
       def can_drop_labels?
-        get_property_value("canDropLabels", :boolean)
+        get_property_value("canDropLabels", :boolean, nil)
       end
 
       def can_stagger?
-        get_property_value("canStagger", :boolean)
+        get_property_value("canStagger", :boolean, nil)
       end
 
       def label_gap
-        get_property_value("labelGap", :number)
+        get_property_value("labelGap", :number, nil)
       end
 
       def label_rotation
-        get_property_value("labelRotation", :number)
+        get_property_value("labelRotation", :number, nil)
       end
 
       def minor_tick_length
-        get_property_value("minorTickLength", :number)
+        get_property_value("minorTickLength", :number, nil)
       end
 
       def minor_tick_placement
-        get_property_value("minorTickPlacement", :string)
+        get_property_value("minorTickPlacement", :string, nil)
       end
 
       def show_labels?
-        get_property_value("showLabels", :boolean)
+        get_property_value("showLabels", :boolean, nil)
       end
 
       def show_line?
-        get_property_value("showLine", :boolean)
+        get_property_value("showLine", :boolean, nil)
       end
 
       def tick_length
-        get_property_value("tickLength", :number)
+        get_property_value("tickLength", :number, nil)
       end
 
       def tick_placement
-        get_property_value("tickPlacement", :string)
+        get_property_value("tickPlacement", :string, nil)
       end
 
       def ticks
-        get_property_value("ticks", :string)
+        get_property_value("ticks", :string, :object_array)
       end
 
       def minor_ticks
-        get_property_value("minorTicks", :string)
+        get_property_value("minorTicks", :string, :object_array)
       end
 
     end
@@ -2529,44 +2525,44 @@ module FunFX
     class FlexChartLegend < FlexObject
       include TabularData
 
-      def click(item)
+      def click!(item)
         fire_event("Click", item)
       end
 
       def label
-        get_property_value("label", :string)
+        get_property_value("label", :string, nil)
       end
 
       def marker_aspect_ratio
-        get_property_value("markerAspectRatio", :number)
+        get_property_value("markerAspectRatio", :number, nil)
       end
 
       def font_weight
-        get_property_value("fontWeight", :string)
+        get_property_value("fontWeight", :string, nil)
       end
 
       def label_placement
-        get_property_value("labelPlacement", :string)
+        get_property_value("labelPlacement", :string, nil)
       end
 
       def marker_height
-        get_property_value("markerHeight", :int)
+        get_property_value("markerHeight", :int, nil)
       end
 
       def marker_width
-        get_property_value("markerWidth", :int)
+        get_property_value("markerWidth", :int, nil)
       end
 
       def padding_left
-        get_property_value("paddingLeft", :int)
+        get_property_value("paddingLeft", :int, nil)
       end
 
       def padding_right
-        get_property_value("paddingRight", :int)
+        get_property_value("paddingRight", :int, nil)
       end
 
       def vertical_gap
-        get_property_value("verticalGap", :int)
+        get_property_value("verticalGap", :int, nil)
       end
 
     end
@@ -2576,19 +2572,19 @@ module FunFX
 
     class FlexListLabel < FlexDisplayObject
       def automation_value
-        get_property_value("automationValue", :string)
+        get_property_value("automationValue", :string, nil)
       end
 
       def automation_name
-        get_property_value("automationName", :string)
+        get_property_value("automationName", :string, nil)
       end
 
       def class_name
-        get_property_value("className", :string)
+        get_property_value("className", :string, nil)
       end
 
       def automation_index
-        get_property_value("automationIndex", :string)
+        get_property_value("automationIndex", :string, nil)
       end
 
     end
