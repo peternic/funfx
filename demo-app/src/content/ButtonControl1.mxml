@@ -30,6 +30,7 @@
              <!-- By default, the look and feel of the customized button is
                  similar to the Default Button.  -->
              <mx:Button label="Default Button" click="printMessage(event);"/>
+             <mx:Button id="bDisabledButton" label="Disabled Button" enabled="false"/>
         </mx:VBox>
 
          <mx:TextArea id="message" text="" editable="false" height="100%" width="100%"
