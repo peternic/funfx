@@ -27,6 +27,7 @@
         
             <mx:Repeater id="rp" dataProvider="{dp}">
                 <mx:Button height="49" width="50" 
+                    id="repeaterButton"
                     label="{String(rp.currentItem)}" 
                     click="print(String(event.currentTarget.getRepeaterItem()))"/>
             </mx:Repeater>    

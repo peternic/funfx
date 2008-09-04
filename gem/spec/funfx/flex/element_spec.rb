@@ -15,6 +15,18 @@ module FunFX
         value.should == true
       end
       
+      it "should be possible to add multiple definitions per object" do
+        flex_app = mock('FlexApp')
+        element = Element.new(flex_app, {:id => 'box'}, {:automationIndex => 'index:1', :automationName => 'Button Control Example'})
+
+        flex_app.should_receive(:get_property_value).
+          with('|id{box string}|automationName{Button%20Control%20Example string}automationIndex{index:1 string}', 'WhatEver').
+          and_return('true')
+
+        value = element.get_property_value('WhatEver', :boolean, nil)
+        value.should == true
+      end
+      
       it "should raise error with Flex backtrace formatted as Ruby backtrace" do
         flex_error = %{____FUNFX_ERROR:
 Error: Unable to resolve child for part 'undefined':'undefined' in parent 'FlexObjectTest'.

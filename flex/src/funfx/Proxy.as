@@ -4,7 +4,8 @@ package funfx {
     import mx.automation.AutomationID;
     import mx.automation.IAutomationObject;
     import mx.automation.IAutomationManager;
-    import mx.automation.IAutomationTabularData
+    import mx.automation.IAutomationTabularData;
+    import flash.display.DisplayObject;
     
     public class Proxy
     {
@@ -23,6 +24,12 @@ package funfx {
             }
             try {
                 var target:IAutomationObject = findAutomationObject(objID);
+                if (!target || !automationManager.isSynchronized(target)) {
+                  return null;
+                }
+                if (!automationManager.isVisible(target as DisplayObject)){
+                  return null;
+                }
                 var result:Object = AQAdapter.aqAdapter.replay(target, eventName, convertArrayFromStringToAs(args));
                 return "OK";
             } catch(e:Error) {
@@ -75,8 +82,9 @@ package funfx {
             if(!automationManager.isSynchronized(null)) {
                 return null;
             }
+           
             try {
-                var target:IAutomationObject = findAutomationObject(objID);
+                var target:IAutomationObject = findAutomationObject(objID);              
                 var tab:Object = target.automationTabularData;
                 var o:Object = Object(tab);
                 if (o.hasOwnProperty(methodName)) {

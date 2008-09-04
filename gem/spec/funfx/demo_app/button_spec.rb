@@ -22,7 +22,7 @@ describe "DemoApp" do
     tree.open!('Button controls')
     tree.select!('Button controls>Button1')
 
-    button = @flex.button({:automationName => 'Button Control Example'}, {:automationName => 'Default Button'})
+    button = @flex.button({:automationName => 'Default Button'})
     # TODO: It works with this hack - make it work without!!!
     #Have added the 'Button Control Example' automation name.
     #Seems like we need to look at locating elements without having to know their parents
