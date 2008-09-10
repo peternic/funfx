@@ -1,6 +1,6 @@
 require 'funfx/version'
 
-AUTHOR = 'Peter Nicolai Motzfeldt'  # can also be an array of Authors
+AUTHOR = ['Peter Nicolai Motzfeldt', 'Aslak Hellesøy']  # can also be an array of Authors
 EMAIL = "motzfeldt@gmail.com"
 DESCRIPTION = "description of gem"
 GEM_NAME = 'funfx' # what ppl will type to install your gem
@@ -35,7 +35,7 @@ REV = nil
 # UNCOMMENT IF REQUIRED:
 # REV = YAML.load(`svn info`)['Revision']
 VERS = Funfx::VERSION::STRING + (REV ? ".#{REV}" : "")
-RDOC_OPTS = ['--quiet', '--title', 'funfx documentation',
+RDOC_OPTS = ['--quiet', '--title', 'FunFX documentation',
     "--opname", "index.html",
     "--line-numbers",
     "--main", "README",
