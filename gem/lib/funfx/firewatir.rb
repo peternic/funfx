@@ -1,6 +1,6 @@
 require 'rubygems'
 require 'firewatir'
-require 'funfx/flex/generated_elements'
+require 'funfx'
 
 module FireWatir
   class Firefox

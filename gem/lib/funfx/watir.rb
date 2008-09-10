@@ -1,6 +1,6 @@
 require 'rubygems'
 require 'watir'
-require 'funfx/flex/generated_elements'
+require 'funfx'
 
 module Watir
   module Container

@@ -12,8 +12,12 @@ h2. Installation
 
 *Step 3*: Install FunFX
 
-<pre><code>gem install funfx
+<pre><code>
+gem sources --add http://gems.github.com/ 
+gem install peternic-funfx
 </code></pre>
+
+(You may have to sudo if you're on Linux or OS X)
 
 h2. Getting started
 

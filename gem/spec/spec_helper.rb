@@ -26,10 +26,15 @@ unless defined?(Browser)
 
   DEMO_APP = "http://localhost:9851/DemoApp.html"
 
-  $browser = Browser.new
-  $browser.visible = true if @browser.respond_to?(:visible=)
-  
-  at_exit do
-    $browser.close
+  def browser
+    if @browser.nil?
+      @browser = Browser.new
+      @browser.visible = true if @browser.respond_to?(:visible=)
+
+      at_exit do
+        @browser.close
+      end
+    end
+    @browser
   end
 end

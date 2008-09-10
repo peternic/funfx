@@ -1,0 +1,22 @@
+digraph G {
+  fontname = "Bitstream Vera Sans"
+  fontsize = 8
+
+  node [
+    fontname = "Bitstream Vera Sans"
+    fontsize = 8
+    shape = "record"
+  ]
+
+  edge [
+    fontname = "Bitstream Vera Sans"
+    fontsize = 8
+  ]
+  
+<% classes.each do |klass| %>
+  <%= klass.name %> [
+    label = "{<%= klass.name %>|<%= klass.dot_property_list %>|<%= klass.dot_event_list %>}"
+  ]
+  <%= klass.name %> -> <%= klass.superclass_name %>
+<% end %>
+}

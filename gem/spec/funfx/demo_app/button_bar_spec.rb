@@ -2,8 +2,8 @@ require File.dirname(__FILE__) + '/../../spec_helper'
 
 describe "DemoApp" do
   before(:each) do
-    $browser.goto(DEMO_APP)
-    @flex = $browser.flex_app('DemoApp')
+    browser.goto(DEMO_APP)
+    @flex = browser.flex_app('DemoApp')
   end
       
   it "should click on button" do
