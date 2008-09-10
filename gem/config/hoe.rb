@@ -1,7 +1,5 @@
 require 'funfx/version'
 
-AUTHOR = ['Peter Nicolai Motzfeldt', 'Aslak Hellesøy']  # can also be an array of Authors
-EMAIL = "motzfeldt@gmail.com"
 DESCRIPTION = "description of gem"
 GEM_NAME = 'funfx' # what ppl will type to install your gem
 RUBYFORGE_PROJECT = 'funfx' # The unix name for your project
@@ -51,7 +49,8 @@ end
 # Generate all the Rake tasks
 # Run 'rake -T' to see list of generated tasks (from gem root directory)
 $hoe = Hoe.new(GEM_NAME, VERS) do |p|
-  p.developer(AUTHOR, EMAIL)
+  p.developer('Peter Nicolai Motzfeldt', "motzfeldt@gmail.com")
+  p.developer('Aslak Hellesøy', "aslak.hellesoy@gmail.com")
   p.description = DESCRIPTION
   p.summary = DESCRIPTION
   p.url = HOMEPATH
