@@ -6,60 +6,31 @@ elements so that you can compare them with expected results.
 
 h2. Installation
 
-First, install "Ruby":http://ruby-lang.org/
+*Step 1*: Install "Ruby":http://ruby-lang.org/
 
-Second install Watir (IE/Windows) or Safariwatir (Safari/OS X)
+*Step 2*: Install "Watir":http://wtr.rubyforge.org/install.html, "SafariWatir":http://safariwatir.rubyforge.org/ or "FireWatir":http://wiki.openqa.org/display/WTR/FireWatir+Installation
 
-<pre><code>gem install watir
-</code></pre>
-
-or
-
-<pre><code>gem install safariwatir
-</code></pre>
-
-Last - install FunFX:
+*Step 3*: Install FunFX
 
 <pre><code>gem install funfx
 </code></pre>
 
-h2. Example
+h2. Getting started
 
-<pre><code>browser.goto('http://funfx.rubyforge.org/DemoApp.html')
-flex = browser.flex_app('DemoApp')
+FunFX uses Ruby to talk to your Flex application. We have put a demo flex application up on "FunFX' website":http://funfx.rubyforge.org/DemoApp.html (TODO: actually put it up there).
 
-tree = flex.tree({:id => 'box'}, {:id => 'objectTree'})
-tree.open!('Button controls')
-tree.select!('Button1')
+We'll guide you through the steps required to run this.
 
-button = flex.button(:label => 'Default Button')
-if button.enabled?
-  raise "Uhm, I expected this button to be disabled..."
-end
-</code></pre>
+h3. Create a Ruby file
 
-h2. Building
-
-* cd flex ; build
-* cd ../demo-app ; build
-
-h2. Running FunFX against the demo app
-
-* Copy flex/src/AutoQuickEnv.xml to demo-app/lib/AutoQuickEnv.xml (This step will go away in the future)
-* ruby demo-app/lib/httpd.rb (Start a little web server to serve the HTML/SWF)
-* ruby gem/spec/funfx/demo_app/button_spec.rb (Run some FunFX)
-
-h2. Getting a reference to a Flex application
-
-In order to fire events and get values from Flex objects, you first have to create a reference to the Flex application itself:
+Just use a text editor and create a file called myfunfx.rb. Depending on what kind of browser you're planning to use,
+enter the following in the file:
 
 *Watir*
 
 <pre><code>require 'funfx/watir'
 
 browser = Watir::IE.new
-browser.goto(URL) # The URL containing your Flex app
-flex = browser.flex_app('DemoApp')
 </code></pre>
 
 *SafariWatir*
@@ -67,8 +38,6 @@ flex = browser.flex_app('DemoApp')
 <pre><code>require 'funfx/safariwatir'
 
 browser = Watir::Safari.new
-browser.goto(URL) # The URL containing your Flex app
-flex = browser.flex_app('DemoApp')
 </code></pre>
 
 *FireWatir*
@@ -76,20 +45,38 @@ flex = browser.flex_app('DemoApp')
 <pre><code>require 'funfx/firewatir'
 
 browser = FireWatir::Firefox.new
-browser.goto(URL) # The URL containing your Flex app
-flex = browser.flex_app('DemoApp')
 </code></pre>
 
-h2. Looking up Flex elements with Automation IDs
+Open a shell, and run the following command:
+
+<pre><code>ruby myfunfx.rb
+</code></pre>
+
+This should open a browser window.
+
+h3. Getting a reference to a Flex application
+
+In order to fire events and get values from Flex objects, you first have to tell the browser to
+go to the page containing your Flex application, and then you must obtain a reference to the Flex 
+application itself.
+
+Add the following code to your Ruby file:
+
+<pre><code>
+browser.goto("http://funfx.rubyforge.org/DemoApp.html") # The URL containing your Flex app
+flex = browser.flex_app("DemoApp") # DemoApp is the id of the HTML element embedding the Flex app.
+</code></pre>
+
+h3. Looking up Flex elements with Automation IDs
 
 Once you have a reference to the Flex app, FunFX lets you look up a Flex element using a Hash:
 
-<pre><code>message = @flex.text_area({:id => 'message'})
+<pre><code>message = flex.text_area({:id => 'message'})
 </code></pre>
 
 or an Array of Hashes:
 
-<pre><code>message = @flex.text_area({:automationName => "Button Control Example"}, {:id => 'message'})
+<pre><code>message = flex.text_area({:automationName => "Button Control Example"}, {:id => 'message'})
 </code></pre>
 
 There is a lookup method for each element type. See the FunFX API or cheat sheet for more details.
@@ -106,6 +93,16 @@ FunFX will raise an error if you try to interact with an automation object that 
 
 Note that FunFX will *not* raise any errors when you *look up* a Flex automation object that doesn't exist. It's only when you fire an event or ask for a property
 that an error will be raised.
+
+h2. Using FunFX with your own Flex app
+
+TODO - explain how to build with automation and funfx swcs.
+
+h2. Learning more
+
+We recommend you learn "RSpec":http://rspec.info/, "Rake":http://rake.rubyforge.org/ and "Cucumber":http://github.com/aslakhellesoy/cucumber
+
+These tools work great with FunFX and let you run several tests and produce nice reports about failing and passing tests.
 
 h2. Hacking
 

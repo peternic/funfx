@@ -25,8 +25,8 @@ module Watir
         @flex_object.getFunFXTabularPropertyValue(flex_id, property)
       end
 
-      def invoke_tabular_method(flex_id, *args) # :nodoc:
-        @flex_object.invokeFunFXTabularMethod(flex_id, *args)
+      def invoke_tabular_method(flex_id, method_name, *args) # :nodoc:
+        @flex_object.invokeFunFXTabularMethod(flex_id, method_name, *args)
       end
     end
 

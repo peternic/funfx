@@ -11,6 +11,8 @@ module FunFX
         to_matrix(array, row_count)
       end
       
+      # TODO: Use _why's trick
+      # http://redhanded.hobix.com/bits/matchingIntoMultipleAssignment.html
       def to_matrix(array, row_count) #:nodoc:
         col_count = array.length / row_count
         matrix = []

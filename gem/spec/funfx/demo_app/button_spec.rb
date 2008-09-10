@@ -1,22 +1,11 @@
 require File.dirname(__FILE__) + '/../../spec_helper'
 
 describe "DemoApp" do
-  before(:all) do
-    # FunFX.debug = true
-    @browser = Browser.new
-    @browser.visible = true if @browser.respond_to?(:visible=)
-  end
-
   before(:each) do
-    @browser.goto(DEMO_APP)
-    @flex = @browser.flex_app('DemoApp')
+    $browser.goto(DEMO_APP)
+    @flex = $browser.flex_app('DemoApp')
   end
   
-  after(:all) do
-    FunFX.debug = false
-    @browser.close
-  end
-
   it "should open tree and click default button" do
     tree = @flex.tree({:id => 'objectTree'})
     tree.open!('Button controls')

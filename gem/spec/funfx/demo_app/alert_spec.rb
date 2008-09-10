@@ -1,20 +1,9 @@
 require File.dirname(__FILE__) + '/../../spec_helper'
 
 describe "DemoApp" do
-  before(:all) do
-    #FunFX.debug = true
-    @browser = Browser.new
-    @browser.visible = true if @browser.respond_to?(:visible=)
-  end
-
   before(:each) do
-    @browser.goto(DEMO_APP)
-    @flex = @browser.flex_app('DemoApp')
-  end
-  
-  after(:all) do
-    FunFX.debug = false
-    @browser.close
+    $browser.goto(DEMO_APP)
+    @flex = $browser.flex_app('DemoApp')
   end
 
   it "should be able to navigate an alert" do
