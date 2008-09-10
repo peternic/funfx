@@ -6,5 +6,5 @@ task :class_diagram do
   dot = dot_generator.generate
   File.open('website/funfx.dot', 'wb') {|io| io.write dot}
   sh "dot -T png -o website/funfx.png website/funfx.dot"
-  sh "dot -T svg -o website/funfx.svg website/funfx.dot"
+#  sh "dot -T svg -o website/funfx.svg website/funfx.dot"
 end

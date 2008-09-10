@@ -52,11 +52,13 @@ module FunFX
       end
       
       def dot_property_list
-        properties.map{|p| p.to_dot}.join('\l')
+        l = properties.map{|p| p.to_dot}.join('\l')
+        l == "" ? l : "#{l}\\l"
       end
 
       def dot_event_list
-        events.map{|e| e.to_dot}.join('\l')
+        l = events.map{|e| e.to_dot}.join('\l')
+        l == "" ? l : "#{l}\\l"
       end
     end
     

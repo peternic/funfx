@@ -25,10 +25,10 @@
 <text text-anchor="start" x="2363.5" y="-136.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">visible?:TrueClass</text>
 <text text-anchor="start" x="2363.5" y="-126.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">width:Integer</text>
 <text text-anchor="start" x="2363.5" y="-116.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">x:Integer</text>
-<text text-anchor="middle" x="2474" y="-106.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">y:Integer</text>
+<text text-anchor="start" x="2363.5" y="-106.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">y:Integer</text>
 <polyline style="fill:none;stroke:black;" points="2356,-100 2593,-100 "/>
 <text text-anchor="start" x="2363.5" y="-88.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">mouse_move(local_x=0, local_y=0, key_modifier=[&quot;0&quot;])</text>
-<text text-anchor="middle" x="2474" y="-78.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">click(key_modifier=[&quot;0&quot;])</text>
+<text text-anchor="start" x="2363.5" y="-78.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">click(key_modifier=[&quot;0&quot;])</text>
 </g>
 <!-- FlexElement -->
 <g id="node3" class="node"><title>FlexElement</title>
@@ -62,9 +62,9 @@
 <text text-anchor="start" x="2304" y="-316.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">theme_color:String</text>
 <text text-anchor="start" x="2304" y="-306.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">enabled?:TrueClass</text>
 <text text-anchor="start" x="2304" y="-296.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">use_hand_cursor?:TrueClass</text>
-<text text-anchor="middle" x="2389" y="-286.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">num_automation_children:Integer</text>
+<text text-anchor="start" x="2304" y="-286.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">num_automation_children:Integer</text>
 <polyline style="fill:none;stroke:black;" points="2296,-280 2482,-280 "/>
-<text text-anchor="middle" x="2389" y="-268.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">change_focus(shift_key?, key_code=&quot;TAB&quot;)</text>
+<text text-anchor="start" x="2304" y="-268.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">change_focus(shift_key?, key_code=&quot;TAB&quot;)</text>
 </g>
 <!-- FlexObject&#45;&gt;FlexDisplayObject -->
 <g id="edge4" class="edge"><title>FlexObject&#45;&gt;FlexDisplayObject</title>
@@ -90,13 +90,13 @@
 <text text-anchor="start" x="326" y="-681.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">font_style:String</text>
 <text text-anchor="start" x="326" y="-671.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">font_weight:String</text>
 <text text-anchor="start" x="326" y="-661.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">fill_alphas:String</text>
-<text text-anchor="middle" x="439" y="-651.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">fill_colors:String</text>
+<text text-anchor="start" x="326" y="-651.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">fill_colors:String</text>
 <polyline style="fill:none;stroke:black;" points="318,-645 560,-645 "/>
 <text text-anchor="start" x="326" y="-633.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">mouse_scroll(delta=0)</text>
 <text text-anchor="start" x="326" y="-623.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">scroll(position, direction, detail=[&quot;null&quot;])</text>
 <text text-anchor="start" x="326" y="-613.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">drag_start(dragged_item, key_modifier=[&quot;0&quot;])</text>
 <text text-anchor="start" x="326" y="-603.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">drag_drop(action, dragged_item=&quot;&quot;, key_modifier=[&quot;0&quot;])</text>
-<text text-anchor="middle" x="439" y="-593.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">drag_cancel(key_modifier=[&quot;0&quot;])</text>
+<text text-anchor="start" x="326" y="-593.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">drag_cancel(key_modifier=[&quot;0&quot;])</text>
 </g>
 <!-- FlexContainer&#45;&gt;FlexObject -->
 <g id="edge6" class="edge"><title>FlexContainer&#45;&gt;FlexObject</title>
@@ -138,7 +138,7 @@
 <polyline style="fill:none;stroke:black;" points="152,-1153 258,-1153 "/>
 <text text-anchor="start" x="160" y="-1141.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">direction:String</text>
 <text text-anchor="start" x="160" y="-1131.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">horizontal_align:String</text>
-<text text-anchor="middle" x="205" y="-1121.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">vertical_align:String</text>
+<text text-anchor="start" x="160" y="-1121.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">vertical_align:String</text>
 <polyline style="fill:none;stroke:black;" points="152,-1115 258,-1115 "/>
 <text text-anchor="middle" x="205" y="-1103.8" style="font-family:Bitstream Vera Sans;font-size:8.00;"> </text>
 </g>
@@ -174,7 +174,7 @@
 <text text-anchor="start" x="935.5" y="-621.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">text_align:String</text>
 <text text-anchor="start" x="935.5" y="-611.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">text_decoration:String</text>
 <text text-anchor="start" x="935.5" y="-601.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">text_indent:Integer</text>
-<text text-anchor="middle" x="986" y="-591.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">theme_color:String</text>
+<text text-anchor="start" x="935.5" y="-591.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">theme_color:String</text>
 <polyline style="fill:none;stroke:black;" points="928,-585 1045,-585 "/>
 <text text-anchor="middle" x="986" y="-573.8" style="font-family:Bitstream Vera Sans;font-size:8.00;"> </text>
 </g>
@@ -195,10 +195,10 @@
 <text text-anchor="start" x="284" y="-1131.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">padding_top:Integer</text>
 <text text-anchor="start" x="284" y="-1121.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">padding_bottom:Integer</text>
 <text text-anchor="start" x="284" y="-1111.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">text_selected_color:String</text>
-<text text-anchor="middle" x="354" y="-1101.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">vertical_gap:Integer</text>
+<text text-anchor="start" x="284" y="-1101.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">vertical_gap:Integer</text>
 <polyline style="fill:none;stroke:black;" points="276,-1095 432,-1095 "/>
 <text text-anchor="start" x="284" y="-1083.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">change(related_object=&quot;mouse&quot;)</text>
-<text text-anchor="middle" x="354" y="-1073.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">type(key_code, key_modifier=[&quot;0&quot;])</text>
+<text text-anchor="start" x="284" y="-1073.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">type(key_code, key_modifier=[&quot;0&quot;])</text>
 </g>
 <!-- FlexAccordion&#45;&gt;FlexContainer -->
 <g id="edge16" class="edge"><title>FlexAccordion&#45;&gt;FlexContainer</title>
@@ -228,9 +228,9 @@
 <text text-anchor="start" x="1070" y="-641.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">text_decoration:String</text>
 <text text-anchor="start" x="1070" y="-631.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">text_indent:Integer</text>
 <text text-anchor="start" x="1070" y="-621.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">text_roll_over_color:String</text>
-<text text-anchor="middle" x="1140" y="-611.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">text_selected_color:String</text>
+<text text-anchor="start" x="1070" y="-611.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">text_selected_color:String</text>
 <polyline style="fill:none;stroke:black;" points="1062,-605 1218,-605 "/>
-<text text-anchor="middle" x="1140" y="-593.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">type(key_code, key_modifier=[&quot;0&quot;])</text>
+<text text-anchor="start" x="1070" y="-593.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">type(key_code, key_modifier=[&quot;0&quot;])</text>
 </g>
 <!-- FlexButton&#45;&gt;FlexObject -->
 <g id="edge18" class="edge"><title>FlexButton&#45;&gt;FlexObject</title>
@@ -245,7 +245,7 @@
 <text text-anchor="middle" x="975" y="-1136.8" style="font-family:Bitstream Vera Sans;font-size:8.00;"> </text>
 <polyline style="fill:none;stroke:black;" points="916,-1130 1035,-1130 "/>
 <text text-anchor="start" x="923.5" y="-1118.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">open(trigger_event=[&quot;1&quot;])</text>
-<text text-anchor="middle" x="975" y="-1108.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">close(trigger_event=[&quot;1&quot;])</text>
+<text text-anchor="start" x="923.5" y="-1108.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">close(trigger_event=[&quot;1&quot;])</text>
 </g>
 <!-- FlexPopUpButton&#45;&gt;FlexButton -->
 <g id="edge20" class="edge"><title>FlexPopUpButton&#45;&gt;FlexButton</title>
@@ -272,7 +272,7 @@
 <text text-anchor="middle" x="1194" y="-1154.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">FlexRadioButton</text>
 <polyline style="fill:none;stroke:black;" points="1140,-1148 1248,-1148 "/>
 <text text-anchor="start" x="1148" y="-1136.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">group_name:String</text>
-<text text-anchor="middle" x="1194" y="-1126.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">label_placement:String</text>
+<text text-anchor="start" x="1148" y="-1126.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">label_placement:String</text>
 <polyline style="fill:none;stroke:black;" points="1140,-1120 1248,-1120 "/>
 <text text-anchor="middle" x="1194" y="-1108.8" style="font-family:Bitstream Vera Sans;font-size:8.00;"> </text>
 </g>
@@ -288,7 +288,7 @@
 <polyline style="fill:none;stroke:black;" points="1236,-713 1341,-713 "/>
 <text text-anchor="middle" x="1288" y="-701.8" style="font-family:Bitstream Vera Sans;font-size:8.00;"> </text>
 <polyline style="fill:none;stroke:black;" points="1236,-695 1341,-695 "/>
-<text text-anchor="middle" x="1288" y="-683.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">mouse_scroll(delta=0)</text>
+<text text-anchor="start" x="1243.5" y="-683.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">mouse_scroll(delta=0)</text>
 </g>
 <!-- FlexScrollBase&#45;&gt;FlexObject -->
 <g id="edge26" class="edge"><title>FlexScrollBase&#45;&gt;FlexObject</title>
@@ -328,7 +328,7 @@
 <text text-anchor="start" x="1274" y="-1066.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">text_selected_color:String</text>
 <text text-anchor="start" x="1274" y="-1056.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">background_disabled_color:String</text>
 <text text-anchor="start" x="1274" y="-1046.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">use_roll_over?:TrueClass</text>
-<text text-anchor="middle" x="1409" y="-1036.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">vertical_align:String</text>
+<text text-anchor="start" x="1274" y="-1036.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">vertical_align:String</text>
 <polyline style="fill:none;stroke:black;" points="1266,-1030 1552,-1030 "/>
 <text text-anchor="start" x="1274" y="-1018.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">mouse_scroll(delta=0)</text>
 <text text-anchor="start" x="1274" y="-1008.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">drag_start(dragged_item, key_modifier=[&quot;0&quot;])</text>
@@ -339,7 +339,7 @@
 <text text-anchor="start" x="1274" y="-958.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">deselect(item_renderer, trigger_event=[&quot;1&quot;], key_modifier=[&quot;0&quot;])</text>
 <text text-anchor="start" x="1274" y="-948.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">scroll(position, direction, detail=[&quot;null&quot;])</text>
 <text text-anchor="start" x="1274" y="-938.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">type(key_code, key_modifier=[&quot;0&quot;])</text>
-<text text-anchor="middle" x="1409" y="-928.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">double_click(item_renderer)</text>
+<text text-anchor="start" x="1274" y="-928.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">double_click(item_renderer)</text>
 </g>
 <!-- FlexListBase&#45;&gt;FlexScrollBase -->
 <g id="edge28" class="edge"><title>FlexListBase&#45;&gt;FlexScrollBase</title>
@@ -359,12 +359,12 @@
 <text text-anchor="start" x="1064.5" y="-1466.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">header_colors:String</text>
 <text text-anchor="start" x="1064.5" y="-1456.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">header_style:String</text>
 <text text-anchor="start" x="1064.5" y="-1446.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">v_grid_line_color:String</text>
-<text text-anchor="middle" x="1175" y="-1436.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">v_grid_lines?:TrueClass</text>
+<text text-anchor="start" x="1064.5" y="-1436.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">v_grid_lines?:TrueClass</text>
 <polyline style="fill:none;stroke:black;" points="1057,-1430 1294,-1430 "/>
 <text text-anchor="start" x="1064.5" y="-1418.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">header_click(column_index)</text>
 <text text-anchor="start" x="1064.5" y="-1408.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">column_stretch(column_index, local_x)</text>
 <text text-anchor="start" x="1064.5" y="-1398.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">header_shift(new_index, old_index, trigger_event=[&quot;1&quot;])</text>
-<text text-anchor="middle" x="1175" y="-1388.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">edit(item_renderer, row_index, column_index)</text>
+<text text-anchor="start" x="1064.5" y="-1388.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">edit(item_renderer, row_index, column_index)</text>
 </g>
 <!-- FlexDataGrid&#45;&gt;FlexListBase -->
 <g id="edge30" class="edge"><title>FlexDataGrid&#45;&gt;FlexListBase</title>
@@ -378,7 +378,7 @@
 <polyline style="fill:none;stroke:black;" points="1311,-1473 1507,-1473 "/>
 <text text-anchor="middle" x="1409" y="-1461.8" style="font-family:Bitstream Vera Sans;font-size:8.00;"> </text>
 <polyline style="fill:none;stroke:black;" points="1311,-1455 1507,-1455 "/>
-<text text-anchor="middle" x="1409" y="-1443.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">edit(item_renderer, row_index, column_index)</text>
+<text text-anchor="start" x="1319" y="-1443.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">edit(item_renderer, row_index, column_index)</text>
 </g>
 <!-- FlexList&#45;&gt;FlexListBase -->
 <g id="edge32" class="edge"><title>FlexList&#45;&gt;FlexListBase</title>
@@ -393,11 +393,11 @@
 <text text-anchor="start" x="1532.5" y="-1486.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">editable?:TrueClass</text>
 <text text-anchor="start" x="1532.5" y="-1476.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">depth_colors:String</text>
 <text text-anchor="start" x="1532.5" y="-1466.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">indentation:Integer</text>
-<text text-anchor="middle" x="1679" y="-1456.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">text_disabled_color:String</text>
+<text text-anchor="start" x="1532.5" y="-1456.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">text_disabled_color:String</text>
 <polyline style="fill:none;stroke:black;" points="1525,-1450 1834,-1450 "/>
 <text text-anchor="start" x="1532.5" y="-1438.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">drag_drop(action, drop_parent=&quot;&quot;, dragged_item=&quot;&quot;, key_modifier=[&quot;0&quot;])</text>
 <text text-anchor="start" x="1532.5" y="-1428.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">open(item_renderer, trigger_event=[&quot;1&quot;])</text>
-<text text-anchor="middle" x="1679" y="-1418.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">close(item_renderer, trigger_event=[&quot;1&quot;])</text>
+<text text-anchor="start" x="1532.5" y="-1418.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">close(item_renderer, trigger_event=[&quot;1&quot;])</text>
 </g>
 <!-- FlexTree&#45;&gt;FlexListBase -->
 <g id="edge34" class="edge"><title>FlexTree&#45;&gt;FlexListBase</title>
@@ -409,7 +409,7 @@
 <polygon style="fill:none;stroke:black;" points="31,-1437 31,-1491 108,-1491 108,-1437 31,-1437"/>
 <text text-anchor="middle" x="69" y="-1479.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">FlexApplication</text>
 <polyline style="fill:none;stroke:black;" points="31,-1473 108,-1473 "/>
-<text text-anchor="middle" x="69" y="-1461.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">url:String</text>
+<text text-anchor="start" x="38.5" y="-1461.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">url:String</text>
 <polyline style="fill:none;stroke:black;" points="31,-1455 108,-1455 "/>
 <text text-anchor="middle" x="69" y="-1443.8" style="font-family:Bitstream Vera Sans;font-size:8.00;"> </text>
 </g>
@@ -427,9 +427,9 @@
 <text text-anchor="start" x="1366" y="-711.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">page_scroll_size:Integer</text>
 <text text-anchor="start" x="1366" y="-701.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">scroll_position:String</text>
 <text text-anchor="start" x="1366" y="-691.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">track_colors:String</text>
-<text text-anchor="middle" x="1445" y="-681.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">fill_colors:String</text>
+<text text-anchor="start" x="1366" y="-681.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">fill_colors:String</text>
 <polyline style="fill:none;stroke:black;" points="1358,-675 1532,-675 "/>
-<text text-anchor="middle" x="1445" y="-663.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">scroll(position, direction, detail=[&quot;null&quot;])</text>
+<text text-anchor="start" x="1366" y="-663.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">scroll(position, direction, detail=[&quot;null&quot;])</text>
 </g>
 <!-- FlexScrollBar&#45;&gt;FlexObject -->
 <g id="edge38" class="edge"><title>FlexScrollBar&#45;&gt;FlexObject</title>
@@ -456,12 +456,12 @@
 <text text-anchor="start" x="1558" y="-671.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">font_weight:String</text>
 <text text-anchor="start" x="1558" y="-661.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">text_align:String</text>
 <text text-anchor="start" x="1558" y="-651.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">text_decoration:String</text>
-<text text-anchor="middle" x="1628" y="-641.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">text_indent:Integer</text>
+<text text-anchor="start" x="1558" y="-641.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">text_indent:Integer</text>
 <polyline style="fill:none;stroke:black;" points="1550,-635 1706,-635 "/>
 <text text-anchor="start" x="1558" y="-623.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">change(value)</text>
 <text text-anchor="start" x="1558" y="-613.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">input(text)</text>
 <text text-anchor="start" x="1558" y="-603.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">select_text(begin_index, end_index)</text>
-<text text-anchor="middle" x="1628" y="-593.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">type(key_code, key_modifier=[&quot;0&quot;])</text>
+<text text-anchor="start" x="1558" y="-593.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">type(key_code, key_modifier=[&quot;0&quot;])</text>
 </g>
 <!-- FlexNumericStepper&#45;&gt;FlexObject -->
 <g id="edge40" class="edge"><title>FlexNumericStepper&#45;&gt;FlexObject</title>
@@ -475,7 +475,7 @@
 <polyline style="fill:none;stroke:black;" points="1724,-723 1810,-723 "/>
 <text text-anchor="start" x="1732" y="-711.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">source:String</text>
 <text text-anchor="start" x="1732" y="-701.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">total_time:Integer</text>
-<text text-anchor="middle" x="1767" y="-691.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">volume:Integer</text>
+<text text-anchor="start" x="1732" y="-691.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">volume:Integer</text>
 <polyline style="fill:none;stroke:black;" points="1724,-685 1810,-685 "/>
 <text text-anchor="middle" x="1767" y="-673.8" style="font-family:Bitstream Vera Sans;font-size:8.00;"> </text>
 </g>
@@ -489,7 +489,7 @@
 <polygon style="fill:none;stroke:black;" points="1828,-677 1828,-731 1896,-731 1896,-677 1828,-677"/>
 <text text-anchor="middle" x="1862" y="-719.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">FlexLoader</text>
 <polyline style="fill:none;stroke:black;" points="1828,-713 1896,-713 "/>
-<text text-anchor="middle" x="1862" y="-701.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">source:String</text>
+<text text-anchor="start" x="1836" y="-701.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">source:String</text>
 <polyline style="fill:none;stroke:black;" points="1828,-695 1896,-695 "/>
 <text text-anchor="middle" x="1862" y="-683.8" style="font-family:Bitstream Vera Sans;font-size:8.00;"> </text>
 </g>
@@ -533,9 +533,9 @@
 <text text-anchor="start" x="1921.5" y="-651.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">tick_length:Integer</text>
 <text text-anchor="start" x="1921.5" y="-641.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">tick_thickness:Integer</text>
 <text text-anchor="start" x="1921.5" y="-631.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">data_tip_precision:Integer</text>
-<text text-anchor="middle" x="2099" y="-621.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">track_colors:String</text>
+<text text-anchor="start" x="1921.5" y="-621.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">track_colors:String</text>
 <polyline style="fill:none;stroke:black;" points="1914,-615 2285,-615 "/>
-<text text-anchor="middle" x="2099" y="-603.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">change(value, thumb_index=0, click_target=&quot;thumb&quot;, trigger_event=[&quot;1&quot;], key_code=&quot;&quot;)</text>
+<text text-anchor="start" x="1921.5" y="-603.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">change(value, thumb_index=0, click_target=&quot;thumb&quot;, trigger_event=[&quot;1&quot;], key_code=&quot;&quot;)</text>
 </g>
 <!-- FlexSlider&#45;&gt;FlexObject -->
 <g id="edge48" class="edge"><title>FlexSlider&#45;&gt;FlexObject</title>
@@ -573,14 +573,14 @@
 <text text-anchor="start" x="2310" y="-626.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">highlight_color:String</text>
 <text text-anchor="start" x="2310" y="-616.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">text_align:String</text>
 <text text-anchor="start" x="2310" y="-606.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">text_decoration:String</text>
-<text text-anchor="middle" x="2389" y="-596.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">text_indent:Integer</text>
+<text text-anchor="start" x="2310" y="-596.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">text_indent:Integer</text>
 <polyline style="fill:none;stroke:black;" points="2302,-590 2476,-590 "/>
 <text text-anchor="start" x="2310" y="-578.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">open(trigger_event=[&quot;1&quot;])</text>
 <text text-anchor="start" x="2310" y="-568.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">close(trigger_event=[&quot;1&quot;])</text>
 <text text-anchor="start" x="2310" y="-558.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">scroll(position, direction, detail=[&quot;null&quot;])</text>
 <text text-anchor="start" x="2310" y="-548.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">input(text)</text>
 <text text-anchor="start" x="2310" y="-538.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">select_text(begin_index, end_index)</text>
-<text text-anchor="middle" x="2389" y="-528.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">type(key_code, key_modifier=[&quot;0&quot;])</text>
+<text text-anchor="start" x="2310" y="-528.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">type(key_code, key_modifier=[&quot;0&quot;])</text>
 </g>
 <!-- FlexComboBase&#45;&gt;FlexObject -->
 <g id="edge50" class="edge"><title>FlexComboBase&#45;&gt;FlexObject</title>
@@ -598,11 +598,11 @@
 <text text-anchor="start" x="2038.5" y="-1141.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">alternating_row_colors:String</text>
 <text text-anchor="start" x="2038.5" y="-1131.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">fill_colors:String</text>
 <text text-anchor="start" x="2038.5" y="-1121.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">roll_over_color?:TrueClass</text>
-<text text-anchor="middle" x="2161" y="-1111.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">selection_color?:TrueClass</text>
+<text text-anchor="start" x="2038.5" y="-1111.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">selection_color?:TrueClass</text>
 <polyline style="fill:none;stroke:black;" points="2031,-1105 2292,-1105 "/>
 <text text-anchor="start" x="2038.5" y="-1093.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">select(item_renderer, trigger_event=[&quot;1&quot;], key_modifier=[&quot;0&quot;])</text>
 <text text-anchor="start" x="2038.5" y="-1083.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">type(key_code, key_modifier=[&quot;0&quot;])</text>
-<text text-anchor="middle" x="2161" y="-1073.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">input(text)</text>
+<text text-anchor="start" x="2038.5" y="-1073.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">input(text)</text>
 </g>
 <!-- FlexComboBox&#45;&gt;FlexComboBase -->
 <g id="edge52" class="edge"><title>FlexComboBox&#45;&gt;FlexComboBase</title>
@@ -626,11 +626,11 @@
 <text text-anchor="start" x="2316.5" y="-1111.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">year_navigation_enabled?:TrueClass</text>
 <text text-anchor="start" x="2316.5" y="-1101.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">header_colors:String</text>
 <text text-anchor="start" x="2316.5" y="-1091.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">roll_over_color:String</text>
-<text text-anchor="middle" x="2389" y="-1081.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">today_color:String</text>
+<text text-anchor="start" x="2316.5" y="-1081.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">today_color:String</text>
 <polyline style="fill:none;stroke:black;" points="2309,-1075 2470,-1075 "/>
 <text text-anchor="start" x="2316.5" y="-1063.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">change(new_date)</text>
 <text text-anchor="start" x="2316.5" y="-1053.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">scroll(detail)</text>
-<text text-anchor="middle" x="2389" y="-1043.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">type(key_code, key_modifier=[&quot;0&quot;])</text>
+<text text-anchor="start" x="2316.5" y="-1043.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">type(key_code, key_modifier=[&quot;0&quot;])</text>
 </g>
 <!-- FlexDateField&#45;&gt;FlexComboBase -->
 <g id="edge54" class="edge"><title>FlexDateField&#45;&gt;FlexComboBase</title>
@@ -670,11 +670,11 @@
 <text text-anchor="start" x="2501.5" y="-601.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">text_indent:Integer</text>
 <text text-anchor="start" x="2501.5" y="-591.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">header_colors:String</text>
 <text text-anchor="start" x="2501.5" y="-581.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">roll_over_color:String</text>
-<text text-anchor="middle" x="2574" y="-571.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">selection_color:String</text>
+<text text-anchor="start" x="2501.5" y="-571.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">selection_color:String</text>
 <polyline style="fill:none;stroke:black;" points="2494,-565 2655,-565 "/>
 <text text-anchor="start" x="2501.5" y="-553.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">change(new_date)</text>
 <text text-anchor="start" x="2501.5" y="-543.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">scroll(detail)</text>
-<text text-anchor="middle" x="2574" y="-533.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">type(key_code, key_modifier=[&quot;0&quot;])</text>
+<text text-anchor="start" x="2501.5" y="-533.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">type(key_code, key_modifier=[&quot;0&quot;])</text>
 </g>
 <!-- FlexDateChooser&#45;&gt;FlexObject -->
 <g id="edge56" class="edge"><title>FlexDateChooser&#45;&gt;FlexObject</title>
@@ -688,11 +688,11 @@
 <polyline style="fill:none;stroke:black;" points="2487,-1163 2608,-1163 "/>
 <text text-anchor="start" x="2494.5" y="-1151.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">selected_color:Integer</text>
 <text text-anchor="start" x="2494.5" y="-1141.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">show_text_field?:TrueClass</text>
-<text text-anchor="middle" x="2547" y="-1131.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">column_count:Integer</text>
+<text text-anchor="start" x="2494.5" y="-1131.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">column_count:Integer</text>
 <polyline style="fill:none;stroke:black;" points="2487,-1125 2608,-1125 "/>
 <text text-anchor="start" x="2494.5" y="-1113.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">open(trigger_event=[&quot;1&quot;])</text>
 <text text-anchor="start" x="2494.5" y="-1103.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">close(trigger_event=[&quot;1&quot;])</text>
-<text text-anchor="middle" x="2547" y="-1093.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">change(color)</text>
+<text text-anchor="start" x="2494.5" y="-1093.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">change(color)</text>
 </g>
 <!-- FlexColorPicker&#45;&gt;FlexComboBase -->
 <g id="edge58" class="edge"><title>FlexColorPicker&#45;&gt;FlexComboBase</title>
@@ -719,12 +719,12 @@
 <text text-anchor="start" x="1578" y="-1101.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">font_family:String</text>
 <text text-anchor="start" x="1578" y="-1091.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">font_size:Integer</text>
 <text text-anchor="start" x="1578" y="-1081.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">font_style:String</text>
-<text text-anchor="middle" x="1657" y="-1071.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">font_weight:String</text>
+<text text-anchor="start" x="1578" y="-1071.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">font_weight:String</text>
 <polyline style="fill:none;stroke:black;" points="1570,-1065 1744,-1065 "/>
 <text text-anchor="start" x="1578" y="-1053.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">input(text)</text>
 <text text-anchor="start" x="1578" y="-1043.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">select_text(begin_index, end_index)</text>
 <text text-anchor="start" x="1578" y="-1033.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">type(key_code, key_modifier=[&quot;0&quot;])</text>
-<text text-anchor="middle" x="1657" y="-1023.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">scroll(position, direction, detail=[&quot;null&quot;])</text>
+<text text-anchor="start" x="1578" y="-1023.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">scroll(position, direction, detail=[&quot;null&quot;])</text>
 </g>
 <!-- FlexTextArea&#45;&gt;FlexScrollBase -->
 <g id="edge60" class="edge"><title>FlexTextArea&#45;&gt;FlexScrollBase</title>
@@ -741,7 +741,7 @@
 <text text-anchor="start" x="458" y="-1136.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">drop_shadow_enabled?:TrueClass</text>
 <text text-anchor="start" x="458" y="-1126.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">footer_colors:String</text>
 <text text-anchor="start" x="458" y="-1116.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">header_colors:String</text>
-<text text-anchor="middle" x="525" y="-1106.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">header_height:Integer</text>
+<text text-anchor="start" x="458" y="-1106.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">header_height:Integer</text>
 <polyline style="fill:none;stroke:black;" points="450,-1100 600,-1100 "/>
 <text text-anchor="middle" x="525" y="-1088.8" style="font-family:Bitstream Vera Sans;font-size:8.00;"> </text>
 </g>
@@ -755,7 +755,7 @@
 <polygon style="fill:none;stroke:black;" points="449,-1437 449,-1491 584,-1491 584,-1437 449,-1437"/>
 <text text-anchor="middle" x="516" y="-1479.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">FlexTitleWindow</text>
 <polyline style="fill:none;stroke:black;" points="449,-1473 584,-1473 "/>
-<text text-anchor="middle" x="516" y="-1461.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">show_close_button?:TrueClass</text>
+<text text-anchor="start" x="456.5" y="-1461.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">show_close_button?:TrueClass</text>
 <polyline style="fill:none;stroke:black;" points="449,-1455 584,-1455 "/>
 <text text-anchor="middle" x="516" y="-1443.8" style="font-family:Bitstream Vera Sans;font-size:8.00;"> </text>
 </g>
@@ -774,9 +774,9 @@
 <text text-anchor="start" x="609" y="-1466.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">default_button_flag:Integer</text>
 <text text-anchor="start" x="609" y="-1456.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">no_label:String</text>
 <text text-anchor="start" x="609" y="-1446.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">ok_label:String</text>
-<text text-anchor="middle" x="679" y="-1436.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">yes_label:String</text>
+<text text-anchor="start" x="609" y="-1436.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">yes_label:String</text>
 <polyline style="fill:none;stroke:black;" points="601,-1430 757,-1430 "/>
-<text text-anchor="middle" x="679" y="-1418.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">type(key_code, key_modifier=[&quot;0&quot;])</text>
+<text text-anchor="start" x="609" y="-1418.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">type(key_code, key_modifier=[&quot;0&quot;])</text>
 </g>
 <!-- FlexAlert&#45;&gt;FlexPanel -->
 <g id="edge66" class="edge"><title>FlexAlert&#45;&gt;FlexPanel</title>
@@ -788,11 +788,11 @@
 <polygon style="fill:none;stroke:black;" points="125,-1427 125,-1501 258,-1501 258,-1427 125,-1427"/>
 <text text-anchor="middle" x="191" y="-1489.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">FlexDividedBox</text>
 <polyline style="fill:none;stroke:black;" points="125,-1483 258,-1483 "/>
-<text text-anchor="middle" x="191" y="-1471.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">resize_to_content?:TrueClass</text>
+<text text-anchor="start" x="132.5" y="-1471.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">resize_to_content?:TrueClass</text>
 <polyline style="fill:none;stroke:black;" points="125,-1465 258,-1465 "/>
 <text text-anchor="start" x="132.5" y="-1453.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">pressed(divider_index, delta)</text>
 <text text-anchor="start" x="132.5" y="-1443.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">dragged(divider_index, delta)</text>
-<text text-anchor="middle" x="191" y="-1433.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">released(divider_index, delta)</text>
+<text text-anchor="start" x="132.5" y="-1433.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">released(divider_index, delta)</text>
 </g>
 <!-- FlexDividedBox&#45;&gt;FlexBox -->
 <g id="edge68" class="edge"><title>FlexDividedBox&#45;&gt;FlexBox</title>
@@ -810,12 +810,12 @@
 <text text-anchor="start" x="2680" y="-716.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">roll_over_color:String</text>
 <text text-anchor="start" x="2680" y="-706.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">selection_color:String</text>
 <text text-anchor="start" x="2680" y="-696.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">text_roll_over_color:String</text>
-<text text-anchor="middle" x="2750" y="-686.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">text_selected_color:String</text>
+<text text-anchor="start" x="2680" y="-686.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">text_selected_color:String</text>
 <polyline style="fill:none;stroke:black;" points="2672,-680 2828,-680 "/>
 <text text-anchor="start" x="2680" y="-668.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">type(key_code, key_modifier=[&quot;0&quot;])</text>
 <text text-anchor="start" x="2680" y="-658.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">show(item_renderer)</text>
 <text text-anchor="start" x="2680" y="-648.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">hide()</text>
-<text text-anchor="middle" x="2750" y="-638.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">select(item_renderer)</text>
+<text text-anchor="start" x="2680" y="-638.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">select(item_renderer)</text>
 </g>
 <!-- FlexMenu&#45;&gt;FlexObject -->
 <g id="edge70" class="edge"><title>FlexMenu&#45;&gt;FlexObject</title>
@@ -841,11 +841,11 @@
 <text text-anchor="start" x="2854" y="-671.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">text_decoration:String</text>
 <text text-anchor="start" x="2854" y="-661.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">roll_over_color:String</text>
 <text text-anchor="start" x="2854" y="-651.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">selection_color:String</text>
-<text text-anchor="middle" x="2924" y="-641.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">text_indent:Integer</text>
+<text text-anchor="start" x="2854" y="-641.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">text_indent:Integer</text>
 <polyline style="fill:none;stroke:black;" points="2846,-635 3002,-635 "/>
 <text text-anchor="start" x="2854" y="-623.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">type(key_code, key_modifier=[&quot;0&quot;])</text>
 <text text-anchor="start" x="2854" y="-613.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">show(item_renderer)</text>
-<text text-anchor="middle" x="2924" y="-603.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">hide()</text>
+<text text-anchor="start" x="2854" y="-603.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">hide()</text>
 </g>
 <!-- FlexMenuBar&#45;&gt;FlexObject -->
 <g id="edge72" class="edge"><title>FlexMenuBar&#45;&gt;FlexObject</title>
@@ -861,7 +861,7 @@
 <text text-anchor="start" x="2230" y="-156.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">id:String</text>
 <text text-anchor="start" x="2230" y="-146.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">class_name:String</text>
 <text text-anchor="start" x="2230" y="-136.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">automation_index:String</text>
-<text text-anchor="middle" x="2280" y="-126.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">count:String</text>
+<text text-anchor="start" x="2230" y="-126.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">count:String</text>
 <polyline style="fill:none;stroke:black;" points="2222,-120 2338,-120 "/>
 <text text-anchor="middle" x="2280" y="-108.8" style="font-family:Bitstream Vera Sans;font-size:8.00;"> </text>
 </g>
@@ -885,9 +885,9 @@
 <text text-anchor="start" x="3027.5" y="-681.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">font_weight:String</text>
 <text text-anchor="start" x="3027.5" y="-671.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">text_align:String</text>
 <text text-anchor="start" x="3027.5" y="-661.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">text_decoration:String</text>
-<text text-anchor="middle" x="3097" y="-651.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">text_indent:Integer</text>
+<text text-anchor="start" x="3027.5" y="-651.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">text_indent:Integer</text>
 <polyline style="fill:none;stroke:black;" points="3020,-645 3175,-645 "/>
-<text text-anchor="middle" x="3097" y="-633.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">click(ctrl_key?, alt_key?, shift_key?)</text>
+<text text-anchor="start" x="3027.5" y="-633.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">click(ctrl_key?, alt_key?, shift_key?)</text>
 </g>
 <!-- FlexLabel&#45;&gt;FlexObject -->
 <g id="edge76" class="edge"><title>FlexLabel&#45;&gt;FlexObject</title>
@@ -900,7 +900,7 @@
 <text text-anchor="middle" x="3240" y="-724.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">FlexRule</text>
 <polyline style="fill:none;stroke:black;" points="3192,-718 3288,-718 "/>
 <text text-anchor="start" x="3200" y="-706.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">color:String</text>
-<text text-anchor="middle" x="3240" y="-696.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">stroke_width:Integer</text>
+<text text-anchor="start" x="3200" y="-696.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">stroke_width:Integer</text>
 <polyline style="fill:none;stroke:black;" points="3192,-690 3288,-690 "/>
 <text text-anchor="middle" x="3240" y="-678.8" style="font-family:Bitstream Vera Sans;font-size:8.00;"> </text>
 </g>
@@ -914,7 +914,7 @@
 <polygon style="fill:none;stroke:black;" points="618,-1107 618,-1161 724,-1161 724,-1107 618,-1107"/>
 <text text-anchor="middle" x="671" y="-1149.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">FlexFormItem</text>
 <polyline style="fill:none;stroke:black;" points="618,-1143 724,-1143 "/>
-<text text-anchor="middle" x="671" y="-1131.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">horizontal_align:String</text>
+<text text-anchor="start" x="626" y="-1131.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">horizontal_align:String</text>
 <polyline style="fill:none;stroke:black;" points="618,-1125 724,-1125 "/>
 <text text-anchor="middle" x="671" y="-1113.8" style="font-family:Bitstream Vera Sans;font-size:8.00;"> </text>
 </g>
@@ -929,9 +929,9 @@
 <text text-anchor="middle" x="820" y="-1154.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">FlexViewStack</text>
 <polyline style="fill:none;stroke:black;" points="742,-1148 898,-1148 "/>
 <text text-anchor="start" x="750" y="-1136.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">selected_index:Integer</text>
-<text text-anchor="middle" x="820" y="-1126.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">selected_child:String</text>
+<text text-anchor="start" x="750" y="-1126.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">selected_child:String</text>
 <polyline style="fill:none;stroke:black;" points="742,-1120 898,-1120 "/>
-<text text-anchor="middle" x="820" y="-1108.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">type(key_code, key_modifier=[&quot;0&quot;])</text>
+<text text-anchor="start" x="750" y="-1108.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">type(key_code, key_modifier=[&quot;0&quot;])</text>
 </g>
 <!-- FlexViewStack&#45;&gt;FlexContainer -->
 <g id="edge82" class="edge"><title>FlexViewStack&#45;&gt;FlexContainer</title>
@@ -946,9 +946,9 @@
 <text text-anchor="start" x="783" y="-1476.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">horizontal_align:String</text>
 <text text-anchor="start" x="783" y="-1466.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">horizontal_gap:Integer</text>
 <text text-anchor="start" x="783" y="-1456.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">tab_height:Integer</text>
-<text text-anchor="middle" x="829" y="-1446.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">tab_width:Integer</text>
+<text text-anchor="start" x="783" y="-1446.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">tab_width:Integer</text>
 <polyline style="fill:none;stroke:black;" points="775,-1440 883,-1440 "/>
-<text text-anchor="middle" x="829" y="-1428.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">change(related_object)</text>
+<text text-anchor="start" x="783" y="-1428.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">change(related_object)</text>
 </g>
 <!-- FlexTabNavigator&#45;&gt;FlexViewStack -->
 <g id="edge84" class="edge"><title>FlexTabNavigator&#45;&gt;FlexViewStack</title>
@@ -961,10 +961,10 @@
 <text text-anchor="middle" x="353" y="-1489.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">FlexNavigationBar</text>
 <polyline style="fill:none;stroke:black;" points="275,-1483 431,-1483 "/>
 <text text-anchor="start" x="283" y="-1471.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">direction:String</text>
-<text text-anchor="middle" x="353" y="-1461.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">selected_index:Integer</text>
+<text text-anchor="start" x="283" y="-1461.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">selected_index:Integer</text>
 <polyline style="fill:none;stroke:black;" points="275,-1455 431,-1455 "/>
 <text text-anchor="start" x="283" y="-1443.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">change(related_object)</text>
-<text text-anchor="middle" x="353" y="-1433.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">type(key_code, key_modifier=[&quot;0&quot;])</text>
+<text text-anchor="start" x="283" y="-1433.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">type(key_code, key_modifier=[&quot;0&quot;])</text>
 </g>
 <!-- FlexNavigationBar&#45;&gt;FlexBox -->
 <g id="edge86" class="edge"><title>FlexNavigationBar&#45;&gt;FlexBox</title>
@@ -977,7 +977,7 @@
 <text text-anchor="middle" x="293" y="-1634.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">FlexLinkBar</text>
 <polyline style="fill:none;stroke:black;" points="241,-1628 345,-1628 "/>
 <text text-anchor="start" x="249" y="-1616.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">selected_index:Integer</text>
-<text text-anchor="middle" x="293" y="-1606.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">num_children:Integer</text>
+<text text-anchor="start" x="249" y="-1606.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">num_children:Integer</text>
 <polyline style="fill:none;stroke:black;" points="241,-1600 345,-1600 "/>
 <text text-anchor="middle" x="293" y="-1588.8" style="font-family:Bitstream Vera Sans;font-size:8.00;"> </text>
 </g>
@@ -992,7 +992,7 @@
 <text text-anchor="middle" x="413" y="-1634.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">FlexButtonBar</text>
 <polyline style="fill:none;stroke:black;" points="363,-1628 463,-1628 "/>
 <text text-anchor="start" x="371" y="-1616.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">selected_index:String</text>
-<text text-anchor="middle" x="413" y="-1606.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">num_children:String</text>
+<text text-anchor="start" x="371" y="-1606.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">num_children:String</text>
 <polyline style="fill:none;stroke:black;" points="363,-1600 463,-1600 "/>
 <text text-anchor="middle" x="413" y="-1588.8" style="font-family:Bitstream Vera Sans;font-size:8.00;"> </text>
 </g>
@@ -1007,7 +1007,7 @@
 <text text-anchor="middle" x="413" y="-1734.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">FlexToggleButtonBar</text>
 <polyline style="fill:none;stroke:black;" points="363,-1728 463,-1728 "/>
 <text text-anchor="start" x="371" y="-1716.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">selected_index:String</text>
-<text text-anchor="middle" x="413" y="-1706.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">num_children:String</text>
+<text text-anchor="start" x="371" y="-1706.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">num_children:String</text>
 <polyline style="fill:none;stroke:black;" points="363,-1700 463,-1700 "/>
 <text text-anchor="middle" x="413" y="-1688.8" style="font-family:Bitstream Vera Sans;font-size:8.00;"> </text>
 </g>
@@ -1034,7 +1034,7 @@
 <text text-anchor="start" x="3313.5" y="-666.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">padding_top:Integer</text>
 <text text-anchor="start" x="3313.5" y="-656.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">padding_left:Integer</text>
 <text text-anchor="start" x="3313.5" y="-646.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">padding_right:Integer</text>
-<text text-anchor="middle" x="3381" y="-636.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">show_data_tip_targets?:TrueClass</text>
+<text text-anchor="start" x="3313.5" y="-636.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">show_data_tip_targets?:TrueClass</text>
 <polyline style="fill:none;stroke:black;" points="3306,-630 3457,-630 "/>
 <text text-anchor="middle" x="3381" y="-618.8" style="font-family:Bitstream Vera Sans;font-size:8.00;"> </text>
 </g>
@@ -1053,7 +1053,7 @@
 <text text-anchor="start" x="3008.5" y="-1136.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">gutter_right:Integer</text>
 <text text-anchor="start" x="3008.5" y="-1126.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">gutter_bottom:Integer</text>
 <text text-anchor="start" x="3008.5" y="-1116.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">gutter_top:Integer</text>
-<text text-anchor="middle" x="3064" y="-1106.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">text_align:String</text>
+<text text-anchor="start" x="3008.5" y="-1106.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">text_align:String</text>
 <polyline style="fill:none;stroke:black;" points="3001,-1100 3128,-1100 "/>
 <text text-anchor="middle" x="3064" y="-1088.8" style="font-family:Bitstream Vera Sans;font-size:8.00;"> </text>
 </g>
@@ -1067,7 +1067,7 @@
 <polygon style="fill:none;stroke:black;" points="2786,-1437 2786,-1491 2858,-1491 2858,-1437 2786,-1437"/>
 <text text-anchor="middle" x="2822" y="-1479.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">FlexAreaChart</text>
 <polyline style="fill:none;stroke:black;" points="2786,-1473 2858,-1473 "/>
-<text text-anchor="middle" x="2822" y="-1461.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">type:String</text>
+<text text-anchor="start" x="2794" y="-1461.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">type:String</text>
 <polyline style="fill:none;stroke:black;" points="2786,-1455 2858,-1455 "/>
 <text text-anchor="middle" x="2822" y="-1443.8" style="font-family:Bitstream Vera Sans;font-size:8.00;"> </text>
 </g>
@@ -1082,7 +1082,7 @@
 <text text-anchor="middle" x="2930" y="-1484.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">FlexBarChart</text>
 <polyline style="fill:none;stroke:black;" points="2876,-1478 2984,-1478 "/>
 <text text-anchor="start" x="2884" y="-1466.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">bar_width_ratio:Integer</text>
-<text text-anchor="middle" x="2930" y="-1456.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">max_bar_width:Integer</text>
+<text text-anchor="start" x="2884" y="-1456.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">max_bar_width:Integer</text>
 <polyline style="fill:none;stroke:black;" points="2876,-1450 2984,-1450 "/>
 <text text-anchor="middle" x="2930" y="-1438.8" style="font-family:Bitstream Vera Sans;font-size:8.00;"> </text>
 </g>
@@ -1097,7 +1097,7 @@
 <text text-anchor="middle" x="3064" y="-1484.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">FlexColumnChart</text>
 <polyline style="fill:none;stroke:black;" points="3002,-1478 3126,-1478 "/>
 <text text-anchor="start" x="3010" y="-1466.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">column_width_ratio:Integer</text>
-<text text-anchor="middle" x="3064" y="-1456.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">max_column_width:Integer</text>
+<text text-anchor="start" x="3010" y="-1456.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">max_column_width:Integer</text>
 <polyline style="fill:none;stroke:black;" points="3002,-1450 3126,-1450 "/>
 <text text-anchor="middle" x="3064" y="-1438.8" style="font-family:Bitstream Vera Sans;font-size:8.00;"> </text>
 </g>
@@ -1112,7 +1112,7 @@
 <text text-anchor="middle" x="3206" y="-1484.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">FlexHLOCChart</text>
 <polyline style="fill:none;stroke:black;" points="3144,-1478 3268,-1478 "/>
 <text text-anchor="start" x="3152" y="-1466.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">column_width_ratio:Integer</text>
-<text text-anchor="middle" x="3206" y="-1456.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">max_column_width:Integer</text>
+<text text-anchor="start" x="3152" y="-1456.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">max_column_width:Integer</text>
 <polyline style="fill:none;stroke:black;" points="3144,-1450 3268,-1450 "/>
 <text text-anchor="middle" x="3206" y="-1438.8" style="font-family:Bitstream Vera Sans;font-size:8.00;"> </text>
 </g>
@@ -1141,7 +1141,7 @@
 <text text-anchor="middle" x="3192" y="-1154.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">FlexPieChart</text>
 <polyline style="fill:none;stroke:black;" points="3145,-1148 3240,-1148 "/>
 <text text-anchor="start" x="3152.5" y="-1136.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">inner_radius:Integer</text>
-<text text-anchor="middle" x="3192" y="-1126.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">text_align:String</text>
+<text text-anchor="start" x="3152.5" y="-1126.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">text_align:String</text>
 <polyline style="fill:none;stroke:black;" points="3145,-1120 3240,-1120 "/>
 <text text-anchor="middle" x="3192" y="-1108.8" style="font-family:Bitstream Vera Sans;font-size:8.00;"> </text>
 </g>
@@ -1159,7 +1159,7 @@
 <text text-anchor="start" x="3264.5" y="-1141.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">x_field:String</text>
 <text text-anchor="start" x="3264.5" y="-1131.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">y_field:String</text>
 <text text-anchor="start" x="3264.5" y="-1121.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">form:String</text>
-<text text-anchor="middle" x="3296" y="-1111.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">radius:Integer</text>
+<text text-anchor="start" x="3264.5" y="-1111.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">radius:Integer</text>
 <polyline style="fill:none;stroke:black;" points="3257,-1105 3336,-1105 "/>
 <text text-anchor="middle" x="3296" y="-1093.8" style="font-family:Bitstream Vera Sans;font-size:8.00;"> </text>
 </g>
@@ -1172,7 +1172,7 @@
 <polyline style="fill:none;stroke:black;" points="3474,-705 3576,-705 "/>
 <text text-anchor="start" x="3482" y="-693.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">click(hit_set)</text>
 <text text-anchor="start" x="3482" y="-683.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">double_click(hit_set)</text>
-<text text-anchor="middle" x="3525" y="-673.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">item_roll_over(hit_set)</text>
+<text text-anchor="start" x="3482" y="-673.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">item_roll_over(hit_set)</text>
 </g>
 <!-- FlexAreaSeries&#45;&gt;FlexChartSeries -->
 <g id="edge110" class="edge"><title>FlexAreaSeries&#45;&gt;FlexChartSeries</title>
@@ -1194,7 +1194,7 @@
 <text text-anchor="start" x="3361" y="-1136.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">min_field:String</text>
 <text text-anchor="start" x="3361" y="-1126.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">offset:Integer</text>
 <text text-anchor="start" x="3361" y="-1116.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">x_field:String</text>
-<text text-anchor="middle" x="3407" y="-1106.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">y_field:String</text>
+<text text-anchor="start" x="3361" y="-1106.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">y_field:String</text>
 <polyline style="fill:none;stroke:black;" points="3353,-1100 3461,-1100 "/>
 <text text-anchor="middle" x="3407" y="-1088.8" style="font-family:Bitstream Vera Sans;font-size:8.00;"> </text>
 </g>
@@ -1211,7 +1211,7 @@
 <text text-anchor="start" x="3486.5" y="-1146.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">max_radius:Integer</text>
 <text text-anchor="start" x="3486.5" y="-1136.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">radius_field:String</text>
 <text text-anchor="start" x="3486.5" y="-1126.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">x_field:String</text>
-<text text-anchor="middle" x="3525" y="-1116.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">y_field:String</text>
+<text text-anchor="start" x="3486.5" y="-1116.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">y_field:String</text>
 <polyline style="fill:none;stroke:black;" points="3479,-1110 3572,-1110 "/>
 <text text-anchor="middle" x="3525" y="-1098.8" style="font-family:Bitstream Vera Sans;font-size:8.00;"> </text>
 </g>
@@ -1231,7 +1231,7 @@
 <text text-anchor="start" x="3597" y="-1131.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">sort_on_x_field?:TrueClass</text>
 <text text-anchor="start" x="3597" y="-1121.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">min_field:String</text>
 <text text-anchor="start" x="3597" y="-1111.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">x_field:String</text>
-<text text-anchor="middle" x="3651" y="-1101.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">y_field:String</text>
+<text text-anchor="start" x="3597" y="-1101.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">y_field:String</text>
 <polyline style="fill:none;stroke:black;" points="3589,-1095 3713,-1095 "/>
 <text text-anchor="middle" x="3651" y="-1083.8" style="font-family:Bitstream Vera Sans;font-size:8.00;"> </text>
 </g>
@@ -1249,7 +1249,7 @@
 <text text-anchor="start" x="3739" y="-1141.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">radius:Integer</text>
 <text text-anchor="start" x="3739" y="-1131.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">sort_on_x_field?:TrueClass</text>
 <text text-anchor="start" x="3739" y="-1121.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">x_field:String</text>
-<text text-anchor="middle" x="3790" y="-1111.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">y_field:String</text>
+<text text-anchor="start" x="3739" y="-1111.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">y_field:String</text>
 <polyline style="fill:none;stroke:black;" points="3731,-1105 3849,-1105 "/>
 <text text-anchor="middle" x="3790" y="-1093.8" style="font-family:Bitstream Vera Sans;font-size:8.00;"> </text>
 </g>
@@ -1273,7 +1273,7 @@
 <text text-anchor="start" x="3874.5" y="-1111.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">font_size:Integer</text>
 <text text-anchor="start" x="3874.5" y="-1101.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">callout_gap:Integer</text>
 <text text-anchor="start" x="3874.5" y="-1091.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">start_angle:Integer</text>
-<text text-anchor="middle" x="3933" y="-1081.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">label_position:String</text>
+<text text-anchor="start" x="3874.5" y="-1081.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">label_position:String</text>
 <polyline style="fill:none;stroke:black;" points="3867,-1075 4000,-1075 "/>
 <text text-anchor="middle" x="3933" y="-1063.8" style="font-family:Bitstream Vera Sans;font-size:8.00;"> </text>
 </g>
@@ -1289,7 +1289,7 @@
 <polyline style="fill:none;stroke:black;" points="4017,-1153 4088,-1153 "/>
 <text text-anchor="start" x="4024.5" y="-1141.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">radius:Integer</text>
 <text text-anchor="start" x="4024.5" y="-1131.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">x_field:String</text>
-<text text-anchor="middle" x="4052" y="-1121.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">y_field:String</text>
+<text text-anchor="start" x="4024.5" y="-1121.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">y_field:String</text>
 <polyline style="fill:none;stroke:black;" points="4017,-1115 4088,-1115 "/>
 <text text-anchor="middle" x="4052" y="-1103.8" style="font-family:Bitstream Vera Sans;font-size:8.00;"> </text>
 </g>
@@ -1317,7 +1317,7 @@
 <text text-anchor="start" x="3602" y="-661.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">tick_length:Integer</text>
 <text text-anchor="start" x="3602" y="-651.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">tick_placement:String</text>
 <text text-anchor="start" x="3602" y="-641.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">ticks:String</text>
-<text text-anchor="middle" x="3659" y="-631.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">minor_ticks:String</text>
+<text text-anchor="start" x="3602" y="-631.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">minor_ticks:String</text>
 <polyline style="fill:none;stroke:black;" points="3594,-625 3724,-625 "/>
 <text text-anchor="middle" x="3659" y="-613.8" style="font-family:Bitstream Vera Sans;font-size:8.00;"> </text>
 </g>
@@ -1339,9 +1339,9 @@
 <text text-anchor="start" x="3750" y="-691.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">marker_width:Integer</text>
 <text text-anchor="start" x="3750" y="-681.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">padding_left:Integer</text>
 <text text-anchor="start" x="3750" y="-671.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">padding_right:Integer</text>
-<text text-anchor="middle" x="3805" y="-661.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">vertical_gap:Integer</text>
+<text text-anchor="start" x="3750" y="-661.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">vertical_gap:Integer</text>
 <polyline style="fill:none;stroke:black;" points="3742,-655 3868,-655 "/>
-<text text-anchor="middle" x="3805" y="-643.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">click(item)</text>
+<text text-anchor="start" x="3750" y="-643.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">click(item)</text>
 </g>
 <!-- FlexChartLegend&#45;&gt;FlexObject -->
 <g id="edge128" class="edge"><title>FlexChartLegend&#45;&gt;FlexObject</title>
@@ -1356,7 +1356,7 @@
 <text text-anchor="start" x="2508" y="-386.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">automation_value:String</text>
 <text text-anchor="start" x="2508" y="-376.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">automation_name:String</text>
 <text text-anchor="start" x="2508" y="-366.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">class_name:String</text>
-<text text-anchor="middle" x="2558" y="-356.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">automation_index:String</text>
+<text text-anchor="start" x="2508" y="-356.8" style="font-family:Bitstream Vera Sans;font-size:8.00;">automation_index:String</text>
 <polyline style="fill:none;stroke:black;" points="2500,-350 2616,-350 "/>
 <text text-anchor="middle" x="2558" y="-338.8" style="font-family:Bitstream Vera Sans;font-size:8.00;"> </text>
 </g>
