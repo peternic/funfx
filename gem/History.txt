@@ -6,6 +6,7 @@ Complete rewrite of FunFX.
   * FunFX is a plugin to Watir/SafariWatir/FireWatir
   * The FunFX API is statically generated code instead of dynamically generated
   * Event methods are banged!
+  * Big poster with class diagram
   * Hash based lookup of elements
   * Flex stacktrace is included in Ruby stack trace
   * Elements can be looked up by a "path" of ids: several hashes

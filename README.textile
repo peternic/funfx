@@ -141,6 +141,7 @@ h2. TODO
 * Put the Flex app's ID in the beginning of the @flex_id
 * Extract a Codec class
 * Get rid of ARG_SEP - use varargs instead.
+* Generate code based on same code that we generate class diagram with (no longer use bang!)
 
 h2. Links
 
