@@ -12,12 +12,17 @@ h2. Installation
 
 *Step 3*: Install FunFX
 
-<pre><code>
-gem sources --add http://gems.github.com/ 
-gem install peternic-funfx
+<pre><code>git clone git://github.com/peternic/funfx.git
+cd funfx/gem
+rake gem # If you're on Windows this might fail because of missing tar.exe. Try installing MSYS.
+rake install_gem
 </code></pre>
 
 (You may have to sudo if you're on Linux or OS X)
+
+When we make a release of FunFX 2.0 you will be able to install it simply with:
+
+<pre><code>gem install funfx</code></pre>
 
 h2. Getting started
 
@@ -32,31 +37,31 @@ enter the following in the file:
 
 *Watir*
 
-<pre><code>require 'funfx/watir'
+<pre><code>require 'funfx/browser/watir'
 
 browser = Watir::IE.new
 </code></pre>
 
 *SafariWatir*
 
-<pre><code>require 'funfx/safariwatir'
+<pre><code>require 'funfx/browser/safariwatir'
 
 browser = Watir::Safari.new
 </code></pre>
 
 *FireWatir*
 
-<pre><code>require 'funfx/firewatir'
+<pre><code>require 'funfx/browser/firewatir'
 
 browser = FireWatir::Firefox.new
 </code></pre>
 
-Open a shell, and run the following command:
+Open a shell, and run your file:
 
 <pre><code>ruby myfunfx.rb
 </code></pre>
 
-This should open a browser window.
+This should open a browser window. Now let's start talking to the Flex app...
 
 h3. Getting a reference to a Flex application
 
@@ -68,7 +73,7 @@ Add the following code to your Ruby file:
 
 <pre><code>
 browser.goto("http://funfx.rubyforge.org/DemoApp.html") # The URL containing your Flex app
-flex = browser.flex_app("DemoApp") # DemoApp is the id of the HTML element embedding the Flex app.
+flex = browser.flex_app('DemoAppId', 'DemoAppName') # See the API for FunFX::Browser::FlexAppLookup#flex_app for details
 </code></pre>
 
 h3. Looking up Flex elements with Automation IDs
@@ -78,12 +83,12 @@ Once you have a reference to the Flex app, FunFX lets you look up a Flex element
 <pre><code>message = flex.text_area({:id => 'message'})
 </code></pre>
 
-or an Array of Hashes:
+or an Array of Hashes (each hash identifies an element in the tree of elements):
 
 <pre><code>message = flex.text_area({:automationName => "Button Control Example"}, {:id => 'message'})
 </code></pre>
 
-There is a lookup method for each element type. See the FunFX API or cheat sheet for more details.
+There is a lookup method for each element type. See the FunFX API or class diagram for more details.
 
 FunFX will translate the arguments you pass to the "Adobe Flex Automation ID format":http://livedocs.adobe.com/flex/3/langref/mx/automation/AutomationID.html.
 For example, the last example would be translated to the following:

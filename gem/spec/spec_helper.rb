@@ -9,15 +9,15 @@ end
 unless defined?(Browser)
   $:.unshift(File.dirname(__FILE__) + '/../lib')
   if ENV['FIREWATIR']
-    require 'funfx/firewatir'
+    require 'funfx/browser/firewatir'
     Browser = FireWatir::Firefox
   else
     case PLATFORM
     when /darwin/
-      require 'funfx/safari'
+      require 'funfx/browser/safariwatir'
       Browser = Watir::Safari
     when /win32|mingw/
-      require 'funfx/watir'
+      require 'funfx/browser/watir'
       Browser = Watir::IE
     else
       raise "This platform is not supported (#{PLATFORM})"

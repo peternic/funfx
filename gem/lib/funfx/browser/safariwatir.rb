@@ -3,11 +3,10 @@ require 'safariwatir'
 require 'funfx'
 
 module Watir
-  # SafariWatir extension for FunFX. Allows lookup of FlexApp objects.
+  # SafariWatir extension for FunFX. Allows lookup of FlexApp objects via FunFX::Browser::FlexAppLookup#flex_app.
   class Safari
     include FunFX::Browser::FlexAppLookup
-
-    def platform_flex_app(dom_id, app_name)
+    def platform_flex_app(dom_id, app_name) #:nodoc:
       FlexApp.new(scripter, :id, dom_id, app_name)
     end
 

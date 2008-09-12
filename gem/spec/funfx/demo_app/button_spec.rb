@@ -55,12 +55,14 @@ describe "DemoApp" do
   end
 
   it "should look up elements in nested fashion" do
-    tree = @flex.tree({:id => 'objectTree'})
-    tree.open!('Button controls')
-    tree.select!('Button controls>Button1')
+    pending "Not implemented yet" do
+      tree = @flex.tree({:id => 'objectTree'})
+      tree.open!('Button controls')
+      tree.select!('Button controls>Button1')
 
-    button = @flex.panel(:automationName => 'Button Control Example').button(:automationName => 'Customized Button')
-    button.label.should == "Customized Button"
+      button = @flex.panel(:automationName => 'Button Control Example').button(:automationName => 'Customized Button')
+      button.label.should == "Customized Button"
+    end
   end
 
 end

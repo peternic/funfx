@@ -8,22 +8,26 @@ require 'funfx/flex/flex_app_id'
 
 module FunFX
   class << self
+    # Turn on debug information
     def debug=(b)
       @debug = b
     end
 
+    # Prints debug information (if debug is on - it's off by default)
     def debug(s)
       if @debug
         puts s
       end
     end
 
-    def latency=(t)
-      @latency = t
+    # Set how many seconds to sleep after an event is fired.
+    def fire_pause=(t)
+      @fire_pause = t
     end
     
-    def latency
-      @latency || 0.5
+    # How many seconds to sleep after an event is fired. Defaults to 1 second.
+    def fire_pause
+      @fire_pause || 1.0
     end
   end
 end

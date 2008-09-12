@@ -25,7 +25,7 @@ module FunFX
         flex_invoke do
           @flex_app.fire_event(@flex_id, event_name, flex_args)
         end
-        sleep FunFX.latency unless FunFX.latency.nil?
+        sleep FunFX.fire_pause unless FunFX.fire_pause.nil?
       end
 
       def get_property_value(property, ruby_type, codec)

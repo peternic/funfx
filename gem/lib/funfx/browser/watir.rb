@@ -3,7 +3,8 @@ require 'watir'
 require 'funfx'
 
 module Watir
-  module Container
+  # Watir extension for FunFX. Allows lookup of FlexApp objects via FunFX::Browser::FlexAppLookup#flex_app.
+  class IE
     include FunFX::Browser::FlexAppLookup
     def platform_flex_app(dom_id, app_name)
       FlexApp.new(self, dom_id, app_name)

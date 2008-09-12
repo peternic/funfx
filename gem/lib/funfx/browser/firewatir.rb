@@ -3,7 +3,7 @@ require 'firewatir'
 require 'funfx'
 
 module FireWatir
-  # FireWatir extension for FunFX. Allows lookup of FlexApp objects.
+  # FireWatir extension for FunFX. Allows lookup of FlexApp objects via FunFX::Browser::FlexAppLookup#flex_app.
   class Firefox
     include FunFX::Browser::FlexAppLookup
     def platform_flex_app(dom_id, app_name) #:nodoc:
