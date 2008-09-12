@@ -87,7 +87,7 @@ module FunFX
       end
       
       def to_dot
-        "#{ruby_name}:#{ruby_type.name}"
+        "#{ruby_name} : #{ruby_type.name}"
       end
       
       def to_arg

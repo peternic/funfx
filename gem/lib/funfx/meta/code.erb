@@ -1,0 +1,10 @@
+module FunFX
+
+<% classes.each do |klass| %>
+  <%= klass.name %> [
+    label = "{<%= klass.name %>|<%= klass.dot_property_list %>|<%= klass.dot_event_list %>}"
+  ]
+  <%= klass.name %> -> <%= klass.superclass_name %>
+<% end %>
+
+end
