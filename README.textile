@@ -142,7 +142,6 @@ h2. TODO
 * Put the Flex app's ID in the beginning of the @flex_id
 * Extract a Codec class
 * Get rid of ARG_SEP - use varargs instead.
-* Exclude FunFx.swc from RDoc
 * Make snake_case aliases for camelCase methods (in code generation) - use camelCase in PDF
 * Add method to get all properties of an element (useful for debugging)
 * Generate code based on same code that we generate class diagram with (no longer use bang!)
