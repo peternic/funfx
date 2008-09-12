@@ -4,6 +4,9 @@ require 'funfx/flex/tabular_data'
 
 module FunFX
   module Flex
+    def app_id
+      {:id => 'DemoApp'}
+    end
 
     class FlexDisplayObject < Element
       def mouse_move!(local_x=0, local_y=0, key_modifier=[0])

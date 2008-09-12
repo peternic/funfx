@@ -52,7 +52,7 @@ module FunFX
       end
       
       it "should generate dot property list" do
-        @classes[1].dot_property_list.gsub(/\\l/, "\n").should == %{automation_name:String
+        @classes[1].dot_property_list.gsub(/\\l/, "\n").strip.should == %{automation_name:String
 automation_class_name:String
 id:String
 class_name:String
@@ -73,7 +73,7 @@ num_automation_children:Integer}
       end
 
       it "should generate dot event method list" do
-        @classes[0].dot_event_list.gsub(/\\l/, "\n").should == %{mouse_move(local_x=0, local_y=0, key_modifier=[\\\"0\\\"])
+        @classes[0].dot_event_list.gsub(/\\l/, "\n").strip.should == %{mouse_move(local_x=0, local_y=0, key_modifier=[\\\"0\\\"])
 click(key_modifier=[\\\"0\\\"])}
       end
     end

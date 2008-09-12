@@ -10,12 +10,12 @@ module FunFX
 
       def initialize(flex_app, *locator_hashes)
         @flex_app = flex_app
-        ids = locator_hashes.map do |locator_hash|
+        ids = ([@flex_app.app_id] + locator_hashes).map do |locator_hash|
           locator_hash.map do |key, value|
             "#{key}{#{URI.escape(value)} string}"
           end.join
         end
-        @flex_id = "|" + ids.join("|")
+        @flex_id = ids.join("|")
         @tries = 0
       end
 

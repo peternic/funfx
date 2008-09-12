@@ -128,6 +128,7 @@ Now add some more specs, hack away and let us know when you've fixed something (
 
 h2. TODO
 
+* REMOVE HARDCODED DemoApp id in generated_elements.rb + generally improve ugly id logic 
 * Package XML file in FunFX.swc - makes it easier to install and get started...
 * Get rid of the AutoQuick codebase - base FunFX only on the automation API
 * Refactor the awful duplication in Proxy.as
@@ -141,6 +142,9 @@ h2. TODO
 * Put the Flex app's ID in the beginning of the @flex_id
 * Extract a Codec class
 * Get rid of ARG_SEP - use varargs instead.
+* Exclude FunFx.swc from RDoc
+* Make snake_case aliases for camelCase methods (in code generation) - use camelCase in PDF
+* Add method to get all properties of an element (useful for debugging)
 
 h2. Links
 

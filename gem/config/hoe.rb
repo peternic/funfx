@@ -37,7 +37,8 @@ RDOC_OPTS = ['--quiet', '--title', 'FunFX documentation',
     "--opname", "index.html",
     "--line-numbers",
     "--main", "README",
-    "--inline-source"]
+    "--inline-source",
+    "--exclude ext/FunFX.swc"]
 
 class Hoe
   def extra_deps
