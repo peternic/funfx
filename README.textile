@@ -145,6 +145,7 @@ h2. TODO
 * Exclude FunFx.swc from RDoc
 * Make snake_case aliases for camelCase methods (in code generation) - use camelCase in PDF
 * Add method to get all properties of an element (useful for debugging)
+* Generate code based on same code that we generate class diagram with (no longer use bang!)
 
 h2. Links
 
