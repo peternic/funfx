@@ -2,7 +2,9 @@ $:.unshift(File.dirname(__FILE__)) unless
   $:.include?(File.dirname(__FILE__)) || $:.include?(File.expand_path(File.dirname(__FILE__)))
 
 require 'funfx/decoder'
+require 'funfx/browser/flex_app_lookup'
 require 'funfx/flex/generated_elements'
+require 'funfx/flex/flex_app_id'
 
 module FunFX
   class << self

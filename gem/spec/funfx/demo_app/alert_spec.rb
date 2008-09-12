@@ -1,9 +1,9 @@
 require File.dirname(__FILE__) + '/../../spec_helper'
 
 describe "DemoApp" do
-  before(:each) do
+  before do
     browser.goto(DEMO_APP)
-    @flex = browser.flex_app('DemoApp')
+    @flex = browser.flex_app('DemoAppId', 'DemoAppName')
   end
 
   it "should be able to navigate an alert" do
@@ -19,7 +19,7 @@ describe "DemoApp" do
     button.click!
     
     alert = @flex.alert({:automationName => 'Message'})
-    alert.visible?.should == true
+    alert.should be_visible
     
     alert.text.strip.should == "Hello World!"
     
@@ -28,6 +28,6 @@ describe "DemoApp" do
     
     lambda do
       alert.visible?
-    end.should raise_error("Error: Unable to resolve id '|automationName{Message string}'.")
+    end.should raise_error("Error: Unable to resolve id 'id{DemoAppName string}|automationName{Message string}'.")
   end
 end

@@ -1,10 +1,9 @@
 require File.dirname(__FILE__) + '/../../spec_helper'
 
 describe "DemoApp" do
-  before(:each) do
- 
+  before do
     browser.goto(DEMO_APP)
-    @flex = browser.flex_app('DemoApp')
+    @flex = browser.flex_app('DemoAppId', 'DemoAppName')
   end
   
   it "should open tree and click default button" do

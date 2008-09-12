@@ -128,7 +128,6 @@ Now add some more specs, hack away and let us know when you've fixed something (
 
 h2. TODO
 
-* REMOVE HARDCODED DemoApp id in generated_elements.rb + generally improve ugly id logic 
 * Package XML file in FunFX.swc - makes it easier to install and get started...
 * Get rid of the AutoQuick codebase - base FunFX only on the automation API
 * Refactor the awful duplication in Proxy.as
@@ -145,6 +144,7 @@ h2. TODO
 * Make snake_case aliases for camelCase methods (in code generation) - use camelCase in PDF
 * Add method to get all properties of an element (useful for debugging)
 * Generate code based on same code that we generate class diagram with (no longer use bang!)
+* Turn off DOT in RDOC
 
 h2. Links
 

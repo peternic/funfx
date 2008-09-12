@@ -4,10 +4,7 @@ require 'funfx/flex/tabular_data'
 
 module FunFX
   module Flex
-    def app_id
-      {:id => 'DemoApp'}
-    end
-
+    module Elements
     class FlexDisplayObject < Element
       def mouse_move!(local_x=0, local_y=0, key_modifier=[0])
         fire_event("MouseMove", local_x, local_y, key_modifier)
@@ -2608,6 +2605,7 @@ module FunFX
     end
     def tile_list_item_renderer(*locator_hashes)
       FlexListLabel.new(self, *locator_hashes)
+    end
     end
   end
 end

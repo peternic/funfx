@@ -4,35 +4,36 @@ require 'funfx'
 
 module Watir
   module Container
-    # An HTML element hosting a Flex app.
-    class FlexApp < Element
-      include FunFX::Flex
+    include FunFX::Browser::FlexAppLookup
+    def platform_flex_app(dom_id, app_name)
+      FlexApp.new(self, dom_id, app_name)
+    end
 
-      def initialize(ole_object, dom_id)
+    class FlexApp < Element #:nodoc:
+      include FunFX::Flex::Elements
+      include FunFX::Flex::FlexAppId
+
+      def initialize(ole_object, dom_id, app_name)
         super(ole_object)
         @flex_object = ole_object.ie.Document.getElementsByName(dom_id).item(0)
+        @app_name = app_name
       end
       
       def fire_event(flex_id, event_name, args) # :nodoc:
-        @flex_object.fireFunFXEvent(flex_id, event_name, args)
+        @flex_object.fireFunFXEvent(full_id(flex_id), event_name, args)
       end
 
       def get_property_value(flex_id, property) # :nodoc:
-        @flex_object.getFunFXPropertyValue(flex_id, property)
+        @flex_object.getFunFXPropertyValue(full_id(flex_id), property)
       end
 
       def get_tabular_property_value(flex_id, property) # :nodoc:
-        @flex_object.getFunFXTabularPropertyValue(flex_id, property)
+        @flex_object.getFunFXTabularPropertyValue(full_id(flex_id), property)
       end
 
       def invoke_tabular_method(flex_id, method_name, *args) # :nodoc:
-        @flex_object.invokeFunFXTabularMethod(flex_id, method_name, *args)
+        @flex_object.invokeFunFXTabularMethod(full_id(flex_id), method_name, *args)
       end
-    end
-
-    # Returns a FlexApp identified by +dom_id+
-    def flex_app(dom_id)
-      FlexApp.new(self, dom_id)
     end
   end
 end
