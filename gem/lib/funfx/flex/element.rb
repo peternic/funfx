@@ -11,7 +11,8 @@ module FunFX
       def initialize(flex_app, *locator_hashes)
         @flex_app = flex_app
         ids = locator_hashes.map do |locator_hash|
-          locator_hash.map do |key, value|
+          locator_hash.keys.sort{|a,b| a.to_s <=> b.to_s}.map do |key|
+            value = locator_hash[key]
             "#{key}{#{URI.escape(value)} string}"
           end.join
         end

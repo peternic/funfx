@@ -52,24 +52,24 @@ module FunFX
       end
       
       it "should generate dot property list" do
-        @classes[1].dot_property_list.gsub(/\\l/, "\n").strip.should == %{automation_name:String
-automation_class_name:String
-id:String
-class_name:String
-automation_index:String
-current_state:String
-focus_enabled?:TrueClass
-tool_tip:String
-error_string:String
-percent_height:Integer
-percent_width:Integer
-scale_x:Integer
-scale_y:Integer
-error_color:String
-theme_color:String
-enabled?:TrueClass
-use_hand_cursor?:TrueClass
-num_automation_children:Integer}
+        @classes[1].dot_property_list.gsub(/\\l/, "\n").strip.should == %{automation_name : String
+automation_class_name : String
+id : String
+class_name : String
+automation_index : String
+current_state : String
+focus_enabled? : TrueClass
+tool_tip : String
+error_string : String
+percent_height : Integer
+percent_width : Integer
+scale_x : Integer
+scale_y : Integer
+error_color : String
+theme_color : String
+enabled? : TrueClass
+use_hand_cursor? : TrueClass
+num_automation_children : Integer}
       end
 
       it "should generate dot event method list" do

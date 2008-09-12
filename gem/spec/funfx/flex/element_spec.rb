@@ -8,7 +8,7 @@ module FunFX
         element = Element.new(flex_app, {:id => 'box'}, {:automationName => 'Button Control Example'})
 
         flex_app.should_receive(:get_property_value).
-          with('|id{box string}|automationName{Button%20Control%20Example string}', 'WhatEver').
+          with('id{box string}|automationName{Button%20Control%20Example string}', 'WhatEver').
           and_return('true')
 
         value = element.get_property_value('WhatEver', :boolean, nil)
@@ -17,10 +17,10 @@ module FunFX
       
       it "should be possible to add multiple definitions per object" do
         flex_app = mock('FlexApp')
-        element = Element.new(flex_app, {:id => 'box'}, {:automationIndex => 'index:1', :automationName => 'Button Control Example'})
+        element = Element.new(flex_app, {:id => 'box'}, {:automationName => 'Button Control Example', :automationIndex => 'index:1'})
 
         flex_app.should_receive(:get_property_value).
-          with('|id{box string}|automationName{Button%20Control%20Example string}automationIndex{index:1 string}', 'WhatEver').
+          with('id{box string}|automationIndex{index:1 string}automationName{Button%20Control%20Example string}', 'WhatEver').
           and_return('true')
 
         value = element.get_property_value('WhatEver', :boolean, nil)
