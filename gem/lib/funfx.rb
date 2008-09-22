@@ -3,7 +3,7 @@ $:.unshift(File.dirname(__FILE__)) unless
 
 require 'funfx/decoder'
 require 'funfx/browser/flex_app_lookup'
-require 'funfx/flex/generated_elements'
+require 'funfx/flex/elements'
 require 'funfx/flex/flex_app_id'
 
 module FunFX
@@ -27,7 +27,7 @@ module FunFX
     
     # How many seconds to sleep after an event is fired. Defaults to 1 second.
     def fire_pause
-      @fire_pause || 1.0
+      @fire_pause || 2.0
     end
   end
 end

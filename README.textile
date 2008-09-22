@@ -149,7 +149,7 @@ h2. TODO
 * Make snake_case aliases for camelCase methods (in code generation) - use camelCase in PDF
 * Add method to get all properties of an element (useful for debugging)
 * Generate code based on same code that we generate class diagram with (no longer use bang!)
-* Turn off DOT in RDOC
+* Split class diagrams in several smaller ones
 
 h2. Links
 

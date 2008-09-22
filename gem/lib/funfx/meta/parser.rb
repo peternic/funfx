@@ -1,4 +1,4 @@
-require 'funfx'
+require 'funfx/decoder'
 require 'rubygems'
 begin
   require 'libxml'
@@ -9,6 +9,12 @@ begin
   require 'active_support'
 rescue LoadError
   STDERR.puts "activesupport not installed. gem install activesupport"
+end
+
+class String
+  def escape_quotes
+    gsub(/"/, '\"')
+  end
 end
 
 module FunFX
@@ -36,12 +42,12 @@ module FunFX
       end
       
       def superclass_name
-        @class_info['Extends'] || 'FlexElement'
+        @class_info['Extends']
       end
       
       def properties
         @class_info.find('Properties/Property').map do |property|
-          Property.new(property)
+          Property.new(property, false)
         end
       end
 
@@ -57,14 +63,14 @@ module FunFX
       end
 
       def dot_event_list
-        l = events.map{|e| e.to_dot}.join('\l')
+        l = events.map{|e| e.to_method.escape_quotes}.join('\l')
         l == "" ? l : "#{l}\\l"
       end
     end
     
     class Property
-      def initialize(property)
-        @property = property
+      def initialize(property, param)
+        @property, @param = property, param
       end
       
       def name
@@ -72,7 +78,11 @@ module FunFX
       end
       
       def ruby_name
-        name.underscore + (ruby_type == TrueClass ? '?' : '')
+        if @param
+          name.underscore
+        else
+          name.underscore + (ruby_type == TrueClass ? '?' : '')
+        end
       end
 
       def ruby_type
@@ -91,8 +101,9 @@ module FunFX
       end
       
       def to_arg
-        (default_value ? "#{ruby_name}=#{default_value.inspect}" : ruby_name).gsub(/"/, '\"')
+        (default_value ? "#{ruby_name}=#{default_value.inspect}" : ruby_name)
       end
+      
     end
     
     class Event
@@ -110,11 +121,20 @@ module FunFX
       
       def args
         @event.find('Property').map do |property|
-          Property.new(property)
+          Property.new(property, true)
         end
       end
       
-      def to_dot
+      def arg_list(pre)
+        a = args.map{|arg| arg.ruby_name}
+        ([pre] + a).flatten.join(", ")
+      end
+      
+      def arg_list_with_defaults
+        args.map{|arg| arg.to_arg}.join(", ")
+      end
+
+      def to_method
         arg_list = args.map{|a| a.to_arg}.join(", ")
         "#{ruby_name}(#{arg_list})"
       end
