@@ -8,7 +8,7 @@ end
 
 $:.unshift(File.dirname(__FILE__) + '/../lib')
 require 'funfx'
-DEMO_APP = "http://localhost:9851/DemoApp.html" unless defined?(DEMO_APP)
+DEMO_APP = "http://localhost:9851/index.html" unless defined?(DEMO_APP)
 
 def browser
   if $browser.nil?

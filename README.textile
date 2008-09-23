@@ -146,7 +146,7 @@ Website/Docs
 ** git mv demo-app/lib/DemoApp.* gem/website/
 ** Update scripts so specs still pass
 ** (P) Update howtos
-** Move rest of this file to gem/website/
+** (A) Move rest of this file to gem/website/
 * (P) More demo app specs
 
 h2. TODO after 0.2.0

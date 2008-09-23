@@ -15,7 +15,7 @@ end
 
 desc 'Compile the Demo app'
 task :demo_app => :flex do
-  cp 'flex/src/AutoQuickEnv.xml', 'demo-app/lib/AutoQuickEnv.xml'
+  cp 'flex/src/AutoQuickEnv.xml', 'gem/website/demo-app/AutoQuickEnv.xml'
   Dir.chdir('demo-app') do
     sh build
   end
@@ -37,7 +37,7 @@ end
 
 desc 'Run httpd'
 task :httpd do
-  ruby "demo-app/lib/httpd.rb"
+  ruby "gem/website/demo-app/httpd.rb"
 end
 
 task :default => :everything
