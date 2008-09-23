@@ -21,10 +21,10 @@ task :demo_app => :flex do
   end
 end
 
-desc 'Generate Ruby code'
+desc 'Generate Ruby code and class diagram'
 task :codegen do
   Dir.chdir('gem') do
-    ruby "lib/funfx/codegen/code_generator.rb"
+    sh "rake#{suffix} generate:code generate:class_diagram"
   end
 end
 

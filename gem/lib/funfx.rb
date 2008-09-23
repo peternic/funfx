@@ -3,6 +3,7 @@ $:.unshift(File.dirname(__FILE__)) unless
 
 require 'funfx/decoder'
 require 'funfx/browser/flex_app_lookup'
+require 'funfx/flex/element'
 require 'funfx/flex/elements'
 require 'funfx/flex/flex_app_id'
 

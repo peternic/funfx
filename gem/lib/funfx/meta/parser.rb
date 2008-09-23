@@ -19,22 +19,63 @@ end
 
 module FunFX
   module Meta
-    class Parser
+    class ClassLib
       def initialize(xml_file=File.dirname(__FILE__) + '/../../../../flex/src/AutoQuickEnv.xml')
-        @xml_file = xml_file
+        @lib = Hash.new(MetaClass.new)
+        
+        doc = LibXML::XML::Document.file(xml_file)
+        doc.find('/TypeInformation/ClassInfo').map do |class_info|
+          klass = FlexMetaClass.new(class_info)
+          @lib[klass.name] = klass
+        end
+        
+        @lib.values.each do |c|
+          c.link_with(self)
+        end
       end
       
-      def parse
-        doc = LibXML::XML::Document.file(@xml_file)
-        doc.find('/TypeInformation/ClassInfo').map do |class_info|
-          MetaClass.new(class_info)
+      def [](name)
+        @lib[name]
+      end
+      
+      def object
+        self[nil]
+      end
+      
+      def classes
+        a = []
+        object.add_children_recursive(a)
+        a
+      end
+    end
+
+    class MetaClass
+      attr_reader :children
+      
+      def initialize
+        @children = []
+      end
+      
+      def add_children_recursive(a)
+        @children.each do |c|
+          a << c
+          c.add_children_recursive(a)
         end
       end
     end
     
-    class MetaClass
+    class FlexMetaClass < MetaClass
       def initialize(class_info)
+        super()
         @class_info = class_info
+      end
+
+      def link_with(lib)
+        s = lib[superclass_name]
+        unless s.nil?
+          @superclass = s
+          @superclass.children << self
+        end
       end
       
       def name
@@ -47,14 +88,18 @@ module FunFX
       
       def properties
         @class_info.find('Properties/Property').map do |property|
-          Property.new(property, false)
-        end
+          ['columnNames'].include?(property['Name']) ? nil : Property.new(property, false)
+        end.compact
       end
 
       def events
         @class_info.find('Events/Event').map do |event|
           Event.new(event)
         end
+      end
+      
+      def tabular?
+        @class_info['SupportsTabularData'] == 'true'
       end
       
       def dot_property_list
@@ -65,6 +110,10 @@ module FunFX
       def dot_event_list
         l = events.map{|e| e.to_method.escape_quotes}.join('\l')
         l == "" ? l : "#{l}\\l"
+      end
+      
+      def lookup_method
+        name.underscore.gsub(/^flex_/, '')
       end
     end
     

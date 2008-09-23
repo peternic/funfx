@@ -8,8 +8,8 @@ describe "DemoApp" do
 
   it "should get data from a datagrid" do
     tree = @flex.tree({:id => 'objectTree'})
-    tree.open!('General controls')
-    tree.select!('General controls>DataGrid1')
+    tree.open('General controls')
+    tree.select('General controls>DataGrid1')
 
     data_grid = @flex.data_grid({:id => 'dgPanel'}, {:id => 'dg'})
     data_grid.column_names.should == ['name', 'phone', 'email']

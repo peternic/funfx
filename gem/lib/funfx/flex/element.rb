@@ -29,12 +29,11 @@ module FunFX
         sleep FunFX.fire_pause unless FunFX.fire_pause.nil?
       end
 
-      def get_property_value(property, ruby_type, codec)
+      def get_property_value(property, ruby_type)
         raw_value = flex_invoke do
           @flex_app.get_property_value(@flex_id, property)
         end
-        value = coerce(raw_value, ruby_type)
-        decode(value, codec)
+        ruby_type.from_funfx_string(raw_value)
       end
       
       def get_tabular_property_value(property, ruby_type, codec)

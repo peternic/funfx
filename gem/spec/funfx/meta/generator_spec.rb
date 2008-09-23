@@ -5,8 +5,8 @@ module FunFX
   module Meta
     describe Generator do
       it "should produce a dot graph" do
-        parser = Parser.new
-        generator = Generator.new(parser, :class_dot)
+        classes = ClassLib.new.classes
+        generator = Generator.new(classes, :class_dot)
         dot = generator.generate
         dot.should =~ /FlexDisplayObject/
         dot.should =~ /TrueClass\\ltab_enabled?/

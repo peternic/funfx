@@ -11,7 +11,7 @@ module FunFX
           with('id{box string}|automationName{Button%20Control%20Example string}', 'WhatEver').
           and_return('true')
 
-        value = element.get_property_value('WhatEver', :boolean, nil)
+        value = element.get_property_value('WhatEver', TrueClass)
         value.should == true
       end
       
@@ -23,7 +23,7 @@ module FunFX
           with('id{box string}|automationIndex{index:1 string}automationName{Button%20Control%20Example string}', 'WhatEver').
           and_return('true')
 
-        value = element.get_property_value('WhatEver', :boolean, nil)
+        value = element.get_property_value('WhatEver', TrueClass)
         value.should == true
       end
       

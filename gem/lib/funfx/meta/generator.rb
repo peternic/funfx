@@ -4,13 +4,13 @@ require 'erb'
 module FunFX
   module Meta
     class Generator
-      def initialize(parser, template_name)
-        @parser, @template_name = parser, template_name
+      def initialize(classes, template_name)
+        @classes, @template_name = classes, template_name
       end
       
       def generate
         template = ERB.new(IO.read(File.dirname(__FILE__) + "/#{@template_name}.erb"))
-        classes = @parser.parse
+        classes = @classes
         template.result(binding)
       end
     end

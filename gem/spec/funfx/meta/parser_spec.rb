@@ -3,46 +3,47 @@ require 'funfx/meta/parser'
 
 module FunFX
   module Meta
-    describe Parser do
+    describe ClassLib do
       before do
-        parser = Parser.new
-        @classes = parser.parse
+        @lib = ClassLib.new
       end
       
       it "should parse classes" do
-        @classes.length.should == 65
+        @lib.classes.length.should == 65
       end
 
-      it "should assign class names" do
-        @classes[0..2].map{|c| c.name}.should == %w{FlexDisplayObject FlexObject FlexContainer}
+      it "should know about children" do
+        flex_area_series = @lib['FlexListBase']
+        flex_area_series.children.map{|c| c.name}.sort.should == %w{FlexDataGrid FlexList FlexTree}
       end
-
-      it "should assign superclass names" do
-        @classes[0..2].map{|c| c.superclass_name}.should == %w{FlexElement FlexDisplayObject FlexObject}
+      
+      it "should have a toplevel class that knows about children" do
+        ob = @lib.object
+        ob.children.map{|c| c.name}.sort.should == %w{FlexDisplayObject FlexRepeater}
       end
 
       it "should have string properties" do
-        prop = @classes[1].properties[0]
+        prop = @lib['FlexObject'].properties[0]
         prop.name.should == 'automationName'
         prop.ruby_name.should == 'automation_name'
         prop.ruby_type.should == String
       end
       
       it "should have boolean properties" do
-        prop = @classes[0].properties[0]
+        prop = @lib['FlexDisplayObject'].properties[0]
         prop.name.should == 'tabChildren'
         prop.ruby_name.should == 'tab_children?'
         prop.ruby_type.should == TrueClass
       end
 
       it "should have event methods" do
-        meth = @classes[0].events[0]
+        meth = @lib['FlexDisplayObject'].events[0]
         meth.name.should == 'MouseMove'
         meth.ruby_name.should == 'mouse_move'
       end
 
       it "should have event method args" do
-        meth = @classes[0].events[0]
+        meth = @lib['FlexDisplayObject'].events[0]
         arg1 = meth.args[0]
 
         arg1.name.should == 'localX'
@@ -52,7 +53,7 @@ module FunFX
       end
       
       it "should generate dot property list" do
-        @classes[1].dot_property_list.gsub(/\\l/, "\n").strip.should == %{automation_name : String
+        @lib['FlexObject'].dot_property_list.gsub(/\\l/, "\n").strip.should == %{automation_name : String
 automation_class_name : String
 id : String
 class_name : String
@@ -73,7 +74,7 @@ num_automation_children : Integer}
       end
 
       it "should generate dot event method list" do
-        @classes[0].dot_event_list.gsub(/\\l/, "\n").strip.should == %{mouse_move(local_x=0, local_y=0, key_modifier=[\\\"0\\\"])
+        @lib['FlexDisplayObject'].dot_event_list.gsub(/\\l/, "\n").strip.should == %{mouse_move(local_x=0, local_y=0, key_modifier=[\\\"0\\\"])
 click(key_modifier=[\\\"0\\\"])}
       end
     end

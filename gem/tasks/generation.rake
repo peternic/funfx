@@ -6,8 +6,9 @@ namespace :generate do
     desc "Generate #{generated}"
     task generated do
       require 'funfx/meta/generator'
-      parser = FunFX::Meta::Parser.new
-      generator = FunFX::Meta::Generator.new(parser, generated)
+      lib = FunFX::Meta::ClassLib.new
+      classes = lib.classes
+      generator = FunFX::Meta::Generator.new(classes, generated)
       generated = generator.generate
       File.open(file, 'wb') {|io| io.write generated}
     end
