@@ -131,25 +131,46 @@ install some additional ruby gems), you should see green output telling you that
 
 Now add some more specs, hack away and let us know when you've fixed something (specs should still be green).
 
-h2. TODO
+h2. TODO before 0.2.0
 
-* Package XML file in FunFX.swc - makes it easier to install and get started...
-* Get rid of the AutoQuick codebase - base FunFX only on the automation API
+Code
+
+* (P) Get rid of the AutoQuick codebase - base FunFX only on the automation API
+** Must not depend on XML file at runtime
+
+Website/Docs
+
+* Automate gem release on RubyForge (rake release)
+* Automate publish of website (rake website_upload)
+* Make demo app part of website
+** git mv demo-app/lib/DemoApp.* gem/website/
+** Update scripts so specs still pass
+** (P) Update howtos
+** Move rest of this file to gem/website/
+* (P) More demo app specs
+
+h2. TODO after 0.2.0
+
 * Refactor the awful duplication in Proxy.as
+** Different return values for unsynched and invisible
 ** eval() is gone from AS3, but we can fake it... with apply and our own dotted syntax.
+* Add method to get all properties of an element (useful for debugging)
+* Get rid of ARG_SEP - use varargs instead.
 * Use RCov and aim for 100% coverage of all generated methods
+* Add method to retrieve screenshot
+** http://blog.flexexamples.com/2007/11/16/taking-screenshots-in-flex-using-the-imagesnapshotcaptureimage-method/
 * Allow lookup of elements from elements:
 ** tree = @flex.tree({:id => 'objectTree'})
 ** button = tree.button(:label => 'Default Button')
-* Add method to retrieve screenshot
-** http://blog.flexexamples.com/2007/11/16/taking-screenshots-in-flex-using-the-imagesnapshotcaptureimage-method/
-* Put the Flex app's ID in the beginning of the @flex_id
-* Extract a Codec class
-* Get rid of ARG_SEP - use varargs instead.
 * Make snake_case aliases for camelCase methods (in code generation) - use camelCase in PDF
-* Add method to get all properties of an element (useful for debugging)
-* Generate code based on same code that we generate class diagram with (no longer use bang!)
+* Split PDF into 3-4 smaller PDFs
+
+h2. DONE
+
+* Put the Flex app's ID in the beginning of the @flex_id
+* Extract a Decoder class
 * Turn off DOT in RDOC
+* Generate code based on same code that we generate class diagram with (no longer use bang!)
 
 h2. Links
 
