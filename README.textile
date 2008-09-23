@@ -164,6 +164,7 @@ h2. TODO after 0.2.0
 ** button = tree.button(:label => 'Default Button')
 * Make snake_case aliases for camelCase methods (in code generation) - use camelCase in PDF
 * Split PDF into 3-4 smaller PDFs
+* Add method to get all properties of an element (useful for debugging)
 
 h2. DONE
 

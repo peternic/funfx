@@ -19,6 +19,6 @@ digraph G {
   <%= klass.name %> [
     label = "{<%= klass.name %>|<%= klass.dot_property_list %>|<%= klass.dot_event_list %>}"
   ]
-  <%= klass.name %> -> <%= klass.superclass_name %>
+  <% if klass.superclass_name %><%= klass.name %> -> <%= klass.superclass_name %><% end %>
 <% end %>
 }

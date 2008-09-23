@@ -19,10 +19,10 @@ digraph G {
   FlexDisplayObject [
     label = "{FlexDisplayObject|tab_children? : TrueClass\ltab_enabled? : TrueClass\ltab_index : Integer\lmouse_enabled? : TrueClass\lalpha : Integer\lheight : Integer\lvisible? : TrueClass\lwidth : Integer\lx : Integer\ly : Integer\l|mouse_move(local_x=0, local_y=0, key_modifier=[\"0\"])\lclick(key_modifier=[\"0\"])\l}"
   ]
-  FlexDisplayObject -> FlexElement
+  
 
   FlexObject [
-    label = "{FlexObject|automation_name : String\lautomation_class_name : String\lid : String\lclass_name : String\lautomation_index : String\lcurrent_state : String\lfocus_enabled? : TrueClass\ltool_tip : String\lerror_string : String\lpercent_height : Integer\lpercent_width : Integer\lscale_x : Integer\lscale_y : Integer\lerror_color : String\ltheme_color : String\lenabled? : TrueClass\luse_hand_cursor? : TrueClass\lnum_automation_children : Integer\l|change_focus(shift_key?, key_code=\"TAB\")\l}"
+    label = "{FlexObject|automation_name : String\lautomation_class_name : String\lid : String\lclass_name : String\lautomation_index : String\lcurrent_state : String\lfocus_enabled? : TrueClass\ltool_tip : String\lerror_string : String\lpercent_height : Integer\lpercent_width : Integer\lscale_x : Integer\lscale_y : Integer\lerror_color : String\ltheme_color : String\lenabled? : TrueClass\luse_hand_cursor? : TrueClass\lnum_automation_children : Integer\l|change_focus(shift_key, key_code=\"TAB\")\l}"
   ]
   FlexObject -> FlexDisplayObject
 
@@ -199,10 +199,10 @@ digraph G {
   FlexRepeater [
     label = "{FlexRepeater|automation_name : String\lid : String\lclass_name : String\lautomation_index : String\lcount : String\l|}"
   ]
-  FlexRepeater -> FlexElement
+  
 
   FlexLabel [
-    label = "{FlexLabel|text : String\lhtml_text : String\lcolor : String\ldisabled_color : String\lfont_family : String\lfont_size : Integer\lfont_style : String\lfont_weight : String\ltext_align : String\ltext_decoration : String\ltext_indent : Integer\l|click(ctrl_key?, alt_key?, shift_key?)\l}"
+    label = "{FlexLabel|text : String\lhtml_text : String\lcolor : String\ldisabled_color : String\lfont_family : String\lfont_size : Integer\lfont_style : String\lfont_weight : String\ltext_align : String\ltext_decoration : String\ltext_indent : Integer\l|click(ctrl_key, alt_key, shift_key)\l}"
   ]
   FlexLabel -> FlexObject
 
