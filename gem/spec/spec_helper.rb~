@@ -35,10 +35,7 @@ def require_watir
     when /win32|mingw/
       require 'funfx/browser/watir'
       $browser_class = Watir::IE
-    when /linux/
-      require 'funfx/browser/firewatir'
-      $browser_class = FireWatir::Firefox
-    else 
+    else
       raise "This platform is not supported (#{PLATFORM})"
     end
   end

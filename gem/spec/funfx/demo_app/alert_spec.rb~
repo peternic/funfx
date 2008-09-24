@@ -28,6 +28,6 @@ describe "DemoApp" do
     
     lambda do
       alert.visible?
-    end.should raise_error
+    end.should raise_error("#<FunFX::Flex::FunFXError: Error: Unable to resolve id '|automationName{Message string}'.>".strip)
   end
 end
