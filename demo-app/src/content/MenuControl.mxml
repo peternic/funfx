@@ -41,7 +41,7 @@
     </mx:XML>
 
     <mx:Panel id="panel" title="Menu Control" height="75%" width="75%" 
-        paddingTop="10" paddingLeft="10">
+        paddingTop="10" paddingLeft="10" showInAutomationHierarchy="false">
 
         <mx:Label width="100%" color="blue"
            text="Click the button to open the Menu control."/>

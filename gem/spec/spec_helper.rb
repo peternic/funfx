@@ -15,7 +15,6 @@ def browser
     require_watir
     $browser = $browser_class.new
     $browser.visible = true if $browser.respond_to?(:visible=)
-
     at_exit do
       $browser.close
     end

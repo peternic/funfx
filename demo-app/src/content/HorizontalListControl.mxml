@@ -25,7 +25,8 @@
         ]]>
     </mx:Script>
     <mx:Panel title="HorizontalList Control Example" height="75%" width="75%" 
-        paddingTop="10" paddingBottom="10" paddingLeft="10" paddingRight="10">
+        paddingTop="10" paddingBottom="10" paddingLeft="10" paddingRight="10"
+        showInAutomationHierarchy="false">
 	    <mx:HorizontalList id="list" height="250" columnCount="3" columnWidth="125">
 			<mx:dataProvider>
 		        <mx:Array>

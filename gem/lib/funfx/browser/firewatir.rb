@@ -7,6 +7,7 @@ module FireWatir
   class Firefox
     include FunFX::Browser::FlexAppLookup
     def platform_flex_app(dom_id, app_name) #:nodoc:
+      sleep(2)
       FlexApp.new(dom_id, app_name)
     end
 

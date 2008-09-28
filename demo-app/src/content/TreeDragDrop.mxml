@@ -140,7 +140,7 @@
         <mx:String>The Border Cafe</mx:String>
 
     </mx:Array> 
-    <mx:Panel x="48" y="125" width="447" height="351" layout="absolute" title="Drag onto Tree">    
+    <mx:Panel x="48" y="125" width="447" height="351" layout="absolute" title="Drag onto Tree" showInAutomationHierarchy="false">    
         <mx:Tree width="186" left="10" top="10" bottom="10" id="tree"
             labelField="@label"
             dataProvider="{treeData.node}"

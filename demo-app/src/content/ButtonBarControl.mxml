@@ -14,7 +14,7 @@
         ]]>
     </mx:Script>
 
-    <mx:Panel title="ButtonBar" height="75%" width="75%" 
+    <mx:Panel title="ButtonBar" height="75%" width="75%" showInAutomationHierarchy="false"
         paddingTop="10" paddingLeft="10" paddingRight="10" paddingBottom="10">
 
        <mx:Label width="100%" color="blue"

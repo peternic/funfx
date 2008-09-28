@@ -19,7 +19,8 @@
     </mx:Script> 
   
     <mx:Panel id="panel" title="HScrollBar Control Example" height="75%" width="75%" 
-        paddingTop="10" paddingBottom="10" paddingLeft="10" paddingRight="10">
+        paddingTop="10" paddingBottom="10" paddingLeft="10" paddingRight="10"
+         showInAutomationHierarchy="false">
         
         <mx:Label width="100%" color="blue"
            text="Click on the scroll bar to view its properties."/> 

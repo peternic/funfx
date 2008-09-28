@@ -33,7 +33,7 @@
         ]]>
     </mx:Script>
 
-    <mx:Panel title="Alert Control" width="75%" horizontalAlign="center" paddingTop="10">
+    <mx:Panel title="Alert Control" width="75%" horizontalAlign="center" paddingTop="10" showInAutomationHierarchy="false">
       <mx:Text width="100%" color="blue" textAlign="center"
           text="Click the button below to display a simple Alert window."/>
       <mx:Button id="bWorld" label="Click Me" click="Alert.show('Hello World!', 'Message');"/>

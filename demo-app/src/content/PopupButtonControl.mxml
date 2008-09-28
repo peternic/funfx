@@ -12,6 +12,7 @@
 			// of the PopUpButton control. 
 			private function initMenu():void {
 				myMenu = new Menu();
+				myMenu.id = "popMenu";
 				myMenu.name = "popMenu";
 				myMenu.automationName="popMenu";
 				var dp:Object = [{label: "New Folder"}, {label: "Sent Items"}, {label: "Inbox"}];     
@@ -35,6 +36,7 @@
 	</mx:Script>
 
     <mx:Panel title="PopUpButton" height="75%" width="75%" 
+        showInAutomationHierarchy="false"
         paddingTop="10" paddingBottom="10" paddingRight="10" paddingLeft="10">
 
         <mx:Label width="100%" color="blue"

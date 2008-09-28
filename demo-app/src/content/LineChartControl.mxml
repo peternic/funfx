@@ -16,7 +16,8 @@
     </mx:Script>
 
     <mx:Panel title="LineChart and AreaChart Controls Example" 
-        height="100%" width="100%" layout="horizontal">
+        height="100%" width="100%" layout="horizontal"
+        showInAutomationHierarchy="false">
 
         <mx:LineChart id="linechart" height="100%" width="45%"
             paddingLeft="5" paddingRight="5" 

@@ -49,7 +49,8 @@
     </mx:Script>
 
     <mx:Panel title="MenuBar Control" height="75%" width="75%" 
-        paddingTop="10" paddingLeft="10" showInAutomationHierarchy="true">
+        showInAutomationHierarchy="false"
+        paddingTop="10" paddingLeft="10">
 
         <mx:Label width="100%" color="blue"
            text="Select a menu item."/>

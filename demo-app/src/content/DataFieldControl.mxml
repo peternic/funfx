@@ -19,7 +19,7 @@
  
  <mx:DateFormatter id="df"/>
 
-    <mx:Panel title="DateField" height="75%" width="75%" 
+    <mx:Panel title="DateField" height="75%" width="75%" showInAutomationHierarchy="false" 
         paddingTop="10" paddingLeft="10" paddingRight="10">
 
         <mx:Label width="100%"  color="blue"

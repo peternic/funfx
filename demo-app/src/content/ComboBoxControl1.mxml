@@ -18,7 +18,7 @@
     </mx:Script>
 
     <mx:Panel title="ComboBox Control Example" 
-        height="75%" width="75%" layout="horizontal"
+        height="75%" width="75%" layout="horizontal" showInAutomationHierarchy="false"
         paddingTop="10" paddingBottom="10" paddingLeft="10" paddingRight="10">
 
         <mx:ComboBox id="cbCards" dataProvider="{cards}" width="150" 

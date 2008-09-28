@@ -13,7 +13,7 @@
         ]]>
     </mx:Script>
 
-    <mx:Panel title="Legend" height="100%" width="100%">
+    <mx:Panel title="Legend" height="100%" width="100%" showInAutomationHierarchy="false">
 
         <mx:PlotChart id="plot" height="100%" width="100%"
             paddingLeft="5" paddingRight="5" 

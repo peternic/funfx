@@ -14,7 +14,7 @@
       ]]>
     </mx:Script>
 
-    <mx:Panel title="Button Control Example" showInAutomationHierarchy="true"
+    <mx:Panel title="Button Control Example" showInAutomationHierarchy="false"
         height="75%" width="75%" layout="horizontal"
         paddingTop="10" paddingBottom="10" paddingLeft="10" paddingRight="10">
 

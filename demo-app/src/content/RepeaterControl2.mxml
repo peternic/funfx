@@ -16,6 +16,7 @@
     </mx:Script>
 
     <mx:Panel title="Repeater" width="75%" height="75%" 
+        showInAutomationHierarchy="false"
         paddingTop="10" paddingLeft="10" paddingRight="10" paddingBottom="10">
   		
   		<mx:Button id="bAddItem" label="Add item" click="addItem()"/>

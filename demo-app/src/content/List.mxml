@@ -21,6 +21,7 @@
     </mx:Model>
 
     <mx:Panel title="List Control Example" height="75%" width="75%" 
+    showInAutomationHierarchy="false"
         paddingTop="10" paddingBottom="10" paddingLeft="10" paddingRight="10">
 
         <mx:Label text="Select a state to see its abbreviation."/>

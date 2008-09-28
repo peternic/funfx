@@ -15,6 +15,7 @@
     </mx:Script>
 
     <mx:Panel title="ToggleButtonBar Control Example" height="75%" width="75%"
+        showInAutomationHierarchy="false"
         paddingTop="10" paddingLeft="10" paddingRight="10" paddingBottom="10">
 
         <mx:Label width="100%" color="blue"

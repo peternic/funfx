@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%">
 	<mx:Panel title="ViewStack Container Example" height="95%" width="95%" 
-         paddingTop="10" paddingLeft="10" paddingRight="10" paddingBottom="10">
+         paddingTop="10" paddingLeft="10" paddingRight="10" paddingBottom="10"
+         showInAutomationHierarchy="false">
 
         <mx:Text width="100%" color="blue"
             text="Use the Button controls to change panels of the ViewStack container."/>

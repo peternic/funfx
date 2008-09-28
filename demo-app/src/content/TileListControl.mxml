@@ -26,6 +26,7 @@
     </mx:Script>
 
     <mx:Panel title="TileList" height="100%" width="100%" 
+        showInAutomationHierarchy="false"
         paddingTop="10" paddingBottom="10" paddingLeft="10" paddingRight="10">
 
         <mx:Label width="100%" color="blue" 
