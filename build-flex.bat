@@ -1,2 +1,0 @@
-cd flex
-build.bat
