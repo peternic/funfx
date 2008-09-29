@@ -1452,6 +1452,102 @@ module FunFX
         FlexTree.new(self, *locator_hash)
       end
     
+      class FlexAdvancedDataGrid < FlexListBase
+      
+        include TabularData
+      
+      
+        def display_disclosure_icon?
+          get_property_value('displayDisclosureIcon', TrueClass)
+        end
+      
+        def display_items_expanded?
+          get_property_value('displayItemsExpanded', TrueClass)
+        end
+      
+        def first_visible_item
+          get_property_value('firstVisibleItem', String)
+        end
+      
+        def group_row_height
+          get_property_value('groupRowHeight', Integer)
+        end
+      
+        def locked_column_count
+          get_property_value('lockedColumnCount', Integer)
+        end
+      
+        def locked_row_count
+          get_property_value('lockedRowCount', Integer)
+        end
+      
+        def selected_cells
+          get_property_value('selectedCells', String)
+        end
+      
+        def editable?
+          get_property_value('editable', TrueClass)
+        end
+      
+        def min_column_width
+          get_property_value('minColumnWidth', Integer)
+        end
+      
+        def resizable_columns?
+          get_property_value('resizableColumns', TrueClass)
+        end
+      
+        def sortable_columns?
+          get_property_value('sortableColumns', TrueClass)
+        end
+      
+        def header_colors
+          get_property_value('headerColors', String)
+        end
+      
+        def header_style
+          get_property_value('headerStyle', String)
+        end
+      
+        def v_grid_line_color
+          get_property_value('vGridLineColor', String)
+        end
+      
+        def v_grid_lines?
+          get_property_value('vGridLines', TrueClass)
+        end
+      
+      
+        def header_click(column_index)
+          fire_event('HeaderClick', column_index)
+        end
+      
+        def column_stretch(column_index, local_x)
+          fire_event('ColumnStretch', column_index, local_x)
+        end
+      
+        def header_shift(new_index, old_index, trigger_event=["1"])
+          fire_event('HeaderShift', new_index, old_index, trigger_event)
+        end
+      
+        def edit(item_renderer, row_index, column_index)
+          fire_event('Edit', item_renderer, row_index, column_index)
+        end
+      
+        def item_open(item_renderer)
+          fire_event('ItemOpen', item_renderer)
+        end
+      
+        def item_close(item_renderer)
+          fire_event('ItemClose', item_renderer)
+        end
+      
+      end
+      
+      def advanced_data_grid(*locator_hash)
+        FlexAdvancedDataGrid.new(self, *locator_hash)
+      end
+    
       class FlexList < FlexListBase
       
         include TabularData

@@ -513,6 +513,83 @@
             <Property Name="vGridLines" ForVerification="true"><PropertyType Type="Boolean"/></Property>
         </Properties>
     </ClassInfo>
+	
+	<ClassInfo Name="FlexAdvancedDataGrid" Extends="FlexListBase" SupportsTabularData="true">
+                        <Implementation Class="mx.controls::AdvancedDataGrid"/>
+        <Events>
+            <Event  Name="HeaderClick" >
+                <Implementation Class="mx.events::DataGridEvent" Type="headerRelease"/>
+                <Property Name="columnIndex" >
+                    <PropertyType Type="int"/>                   
+                </Property>
+            </Event>
+            <Event  Name="ColumnStretch" >
+                <Implementation Class="mx.events::DataGridEvent" Type="columnStretch"/>
+                <Property Name="columnIndex" >
+                    <PropertyType Type="int"/>                   
+                </Property>
+                <Property Name="localX" >
+                    <PropertyType Type="Number"/>                   
+                </Property>
+            </Event>
+            <Event  Name="HeaderShift" >
+                <Implementation Class="mx.events::IndexChangedEvent" Type="headerShift"/>
+                <Property Name="newIndex" >
+                    <PropertyType Type="int"/>                
+                </Property>
+                <Property Name="oldIndex" >
+                    <PropertyType Type="int"/>                
+                </Property>
+                <Property Name="triggerEvent"  DefaultValue="1">
+                  <PropertyType Type="Enumeration" ListOfValuesName="FlexTriggerEventValues" Codec="event"/>                </Property>
+            </Event>
+			<Event  Name="Edit" >
+				<Implementation Class="mx.events::DataGridEvent" Type="itemEditBegin"/>
+				<Property Name="itemRenderer" >
+				  <PropertyType Type="String" Codec="automationObject"/>
+				  				</Property>
+				<Property Name="rowIndex" >
+				  <PropertyType Type="int"/>
+				  				</Property>
+				<Property Name="columnIndex" >
+				  <PropertyType Type="int"/>
+		          				</Property>
+			 </Event>
+			 <Event  Name="ItemOpen" >
+				<Implementation Class="mx.events::AdvancedDataGridEvent " Type="itemOpen"/>
+				<Property Name="itemRenderer" >
+				  <PropertyType Type="String" Codec="automationObject"/>
+				</Property>
+			 </Event>
+			 <Event  Name="ItemClose" >
+				<Implementation Class="mx.events::AdvancedDataGridEvent " Type="itemClose"/>
+				<Property Name="itemRenderer" >
+				  <PropertyType Type="String" Codec="automationObject"/>
+				</Property>
+			 </Event>
+        </Events>
+        <Properties>
+			
+			<Property Name="displayDisclosureIcon" ForVerification="true"><PropertyType Type="Boolean" /></Property>
+			<Property Name="displayItemsExpanded" ForVerification="true"><PropertyType Type="Boolean" /></Property>
+			<Property Name="firstVisibleItem" ForVerification="true"><PropertyType Type="Object" /></Property>
+			<Property Name="groupedColumns" ForVerification="true"><PropertyType Type="Array" /></Property>
+			<Property Name="groupRowHeight" ForVerification="true"><PropertyType Type="Number" /></Property>
+			<Property Name="lockedColumnCount" ForVerification="true"><PropertyType Type="int" /></Property>
+			<Property Name="lockedRowCount" ForVerification="true"><PropertyType Type="int" /></Property>
+			<Property Name="rendererProviders" ForVerification="true"><PropertyType Type="Array" /></Property>
+			<Property Name="selectedCells" ForVerification="true"><PropertyType Type="Array" /></Property>
+			<Property Name="editable" ForVerification="true"><PropertyType Type="Boolean" /></Property>
+            <Property Name="columnNames" ForVerification="true"><PropertyType Type="String" Codec="object[]"/></Property>
+            <Property Name="minColumnWidth" ForVerification="true"><PropertyType Type="Number"/></Property>
+            <Property Name="resizableColumns" ForVerification="true"><PropertyType Type="Boolean"/></Property>
+            <Property Name="sortableColumns" ForVerification="true"><PropertyType Type="Boolean"/></Property>
+            <Property Name="headerColors" ForVerification="true"><PropertyType Type="String" Codec="color[]"/></Property>
+            <Property Name="headerStyle" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="vGridLineColor" ForVerification="true"><PropertyType Type="String" Codec="color"/></Property>
+            <Property Name="vGridLines" ForVerification="true"><PropertyType Type="Boolean"/></Property>
+        </Properties>
+    </ClassInfo>
 
     <ClassInfo Name="FlexList" Extends="FlexListBase" SupportsTabularData="true">
                         <Implementation Class="mx.controls::List"/>

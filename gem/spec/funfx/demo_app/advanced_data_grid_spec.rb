@@ -11,8 +11,7 @@ describe "DemoApp" do
     tree.open('General controls')
     tree.select('General controls>AdvancedDataGrid1')
   
-    pending "Must implement advanced datagrid support" do
-      advanced_data_grid = @flex.advanced_data_grid({:id => 'myADG'})
-    end
+    advanced_data_grid = @flex.advanced_data_grid({:id => 'myADG'})
+	advanced_data_grid.select("*Southwest*")
   end
 end

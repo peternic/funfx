@@ -161,6 +161,11 @@ digraph G {
   ]
   FlexTree -> FlexListBase
 
+  FlexAdvancedDataGrid [
+    label = "{FlexAdvancedDataGrid|display_disclosure_icon? : TrueClass\ldisplay_items_expanded? : TrueClass\lfirst_visible_item : String\lgroup_row_height : Integer\llocked_column_count : Integer\llocked_row_count : Integer\lselected_cells : String\leditable? : TrueClass\lmin_column_width : Integer\lresizable_columns? : TrueClass\lsortable_columns? : TrueClass\lheader_colors : String\lheader_style : String\lv_grid_line_color : String\lv_grid_lines? : TrueClass\l|header_click(column_index)\lcolumn_stretch(column_index, local_x)\lheader_shift(new_index, old_index, trigger_event=[\"1\"])\ledit(item_renderer, row_index, column_index)\litem_open(item_renderer)\litem_close(item_renderer)\l}"
+  ]
+  FlexAdvancedDataGrid -> FlexListBase
+
   FlexList [
     label = "{FlexList||edit(item_renderer, row_index, column_index)\l}"
   ]
