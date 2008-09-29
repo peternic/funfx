@@ -18,7 +18,7 @@
     <mx:DateFormatter id="df"/>
     
     <mx:Panel title="DateChooser Control Example" height="75%" width="75%" 
-        paddingTop="10" paddingLeft="10" paddingRight="10">
+        paddingTop="10" paddingLeft="10" paddingRight="10" showInAutomationHierarchy="false">
 
         <mx:Label width="100%" color="blue"
             text="Select a date in the DateChooser control."/>
@@ -29,8 +29,15 @@
           <mx:VBox>
               <mx:Label text="Simple DateChooser control."/>
               <mx:DateChooser id="dateChooser1" yearNavigationEnabled="true"    
-                  change="displayDate(DateChooser(event.target).selectedDate)"/>
+                  change="displayDate(DateChooser(event.target).selectedDate)"
+                  disabledRanges="{[ {rangeEnd: new Date(2008, 4, 5)} ]}"/>
               <mx:Label id="selection"  color="blue" text="Date selected:"/>
+          </mx:VBox>
+          <mx:VBox>
+              <mx:Label text="Multiple Selection DateChooser control."/>
+              <mx:DateChooser id="dateChooserMultipleSelection"               yearNavigationEnabled="true"
+                  allowMultipleSelection="true"
+                  disabledRanges="{[ {rangeEnd: new Date(2008, 4, 5)} ]}"/>
           </mx:VBox>
         </mx:HBox>
         

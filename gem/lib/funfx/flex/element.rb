@@ -80,6 +80,7 @@ module FunFX
           string_value.to_i
         when :boolean
           string_value == "true"
+        when :date
         else
           raise "I don't know how to convert #{string_value.inspect} to #{ruby_type.inspect}"
         end

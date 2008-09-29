@@ -1,3 +1,5 @@
+require 'date'
+
 module FunFX
   class Decoder
     class << self
@@ -44,5 +46,11 @@ end
 class String
   def self.from_funfx_string(s)
     s
+  end
+end
+
+class Date
+  def self.from_funfx_string(s)
+    self.parse(s)
   end
 end
