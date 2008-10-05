@@ -348,7 +348,7 @@
                 <Implementation Class="mx.automation.events::AutomationDragEvent" Type="dragDrop"/>
                 <Property Name="action" >
                   <PropertyType Type="String"/>                
-</Property>
+				</Property>
                 <Property Name="draggedItem"  DefaultValue="">
                   <PropertyType Type="String" Codec="automationObject"/>                   
                 </Property>
@@ -514,7 +514,92 @@
         </Properties>
     </ClassInfo>
 	
-	<ClassInfo Name="FlexAdvancedDataGrid" Extends="FlexListBase" SupportsTabularData="true">
+	<ClassInfo Name="FlexAdvancedListBase" Extends="FlexScrollBase" SupportsTabularData="true">
+        <Implementation Class="mx.controls::AdvancedListBase"/>
+        <Events>
+			<Event  Name="Select" >
+                <Implementation Class="mx.automation.events::ListItemSelectEvent" Type="select"/>
+                <Property Name="itemRenderer" >
+                  <PropertyType Type="String" Codec="automationObject"/>                   
+                </Property>
+                <Property Name="triggerEvent"  DefaultValue="1">
+                  <PropertyType Type="Enumeration" ListOfValuesName="FlexTriggerEventValues" Codec="event"/>                   
+                </Property>
+                <Property Name="keyModifier"  DefaultValue="0">
+                    <PropertyType Type="Enumeration" ListOfValuesName="FlexKeyModifierValues" Codec="keyModifier"/>
+				</Property>
+            </Event>
+        </Events>
+    </ClassInfo>
+    
+	<ClassInfo Name="FlexAdvancedDataGridBase" Extends="FlexAdvancedListBase" SupportsTabularData="true">
+        <Implementation Class="mx.controls::AdvancedDataGridBase"/>
+        <Events>
+        </Events>
+    </ClassInfo>
+    
+	<ClassInfo Name="FlexAdvancedDataGridBaseEx" Extends="FlexAdvancedDataGridBase" SupportsTabularData="true">
+        <Implementation Class="mx.controls::AdvancedDataGridBaseEx"/>
+        <Events>
+        </Events>
+    </ClassInfo>
+	
+    <ClassInfo Name="FlexAdvancedDataGrid" Extends="FlexAdvancedDataGridBaseEx" SupportsTabularData="true">
+        <Implementation Class="mx.controls::AdvancedDataGrid"/>
+        <Events>
+			<Event  Name="Select" >
+                <Implementation Class="mx.automation.events::ListItemSelectEvent" Type="select"/>
+                <Property Name="itemRenderer" >
+					<PropertyType Type="String" Codec="automationObject"/>                   
+                </Property>
+                <Property Name="triggerEvent"  DefaultValue="1">
+					<PropertyType Type="Enumeration" ListOfValuesName="FlexTriggerEventValues" Codec="event"/>                   
+                </Property>
+                <Property Name="keyModifier"  DefaultValue="0">
+                    <PropertyType Type="Enumeration" ListOfValuesName="FlexKeyModifierValues" Codec="keyModifier"/>
+				</Property>
+            </Event>
+			<Event  Name="ItemOpen" >
+                <Implementation Class="mx.events::AdvancedDataGridEvent" Type="itemOpen"/>
+                <Property Name="itemRenderer" >
+					<PropertyType Type="String" Codec="automationObject"/>                   
+                </Property>
+                <Property Name="triggerEvent"  DefaultValue="1">
+					<PropertyType Type="Enumeration" ListOfValuesName="FlexTriggerEventValues" Codec="event"/>                   
+                </Property>
+                <Property Name="keyModifier"  DefaultValue="0">
+                    <PropertyType Type="Enumeration" ListOfValuesName="FlexKeyModifierValues" Codec="keyModifier"/>
+				</Property>
+            </Event>
+			<Event  Name="ItemClose" >
+                <Implementation Class="mx.events::AdvancedDataGridEvent" Type="itemClose"/>
+                <Property Name="itemRenderer" >
+					<PropertyType Type="String" Codec="automationObject"/>                   
+                </Property>
+                <Property Name="triggerEvent"  DefaultValue="1">
+					<PropertyType Type="Enumeration" ListOfValuesName="FlexTriggerEventValues" Codec="event"/>                   
+                </Property>
+                <Property Name="keyModifier"  DefaultValue="0">
+                    <PropertyType Type="Enumeration" ListOfValuesName="FlexKeyModifierValues" Codec="keyModifier"/>
+				</Property>
+            </Event>
+            <Event Name="SelectIndex" >
+                 <Implementation Class="mx.automation.events::ListItemSelectEvent" Type="selectIndex"/>
+                 <Property Name="itemIndex"><PropertyType Type="int"/></Property>
+                 <Property Name="triggerEvent" DefaultValue="1">
+                   <PropertyType Type="Enumeration" ListOfValuesName="FlexTriggerEventValues" Codec="event"/>     
+                   </Property>
+
+             </Event>
+
+        </Events>
+        <Properties>
+            
+        </Properties>
+    </ClassInfo>
+
+	
+	<!--<ClassInfo Name="FlexAdvancedDataGrid" Extends="FlexListBase" SupportsTabularData="true">
                         <Implementation Class="mx.controls::AdvancedDataGrid"/>
         <Events>
             <Event  Name="HeaderClick" >
@@ -544,7 +629,7 @@
                   <PropertyType Type="Enumeration" ListOfValuesName="FlexTriggerEventValues" Codec="event"/>                </Property>
             </Event>
 			<Event  Name="Edit" >
-				<Implementation Class="mx.events::DataGridEvent" Type="itemEditBegin"/>
+				<Implementation Class="funfx.events::DataGridEvent" Type="itemEditBegin"/>
 				<Property Name="itemRenderer" >
 				  <PropertyType Type="String" Codec="automationObject"/>
 				  				</Property>
@@ -556,7 +641,7 @@
 		          				</Property>
 			 </Event>
 			 <Event  Name="ItemOpen" >
-				<Implementation Class="mx.events::AdvancedDataGridEvent " Type="itemOpen"/>
+				<Implementation Class="funfx.events::AdvancedDataGridEvent " Type="itemOpen"/>
 				<Property Name="itemRenderer" >
 				  <PropertyType Type="String" Codec="automationObject"/>
 				</Property>
@@ -587,7 +672,7 @@
             <Property Name="vGridLineColor" ForVerification="true"><PropertyType Type="String" Codec="color"/></Property>
             <Property Name="vGridLines" ForVerification="true"><PropertyType Type="Boolean"/></Property>
         </Properties>
-    </ClassInfo>
+    </ClassInfo>-->
 
     <ClassInfo Name="FlexList" Extends="FlexListBase" SupportsTabularData="true">
                         <Implementation Class="mx.controls::List"/>

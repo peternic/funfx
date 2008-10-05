@@ -176,117 +176,105 @@ module FunFX
         FlexObject.new(self, *locator_hash)
       end
     
-      class FlexNumericStepper < FlexObject
+      class FlexScrollBar < FlexObject
       
       
-        def value
-          get_property_value('value', Integer)
+        def line_scroll_size
+          get_property_value('lineScrollSize', Integer)
         end
       
-        def minimum
-          get_property_value('minimum', Integer)
+        def page_scroll_size
+          get_property_value('pageScrollSize', Integer)
         end
       
-        def maximum
-          get_property_value('maximum', Integer)
+        def scroll_position
+          get_property_value('scrollPosition', String)
         end
       
-        def next_value
-          get_property_value('nextValue', Integer)
-        end
-      
-        def previous_value
-          get_property_value('previousValue', Integer)
-        end
-      
-        def step_size
-          get_property_value('stepSize', Integer)
-        end
-      
-        def color
-          get_property_value('color', Integer)
-        end
-      
-        def disabled_color
-          get_property_value('disabledColor', String)
+        def track_colors
+          get_property_value('trackColors', String)
         end
       
         def fill_colors
           get_property_value('fillColors', String)
         end
       
-        def font_family
-          get_property_value('fontFamily', String)
+      
+        def scroll(position, direction, detail=["null"])
+          fire_event('Scroll', position, direction, detail)
         end
       
-        def font_size
-          get_property_value('fontSize', Integer)
-        end
+      end
       
-        def font_style
-          get_property_value('fontStyle', String)
-        end
+      def scroll_bar(*locator_hash)
+        FlexScrollBar.new(self, *locator_hash)
+      end
+    
+      class FlexMenu < FlexObject
       
-        def font_weight
-          get_property_value('fontWeight', String)
-        end
-      
-        def text_align
-          get_property_value('textAlign', String)
-        end
-      
-        def text_decoration
-          get_property_value('textDecoration', String)
-        end
-      
-        def text_indent
-          get_property_value('textIndent', Integer)
-        end
+        include TabularData
       
       
-        def change(value)
-          fire_event('Change', value)
+        def row_count
+          get_property_value('rowCount', Integer)
         end
       
-        def input(text)
-          fire_event('Input', text)
+        def selected_index
+          get_property_value('selectedIndex', Integer)
         end
       
-        def select_text(begin_index, end_index)
-          fire_event('SelectText', begin_index, end_index)
+        def alternating_row_colors
+          get_property_value('alternatingRowColors', String)
         end
+      
+        def roll_over_color
+          get_property_value('rollOverColor', String)
+        end
+      
+        def selection_color
+          get_property_value('selectionColor', String)
+        end
+      
+        def text_roll_over_color
+          get_property_value('textRollOverColor', String)
+        end
+      
+        def text_selected_color
+          get_property_value('textSelectedColor', String)
+        end
+      
       
         def type(key_code, key_modifier=["0"])
           fire_event('Type', key_code, key_modifier)
         end
       
+        def show(item_renderer)
+          fire_event('Show', item_renderer)
+        end
+      
+        def hide()
+          fire_event('Hide')
+        end
+      
+        def select(item_renderer)
+          fire_event('Select', item_renderer)
+        end
+      
       end
       
-      def numeric_stepper(*locator_hash)
-        FlexNumericStepper.new(self, *locator_hash)
+      def menu(*locator_hash)
+        FlexMenu.new(self, *locator_hash)
       end
     
-      class FlexButton < FlexObject
+      class FlexLabel < FlexObject
       
       
-        def enabled?
-          get_property_value('enabled', TrueClass)
+        def text
+          get_property_value('text', String)
         end
       
-        def label
-          get_property_value('label', String)
-        end
-      
-        def label_placement
-          get_property_value('labelPlacement', String)
-        end
-      
-        def selected?
-          get_property_value('selected', TrueClass)
-        end
-      
-        def toggle?
-          get_property_value('toggle', TrueClass)
+        def html_text
+          get_property_value('htmlText', String)
         end
       
         def color
@@ -313,18 +301,6 @@ module FunFX
           get_property_value('fontWeight', String)
         end
       
-        def fill_alphas
-          get_property_value('fillAlphas', String)
-        end
-      
-        def fill_colors
-          get_property_value('fillColors', String)
-        end
-      
-        def focus_alpha
-          get_property_value('focusAlpha', Integer)
-        end
-      
         def text_align
           get_property_value('textAlign', String)
         end
@@ -337,93 +313,15 @@ module FunFX
           get_property_value('textIndent', Integer)
         end
       
-        def text_roll_over_color
-          get_property_value('textRollOverColor', String)
-        end
       
-        def text_selected_color
-          get_property_value('textSelectedColor', String)
-        end
-      
-      
-        def type(key_code, key_modifier=["0"])
-          fire_event('Type', key_code, key_modifier)
+        def click(ctrl_key, alt_key, shift_key)
+          fire_event('Click', ctrl_key, alt_key, shift_key)
         end
       
       end
       
-      def button(*locator_hash)
-        FlexButton.new(self, *locator_hash)
-      end
-    
-      class FlexRadioButton < FlexButton
-      
-      
-        def group_name
-          get_property_value('groupName', String)
-        end
-      
-        def label_placement
-          get_property_value('labelPlacement', String)
-        end
-      
-      
-      end
-      
-      def radio_button(*locator_hash)
-        FlexRadioButton.new(self, *locator_hash)
-      end
-    
-      class FlexPopUpButton < FlexButton
-      
-      
-      
-        def open(trigger_event=["1"])
-          fire_event('Open', trigger_event)
-        end
-      
-        def close(trigger_event=["1"])
-          fire_event('Close', trigger_event)
-        end
-      
-      end
-      
-      def pop_up_button(*locator_hash)
-        FlexPopUpButton.new(self, *locator_hash)
-      end
-    
-      class FlexCheckBox < FlexButton
-      
-      
-      
-      end
-      
-      def check_box(*locator_hash)
-        FlexCheckBox.new(self, *locator_hash)
-      end
-    
-      class FlexLoader < FlexObject
-      
-      
-        def source
-          get_property_value('source', String)
-        end
-      
-      
-      end
-      
-      def loader(*locator_hash)
-        FlexLoader.new(self, *locator_hash)
-      end
-    
-      class FlexImage < FlexLoader
-      
-      
-      
-      end
-      
-      def image(*locator_hash)
-        FlexImage.new(self, *locator_hash)
+      def label(*locator_hash)
+        FlexLabel.new(self, *locator_hash)
       end
     
       class FlexDateChooser < FlexObject
@@ -564,6 +462,562 @@ module FunFX
         FlexDateChooser.new(self, *locator_hash)
       end
     
+      class FlexChartSeries < FlexObject
+      
+        include TabularData
+      
+      
+      
+        def click(hit_set)
+          fire_event('Click', hit_set)
+        end
+      
+        def double_click(hit_set)
+          fire_event('DoubleClick', hit_set)
+        end
+      
+        def item_roll_over(hit_set)
+          fire_event('ItemRollOver', hit_set)
+        end
+      
+      end
+      
+      def chart_series(*locator_hash)
+        FlexChartSeries.new(self, *locator_hash)
+      end
+    
+      class FlexLineSeries < FlexChartSeries
+      
+        include TabularData
+      
+      
+        def form
+          get_property_value('form', String)
+        end
+      
+        def radius
+          get_property_value('radius', Integer)
+        end
+      
+        def sort_on_x_field?
+          get_property_value('sortOnXField', TrueClass)
+        end
+      
+        def x_field
+          get_property_value('xField', String)
+        end
+      
+        def y_field
+          get_property_value('yField', String)
+        end
+      
+      
+      end
+      
+      def line_series(*locator_hash)
+        FlexLineSeries.new(self, *locator_hash)
+      end
+    
+      class FlexPieSeries < FlexChartSeries
+      
+        include TabularData
+      
+      
+        def explode_radius
+          get_property_value('explodeRadius', Integer)
+        end
+      
+        def field
+          get_property_value('field', String)
+        end
+      
+        def max_label_radius
+          get_property_value('maxLabelRadius', Integer)
+        end
+      
+        def name_field
+          get_property_value('nameField', String)
+        end
+      
+        def outer_radius
+          get_property_value('outerRadius', Integer)
+        end
+      
+        def inside_label_size_limit
+          get_property_value('insideLabelSizeLimit', Integer)
+        end
+      
+        def inner_radius
+          get_property_value('innerRadius', Integer)
+        end
+      
+        def font_size
+          get_property_value('fontSize', Integer)
+        end
+      
+        def callout_gap
+          get_property_value('calloutGap', Integer)
+        end
+      
+        def start_angle
+          get_property_value('startAngle', Integer)
+        end
+      
+        def label_position
+          get_property_value('labelPosition', String)
+        end
+      
+      
+      end
+      
+      def pie_series(*locator_hash)
+        FlexPieSeries.new(self, *locator_hash)
+      end
+    
+      class FlexBubbleSeries < FlexChartSeries
+      
+        include TabularData
+      
+      
+        def max_radius
+          get_property_value('maxRadius', Integer)
+        end
+      
+        def radius_field
+          get_property_value('radiusField', String)
+        end
+      
+        def x_field
+          get_property_value('xField', String)
+        end
+      
+        def y_field
+          get_property_value('yField', String)
+        end
+      
+      
+      end
+      
+      def bubble_series(*locator_hash)
+        FlexBubbleSeries.new(self, *locator_hash)
+      end
+    
+      class FlexPlotSeries < FlexChartSeries
+      
+        include TabularData
+      
+      
+        def radius
+          get_property_value('radius', Integer)
+        end
+      
+        def x_field
+          get_property_value('xField', String)
+        end
+      
+        def y_field
+          get_property_value('yField', String)
+        end
+      
+      
+      end
+      
+      def plot_series(*locator_hash)
+        FlexPlotSeries.new(self, *locator_hash)
+      end
+    
+      class FlexAreaSeries < FlexChartSeries
+      
+        include TabularData
+      
+      
+        def min_field
+          get_property_value('minField', String)
+        end
+      
+        def x_field
+          get_property_value('xField', String)
+        end
+      
+        def y_field
+          get_property_value('yField', String)
+        end
+      
+        def form
+          get_property_value('form', String)
+        end
+      
+        def radius
+          get_property_value('radius', Integer)
+        end
+      
+      
+      end
+      
+      def area_series(*locator_hash)
+        FlexAreaSeries.new(self, *locator_hash)
+      end
+    
+      class FlexColumnSeries < FlexChartSeries
+      
+        include TabularData
+      
+      
+        def column_width_ratio
+          get_property_value('columnWidthRatio', Integer)
+        end
+      
+        def max_column_width
+          get_property_value('maxColumnWidth', Integer)
+        end
+      
+        def offset
+          get_property_value('offset', Integer)
+        end
+      
+        def sort_on_x_field?
+          get_property_value('sortOnXField', TrueClass)
+        end
+      
+        def min_field
+          get_property_value('minField', String)
+        end
+      
+        def x_field
+          get_property_value('xField', String)
+        end
+      
+        def y_field
+          get_property_value('yField', String)
+        end
+      
+      
+      end
+      
+      def column_series(*locator_hash)
+        FlexColumnSeries.new(self, *locator_hash)
+      end
+    
+      class FlexBarSeries < FlexChartSeries
+      
+        include TabularData
+      
+      
+        def bar_width_ratio
+          get_property_value('barWidthRatio', Integer)
+        end
+      
+        def max_bar_width
+          get_property_value('maxBarWidth', Integer)
+        end
+      
+        def min_field
+          get_property_value('minField', String)
+        end
+      
+        def offset
+          get_property_value('offset', Integer)
+        end
+      
+        def x_field
+          get_property_value('xField', String)
+        end
+      
+        def y_field
+          get_property_value('yField', String)
+        end
+      
+      
+      end
+      
+      def bar_series(*locator_hash)
+        FlexBarSeries.new(self, *locator_hash)
+      end
+    
+      class FlexAxisRenderer < FlexObject
+      
+        include TabularData
+      
+      
+        def height_limit
+          get_property_value('heightLimit', Integer)
+        end
+      
+        def length
+          get_property_value('length', Integer)
+        end
+      
+        def placement
+          get_property_value('placement', String)
+        end
+      
+        def can_drop_labels?
+          get_property_value('canDropLabels', TrueClass)
+        end
+      
+        def can_stagger?
+          get_property_value('canStagger', TrueClass)
+        end
+      
+        def label_gap
+          get_property_value('labelGap', Integer)
+        end
+      
+        def label_rotation
+          get_property_value('labelRotation', Integer)
+        end
+      
+        def minor_tick_length
+          get_property_value('minorTickLength', Integer)
+        end
+      
+        def minor_tick_placement
+          get_property_value('minorTickPlacement', String)
+        end
+      
+        def show_labels?
+          get_property_value('showLabels', TrueClass)
+        end
+      
+        def show_line?
+          get_property_value('showLine', TrueClass)
+        end
+      
+        def tick_length
+          get_property_value('tickLength', Integer)
+        end
+      
+        def tick_placement
+          get_property_value('tickPlacement', String)
+        end
+      
+        def ticks
+          get_property_value('ticks', String)
+        end
+      
+        def minor_ticks
+          get_property_value('minorTicks', String)
+        end
+      
+      
+      end
+      
+      def axis_renderer(*locator_hash)
+        FlexAxisRenderer.new(self, *locator_hash)
+      end
+    
+      class FlexChart < FlexObject
+      
+        include TabularData
+      
+      
+        def description
+          get_property_value('description', String)
+        end
+      
+        def clip_content?
+          get_property_value('clipContent', TrueClass)
+        end
+      
+        def data_tip_layer_index
+          get_property_value('dataTipLayerIndex', Integer)
+        end
+      
+        def data_tip_mode
+          get_property_value('dataTipMode', String)
+        end
+      
+        def mouse_sensitivity
+          get_property_value('mouseSensitivity', Integer)
+        end
+      
+        def show_data_tips?
+          get_property_value('showDataTips', TrueClass)
+        end
+      
+        def font_family
+          get_property_value('fontFamily', String)
+        end
+      
+        def font_size
+          get_property_value('fontSize', Integer)
+        end
+      
+        def maximum_data_tip_count
+          get_property_value('maximumDataTipCount', Integer)
+        end
+      
+        def padding_bottom
+          get_property_value('paddingBottom', Integer)
+        end
+      
+        def padding_top
+          get_property_value('paddingTop', Integer)
+        end
+      
+        def padding_left
+          get_property_value('paddingLeft', Integer)
+        end
+      
+        def padding_right
+          get_property_value('paddingRight', Integer)
+        end
+      
+        def show_data_tip_targets?
+          get_property_value('showDataTipTargets', TrueClass)
+        end
+      
+      
+      end
+      
+      def chart(*locator_hash)
+        FlexChart.new(self, *locator_hash)
+      end
+    
+      class FlexCartesianChart < FlexChart
+      
+        include TabularData
+      
+      
+        def horizontal_axis_ratio
+          get_property_value('horizontalAxisRatio', Integer)
+        end
+      
+        def gutter_left
+          get_property_value('gutterLeft', Integer)
+        end
+      
+        def gutter_right
+          get_property_value('gutterRight', Integer)
+        end
+      
+        def gutter_bottom
+          get_property_value('gutterBottom', Integer)
+        end
+      
+        def gutter_top
+          get_property_value('gutterTop', Integer)
+        end
+      
+        def text_align
+          get_property_value('textAlign', String)
+        end
+      
+      
+      end
+      
+      def cartesian_chart(*locator_hash)
+        FlexCartesianChart.new(self, *locator_hash)
+      end
+    
+      class FlexAreaChart < FlexCartesianChart
+      
+        include TabularData
+      
+      
+        def type
+          get_property_value('type', String)
+        end
+      
+      
+      end
+      
+      def area_chart(*locator_hash)
+        FlexAreaChart.new(self, *locator_hash)
+      end
+    
+      class FlexColumnChart < FlexCartesianChart
+      
+        include TabularData
+      
+      
+        def column_width_ratio
+          get_property_value('columnWidthRatio', Integer)
+        end
+      
+        def max_column_width
+          get_property_value('maxColumnWidth', Integer)
+        end
+      
+      
+      end
+      
+      def column_chart(*locator_hash)
+        FlexColumnChart.new(self, *locator_hash)
+      end
+    
+      class FlexLineChart < FlexCartesianChart
+      
+        include TabularData
+      
+      
+      
+      end
+      
+      def line_chart(*locator_hash)
+        FlexLineChart.new(self, *locator_hash)
+      end
+    
+      class FlexBarChart < FlexCartesianChart
+      
+        include TabularData
+      
+      
+        def bar_width_ratio
+          get_property_value('barWidthRatio', Integer)
+        end
+      
+        def max_bar_width
+          get_property_value('maxBarWidth', Integer)
+        end
+      
+      
+      end
+      
+      def bar_chart(*locator_hash)
+        FlexBarChart.new(self, *locator_hash)
+      end
+    
+      class FlexHLOCChart < FlexCartesianChart
+      
+        include TabularData
+      
+      
+        def column_width_ratio
+          get_property_value('columnWidthRatio', Integer)
+        end
+      
+        def max_column_width
+          get_property_value('maxColumnWidth', Integer)
+        end
+      
+      
+      end
+      
+      def hloc_chart(*locator_hash)
+        FlexHLOCChart.new(self, *locator_hash)
+      end
+    
+      class FlexPieChart < FlexChart
+      
+        include TabularData
+      
+      
+        def inner_radius
+          get_property_value('innerRadius', Integer)
+        end
+      
+        def text_align
+          get_property_value('textAlign', String)
+        end
+      
+      
+      end
+      
+      def pie_chart(*locator_hash)
+        FlexPieChart.new(self, *locator_hash)
+      end
+    
       class FlexProgressBar < FlexObject
       
       
@@ -664,482 +1118,6 @@ module FunFX
       
       def progress_bar(*locator_hash)
         FlexProgressBar.new(self, *locator_hash)
-      end
-    
-      class FlexRule < FlexObject
-      
-      
-        def color
-          get_property_value('color', String)
-        end
-      
-        def stroke_width
-          get_property_value('strokeWidth', Integer)
-        end
-      
-      
-      end
-      
-      def rule(*locator_hash)
-        FlexRule.new(self, *locator_hash)
-      end
-    
-      class FlexSlider < FlexObject
-      
-      
-        def direction
-          get_property_value('direction', String)
-        end
-      
-        def value
-          get_property_value('value', Integer)
-        end
-      
-        def values
-          get_property_value('values', String)
-        end
-      
-        def maximum
-          get_property_value('maximum', Integer)
-        end
-      
-        def minimum
-          get_property_value('minimum', Integer)
-        end
-      
-        def thumb_count
-          get_property_value('thumbCount', Integer)
-        end
-      
-        def labels
-          get_property_value('labels', String)
-        end
-      
-        def live_dragging?
-          get_property_value('liveDragging', TrueClass)
-        end
-      
-        def tool_tip_show?
-          get_property_value('toolTipShow', TrueClass)
-        end
-      
-        def snap_interval
-          get_property_value('snapInterval', Integer)
-        end
-      
-        def fill_colors
-          get_property_value('fillColors', String)
-        end
-      
-        def label_style_name
-          get_property_value('labelStyleName', String)
-        end
-      
-        def tick_color
-          get_property_value('tickColor', String)
-        end
-      
-        def tick_length
-          get_property_value('tickLength', Integer)
-        end
-      
-        def tick_thickness
-          get_property_value('tickThickness', Integer)
-        end
-      
-        def data_tip_precision
-          get_property_value('dataTipPrecision', Integer)
-        end
-      
-        def track_colors
-          get_property_value('trackColors', String)
-        end
-      
-      
-        def change(value, thumb_index=0, click_target="thumb", trigger_event=["1"], key_code="")
-          fire_event('Change', value, thumb_index, click_target, trigger_event, key_code)
-        end
-      
-      end
-      
-      def slider(*locator_hash)
-        FlexSlider.new(self, *locator_hash)
-      end
-    
-      class FlexVideoDisplay < FlexObject
-      
-      
-        def source
-          get_property_value('source', String)
-        end
-      
-        def total_time
-          get_property_value('totalTime', Integer)
-        end
-      
-        def volume
-          get_property_value('volume', Integer)
-        end
-      
-      
-      end
-      
-      def video_display(*locator_hash)
-        FlexVideoDisplay.new(self, *locator_hash)
-      end
-    
-      class FlexChart < FlexObject
-      
-        include TabularData
-      
-      
-        def description
-          get_property_value('description', String)
-        end
-      
-        def clip_content?
-          get_property_value('clipContent', TrueClass)
-        end
-      
-        def data_tip_layer_index
-          get_property_value('dataTipLayerIndex', Integer)
-        end
-      
-        def data_tip_mode
-          get_property_value('dataTipMode', String)
-        end
-      
-        def mouse_sensitivity
-          get_property_value('mouseSensitivity', Integer)
-        end
-      
-        def show_data_tips?
-          get_property_value('showDataTips', TrueClass)
-        end
-      
-        def font_family
-          get_property_value('fontFamily', String)
-        end
-      
-        def font_size
-          get_property_value('fontSize', Integer)
-        end
-      
-        def maximum_data_tip_count
-          get_property_value('maximumDataTipCount', Integer)
-        end
-      
-        def padding_bottom
-          get_property_value('paddingBottom', Integer)
-        end
-      
-        def padding_top
-          get_property_value('paddingTop', Integer)
-        end
-      
-        def padding_left
-          get_property_value('paddingLeft', Integer)
-        end
-      
-        def padding_right
-          get_property_value('paddingRight', Integer)
-        end
-      
-        def show_data_tip_targets?
-          get_property_value('showDataTipTargets', TrueClass)
-        end
-      
-      
-      end
-      
-      def chart(*locator_hash)
-        FlexChart.new(self, *locator_hash)
-      end
-    
-      class FlexPieChart < FlexChart
-      
-        include TabularData
-      
-      
-        def inner_radius
-          get_property_value('innerRadius', Integer)
-        end
-      
-        def text_align
-          get_property_value('textAlign', String)
-        end
-      
-      
-      end
-      
-      def pie_chart(*locator_hash)
-        FlexPieChart.new(self, *locator_hash)
-      end
-    
-      class FlexCartesianChart < FlexChart
-      
-        include TabularData
-      
-      
-        def horizontal_axis_ratio
-          get_property_value('horizontalAxisRatio', Integer)
-        end
-      
-        def gutter_left
-          get_property_value('gutterLeft', Integer)
-        end
-      
-        def gutter_right
-          get_property_value('gutterRight', Integer)
-        end
-      
-        def gutter_bottom
-          get_property_value('gutterBottom', Integer)
-        end
-      
-        def gutter_top
-          get_property_value('gutterTop', Integer)
-        end
-      
-        def text_align
-          get_property_value('textAlign', String)
-        end
-      
-      
-      end
-      
-      def cartesian_chart(*locator_hash)
-        FlexCartesianChart.new(self, *locator_hash)
-      end
-    
-      class FlexAreaChart < FlexCartesianChart
-      
-        include TabularData
-      
-      
-        def type
-          get_property_value('type', String)
-        end
-      
-      
-      end
-      
-      def area_chart(*locator_hash)
-        FlexAreaChart.new(self, *locator_hash)
-      end
-    
-      class FlexColumnChart < FlexCartesianChart
-      
-        include TabularData
-      
-      
-        def column_width_ratio
-          get_property_value('columnWidthRatio', Integer)
-        end
-      
-        def max_column_width
-          get_property_value('maxColumnWidth', Integer)
-        end
-      
-      
-      end
-      
-      def column_chart(*locator_hash)
-        FlexColumnChart.new(self, *locator_hash)
-      end
-    
-      class FlexLineChart < FlexCartesianChart
-      
-        include TabularData
-      
-      
-      
-      end
-      
-      def line_chart(*locator_hash)
-        FlexLineChart.new(self, *locator_hash)
-      end
-    
-      class FlexHLOCChart < FlexCartesianChart
-      
-        include TabularData
-      
-      
-        def column_width_ratio
-          get_property_value('columnWidthRatio', Integer)
-        end
-      
-        def max_column_width
-          get_property_value('maxColumnWidth', Integer)
-        end
-      
-      
-      end
-      
-      def hloc_chart(*locator_hash)
-        FlexHLOCChart.new(self, *locator_hash)
-      end
-    
-      class FlexBarChart < FlexCartesianChart
-      
-        include TabularData
-      
-      
-        def bar_width_ratio
-          get_property_value('barWidthRatio', Integer)
-        end
-      
-        def max_bar_width
-          get_property_value('maxBarWidth', Integer)
-        end
-      
-      
-      end
-      
-      def bar_chart(*locator_hash)
-        FlexBarChart.new(self, *locator_hash)
-      end
-    
-      class FlexLabel < FlexObject
-      
-      
-        def text
-          get_property_value('text', String)
-        end
-      
-        def html_text
-          get_property_value('htmlText', String)
-        end
-      
-        def color
-          get_property_value('color', String)
-        end
-      
-        def disabled_color
-          get_property_value('disabledColor', String)
-        end
-      
-        def font_family
-          get_property_value('fontFamily', String)
-        end
-      
-        def font_size
-          get_property_value('fontSize', Integer)
-        end
-      
-        def font_style
-          get_property_value('fontStyle', String)
-        end
-      
-        def font_weight
-          get_property_value('fontWeight', String)
-        end
-      
-        def text_align
-          get_property_value('textAlign', String)
-        end
-      
-        def text_decoration
-          get_property_value('textDecoration', String)
-        end
-      
-        def text_indent
-          get_property_value('textIndent', Integer)
-        end
-      
-      
-        def click(ctrl_key, alt_key, shift_key)
-          fire_event('Click', ctrl_key, alt_key, shift_key)
-        end
-      
-      end
-      
-      def label(*locator_hash)
-        FlexLabel.new(self, *locator_hash)
-      end
-    
-      class FlexMenuBar < FlexObject
-      
-        include TabularData
-      
-      
-        def num_children
-          get_property_value('numChildren', Integer)
-        end
-      
-        def selected_index
-          get_property_value('selectedIndex', Integer)
-        end
-      
-        def background_color
-          get_property_value('backgroundColor', String)
-        end
-      
-        def color
-          get_property_value('color', String)
-        end
-      
-        def disabled_color
-          get_property_value('disabledColor', String)
-        end
-      
-        def fill_colors
-          get_property_value('fillColors', String)
-        end
-      
-        def font_family
-          get_property_value('fontFamily', String)
-        end
-      
-        def font_size
-          get_property_value('fontSize', Integer)
-        end
-      
-        def font_style
-          get_property_value('fontStyle', String)
-        end
-      
-        def font_weight
-          get_property_value('fontWeight', String)
-        end
-      
-        def text_align
-          get_property_value('textAlign', String)
-        end
-      
-        def text_decoration
-          get_property_value('textDecoration', String)
-        end
-      
-        def roll_over_color
-          get_property_value('rollOverColor', String)
-        end
-      
-        def selection_color
-          get_property_value('selectionColor', String)
-        end
-      
-        def text_indent
-          get_property_value('textIndent', Integer)
-        end
-      
-      
-        def type(key_code, key_modifier=["0"])
-          fire_event('Type', key_code, key_modifier)
-        end
-      
-        def show(item_renderer)
-          fire_event('Show', item_renderer)
-        end
-      
-        def hide()
-          fire_event('Hide')
-        end
-      
-      end
-      
-      def menu_bar(*locator_hash)
-        FlexMenuBar.new(self, *locator_hash)
       end
     
       class FlexScrollBase < FlexObject
@@ -1244,6 +1222,74 @@ module FunFX
       
       def text_area(*locator_hash)
         FlexTextArea.new(self, *locator_hash)
+      end
+    
+      class FlexAdvancedListBase < FlexScrollBase
+      
+        include TabularData
+      
+      
+      
+        def select(item_renderer, trigger_event=["1"], key_modifier=["0"])
+          fire_event('Select', item_renderer, trigger_event, key_modifier)
+        end
+      
+      end
+      
+      def advanced_list_base(*locator_hash)
+        FlexAdvancedListBase.new(self, *locator_hash)
+      end
+    
+      class FlexAdvancedDataGridBase < FlexAdvancedListBase
+      
+        include TabularData
+      
+      
+      
+      end
+      
+      def advanced_data_grid_base(*locator_hash)
+        FlexAdvancedDataGridBase.new(self, *locator_hash)
+      end
+    
+      class FlexAdvancedDataGridBaseEx < FlexAdvancedDataGridBase
+      
+        include TabularData
+      
+      
+      
+      end
+      
+      def advanced_data_grid_base_ex(*locator_hash)
+        FlexAdvancedDataGridBaseEx.new(self, *locator_hash)
+      end
+    
+      class FlexAdvancedDataGrid < FlexAdvancedDataGridBaseEx
+      
+        include TabularData
+      
+      
+      
+        def select(item_renderer, trigger_event=["1"], key_modifier=["0"])
+          fire_event('Select', item_renderer, trigger_event, key_modifier)
+        end
+      
+        def item_open(item_renderer, trigger_event=["1"], key_modifier=["0"])
+          fire_event('ItemOpen', item_renderer, trigger_event, key_modifier)
+        end
+      
+        def item_close(item_renderer, trigger_event=["1"], key_modifier=["0"])
+          fire_event('ItemClose', item_renderer, trigger_event, key_modifier)
+        end
+      
+        def select_index(item_index, trigger_event=["1"])
+          fire_event('SelectIndex', item_index, trigger_event)
+        end
+      
+      end
+      
+      def advanced_data_grid(*locator_hash)
+        FlexAdvancedDataGrid.new(self, *locator_hash)
       end
     
       class FlexListBase < FlexScrollBase
@@ -1412,158 +1458,6 @@ module FunFX
         FlexListBase.new(self, *locator_hash)
       end
     
-      class FlexTree < FlexListBase
-      
-        include TabularData
-      
-      
-        def editable?
-          get_property_value('editable', TrueClass)
-        end
-      
-        def depth_colors
-          get_property_value('depthColors', String)
-        end
-      
-        def indentation
-          get_property_value('indentation', Integer)
-        end
-      
-        def text_disabled_color
-          get_property_value('textDisabledColor', String)
-        end
-      
-      
-        def drag_drop(action, drop_parent="", dragged_item="", key_modifier=["0"])
-          fire_event('DragDrop', action, drop_parent, dragged_item, key_modifier)
-        end
-      
-        def open(item_renderer, trigger_event=["1"])
-          fire_event('Open', item_renderer, trigger_event)
-        end
-      
-        def close(item_renderer, trigger_event=["1"])
-          fire_event('Close', item_renderer, trigger_event)
-        end
-      
-      end
-      
-      def tree(*locator_hash)
-        FlexTree.new(self, *locator_hash)
-      end
-    
-      class FlexAdvancedDataGrid < FlexListBase
-      
-        include TabularData
-      
-      
-        def display_disclosure_icon?
-          get_property_value('displayDisclosureIcon', TrueClass)
-        end
-      
-        def display_items_expanded?
-          get_property_value('displayItemsExpanded', TrueClass)
-        end
-      
-        def first_visible_item
-          get_property_value('firstVisibleItem', String)
-        end
-      
-        def group_row_height
-          get_property_value('groupRowHeight', Integer)
-        end
-      
-        def locked_column_count
-          get_property_value('lockedColumnCount', Integer)
-        end
-      
-        def locked_row_count
-          get_property_value('lockedRowCount', Integer)
-        end
-      
-        def selected_cells
-          get_property_value('selectedCells', String)
-        end
-      
-        def editable?
-          get_property_value('editable', TrueClass)
-        end
-      
-        def min_column_width
-          get_property_value('minColumnWidth', Integer)
-        end
-      
-        def resizable_columns?
-          get_property_value('resizableColumns', TrueClass)
-        end
-      
-        def sortable_columns?
-          get_property_value('sortableColumns', TrueClass)
-        end
-      
-        def header_colors
-          get_property_value('headerColors', String)
-        end
-      
-        def header_style
-          get_property_value('headerStyle', String)
-        end
-      
-        def v_grid_line_color
-          get_property_value('vGridLineColor', String)
-        end
-      
-        def v_grid_lines?
-          get_property_value('vGridLines', TrueClass)
-        end
-      
-      
-        def header_click(column_index)
-          fire_event('HeaderClick', column_index)
-        end
-      
-        def column_stretch(column_index, local_x)
-          fire_event('ColumnStretch', column_index, local_x)
-        end
-      
-        def header_shift(new_index, old_index, trigger_event=["1"])
-          fire_event('HeaderShift', new_index, old_index, trigger_event)
-        end
-      
-        def edit(item_renderer, row_index, column_index)
-          fire_event('Edit', item_renderer, row_index, column_index)
-        end
-      
-        def item_open(item_renderer)
-          fire_event('ItemOpen', item_renderer)
-        end
-      
-        def item_close(item_renderer)
-          fire_event('ItemClose', item_renderer)
-        end
-      
-      end
-      
-      def advanced_data_grid(*locator_hash)
-        FlexAdvancedDataGrid.new(self, *locator_hash)
-      end
-    
-      class FlexList < FlexListBase
-      
-        include TabularData
-      
-      
-      
-        def edit(item_renderer, row_index, column_index)
-          fire_event('Edit', item_renderer, row_index, column_index)
-        end
-      
-      end
-      
-      def list(*locator_hash)
-        FlexList.new(self, *locator_hash)
-      end
-    
       class FlexDataGrid < FlexListBase
       
         include TabularData
@@ -1624,21 +1518,135 @@ module FunFX
         FlexDataGrid.new(self, *locator_hash)
       end
     
-      class FlexMenu < FlexObject
+      class FlexList < FlexListBase
       
         include TabularData
       
       
-        def row_count
-          get_property_value('rowCount', Integer)
+      
+        def edit(item_renderer, row_index, column_index)
+          fire_event('Edit', item_renderer, row_index, column_index)
+        end
+      
+      end
+      
+      def list(*locator_hash)
+        FlexList.new(self, *locator_hash)
+      end
+    
+      class FlexTree < FlexListBase
+      
+        include TabularData
+      
+      
+        def editable?
+          get_property_value('editable', TrueClass)
+        end
+      
+        def depth_colors
+          get_property_value('depthColors', String)
+        end
+      
+        def indentation
+          get_property_value('indentation', Integer)
+        end
+      
+        def text_disabled_color
+          get_property_value('textDisabledColor', String)
+        end
+      
+      
+        def drag_drop(action, drop_parent="", dragged_item="", key_modifier=["0"])
+          fire_event('DragDrop', action, drop_parent, dragged_item, key_modifier)
+        end
+      
+        def open(item_renderer, trigger_event=["1"])
+          fire_event('Open', item_renderer, trigger_event)
+        end
+      
+        def close(item_renderer, trigger_event=["1"])
+          fire_event('Close', item_renderer, trigger_event)
+        end
+      
+      end
+      
+      def tree(*locator_hash)
+        FlexTree.new(self, *locator_hash)
+      end
+    
+      class FlexVideoDisplay < FlexObject
+      
+      
+        def source
+          get_property_value('source', String)
+        end
+      
+        def total_time
+          get_property_value('totalTime', Integer)
+        end
+      
+        def volume
+          get_property_value('volume', Integer)
+        end
+      
+      
+      end
+      
+      def video_display(*locator_hash)
+        FlexVideoDisplay.new(self, *locator_hash)
+      end
+    
+      class FlexMenuBar < FlexObject
+      
+        include TabularData
+      
+      
+        def num_children
+          get_property_value('numChildren', Integer)
         end
       
         def selected_index
           get_property_value('selectedIndex', Integer)
         end
       
-        def alternating_row_colors
-          get_property_value('alternatingRowColors', String)
+        def background_color
+          get_property_value('backgroundColor', String)
+        end
+      
+        def color
+          get_property_value('color', String)
+        end
+      
+        def disabled_color
+          get_property_value('disabledColor', String)
+        end
+      
+        def fill_colors
+          get_property_value('fillColors', String)
+        end
+      
+        def font_family
+          get_property_value('fontFamily', String)
+        end
+      
+        def font_size
+          get_property_value('fontSize', Integer)
+        end
+      
+        def font_style
+          get_property_value('fontStyle', String)
+        end
+      
+        def font_weight
+          get_property_value('fontWeight', String)
+        end
+      
+        def text_align
+          get_property_value('textAlign', String)
+        end
+      
+        def text_decoration
+          get_property_value('textDecoration', String)
         end
       
         def roll_over_color
@@ -1649,12 +1657,8 @@ module FunFX
           get_property_value('selectionColor', String)
         end
       
-        def text_roll_over_color
-          get_property_value('textRollOverColor', String)
-        end
-      
-        def text_selected_color
-          get_property_value('textSelectedColor', String)
+        def text_indent
+          get_property_value('textIndent', Integer)
         end
       
       
@@ -1670,14 +1674,28 @@ module FunFX
           fire_event('Hide')
         end
       
-        def select(item_renderer)
-          fire_event('Select', item_renderer)
+      end
+      
+      def menu_bar(*locator_hash)
+        FlexMenuBar.new(self, *locator_hash)
+      end
+    
+      class FlexRule < FlexObject
+      
+      
+        def color
+          get_property_value('color', String)
         end
+      
+        def stroke_width
+          get_property_value('strokeWidth', Integer)
+        end
+      
       
       end
       
-      def menu(*locator_hash)
-        FlexMenu.new(self, *locator_hash)
+      def rule(*locator_hash)
+        FlexRule.new(self, *locator_hash)
       end
     
       class FlexComboBase < FlexObject
@@ -1874,6 +1892,40 @@ module FunFX
         FlexComboBox.new(self, *locator_hash)
       end
     
+      class FlexColorPicker < FlexComboBase
+      
+      
+        def selected_color
+          get_property_value('selectedColor', Integer)
+        end
+      
+        def show_text_field?
+          get_property_value('showTextField', TrueClass)
+        end
+      
+        def column_count
+          get_property_value('columnCount', Integer)
+        end
+      
+      
+        def open(trigger_event=["1"])
+          fire_event('Open', trigger_event)
+        end
+      
+        def close(trigger_event=["1"])
+          fire_event('Close', trigger_event)
+        end
+      
+        def change(color)
+          fire_event('Change', color)
+        end
+      
+      end
+      
+      def color_picker(*locator_hash)
+        FlexColorPicker.new(self, *locator_hash)
+      end
+    
       class FlexDateField < FlexComboBase
       
       
@@ -1946,198 +1998,6 @@ module FunFX
       
       def date_field(*locator_hash)
         FlexDateField.new(self, *locator_hash)
-      end
-    
-      class FlexColorPicker < FlexComboBase
-      
-      
-        def selected_color
-          get_property_value('selectedColor', Integer)
-        end
-      
-        def show_text_field?
-          get_property_value('showTextField', TrueClass)
-        end
-      
-        def column_count
-          get_property_value('columnCount', Integer)
-        end
-      
-      
-        def open(trigger_event=["1"])
-          fire_event('Open', trigger_event)
-        end
-      
-        def close(trigger_event=["1"])
-          fire_event('Close', trigger_event)
-        end
-      
-        def change(color)
-          fire_event('Change', color)
-        end
-      
-      end
-      
-      def color_picker(*locator_hash)
-        FlexColorPicker.new(self, *locator_hash)
-      end
-    
-      class FlexScrollBar < FlexObject
-      
-      
-        def line_scroll_size
-          get_property_value('lineScrollSize', Integer)
-        end
-      
-        def page_scroll_size
-          get_property_value('pageScrollSize', Integer)
-        end
-      
-        def scroll_position
-          get_property_value('scrollPosition', String)
-        end
-      
-        def track_colors
-          get_property_value('trackColors', String)
-        end
-      
-        def fill_colors
-          get_property_value('fillColors', String)
-        end
-      
-      
-        def scroll(position, direction, detail=["null"])
-          fire_event('Scroll', position, direction, detail)
-        end
-      
-      end
-      
-      def scroll_bar(*locator_hash)
-        FlexScrollBar.new(self, *locator_hash)
-      end
-    
-      class FlexChartLegend < FlexObject
-      
-        include TabularData
-      
-      
-        def label
-          get_property_value('label', String)
-        end
-      
-        def marker_aspect_ratio
-          get_property_value('markerAspectRatio', Integer)
-        end
-      
-        def font_weight
-          get_property_value('fontWeight', String)
-        end
-      
-        def label_placement
-          get_property_value('labelPlacement', String)
-        end
-      
-        def marker_height
-          get_property_value('markerHeight', Integer)
-        end
-      
-        def marker_width
-          get_property_value('markerWidth', Integer)
-        end
-      
-        def padding_left
-          get_property_value('paddingLeft', Integer)
-        end
-      
-        def padding_right
-          get_property_value('paddingRight', Integer)
-        end
-      
-        def vertical_gap
-          get_property_value('verticalGap', Integer)
-        end
-      
-      
-        def click(item)
-          fire_event('Click', item)
-        end
-      
-      end
-      
-      def chart_legend(*locator_hash)
-        FlexChartLegend.new(self, *locator_hash)
-      end
-    
-      class FlexAxisRenderer < FlexObject
-      
-        include TabularData
-      
-      
-        def height_limit
-          get_property_value('heightLimit', Integer)
-        end
-      
-        def length
-          get_property_value('length', Integer)
-        end
-      
-        def placement
-          get_property_value('placement', String)
-        end
-      
-        def can_drop_labels?
-          get_property_value('canDropLabels', TrueClass)
-        end
-      
-        def can_stagger?
-          get_property_value('canStagger', TrueClass)
-        end
-      
-        def label_gap
-          get_property_value('labelGap', Integer)
-        end
-      
-        def label_rotation
-          get_property_value('labelRotation', Integer)
-        end
-      
-        def minor_tick_length
-          get_property_value('minorTickLength', Integer)
-        end
-      
-        def minor_tick_placement
-          get_property_value('minorTickPlacement', String)
-        end
-      
-        def show_labels?
-          get_property_value('showLabels', TrueClass)
-        end
-      
-        def show_line?
-          get_property_value('showLine', TrueClass)
-        end
-      
-        def tick_length
-          get_property_value('tickLength', Integer)
-        end
-      
-        def tick_placement
-          get_property_value('tickPlacement', String)
-        end
-      
-        def ticks
-          get_property_value('ticks', String)
-        end
-      
-        def minor_ticks
-          get_property_value('minorTicks', String)
-        end
-      
-      
-      end
-      
-      def axis_renderer(*locator_hash)
-        FlexAxisRenderer.new(self, *locator_hash)
       end
     
       class FlexContainer < FlexObject
@@ -2232,94 +2092,16 @@ module FunFX
         FlexContainer.new(self, *locator_hash)
       end
     
-      class FlexPanel < FlexContainer
+      class FlexForm < FlexContainer
       
         include TabularData
       
       
-        def title
-          get_property_value('title', String)
-        end
-      
-        def status
-          get_property_value('status', String)
-        end
-      
-        def drop_shadow_enabled?
-          get_property_value('dropShadowEnabled', TrueClass)
-        end
-      
-        def footer_colors
-          get_property_value('footerColors', String)
-        end
-      
-        def header_colors
-          get_property_value('headerColors', String)
-        end
-      
-        def header_height
-          get_property_value('headerHeight', Integer)
-        end
-      
       
       end
       
-      def panel(*locator_hash)
-        FlexPanel.new(self, *locator_hash)
-      end
-    
-      class FlexAlert < FlexPanel
-      
-      
-        def text
-          get_property_value('text', String)
-        end
-      
-        def cancel_label
-          get_property_value('cancelLabel', String)
-        end
-      
-        def default_button_flag
-          get_property_value('defaultButtonFlag', Integer)
-        end
-      
-        def no_label
-          get_property_value('noLabel', String)
-        end
-      
-        def ok_label
-          get_property_value('okLabel', String)
-        end
-      
-        def yes_label
-          get_property_value('yesLabel', String)
-        end
-      
-      
-        def type(key_code, key_modifier=["0"])
-          fire_event('Type', key_code, key_modifier)
-        end
-      
-      end
-      
-      def alert(*locator_hash)
-        FlexAlert.new(self, *locator_hash)
-      end
-    
-      class FlexTitleWindow < FlexPanel
-      
-        include TabularData
-      
-      
-        def show_close_button?
-          get_property_value('showCloseButton', TrueClass)
-        end
-      
-      
-      end
-      
-      def title_window(*locator_hash)
-        FlexTitleWindow.new(self, *locator_hash)
+      def form(*locator_hash)
+        FlexForm.new(self, *locator_hash)
       end
     
       class FlexBox < FlexContainer
@@ -2344,22 +2126,6 @@ module FunFX
       
       def box(*locator_hash)
         FlexBox.new(self, *locator_hash)
-      end
-    
-      class FlexApplication < FlexBox
-      
-        include TabularData
-      
-      
-        def url
-          get_property_value('url', String)
-        end
-      
-      
-      end
-      
-      def application(*locator_hash)
-        FlexApplication.new(self, *locator_hash)
       end
     
       class FlexDividedBox < FlexBox
@@ -2478,6 +2244,112 @@ module FunFX
         FlexToggleButtonBar.new(self, *locator_hash)
       end
     
+      class FlexApplication < FlexBox
+      
+        include TabularData
+      
+      
+        def url
+          get_property_value('url', String)
+        end
+      
+      
+      end
+      
+      def application(*locator_hash)
+        FlexApplication.new(self, *locator_hash)
+      end
+    
+      class FlexPanel < FlexContainer
+      
+        include TabularData
+      
+      
+        def title
+          get_property_value('title', String)
+        end
+      
+        def status
+          get_property_value('status', String)
+        end
+      
+        def drop_shadow_enabled?
+          get_property_value('dropShadowEnabled', TrueClass)
+        end
+      
+        def footer_colors
+          get_property_value('footerColors', String)
+        end
+      
+        def header_colors
+          get_property_value('headerColors', String)
+        end
+      
+        def header_height
+          get_property_value('headerHeight', Integer)
+        end
+      
+      
+      end
+      
+      def panel(*locator_hash)
+        FlexPanel.new(self, *locator_hash)
+      end
+    
+      class FlexTitleWindow < FlexPanel
+      
+        include TabularData
+      
+      
+        def show_close_button?
+          get_property_value('showCloseButton', TrueClass)
+        end
+      
+      
+      end
+      
+      def title_window(*locator_hash)
+        FlexTitleWindow.new(self, *locator_hash)
+      end
+    
+      class FlexAlert < FlexPanel
+      
+      
+        def text
+          get_property_value('text', String)
+        end
+      
+        def cancel_label
+          get_property_value('cancelLabel', String)
+        end
+      
+        def default_button_flag
+          get_property_value('defaultButtonFlag', Integer)
+        end
+      
+        def no_label
+          get_property_value('noLabel', String)
+        end
+      
+        def ok_label
+          get_property_value('okLabel', String)
+        end
+      
+        def yes_label
+          get_property_value('yesLabel', String)
+        end
+      
+      
+        def type(key_code, key_modifier=["0"])
+          fire_event('Type', key_code, key_modifier)
+        end
+      
+      end
+      
+      def alert(*locator_hash)
+        FlexAlert.new(self, *locator_hash)
+      end
+    
       class FlexViewStack < FlexContainer
       
         include TabularData
@@ -2532,30 +2404,6 @@ module FunFX
       
       def tab_navigator(*locator_hash)
         FlexTabNavigator.new(self, *locator_hash)
-      end
-    
-      class FlexCanvas < FlexContainer
-      
-        include TabularData
-      
-      
-      
-      end
-      
-      def canvas(*locator_hash)
-        FlexCanvas.new(self, *locator_hash)
-      end
-    
-      class FlexForm < FlexContainer
-      
-        include TabularData
-      
-      
-      
-      end
-      
-      def form(*locator_hash)
-        FlexForm.new(self, *locator_hash)
       end
     
       class FlexAccordion < FlexContainer
@@ -2624,276 +2472,400 @@ module FunFX
         FlexFormItem.new(self, *locator_hash)
       end
     
-      class FlexChartSeries < FlexObject
+      class FlexCanvas < FlexContainer
       
         include TabularData
       
       
       
-        def click(hit_set)
-          fire_event('Click', hit_set)
-        end
-      
-        def double_click(hit_set)
-          fire_event('DoubleClick', hit_set)
-        end
-      
-        def item_roll_over(hit_set)
-          fire_event('ItemRollOver', hit_set)
-        end
-      
       end
       
-      def chart_series(*locator_hash)
-        FlexChartSeries.new(self, *locator_hash)
+      def canvas(*locator_hash)
+        FlexCanvas.new(self, *locator_hash)
       end
     
-      class FlexColumnSeries < FlexChartSeries
-      
-        include TabularData
+      class FlexLoader < FlexObject
       
       
-        def column_width_ratio
-          get_property_value('columnWidthRatio', Integer)
-        end
-      
-        def max_column_width
-          get_property_value('maxColumnWidth', Integer)
-        end
-      
-        def offset
-          get_property_value('offset', Integer)
-        end
-      
-        def sort_on_x_field?
-          get_property_value('sortOnXField', TrueClass)
-        end
-      
-        def min_field
-          get_property_value('minField', String)
-        end
-      
-        def x_field
-          get_property_value('xField', String)
-        end
-      
-        def y_field
-          get_property_value('yField', String)
+        def source
+          get_property_value('source', String)
         end
       
       
       end
       
-      def column_series(*locator_hash)
-        FlexColumnSeries.new(self, *locator_hash)
+      def loader(*locator_hash)
+        FlexLoader.new(self, *locator_hash)
       end
     
-      class FlexBubbleSeries < FlexChartSeries
+      class FlexImage < FlexLoader
       
-        include TabularData
-      
-      
-        def max_radius
-          get_property_value('maxRadius', Integer)
-        end
-      
-        def radius_field
-          get_property_value('radiusField', String)
-        end
-      
-        def x_field
-          get_property_value('xField', String)
-        end
-      
-        def y_field
-          get_property_value('yField', String)
-        end
       
       
       end
       
-      def bubble_series(*locator_hash)
-        FlexBubbleSeries.new(self, *locator_hash)
+      def image(*locator_hash)
+        FlexImage.new(self, *locator_hash)
       end
     
-      class FlexAreaSeries < FlexChartSeries
-      
-        include TabularData
+      class FlexNumericStepper < FlexObject
       
       
-        def min_field
-          get_property_value('minField', String)
+        def value
+          get_property_value('value', Integer)
         end
       
-        def x_field
-          get_property_value('xField', String)
+        def minimum
+          get_property_value('minimum', Integer)
         end
       
-        def y_field
-          get_property_value('yField', String)
+        def maximum
+          get_property_value('maximum', Integer)
         end
       
-        def form
-          get_property_value('form', String)
+        def next_value
+          get_property_value('nextValue', Integer)
         end
       
-        def radius
-          get_property_value('radius', Integer)
+        def previous_value
+          get_property_value('previousValue', Integer)
         end
       
-      
-      end
-      
-      def area_series(*locator_hash)
-        FlexAreaSeries.new(self, *locator_hash)
-      end
-    
-      class FlexLineSeries < FlexChartSeries
-      
-        include TabularData
-      
-      
-        def form
-          get_property_value('form', String)
+        def step_size
+          get_property_value('stepSize', Integer)
         end
       
-        def radius
-          get_property_value('radius', Integer)
+        def color
+          get_property_value('color', Integer)
         end
       
-        def sort_on_x_field?
-          get_property_value('sortOnXField', TrueClass)
+        def disabled_color
+          get_property_value('disabledColor', String)
         end
       
-        def x_field
-          get_property_value('xField', String)
+        def fill_colors
+          get_property_value('fillColors', String)
         end
       
-        def y_field
-          get_property_value('yField', String)
-        end
-      
-      
-      end
-      
-      def line_series(*locator_hash)
-        FlexLineSeries.new(self, *locator_hash)
-      end
-    
-      class FlexPlotSeries < FlexChartSeries
-      
-        include TabularData
-      
-      
-        def radius
-          get_property_value('radius', Integer)
-        end
-      
-        def x_field
-          get_property_value('xField', String)
-        end
-      
-        def y_field
-          get_property_value('yField', String)
-        end
-      
-      
-      end
-      
-      def plot_series(*locator_hash)
-        FlexPlotSeries.new(self, *locator_hash)
-      end
-    
-      class FlexPieSeries < FlexChartSeries
-      
-        include TabularData
-      
-      
-        def explode_radius
-          get_property_value('explodeRadius', Integer)
-        end
-      
-        def field
-          get_property_value('field', String)
-        end
-      
-        def max_label_radius
-          get_property_value('maxLabelRadius', Integer)
-        end
-      
-        def name_field
-          get_property_value('nameField', String)
-        end
-      
-        def outer_radius
-          get_property_value('outerRadius', Integer)
-        end
-      
-        def inside_label_size_limit
-          get_property_value('insideLabelSizeLimit', Integer)
-        end
-      
-        def inner_radius
-          get_property_value('innerRadius', Integer)
+        def font_family
+          get_property_value('fontFamily', String)
         end
       
         def font_size
           get_property_value('fontSize', Integer)
         end
       
-        def callout_gap
-          get_property_value('calloutGap', Integer)
+        def font_style
+          get_property_value('fontStyle', String)
         end
       
-        def start_angle
-          get_property_value('startAngle', Integer)
+        def font_weight
+          get_property_value('fontWeight', String)
         end
       
-        def label_position
-          get_property_value('labelPosition', String)
+        def text_align
+          get_property_value('textAlign', String)
         end
       
+        def text_decoration
+          get_property_value('textDecoration', String)
+        end
+      
+        def text_indent
+          get_property_value('textIndent', Integer)
+        end
+      
+      
+        def change(value)
+          fire_event('Change', value)
+        end
+      
+        def input(text)
+          fire_event('Input', text)
+        end
+      
+        def select_text(begin_index, end_index)
+          fire_event('SelectText', begin_index, end_index)
+        end
+      
+        def type(key_code, key_modifier=["0"])
+          fire_event('Type', key_code, key_modifier)
+        end
       
       end
       
-      def pie_series(*locator_hash)
-        FlexPieSeries.new(self, *locator_hash)
+      def numeric_stepper(*locator_hash)
+        FlexNumericStepper.new(self, *locator_hash)
       end
     
-      class FlexBarSeries < FlexChartSeries
+      class FlexChartLegend < FlexObject
       
         include TabularData
       
       
-        def bar_width_ratio
-          get_property_value('barWidthRatio', Integer)
+        def label
+          get_property_value('label', String)
         end
       
-        def max_bar_width
-          get_property_value('maxBarWidth', Integer)
+        def marker_aspect_ratio
+          get_property_value('markerAspectRatio', Integer)
         end
       
-        def min_field
-          get_property_value('minField', String)
+        def font_weight
+          get_property_value('fontWeight', String)
         end
       
-        def offset
-          get_property_value('offset', Integer)
+        def label_placement
+          get_property_value('labelPlacement', String)
         end
       
-        def x_field
-          get_property_value('xField', String)
+        def marker_height
+          get_property_value('markerHeight', Integer)
         end
       
-        def y_field
-          get_property_value('yField', String)
+        def marker_width
+          get_property_value('markerWidth', Integer)
+        end
+      
+        def padding_left
+          get_property_value('paddingLeft', Integer)
+        end
+      
+        def padding_right
+          get_property_value('paddingRight', Integer)
+        end
+      
+        def vertical_gap
+          get_property_value('verticalGap', Integer)
+        end
+      
+      
+        def click(item)
+          fire_event('Click', item)
+        end
+      
+      end
+      
+      def chart_legend(*locator_hash)
+        FlexChartLegend.new(self, *locator_hash)
+      end
+    
+      class FlexButton < FlexObject
+      
+      
+        def enabled?
+          get_property_value('enabled', TrueClass)
+        end
+      
+        def label
+          get_property_value('label', String)
+        end
+      
+        def label_placement
+          get_property_value('labelPlacement', String)
+        end
+      
+        def selected?
+          get_property_value('selected', TrueClass)
+        end
+      
+        def toggle?
+          get_property_value('toggle', TrueClass)
+        end
+      
+        def color
+          get_property_value('color', String)
+        end
+      
+        def disabled_color
+          get_property_value('disabledColor', String)
+        end
+      
+        def font_family
+          get_property_value('fontFamily', String)
+        end
+      
+        def font_size
+          get_property_value('fontSize', Integer)
+        end
+      
+        def font_style
+          get_property_value('fontStyle', String)
+        end
+      
+        def font_weight
+          get_property_value('fontWeight', String)
+        end
+      
+        def fill_alphas
+          get_property_value('fillAlphas', String)
+        end
+      
+        def fill_colors
+          get_property_value('fillColors', String)
+        end
+      
+        def focus_alpha
+          get_property_value('focusAlpha', Integer)
+        end
+      
+        def text_align
+          get_property_value('textAlign', String)
+        end
+      
+        def text_decoration
+          get_property_value('textDecoration', String)
+        end
+      
+        def text_indent
+          get_property_value('textIndent', Integer)
+        end
+      
+        def text_roll_over_color
+          get_property_value('textRollOverColor', String)
+        end
+      
+        def text_selected_color
+          get_property_value('textSelectedColor', String)
+        end
+      
+      
+        def type(key_code, key_modifier=["0"])
+          fire_event('Type', key_code, key_modifier)
+        end
+      
+      end
+      
+      def button(*locator_hash)
+        FlexButton.new(self, *locator_hash)
+      end
+    
+      class FlexRadioButton < FlexButton
+      
+      
+        def group_name
+          get_property_value('groupName', String)
+        end
+      
+        def label_placement
+          get_property_value('labelPlacement', String)
         end
       
       
       end
       
-      def bar_series(*locator_hash)
-        FlexBarSeries.new(self, *locator_hash)
+      def radio_button(*locator_hash)
+        FlexRadioButton.new(self, *locator_hash)
+      end
+    
+      class FlexPopUpButton < FlexButton
+      
+      
+      
+        def open(trigger_event=["1"])
+          fire_event('Open', trigger_event)
+        end
+      
+        def close(trigger_event=["1"])
+          fire_event('Close', trigger_event)
+        end
+      
+      end
+      
+      def pop_up_button(*locator_hash)
+        FlexPopUpButton.new(self, *locator_hash)
+      end
+    
+      class FlexCheckBox < FlexButton
+      
+      
+      
+      end
+      
+      def check_box(*locator_hash)
+        FlexCheckBox.new(self, *locator_hash)
+      end
+    
+      class FlexSlider < FlexObject
+      
+      
+        def direction
+          get_property_value('direction', String)
+        end
+      
+        def value
+          get_property_value('value', Integer)
+        end
+      
+        def values
+          get_property_value('values', String)
+        end
+      
+        def maximum
+          get_property_value('maximum', Integer)
+        end
+      
+        def minimum
+          get_property_value('minimum', Integer)
+        end
+      
+        def thumb_count
+          get_property_value('thumbCount', Integer)
+        end
+      
+        def labels
+          get_property_value('labels', String)
+        end
+      
+        def live_dragging?
+          get_property_value('liveDragging', TrueClass)
+        end
+      
+        def tool_tip_show?
+          get_property_value('toolTipShow', TrueClass)
+        end
+      
+        def snap_interval
+          get_property_value('snapInterval', Integer)
+        end
+      
+        def fill_colors
+          get_property_value('fillColors', String)
+        end
+      
+        def label_style_name
+          get_property_value('labelStyleName', String)
+        end
+      
+        def tick_color
+          get_property_value('tickColor', String)
+        end
+      
+        def tick_length
+          get_property_value('tickLength', Integer)
+        end
+      
+        def tick_thickness
+          get_property_value('tickThickness', Integer)
+        end
+      
+        def data_tip_precision
+          get_property_value('dataTipPrecision', Integer)
+        end
+      
+        def track_colors
+          get_property_value('trackColors', String)
+        end
+      
+      
+        def change(value, thumb_index=0, click_target="thumb", trigger_event=["1"], key_code="")
+          fire_event('Change', value, thumb_index, click_target, trigger_event, key_code)
+        end
+      
+      end
+      
+      def slider(*locator_hash)
+        FlexSlider.new(self, *locator_hash)
       end
     
       class FlexRepeater < Element
