@@ -11,12 +11,10 @@ lib/funfx/browser/firewatir.rb
 lib/funfx/browser/flex_app_lookup.rb
 lib/funfx/browser/safariwatir.rb
 lib/funfx/browser/watir.rb
-lib/funfx/codegen/code_generator.rb
 lib/funfx/decoder.rb
 lib/funfx/flex/element.rb
 lib/funfx/flex/elements.rb
 lib/funfx/flex/flex_app_id.rb
-lib/funfx/flex/generated_elements.rb
 lib/funfx/flex/tabular_data.rb
 lib/funfx/meta/class_dot.erb
 lib/funfx/meta/code.erb
