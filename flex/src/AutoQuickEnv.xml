@@ -178,6 +178,14 @@
             <Property Name="verticalAlign" ForVerification="true"><PropertyType Type="String"/></Property>
         </Properties>
     </ClassInfo>
+    
+    <ClassInfo Name="FlexTile" Extends="FlexBox" SupportsTabularData="true">
+        <Implementation Class="mx.containers::Tile"/>
+        <Events>
+        </Events>
+        <Properties>
+        </Properties>
+    </ClassInfo>
 
     <ClassInfo Name="FlexProgressBar"  Extends="FlexObject">
                         <Implementation Class="mx.controls::ProgressBar"/>
@@ -323,6 +331,12 @@
                     <PropertyType Type="int"/>                
                 </Property>
             </Event>
+        </Events>
+    </ClassInfo>
+    
+    <ClassInfo Name="FlexScrollControlBase" Extends="FlexScrollBase">
+                <Implementation Class="mx.core::ScrollControlBase"/>
+        <Events>
         </Events>
     </ClassInfo>
 
@@ -598,84 +612,8 @@
         </Properties>
     </ClassInfo>
 
-	
-	<!--<ClassInfo Name="FlexAdvancedDataGrid" Extends="FlexListBase" SupportsTabularData="true">
-                        <Implementation Class="mx.controls::AdvancedDataGrid"/>
-        <Events>
-            <Event  Name="HeaderClick" >
-                <Implementation Class="mx.events::DataGridEvent" Type="headerRelease"/>
-                <Property Name="columnIndex" >
-                    <PropertyType Type="int"/>                   
-                </Property>
-            </Event>
-            <Event  Name="ColumnStretch" >
-                <Implementation Class="mx.events::DataGridEvent" Type="columnStretch"/>
-                <Property Name="columnIndex" >
-                    <PropertyType Type="int"/>                   
-                </Property>
-                <Property Name="localX" >
-                    <PropertyType Type="Number"/>                   
-                </Property>
-            </Event>
-            <Event  Name="HeaderShift" >
-                <Implementation Class="mx.events::IndexChangedEvent" Type="headerShift"/>
-                <Property Name="newIndex" >
-                    <PropertyType Type="int"/>                
-                </Property>
-                <Property Name="oldIndex" >
-                    <PropertyType Type="int"/>                
-                </Property>
-                <Property Name="triggerEvent"  DefaultValue="1">
-                  <PropertyType Type="Enumeration" ListOfValuesName="FlexTriggerEventValues" Codec="event"/>                </Property>
-            </Event>
-			<Event  Name="Edit" >
-				<Implementation Class="funfx.events::DataGridEvent" Type="itemEditBegin"/>
-				<Property Name="itemRenderer" >
-				  <PropertyType Type="String" Codec="automationObject"/>
-				  				</Property>
-				<Property Name="rowIndex" >
-				  <PropertyType Type="int"/>
-				  				</Property>
-				<Property Name="columnIndex" >
-				  <PropertyType Type="int"/>
-		          				</Property>
-			 </Event>
-			 <Event  Name="ItemOpen" >
-				<Implementation Class="funfx.events::AdvancedDataGridEvent " Type="itemOpen"/>
-				<Property Name="itemRenderer" >
-				  <PropertyType Type="String" Codec="automationObject"/>
-				</Property>
-			 </Event>
-			 <Event  Name="ItemClose" >
-				<Implementation Class="mx.events::AdvancedDataGridEvent " Type="itemClose"/>
-				<Property Name="itemRenderer" >
-				  <PropertyType Type="String" Codec="automationObject"/>
-				</Property>
-			 </Event>
-        </Events>
-        <Properties>
-			
-			<Property Name="displayDisclosureIcon" ForVerification="true"><PropertyType Type="Boolean" /></Property>
-			<Property Name="displayItemsExpanded" ForVerification="true"><PropertyType Type="Boolean" /></Property>
-			<Property Name="firstVisibleItem" ForVerification="true"><PropertyType Type="String" Codec="listDataObject" /></Property>
-			<Property Name="groupRowHeight" ForVerification="true"><PropertyType Type="Number" /></Property>
-			<Property Name="lockedColumnCount" ForVerification="true"><PropertyType Type="int" /></Property>
-			<Property Name="lockedRowCount" ForVerification="true"><PropertyType Type="int" /></Property>
-			<Property Name="selectedCells" ForVerification="true"><PropertyType Type="String" Codec="object[]" /></Property>
-			<Property Name="editable" ForVerification="true"><PropertyType Type="Boolean" /></Property>
-            <Property Name="columnNames" ForVerification="true"><PropertyType Type="String" Codec="object[]"/></Property>
-            <Property Name="minColumnWidth" ForVerification="true"><PropertyType Type="Number"/></Property>
-            <Property Name="resizableColumns" ForVerification="true"><PropertyType Type="Boolean"/></Property>
-            <Property Name="sortableColumns" ForVerification="true"><PropertyType Type="Boolean"/></Property>
-            <Property Name="headerColors" ForVerification="true"><PropertyType Type="String" Codec="color[]"/></Property>
-            <Property Name="headerStyle" ForVerification="true"><PropertyType Type="String"/></Property>
-            <Property Name="vGridLineColor" ForVerification="true"><PropertyType Type="String" Codec="color"/></Property>
-            <Property Name="vGridLines" ForVerification="true"><PropertyType Type="Boolean"/></Property>
-        </Properties>
-    </ClassInfo>-->
-
     <ClassInfo Name="FlexList" Extends="FlexListBase" SupportsTabularData="true">
-                        <Implementation Class="mx.controls::List"/>
+        <Implementation Class="mx.controls::List"/>
         <Implementation Class="mx.controls::HorizontalList"/>
         <Implementation Class="mx.controls::TileList"/>
         <Events>
@@ -691,6 +629,25 @@
 			  <PropertyType Type="int"/>
 	          			</Property>
 		  </Event>
+        </Events>
+        <Properties>
+        </Properties>
+    </ClassInfo>
+    
+    <ClassInfo Name="FlexHorizontalList" Extends="FlexList" SupportsTabularData="true">
+        <Implementation Class="mx.controls::HorizontalList"/>
+        <Events>
+        </Events>
+        <Properties>
+        </Properties>
+    </ClassInfo>
+    
+
+    
+    <ClassInfo Name="FlexTileList" Extends="FlexList" SupportsTabularData="true">
+                        <Implementation Class="mx.controls::List"/>
+        <Implementation Class="mx.controls::TileList"/>
+        <Events>
         </Events>
         <Properties>
         </Properties>
@@ -771,6 +728,22 @@
             <Property Name="fillColors" ForVerification="true"><PropertyType Type="String" Codec="color[]"/></Property>
         </Properties>
     </ClassInfo>
+    
+    <ClassInfo Name="FlexHScrollBar" Extends="FlexScrollBar">
+        <Implementation Class="mx.controls::HScrollBar"/>
+        <Events>
+        </Events>
+        <Properties>
+        </Properties>
+    </ClassInfo>
+    
+    <ClassInfo Name="FlexVScrollBar" Extends="FlexScrollBar">
+        <Implementation Class="mx.controls::VScrollBar"/>
+        <Events>
+        </Events>
+        <Properties>
+        </Properties>
+    </ClassInfo>
 
     <ClassInfo Name="FlexNumericStepper" Extends="FlexObject">
                         <Implementation Class="mx.controls::NumericStepper"/>
@@ -832,7 +805,7 @@
         </Properties>
     </ClassInfo>
 
-    <ClassInfo Name="FlexLoader" Extends="FlexObject">
+    <ClassInfo Name="FlexSWFLoader" Extends="FlexObject">
                         <Implementation Class="mx.controls::SWFLoader"/>
         <Events>
         </Events>
@@ -840,8 +813,8 @@
             <Property Name="source" ForVerification="true" ForDefaultVerification="true"><PropertyType Type="String" Codec="asset"/></Property>
         </Properties>
     </ClassInfo>
-
-    <ClassInfo Name="FlexImage" Extends="FlexLoader">
+	
+    <ClassInfo Name="FlexImage" Extends="FlexSWFLoader">
                         <Implementation Class="mx.controls::Image"/>
         <Events>
         </Events>
@@ -886,6 +859,22 @@
             <Property Name="tickThickness" ForVerification="true"><PropertyType Type="Number"/></Property>
             <Property Name="dataTipPrecision" ForVerification="true"><PropertyType Type="Number"/></Property>
             <Property Name="trackColors" ForVerification="true"><PropertyType Type="String" Codec="color[]"/></Property>
+        </Properties>
+    </ClassInfo>
+    
+    <ClassInfo Name="FlexHSlider" Extends="FlexSlider">
+        <Implementation Class="mx.controls::HSlider"/>
+        <Events>
+        </Events>
+        <Properties>
+        </Properties>
+    </ClassInfo>
+    
+    <ClassInfo Name="FlexVSlider" Extends="FlexSlider">
+                        <Implementation Class="mx.controls::VSlider"/>
+        <Events>
+        </Events>
+        <Properties>
         </Properties>
     </ClassInfo>
 
@@ -1191,7 +1180,15 @@
             <Property Name="fontWeight" ForVerification="true"><PropertyType Type="String"/></Property>
         </Properties>
     </ClassInfo>
-
+    
+    <ClassInfo Name="FlexTextInput" Extends="FlexTextArea">
+        <Implementation Class="mx.controls::TextInput"/>
+        <Events>
+        </Events>
+        <Properties>
+        </Properties>
+    </ClassInfo>
+    
     <ClassInfo Name="FlexPanel" Extends="FlexContainer" SupportsTabularData="true">
                         <Implementation Class="mx.containers::Panel"/>
         <Events>
@@ -1407,6 +1404,22 @@
             <Property Name="strokeWidth" ForVerification="true"><PropertyType Type="Number" /></Property>
         </Properties>
     </ClassInfo>
+    
+    <ClassInfo Name="FlexHRule"  Extends="FlexRule">
+        <Implementation Class="mx.controls::HRule"/>
+        <Events>
+        </Events>
+        <Properties>
+        </Properties>
+    </ClassInfo>
+    
+    <ClassInfo Name="FlexVRule"  Extends="FlexRule">
+        <Implementation Class="mx.controls::VRule"/>
+        <Events>
+        </Events>
+        <Properties>
+        </Properties>
+    </ClassInfo>
 
     <ClassInfo Name="FlexFormItem"  Extends="FlexContainer">
                         <Implementation Class="mx.containers::FormItem"/>
@@ -1454,7 +1467,7 @@
         </Properties>
     </ClassInfo>
 
-    <ClassInfo Name="FlexNavigationBar" Extends="FlexBox" SupportsTabularData="true">
+    <ClassInfo Name="FlexNavBar" Extends="FlexBox" SupportsTabularData="true">
                         <Implementation Class="mx.controls::NavBar"/>
         <Events>
             <Event Name="Change" >
@@ -1477,7 +1490,7 @@
         </Properties>
     </ClassInfo>
 
-    <ClassInfo Name="FlexLinkBar" Extends="FlexNavigationBar" SupportsTabularData="true">
+    <ClassInfo Name="FlexLinkBar" Extends="FlexNavBar" SupportsTabularData="true">
                         <Implementation Class="mx.controls::LinkBar"/>
         <Events>
         </Events>
@@ -1487,7 +1500,7 @@
         </Properties>
     </ClassInfo>
 
-    <ClassInfo Name="FlexButtonBar" Extends="FlexNavigationBar" SupportsTabularData="true">
+    <ClassInfo Name="FlexButtonBar" Extends="FlexNavBar" SupportsTabularData="true">
                         <Implementation Class="mx.controls::ButtonBar"/>
         <Events>
         </Events>
@@ -1508,8 +1521,16 @@
             <Property Name="numChildren" ForVerification="true"><PropertyType Type="String"/></Property>
         </Properties>
     </ClassInfo>
+    
+    <ClassInfo Name="FlexTabBar" Extends="FlexToggleButtonBar" SupportsTabularData="true">
+                        <Implementation Class="mx.controls::TabBar"/>
+        <Events>
+        </Events>
+        <Properties>
+        </Properties>
+    </ClassInfo>
 
-    <ClassInfo Name="FlexChart" Extends="FlexObject" SupportsTabularData="true">
+    <ClassInfo Name="FlexChartBase" Extends="FlexObject" SupportsTabularData="true">
                         <Implementation Class="mx.charts.chartClasses::ChartBase"/>
         <Properties>
             <Property Name="description">
@@ -1559,7 +1580,7 @@
        </Properties>
     </ClassInfo>
 
-    <ClassInfo Name="FlexCartesianChart" Extends="FlexChart" SupportsTabularData="true">
+    <ClassInfo Name="FlexCartesianChart" Extends="FlexChartBase" SupportsTabularData="true">
                         <Implementation Class="mx.charts.chartClasses::CartesianChart"/>
         <Properties>
             <Property Name="horizontalAxisRatio" ForVerification="true">
@@ -1632,7 +1653,7 @@
                         <Implementation Class="mx.charts::LineChart"/>
     </ClassInfo>
 
-    <ClassInfo Name="FlexPieChart" Extends="FlexChart" SupportsTabularData="true">
+    <ClassInfo Name="FlexPieChart" Extends="FlexChartBase" SupportsTabularData="true">
                         <Implementation Class="mx.charts::PieChart"/>
         <Properties>
             <Property Name="innerRadius" ForVerification="true">
@@ -1642,7 +1663,7 @@
         </Properties>
     </ClassInfo>
 
-    <ClassInfo Name="FlexAreaSeries" Extends="FlexChartSeries" SupportsTabularData="true">
+    <ClassInfo Name="FlexAreaSeries" Extends="FlexSeries" SupportsTabularData="true">
                         <Implementation Class="mx.charts.series::AreaSeries"/>
         <Properties>
             <Property Name="minField" ForVerification="true">
@@ -1663,7 +1684,7 @@
         </Properties>
     </ClassInfo>
 
-    <ClassInfo Name="FlexBarSeries" Extends="FlexChartSeries" SupportsTabularData="true">
+    <ClassInfo Name="FlexBarSeries" Extends="FlexSeries" SupportsTabularData="true">
                         <Implementation Class="mx.charts.series::BarSeries"/>
         <Properties>
             <Property Name="barWidthRatio" ForVerification="true">
@@ -1687,7 +1708,7 @@
         </Properties>
     </ClassInfo>
 
-    <ClassInfo Name="FlexBubbleSeries" Extends="FlexChartSeries" SupportsTabularData="true">
+    <ClassInfo Name="FlexBubbleSeries" Extends="FlexSeries" SupportsTabularData="true">
                         <Implementation Class="mx.charts.series::BubbleSeries"/>
         <Properties>
             <Property Name="maxRadius" ForVerification="true">
@@ -1705,7 +1726,7 @@
         </Properties>
     </ClassInfo>
 
-    <ClassInfo Name="FlexColumnSeries" Extends="FlexChartSeries" SupportsTabularData="true">
+    <ClassInfo Name="FlexColumnSeries" Extends="FlexSeries" SupportsTabularData="true">
                         <Implementation Class="mx.charts.series::ColumnSeries"/>
         <Properties>
             <Property Name="columnWidthRatio" ForVerification="true">
@@ -1732,7 +1753,7 @@
         </Properties>
     </ClassInfo>
 
-    <ClassInfo Name="FlexLineSeries" Extends="FlexChartSeries" SupportsTabularData="true">
+    <ClassInfo Name="FlexLineSeries" Extends="FlexSeries" SupportsTabularData="true">
                         <Implementation Class="mx.charts.series::LineSeries"/>
         <Properties>
             <Property Name="form" ForVerification="true">
@@ -1748,7 +1769,7 @@
                 <PropertyType Type="String"/>            </Property>
         </Properties>
     </ClassInfo>
-    <ClassInfo Name="FlexPieSeries" Extends="FlexChartSeries" SupportsTabularData="true">
+    <ClassInfo Name="FlexPieSeries" Extends="FlexSeries" SupportsTabularData="true">
                         <Implementation Class="mx.charts.series::PieSeries"/>
         <Properties>
             <Property Name="explodeRadius" ForVerification="true">
@@ -1787,7 +1808,7 @@
         </Properties>
     </ClassInfo>
 
-    <ClassInfo Name="FlexPlotSeries" Extends="FlexChartSeries" SupportsTabularData="true">
+    <ClassInfo Name="FlexPlotSeries" Extends="FlexSeries" SupportsTabularData="true">
                         <Implementation Class="mx.charts.series::PlotSeries"/>
         <Properties>
             <Property Name="radius" ForVerification="true">
@@ -1852,7 +1873,7 @@
             	            </Property>
         </Properties>
     </ClassInfo>
-    <ClassInfo Name="FlexChartSeries" Extends="FlexObject" SupportsTabularData="true">
+    <ClassInfo Name="FlexSeries" Extends="FlexObject" SupportsTabularData="true">
                         <Implementation Class="mx.charts.chartClasses::Series"/>
         <Events>
             <Event  Name="Click" >
@@ -1876,7 +1897,7 @@
         </Events>
     </ClassInfo>
     
-    <ClassInfo Name="FlexChartLegend" Extends="FlexObject" SupportsTabularData="true">
+    <ClassInfo Name="FlexLegend" Extends="FlexObject" SupportsTabularData="true">
                         <Implementation Class="mx.charts::Legend"/>
         <Events>
             <Event  Name="Click" >
@@ -1930,6 +1951,37 @@
             	<PropertyType Type="String"/>
 		                    </Property>
             <Property Name="automationIndex" ForDescription="true"><PropertyType Type="String"/></Property>
+        </Properties>
+    </ClassInfo>
+    
+    <ClassInfo Name="FlexMenuItemRenderer" Extends="FlexListLabel">
+        <Implementation Class="mx.controls.menuClasses::MenuItemRenderer" />
+        <Properties>
+        </Properties>
+    </ClassInfo>
+    <ClassInfo Name="FlexMenuBarItem" Extends="FlexListLabel">
+        <Implementation Class="mx.controls.menuClasses::MenuBarItem" />
+        <Properties>
+        </Properties>
+    </ClassInfo>
+    <ClassInfo Name="FlexTreeItemRenderer" Extends="FlexListLabel">
+        <Implementation Class="mx.controls.treeClasses::TreeItemRenderer" />
+        <Properties>
+        </Properties>
+    </ClassInfo>
+    <ClassInfo Name="FlexListItemRenderer" Extends="FlexListLabel">
+        <Implementation Class="mx.controls.listClasses::ListItemRenderer" />
+        <Properties>
+        </Properties>
+    </ClassInfo>
+    <ClassInfo Name="FlexDataGridItemRenderer" Extends="FlexListLabel">
+        <Implementation Class="mx.controls.dataGridClasses::DataGridItemRenderer" />
+        <Properties>
+        </Properties>
+    </ClassInfo>
+    <ClassInfo Name="FlexTileListItemRenderer" Extends="FlexListLabel">
+        <Implementation Class="mx.controls.listClasses::TileListItemRenderer" />
+        <Properties>
         </Properties>
     </ClassInfo>
 

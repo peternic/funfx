@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" width="100%">
+	<mx:Panel id="sameIdPanel" label="{title}">
+		<mx:HBox>
+			<mx:TextInput id="tInput"/>
+			<mx:Button id="bOk" label="Click me" click="{lResult.text = tInput.text}"/>
+			<mx:Label id="lResult" width="150"/>
+		</mx:HBox>
+	</mx:Panel>
+	
+	<mx:Script>
+		<![CDATA[
+			[Bindable] public var title:String;
+		]]>
+	</mx:Script>
+</mx:VBox>

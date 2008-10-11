@@ -26,6 +26,36 @@ digraph G {
   ]
   FlexListLabel -> FlexDisplayObject
 
+  FlexMenuBarItem [
+    label = "{FlexMenuBarItem||}"
+  ]
+  FlexMenuBarItem -> FlexListLabel
+
+  FlexTreeItemRenderer [
+    label = "{FlexTreeItemRenderer||}"
+  ]
+  FlexTreeItemRenderer -> FlexListLabel
+
+  FlexTileListItemRenderer [
+    label = "{FlexTileListItemRenderer||}"
+  ]
+  FlexTileListItemRenderer -> FlexListLabel
+
+  FlexMenuItemRenderer [
+    label = "{FlexMenuItemRenderer||}"
+  ]
+  FlexMenuItemRenderer -> FlexListLabel
+
+  FlexDataGridItemRenderer [
+    label = "{FlexDataGridItemRenderer||}"
+  ]
+  FlexDataGridItemRenderer -> FlexListLabel
+
+  FlexListItemRenderer [
+    label = "{FlexListItemRenderer||}"
+  ]
+  FlexListItemRenderer -> FlexListLabel
+
   FlexObject [
     label = "{FlexObject|automation_name : String\lautomation_class_name : String\lid : String\lclass_name : String\lautomation_index : String\lcurrent_state : String\lfocus_enabled? : TrueClass\ltool_tip : String\lerror_string : String\lpercent_height : Integer\lpercent_width : Integer\lscale_x : Integer\lscale_y : Integer\lerror_color : String\ltheme_color : String\lenabled? : TrueClass\luse_hand_cursor? : TrueClass\lnum_automation_children : Integer\l|change_focus(shift_key, key_code=\"TAB\")\l}"
   ]
@@ -35,6 +65,16 @@ digraph G {
     label = "{FlexScrollBar|line_scroll_size : Integer\lpage_scroll_size : Integer\lscroll_position : String\ltrack_colors : String\lfill_colors : String\l|scroll(position, direction, detail=[\"null\"])\l}"
   ]
   FlexScrollBar -> FlexObject
+
+  FlexHScrollBar [
+    label = "{FlexHScrollBar||}"
+  ]
+  FlexHScrollBar -> FlexScrollBar
+
+  FlexVScrollBar [
+    label = "{FlexVScrollBar||}"
+  ]
+  FlexVScrollBar -> FlexScrollBar
 
   FlexMenu [
     label = "{FlexMenu|row_count : Integer\lselected_index : Integer\lalternating_row_colors : String\lroll_over_color : String\lselection_color : String\ltext_roll_over_color : String\ltext_selected_color : String\l|type(key_code, key_modifier=[\"0\"])\lshow(item_renderer)\lhide()\lselect(item_renderer)\l}"
@@ -51,90 +91,20 @@ digraph G {
   ]
   FlexDateChooser -> FlexObject
 
-  FlexChartSeries [
-    label = "{FlexChartSeries||click(hit_set)\ldouble_click(hit_set)\litem_roll_over(hit_set)\l}"
+  FlexSWFLoader [
+    label = "{FlexSWFLoader|source : String\l|}"
   ]
-  FlexChartSeries -> FlexObject
+  FlexSWFLoader -> FlexObject
 
-  FlexLineSeries [
-    label = "{FlexLineSeries|form : String\lradius : Integer\lsort_on_x_field? : TrueClass\lx_field : String\ly_field : String\l|}"
+  FlexImage [
+    label = "{FlexImage||}"
   ]
-  FlexLineSeries -> FlexChartSeries
-
-  FlexPieSeries [
-    label = "{FlexPieSeries|explode_radius : Integer\lfield : String\lmax_label_radius : Integer\lname_field : String\louter_radius : Integer\linside_label_size_limit : Integer\linner_radius : Integer\lfont_size : Integer\lcallout_gap : Integer\lstart_angle : Integer\llabel_position : String\l|}"
-  ]
-  FlexPieSeries -> FlexChartSeries
-
-  FlexBubbleSeries [
-    label = "{FlexBubbleSeries|max_radius : Integer\lradius_field : String\lx_field : String\ly_field : String\l|}"
-  ]
-  FlexBubbleSeries -> FlexChartSeries
-
-  FlexPlotSeries [
-    label = "{FlexPlotSeries|radius : Integer\lx_field : String\ly_field : String\l|}"
-  ]
-  FlexPlotSeries -> FlexChartSeries
-
-  FlexAreaSeries [
-    label = "{FlexAreaSeries|min_field : String\lx_field : String\ly_field : String\lform : String\lradius : Integer\l|}"
-  ]
-  FlexAreaSeries -> FlexChartSeries
-
-  FlexColumnSeries [
-    label = "{FlexColumnSeries|column_width_ratio : Integer\lmax_column_width : Integer\loffset : Integer\lsort_on_x_field? : TrueClass\lmin_field : String\lx_field : String\ly_field : String\l|}"
-  ]
-  FlexColumnSeries -> FlexChartSeries
-
-  FlexBarSeries [
-    label = "{FlexBarSeries|bar_width_ratio : Integer\lmax_bar_width : Integer\lmin_field : String\loffset : Integer\lx_field : String\ly_field : String\l|}"
-  ]
-  FlexBarSeries -> FlexChartSeries
+  FlexImage -> FlexSWFLoader
 
   FlexAxisRenderer [
     label = "{FlexAxisRenderer|height_limit : Integer\llength : Integer\lplacement : String\lcan_drop_labels? : TrueClass\lcan_stagger? : TrueClass\llabel_gap : Integer\llabel_rotation : Integer\lminor_tick_length : Integer\lminor_tick_placement : String\lshow_labels? : TrueClass\lshow_line? : TrueClass\ltick_length : Integer\ltick_placement : String\lticks : String\lminor_ticks : String\l|}"
   ]
   FlexAxisRenderer -> FlexObject
-
-  FlexChart [
-    label = "{FlexChart|description : String\lclip_content? : TrueClass\ldata_tip_layer_index : Integer\ldata_tip_mode : String\lmouse_sensitivity : Integer\lshow_data_tips? : TrueClass\lfont_family : String\lfont_size : Integer\lmaximum_data_tip_count : Integer\lpadding_bottom : Integer\lpadding_top : Integer\lpadding_left : Integer\lpadding_right : Integer\lshow_data_tip_targets? : TrueClass\l|}"
-  ]
-  FlexChart -> FlexObject
-
-  FlexCartesianChart [
-    label = "{FlexCartesianChart|horizontal_axis_ratio : Integer\lgutter_left : Integer\lgutter_right : Integer\lgutter_bottom : Integer\lgutter_top : Integer\ltext_align : String\l|}"
-  ]
-  FlexCartesianChart -> FlexChart
-
-  FlexAreaChart [
-    label = "{FlexAreaChart|type : String\l|}"
-  ]
-  FlexAreaChart -> FlexCartesianChart
-
-  FlexColumnChart [
-    label = "{FlexColumnChart|column_width_ratio : Integer\lmax_column_width : Integer\l|}"
-  ]
-  FlexColumnChart -> FlexCartesianChart
-
-  FlexLineChart [
-    label = "{FlexLineChart||}"
-  ]
-  FlexLineChart -> FlexCartesianChart
-
-  FlexBarChart [
-    label = "{FlexBarChart|bar_width_ratio : Integer\lmax_bar_width : Integer\l|}"
-  ]
-  FlexBarChart -> FlexCartesianChart
-
-  FlexHLOCChart [
-    label = "{FlexHLOCChart|column_width_ratio : Integer\lmax_column_width : Integer\l|}"
-  ]
-  FlexHLOCChart -> FlexCartesianChart
-
-  FlexPieChart [
-    label = "{FlexPieChart|inner_radius : Integer\ltext_align : String\l|}"
-  ]
-  FlexPieChart -> FlexChart
 
   FlexProgressBar [
     label = "{FlexProgressBar|conversion : Integer\ldirection : String\lindeterminate? : TrueClass\llabel : String\llabel_placement : String\lmaximum : Integer\lminimum : Integer\lpercent_complete : Integer\lvalue : Integer\lbar_color : String\lborder_color : String\lcolor : String\ldisabled_color : String\lfill_colors : String\lfont_family : String\lfont_size : Integer\lfont_style : String\lfont_weight : String\llabel_width : Integer\ltext_align : String\ltext_decoration : String\ltext_indent : Integer\ltheme_color : String\l|}"
@@ -150,6 +120,11 @@ digraph G {
     label = "{FlexTextArea|editable? : TrueClass\ldisplay_as_password? : TrueClass\ltext : String\lcolor : Integer\lhorizontal_scroll_policy : String\lhtml_text : String\llength : Integer\lmax_chars : Integer\lrestrict : String\lselection : String\lword_wrap? : TrueClass\ldisabled_color : String\lfont_family : String\lfont_size : Integer\lfont_style : String\lfont_weight : String\l|input(text)\lselect_text(begin_index, end_index)\ltype(key_code, key_modifier=[\"0\"])\lscroll(position, direction, detail=[\"null\"])\l}"
   ]
   FlexTextArea -> FlexScrollBase
+
+  FlexTextInput [
+    label = "{FlexTextInput||}"
+  ]
+  FlexTextInput -> FlexTextArea
 
   FlexAdvancedListBase [
     label = "{FlexAdvancedListBase||select(item_renderer, trigger_event=[\"1\"], key_modifier=[\"0\"])\l}"
@@ -171,6 +146,11 @@ digraph G {
   ]
   FlexAdvancedDataGrid -> FlexAdvancedDataGridBaseEx
 
+  FlexScrollControlBase [
+    label = "{FlexScrollControlBase||}"
+  ]
+  FlexScrollControlBase -> FlexScrollBase
+
   FlexListBase [
     label = "{FlexListBase|column_count : Integer\lcolumn_width : Integer\ldata_tip_field : String\licon_field : String\llabel_field : String\llocked_column_count : Integer\llocked_row_count : Integer\lallow_multiple_selection? : TrueClass\lnum_automation_children : Integer\lrow_count : Integer\lrow_height : Integer\lselectable? : TrueClass\lselected_index : Integer\lselected_indices : String\lselected_item : String\lselected_items : String\lshow_data_tips? : TrueClass\lvariable_row_height? : TrueClass\lword_wrap? : TrueClass\lalternating_row_colors : String\lfocus_alpha : Integer\lroll_over_color : String\lselection_color : String\lselection_disabled_color : String\ltext_roll_over_color : String\ltext_selected_color : String\lbackground_disabled_color : String\luse_roll_over? : TrueClass\lvertical_align : String\l|mouse_scroll(delta=0)\ldrag_start(dragged_item, key_modifier=[\"0\"])\ldrag_drop(action, dragged_item=\"\", key_modifier=[\"0\"])\ldrag_cancel(key_modifier=[\"0\"])\lselect(item_renderer, trigger_event=[\"1\"], key_modifier=[\"0\"])\lmulti_select(item_renderer, trigger_event=[\"1\"], key_modifier=[\"0\"])\ldeselect(item_renderer, trigger_event=[\"1\"], key_modifier=[\"0\"])\lscroll(position, direction, detail=[\"null\"])\ltype(key_code, key_modifier=[\"0\"])\ldouble_click(item_renderer)\l}"
   ]
@@ -185,6 +165,16 @@ digraph G {
     label = "{FlexList||edit(item_renderer, row_index, column_index)\l}"
   ]
   FlexList -> FlexListBase
+
+  FlexHorizontalList [
+    label = "{FlexHorizontalList||}"
+  ]
+  FlexHorizontalList -> FlexList
+
+  FlexTileList [
+    label = "{FlexTileList||}"
+  ]
+  FlexTileList -> FlexList
 
   FlexTree [
     label = "{FlexTree|editable? : TrueClass\ldepth_colors : String\lindentation : Integer\ltext_disabled_color : String\l|drag_drop(action, drop_parent=\"\", dragged_item=\"\", key_modifier=[\"0\"])\lopen(item_renderer, trigger_event=[\"1\"])\lclose(item_renderer, trigger_event=[\"1\"])\l}"
@@ -205,6 +195,16 @@ digraph G {
     label = "{FlexRule|color : String\lstroke_width : Integer\l|}"
   ]
   FlexRule -> FlexObject
+
+  FlexVRule [
+    label = "{FlexVRule||}"
+  ]
+  FlexVRule -> FlexRule
+
+  FlexHRule [
+    label = "{FlexHRule||}"
+  ]
+  FlexHRule -> FlexRule
 
   FlexComboBase [
     label = "{FlexComboBase|text : String\lrestrict : String\leditable? : TrueClass\lselected_index : Integer\lhorizontal_scroll_position : Integer\lhorizontal_scroll_policy : String\llive_scrolling? : TrueClass\lshow_scroll_tips? : TrueClass\lvertical_scroll_position : Integer\lvertical_scroll_policy : String\lbackground_alpha : Integer\lbackground_color : String\lbackground_image : String\lbackground_size : String\lcolor : Integer\ldisabled_color : String\ldrop_shadow_enabled? : TrueClass\lfill_alphas : String\lfill_colors : String\lfont_family : String\lfont_size : Integer\lfont_style : String\lfont_weight : String\lhighlight_color : String\ltext_align : String\ltext_decoration : String\ltext_indent : Integer\l|open(trigger_event=[\"1\"])\lclose(trigger_event=[\"1\"])\lscroll(position, direction, detail=[\"null\"])\linput(text)\lselect_text(begin_index, end_index)\ltype(key_code, key_modifier=[\"0\"])\l}"
@@ -246,25 +246,35 @@ digraph G {
   ]
   FlexDividedBox -> FlexBox
 
-  FlexNavigationBar [
-    label = "{FlexNavigationBar|direction : String\lselected_index : Integer\l|change(related_object)\ltype(key_code, key_modifier=[\"0\"])\l}"
+  FlexTile [
+    label = "{FlexTile||}"
   ]
-  FlexNavigationBar -> FlexBox
+  FlexTile -> FlexBox
+
+  FlexNavBar [
+    label = "{FlexNavBar|direction : String\lselected_index : Integer\l|change(related_object)\ltype(key_code, key_modifier=[\"0\"])\l}"
+  ]
+  FlexNavBar -> FlexBox
 
   FlexLinkBar [
     label = "{FlexLinkBar|selected_index : Integer\lnum_children : Integer\l|}"
   ]
-  FlexLinkBar -> FlexNavigationBar
+  FlexLinkBar -> FlexNavBar
 
   FlexButtonBar [
     label = "{FlexButtonBar|selected_index : String\lnum_children : String\l|}"
   ]
-  FlexButtonBar -> FlexNavigationBar
+  FlexButtonBar -> FlexNavBar
 
   FlexToggleButtonBar [
     label = "{FlexToggleButtonBar|selected_index : String\lnum_children : String\l|}"
   ]
   FlexToggleButtonBar -> FlexButtonBar
+
+  FlexTabBar [
+    label = "{FlexTabBar||}"
+  ]
+  FlexTabBar -> FlexToggleButtonBar
 
   FlexApplication [
     label = "{FlexApplication|url : String\l|}"
@@ -311,25 +321,95 @@ digraph G {
   ]
   FlexCanvas -> FlexContainer
 
-  FlexLoader [
-    label = "{FlexLoader|source : String\l|}"
+  FlexLegend [
+    label = "{FlexLegend|label : String\lmarker_aspect_ratio : Integer\lfont_weight : String\llabel_placement : String\lmarker_height : Integer\lmarker_width : Integer\lpadding_left : Integer\lpadding_right : Integer\lvertical_gap : Integer\l|click(item)\l}"
   ]
-  FlexLoader -> FlexObject
+  FlexLegend -> FlexObject
 
-  FlexImage [
-    label = "{FlexImage||}"
+  FlexSeries [
+    label = "{FlexSeries||click(hit_set)\ldouble_click(hit_set)\litem_roll_over(hit_set)\l}"
   ]
-  FlexImage -> FlexLoader
+  FlexSeries -> FlexObject
+
+  FlexLineSeries [
+    label = "{FlexLineSeries|form : String\lradius : Integer\lsort_on_x_field? : TrueClass\lx_field : String\ly_field : String\l|}"
+  ]
+  FlexLineSeries -> FlexSeries
+
+  FlexPieSeries [
+    label = "{FlexPieSeries|explode_radius : Integer\lfield : String\lmax_label_radius : Integer\lname_field : String\louter_radius : Integer\linside_label_size_limit : Integer\linner_radius : Integer\lfont_size : Integer\lcallout_gap : Integer\lstart_angle : Integer\llabel_position : String\l|}"
+  ]
+  FlexPieSeries -> FlexSeries
+
+  FlexBubbleSeries [
+    label = "{FlexBubbleSeries|max_radius : Integer\lradius_field : String\lx_field : String\ly_field : String\l|}"
+  ]
+  FlexBubbleSeries -> FlexSeries
+
+  FlexPlotSeries [
+    label = "{FlexPlotSeries|radius : Integer\lx_field : String\ly_field : String\l|}"
+  ]
+  FlexPlotSeries -> FlexSeries
+
+  FlexColumnSeries [
+    label = "{FlexColumnSeries|column_width_ratio : Integer\lmax_column_width : Integer\loffset : Integer\lsort_on_x_field? : TrueClass\lmin_field : String\lx_field : String\ly_field : String\l|}"
+  ]
+  FlexColumnSeries -> FlexSeries
+
+  FlexAreaSeries [
+    label = "{FlexAreaSeries|min_field : String\lx_field : String\ly_field : String\lform : String\lradius : Integer\l|}"
+  ]
+  FlexAreaSeries -> FlexSeries
+
+  FlexBarSeries [
+    label = "{FlexBarSeries|bar_width_ratio : Integer\lmax_bar_width : Integer\lmin_field : String\loffset : Integer\lx_field : String\ly_field : String\l|}"
+  ]
+  FlexBarSeries -> FlexSeries
+
+  FlexChartBase [
+    label = "{FlexChartBase|description : String\lclip_content? : TrueClass\ldata_tip_layer_index : Integer\ldata_tip_mode : String\lmouse_sensitivity : Integer\lshow_data_tips? : TrueClass\lfont_family : String\lfont_size : Integer\lmaximum_data_tip_count : Integer\lpadding_bottom : Integer\lpadding_top : Integer\lpadding_left : Integer\lpadding_right : Integer\lshow_data_tip_targets? : TrueClass\l|}"
+  ]
+  FlexChartBase -> FlexObject
+
+  FlexCartesianChart [
+    label = "{FlexCartesianChart|horizontal_axis_ratio : Integer\lgutter_left : Integer\lgutter_right : Integer\lgutter_bottom : Integer\lgutter_top : Integer\ltext_align : String\l|}"
+  ]
+  FlexCartesianChart -> FlexChartBase
+
+  FlexAreaChart [
+    label = "{FlexAreaChart|type : String\l|}"
+  ]
+  FlexAreaChart -> FlexCartesianChart
+
+  FlexColumnChart [
+    label = "{FlexColumnChart|column_width_ratio : Integer\lmax_column_width : Integer\l|}"
+  ]
+  FlexColumnChart -> FlexCartesianChart
+
+  FlexLineChart [
+    label = "{FlexLineChart||}"
+  ]
+  FlexLineChart -> FlexCartesianChart
+
+  FlexBarChart [
+    label = "{FlexBarChart|bar_width_ratio : Integer\lmax_bar_width : Integer\l|}"
+  ]
+  FlexBarChart -> FlexCartesianChart
+
+  FlexHLOCChart [
+    label = "{FlexHLOCChart|column_width_ratio : Integer\lmax_column_width : Integer\l|}"
+  ]
+  FlexHLOCChart -> FlexCartesianChart
+
+  FlexPieChart [
+    label = "{FlexPieChart|inner_radius : Integer\ltext_align : String\l|}"
+  ]
+  FlexPieChart -> FlexChartBase
 
   FlexNumericStepper [
     label = "{FlexNumericStepper|value : Integer\lminimum : Integer\lmaximum : Integer\lnext_value : Integer\lprevious_value : Integer\lstep_size : Integer\lcolor : Integer\ldisabled_color : String\lfill_colors : String\lfont_family : String\lfont_size : Integer\lfont_style : String\lfont_weight : String\ltext_align : String\ltext_decoration : String\ltext_indent : Integer\l|change(value)\linput(text)\lselect_text(begin_index, end_index)\ltype(key_code, key_modifier=[\"0\"])\l}"
   ]
   FlexNumericStepper -> FlexObject
-
-  FlexChartLegend [
-    label = "{FlexChartLegend|label : String\lmarker_aspect_ratio : Integer\lfont_weight : String\llabel_placement : String\lmarker_height : Integer\lmarker_width : Integer\lpadding_left : Integer\lpadding_right : Integer\lvertical_gap : Integer\l|click(item)\l}"
-  ]
-  FlexChartLegend -> FlexObject
 
   FlexButton [
     label = "{FlexButton|enabled? : TrueClass\llabel : String\llabel_placement : String\lselected? : TrueClass\ltoggle? : TrueClass\lcolor : String\ldisabled_color : String\lfont_family : String\lfont_size : Integer\lfont_style : String\lfont_weight : String\lfill_alphas : String\lfill_colors : String\lfocus_alpha : Integer\ltext_align : String\ltext_decoration : String\ltext_indent : Integer\ltext_roll_over_color : String\ltext_selected_color : String\l|type(key_code, key_modifier=[\"0\"])\l}"
@@ -355,6 +435,16 @@ digraph G {
     label = "{FlexSlider|direction : String\lvalue : Integer\lvalues : String\lmaximum : Integer\lminimum : Integer\lthumb_count : Integer\llabels : String\llive_dragging? : TrueClass\ltool_tip_show? : TrueClass\lsnap_interval : Integer\lfill_colors : String\llabel_style_name : String\ltick_color : String\ltick_length : Integer\ltick_thickness : Integer\ldata_tip_precision : Integer\ltrack_colors : String\l|change(value, thumb_index=0, click_target=\"thumb\", trigger_event=[\"1\"], key_code=\"\")\l}"
   ]
   FlexSlider -> FlexObject
+
+  FlexHSlider [
+    label = "{FlexHSlider||}"
+  ]
+  FlexHSlider -> FlexSlider
+
+  FlexVSlider [
+    label = "{FlexVSlider||}"
+  ]
+  FlexVSlider -> FlexSlider
 
   FlexRepeater [
     label = "{FlexRepeater|automation_name : String\lid : String\lclass_name : String\lautomation_index : String\lcount : String\l|}"

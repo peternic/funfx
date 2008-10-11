@@ -1,12 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:TitleWindow title="Automation" xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical"
-	creationComplete="position()">
-
-<mx:HBox>
-	<mx:Button label="Record" click="startRecording()" id="btnRecord" />
-	<mx:Button label="Stop"  mouseDown="stopRecording()" id="btnStop" enabled="false"/>
-	<mx:Button label="Play" click="startReplay()" id="btnReplay"/>
-</mx:HBox>
+<mx:TitleWindow title="Recording tool" xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical"
+	creationComplete="hideRecording()" width="360" height="220"
+	>
+	<mx:HBox width="100%">
+		<mx:HBox width="100%" horizontalAlign="left">
+			<mx:LinkButton id="bShowAdobeRecording" label="Show Adobe Recording" click="showAdobeRecording()" visible="false"/>
+			<mx:LinkButton id="bShowFunFXRecording" label="Show FunFX Recording" click="showFunFXRecording()" visible="true"/>
+		</mx:HBox>
+		
+		<mx:HBox width="100%" horizontalAlign="right">
+			<mx:LinkButton id="showButton" label="Show" click="showRecording()" visible="true"/>
+			<mx:LinkButton id="hideButton" label="Hide" click="hideRecording()" visible="false"/>
+		</mx:HBox>
+	</mx:HBox>
+	
+	<mx:TextArea id="outputFunFX" width="100%" height="100%" visible="{!bShowFunFXRecording.visible}" includeInLayout="{!bShowFunFXRecording.visible}"/>
+	<mx:TextArea id="outputAdobe" width="100%" height="100%" visible="{!bShowAdobeRecording.visible}" includeInLayout="{!bShowAdobeRecording.visible}"/>
+	
+	<mx:HBox visible="{hideButton.visible}">
+		<mx:Button label="Record" click="startRecording()" id="btnRecord" />
+		<mx:Button label="Stop"  mouseDown="stopRecording()" id="btnStop" enabled="false"/>
+		<mx:Button label="Play" click="startReplay()" id="btnReplay"/>
+	</mx:HBox>
 
 	
 <mx:Script>
@@ -17,9 +32,56 @@
 	    import mx.automation.AutomationID;
 		import mx.core.Application;
 		
-		private function position():void{
+		private var SHOW:String = "Show";
+		private var HIDE:String = "Hide";
+		
+		[Bindable] private var buttonText:String = SHOW;
+		
+		private function showAdobeRecording():void{
+			bShowAdobeRecording.visible = false;
+			bShowAdobeRecording.includeInLayout = false;
+			bShowFunFXRecording.visible = true;
+			bShowFunFXRecording.includeInLayout = true;
+		}
+		
+		private function showFunFXRecording():void{
+			bShowAdobeRecording.visible = true;
+			bShowAdobeRecording.includeInLayout = true;
+			bShowFunFXRecording.visible = false;
+			bShowFunFXRecording.includeInLayout = false;
+		}
+		
+		private function showRecording():void{
 			this.x = Application.application.width - this.width;
-			this.y = Application.application.height - this. height;
+			this.y = Application.application.height - this.height;
+			toggleButtons(hideButton, showButton);
+			
+			bShowAdobeRecording.visible = true;
+			bShowAdobeRecording.includeInLayout = true;
+			bShowFunFXRecording.visible = false;
+			bShowFunFXRecording.includeInLayout = false;
+			outputAdobe.visible = false;
+			outputFunFX.visible = true;
+		}
+		
+		private function hideRecording():void{
+			this.x = Application.application.width - this.width;
+			this.y = Application.application.height - 50;
+			toggleButtons(showButton, hideButton);
+			
+			bShowAdobeRecording.visible = false;
+			bShowAdobeRecording.includeInLayout = false;
+			bShowFunFXRecording.visible = false;
+			bShowFunFXRecording.includeInLayout = false;
+			outputAdobe.visible = false;
+			outputFunFX.visible = false;
+		}
+		
+		private function toggleButtons(show:LinkButton, hide:LinkButton):void{
+			show.visible = true;
+			show.includeInLayout = true;
+			hide.visible = false;
+			hide.includeInLayout = false;
 		}
 	
 		private function startRecording():void
@@ -33,7 +95,8 @@
 		private function stopRecording():void
 		{
 			AQAdapter.aqAdapter.endRecording();
-			output.text = AQAdapter.aqAdapter.getRecords();
+			outputAdobe.text = AQAdapter.aqAdapter.getRecords();
+			outputFunFX.text = AQAdapter.aqAdapter.getFunFXRecords();
 			invalidateSize();
 			validateNow();
 			btnRecord.enabled = true;
@@ -44,7 +107,7 @@
 		private var currentStep:int;
 		private function onMemoryTimer(e:TimerEvent):void
 		{
-			var records:XML = new XML(output.text);
+			var records:XML = new XML(outputAdobe.text);
         	var step:XML = records.Step[currentStep];
         	if(step)
         	{
@@ -93,6 +156,4 @@
 		
 	]]>
 </mx:Script>
-
-<mx:TextArea id="output" />
 </mx:TitleWindow>

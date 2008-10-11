@@ -40,4 +40,9 @@ task :httpd do
   ruby "gem/website/demo-app/httpd.rb"
 end
 
+desc 'Build demo_app and run httpd'
+task :demo_app_httpd => :demo_app do 
+  ruby "gem/website/demo-app/httpd.rb"
+end
+
 task :default => :everything
