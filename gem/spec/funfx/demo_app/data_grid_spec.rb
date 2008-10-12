@@ -34,4 +34,16 @@ describe "DemoApp" do
     data_grid.select("*Joanne Wall* | 555-219-2012 | jwall@fictitious.com")
     data_grid.deselect("*Joanne Wall* | 555-219-2012 | jwall@fictitious.com")
   end
+  
+  it "should drag and drop" do
+    data_grid = @flex.data_grid({:id => 'dgPanel'}, {:id => 'dg'})
+    data_grid.drag_start("*Joanne Wall* | 555-219-2012 | jwall@fictitious.com")
+    
+    data_grid_drop = @flex.data_grid({:id => 'dgPanel'}, {:id => 'dgDrop'})
+    data_grid_drop.drag_drop('copy')
+    
+    data_grid_drop.values(0,0).should == [
+      ["Joanne Wall",         "555-219-2012", "jwall@fictitious.com"]
+    ]
+  end
 end

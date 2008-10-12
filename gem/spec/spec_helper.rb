@@ -9,6 +9,7 @@ end
 $:.unshift(File.dirname(__FILE__) + '/../lib')
 require 'funfx'
 DEMO_APP = "http://localhost:9851/index.html" unless defined?(DEMO_APP)
+ENV["FIREWATIR"] = "true"
 
 def browser
   if $browser.nil?
