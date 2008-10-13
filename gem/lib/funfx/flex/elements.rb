@@ -404,6 +404,16 @@ module FunFX
         FlexLabel.new(self, *locator_hash)
       end
     
+      class FlexText < FlexLabel
+      
+      
+      
+      end
+      
+      def text(*locator_hash)
+        FlexText.new(self, *locator_hash)
+      end
+    
       class FlexDateChooser < FlexObject
       
       
@@ -2942,6 +2952,16 @@ module FunFX
       
       def pop_up_button(*locator_hash)
         FlexPopUpButton.new(self, *locator_hash)
+      end
+    
+      class FlexPopUpMenuButton < FlexPopUpButton
+      
+      
+      
+      end
+      
+      def pop_up_menu_button(*locator_hash)
+        FlexPopUpMenuButton.new(self, *locator_hash)
       end
     
       class FlexCheckBox < FlexButton

@@ -9,7 +9,7 @@ module FunFX
       end
       
       it "should parse classes" do
-        @lib.classes.length.should == 87
+        @lib.classes.length.should == 89
       end
 
       it "should know about children" do

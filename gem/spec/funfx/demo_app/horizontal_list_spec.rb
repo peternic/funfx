@@ -5,21 +5,20 @@ describe "DemoApp" do
     browser.goto(DEMO_APP)
     @flex = browser.flex_app('DemoAppId', 'DemoAppName')
     
-    
+    tree = @flex.tree({:id => 'objectTree'})
+    tree.open('General controls')
+    tree.select('General controls>HorizontalList1')
   end
 
   it "should selct from a horizontallist" do
-    @flex.tree({:id => 'objectTree', :automationName => 'objectTree', :automationIndex => 'index:1'}).open('General controls', '1')
-    @flex.tree({:id => 'objectTree', :automationName => 'objectTree', :automationIndex => 'index:1'}).select('General controls>HorizontalList1', '1', '0')
-    @flex.list({:id => 'list', :automationName => 'list', :automationIndex => 'index:5'}).select('Nokia 6630', '1', '0')
-
+    list = @flex.list({:id => 'list'})
+    list.select('Nokia 6630')
   end
   
   it "should scroll horizontal" do
-    @flex.tree({:id => 'objectTree', :automationName => 'objectTree', :automationIndex => 'index:1'}).open('General controls', '1')
-    @flex.tree({:id => 'objectTree', :automationName => 'objectTree', :automationIndex => 'index:1'}).select('General controls>HorizontalList1', '1', '0')
-    @flex.list({:id => 'list', :automationName => 'list', :automationIndex => 'index:5'}).scroll('1', '1', '7')
-    @flex.list({:id => 'list', :automationName => 'list', :automationIndex => 'index:5'}).scroll('2', '1', '7')
-    @flex.list({:id => 'list', :automationName => 'list', :automationIndex => 'index:5'}).select('Nokia LGV', '1', '0')
+    list = @flex.list({:id => 'list'})
+    list.scroll('1', '1', '7')
+    list.scroll('2', '1', '7')
+    list.select('Nokia LGV', '1', '0')
   end
 end

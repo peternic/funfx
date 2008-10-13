@@ -86,6 +86,11 @@ digraph G {
   ]
   FlexLabel -> FlexObject
 
+  FlexText [
+    label = "{FlexText||}"
+  ]
+  FlexText -> FlexLabel
+
   FlexDateChooser [
     label = "{FlexDateChooser|selected_date : Date\ldisabled_days : String\ldisabled_ranges : String\lallow_disjoint_selection? : TrueClass\ldisplayed_month : Integer\ldisplayed_year : Integer\lfirst_day_of_week : Integer\lmax_year : Integer\lmin_year : Integer\lallow_multiple_selection? : TrueClass\lselected_ranges : String\lshow_today? : TrueClass\lyear_navigation_enabled? : TrueClass\lheader_colors : String\lroll_over_color : String\ltoday_color : String\lcolor : String\ldisabled_color : String\lfill_colors : String\lfont_family : String\lfont_size : Integer\lfont_style : String\lfont_weight : String\ltext_align : String\ltext_decoration : String\ltext_indent : Integer\lheader_colors : String\lroll_over_color : String\lselection_color : String\l|change(new_date)\lscroll(detail)\ltype(key_code, key_modifier=[\"0\"])\l}"
   ]
@@ -425,6 +430,11 @@ digraph G {
     label = "{FlexPopUpButton||open(trigger_event=[\"1\"])\lclose(trigger_event=[\"1\"])\l}"
   ]
   FlexPopUpButton -> FlexButton
+
+  FlexPopUpMenuButton [
+    label = "{FlexPopUpMenuButton||}"
+  ]
+  FlexPopUpMenuButton -> FlexPopUpButton
 
   FlexCheckBox [
     label = "{FlexCheckBox||}"

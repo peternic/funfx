@@ -303,6 +303,14 @@
         <Properties>
         </Properties>
     </ClassInfo>
+    
+    <ClassInfo Name="FlexPopUpMenuButton" Extends="FlexPopUpButton">
+        <Implementation Class="mx.controls::PopUpMenuButton"/>
+        <Events>
+        </Events>
+        <Properties>
+        </Properties>
+    </ClassInfo>
 
     <ClassInfo Name="FlexCheckBox" Extends="FlexButton">
                         <Implementation Class="mx.controls::CheckBox"/>
@@ -1391,6 +1399,14 @@
             <Property Name="textAlign" ForVerification="true"><PropertyType Type="String"/></Property>
             <Property Name="textDecoration" ForVerification="true"><PropertyType Type="String"/></Property>
             <Property Name="textIndent" ForVerification="true"><PropertyType Type="int"/></Property>
+        </Properties>
+    </ClassInfo>
+    
+    <ClassInfo Name="FlexText" Extends="FlexLabel">
+                        <Implementation Class="mx.controls::Text"/>
+        <Events>
+        </Events>
+        <Properties>
         </Properties>
     </ClassInfo>
 
