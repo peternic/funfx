@@ -12,7 +12,7 @@ describe "DemoApp" do
 
   it "should get text from label" do
     label = @flex.label({:id => 'simpleLabel'})
-    label.text.should == "This Label displays plain text"
+    label.text.should == "This Label displays plain text."
   end
   
 end

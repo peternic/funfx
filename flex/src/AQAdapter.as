@@ -488,7 +488,7 @@ public class AQAdapter implements IAQCodecHelper
     		record += "(" + getRecordArguments(event.args) + ")";
     	}
     	
-    	funfxRecords += record + "\n";
+    	funfxRecords += record + "\r";
     }
     
     private function changeName(name:String):String{
