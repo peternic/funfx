@@ -32,6 +32,9 @@ module FunFX
         @lib.values.each do |c|
           c.link_with(self)
         end
+        
+        @classes = []
+        object.add_children_recursive(@classes)
       end
       
       def [](name)
@@ -42,10 +45,9 @@ module FunFX
         self[nil]
       end
       
-      def classes
-        a = []
-        object.add_children_recursive(a)
-        a
+      def classes(names = nil)
+        return @classes if names.nil?
+        return @classes.select{|c| names.index(c.name)}
       end
     end
 

@@ -1,135 +1,7 @@
-h1. FunFX
+h2. Documentation
 
-FunFX is a functional testing tool for Flex applications. FunFX lets you click buttons, menus, trees
-and send any kind of event to any kind of element inside a swf. It also lets you retrieve values from
-elements so that you can compare them with expected results.
-
-h2. Installation
-
-*Step 1*: Install "Ruby":http://ruby-lang.org/
-
-*Step 2*: Install "Watir":http://wtr.rubyforge.org/install.html, "SafariWatir":http://safariwatir.rubyforge.org/ or "FireWatir":http://wiki.openqa.org/display/WTR/FireWatir+Installation
-
-*Step 3*: Install FunFX
-
-<pre><code>git clone git://github.com/peternic/funfx.git
-cd funfx/gem
-rake gem # If you're on Windows this might fail because of missing tar.exe. Try installing MSYS.
-rake install_gem
-</code></pre>
-
-(You may have to sudo if you're on Linux or OS X)
-
-When we make a release of FunFX 2.0 you will be able to install it simply with:
-
-<pre><code>gem install funfx</code></pre>
-
-h2. Getting started
-
-FunFX uses Ruby to talk to your Flex application. We have put a demo flex application up on "FunFX' website":http://funfx.rubyforge.org/DemoApp.html (TODO: actually put it up there).
-
-We'll guide you through the steps required to run this.
-
-h3. Create a Ruby file
-
-Just use a text editor and create a file called myfunfx.rb. Depending on what kind of browser you're planning to use,
-enter the following in the file:
-
-*Watir*
-
-<pre><code>require 'funfx/browser/watir'
-
-browser = Watir::IE.new
-</code></pre>
-
-*SafariWatir*
-
-<pre><code>require 'funfx/browser/safariwatir'
-
-browser = Watir::Safari.new
-</code></pre>
-
-*FireWatir*
-
-<pre><code>require 'funfx/browser/firewatir'
-
-browser = FireWatir::Firefox.new
-</code></pre>
-
-Open a shell, and run your file:
-
-<pre><code>ruby myfunfx.rb
-</code></pre>
-
-This should open a browser window. Now let's start talking to the Flex app...
-
-h3. Getting a reference to a Flex application
-
-In order to fire events and get values from Flex objects, you first have to tell the browser to
-go to the page containing your Flex application, and then you must obtain a reference to the Flex 
-application itself.
-
-Add the following code to your Ruby file:
-
-<pre><code>
-browser.goto("http://funfx.rubyforge.org/DemoApp.html") # The URL containing your Flex app
-flex = browser.flex_app('DemoAppId', 'DemoAppName') # See the API for FunFX::Browser::FlexAppLookup#flex_app for details
-</code></pre>
-
-h3. Looking up Flex elements with Automation IDs
-
-Once you have a reference to the Flex app, FunFX lets you look up a Flex element using a Hash:
-
-<pre><code>message = flex.text_area({:id => 'message'})
-</code></pre>
-
-or an Array of Hashes (each hash identifies an element in the tree of elements):
-
-<pre><code>message = flex.text_area({:automationName => "Button Control Example"}, {:id => 'message'})
-</code></pre>
-
-There is a lookup method for each element type. See the FunFX API or class diagram for more details.
-
-FunFX will translate the arguments you pass to the "Adobe Flex Automation ID format":http://livedocs.adobe.com/flex/3/langref/mx/automation/AutomationID.html.
-For example, the last example would be translated to the following:
-
-<pre><code>id{DemoApp string}|automationName{Button%20Control%20Example string}|id{message string}
-</code></pre>
-
-h3. When an automation object is not found
-
-FunFX will raise an error if you try to interact with an automation object that cannot be found.
-
-Note that FunFX will *not* raise any errors when you *look up* a Flex automation object that doesn't exist. It's only when you fire an event or ask for a property
-that an error will be raised.
-
-h2. Using FunFX with your own Flex app
-
-TODO - explain how to build with automation and funfx swcs.
-
-h2. Learning more
-
-We recommend you learn "RSpec":http://rspec.info/, "Rake":http://rake.rubyforge.org/ and "Cucumber":http://github.com/aslakhellesoy/cucumber
-
-These tools work great with FunFX and let you run several tests and produce nice reports about failing and passing tests.
-
-h2. Hacking
-
-If you want to hack on FunFX (fix bugs, add features), start by building everything and running the specs.
-Go to the top level directory and open two console windows.
-
-* Window 1 *
-
-<pre><code>ruby demo-app/lib/httpd.rb</code></pre>
-
-* Window 2 *
-
-<pre><code>rake everything</code></pre>
-
-After you've worked yourself through the first couple of error messages (you'll be told to
-install some additional ruby gems), you should see green output telling you that everything is ok.
-
-Now add some more specs, hack away and let us know when you've fixed something (specs should still be green).
+Please look under gem/website
+We should put this on the GitHub wiki to make it easier to edit.
 
 h2. TODO before 0.2.0
 
@@ -143,10 +15,10 @@ Website/Docs
 * Automate gem release on RubyForge (rake release)
 * Automate publish of website (rake website_upload)
 * Make demo app part of website
-** git mv demo-app/lib/DemoApp.* gem/website/
-** Update scripts so specs still pass
+** (A OK) git mv demo-app/lib/DemoApp.* gem/website/
+** (A OK) Update scripts so specs still pass
 ** (P) Update howtos
-** (A) Move rest of this file to gem/website/
+** Move rest of this file to gem/website/
 * (P) More demo app specs
 
 h2. TODO after 0.2.0
