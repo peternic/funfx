@@ -21,8 +21,7 @@ module FunFX
       end
 
       def fire_event(event_name, *args)
-        flex_args = args.join("_ARG_SEP_")
-
+        flex_args = args.join("_ARG_SEP_");
         flex_invoke do
           @flex_app.fire_event(@flex_id, event_name, flex_args)
         end

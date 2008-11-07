@@ -15,11 +15,12 @@ module FunFX
       it "should extract some classes" do
         classes = @lib.classes(%w{FlexMenuBar FlexLabel FlexObject})
         classes.map{|c| c.name}.should == %w{FlexObject FlexLabel FlexMenuBar}
+        @lib.classes.length.should == 89
       end
 
       it "should know about children" do
         flex_area_series = @lib['FlexListBase']
-        flex_area_series.children.map{|c| c.name}.sort.should == %w{FlexAdvancedDataGrid FlexDataGrid FlexList FlexTree}
+        flex_area_series.children.map{|c| c.name}.sort.should == %w{FlexDataGrid FlexList FlexTree}
       end
       
       it "should have a toplevel class that knows about children" do

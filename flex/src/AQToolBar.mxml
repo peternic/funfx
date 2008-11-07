@@ -1,14 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:TitleWindow title="Automation" xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical"
-	creationComplete="position()">
-
-<mx:HBox>
-	<mx:Button label="Record" click="startRecording()" id="btnRecord" />
-	<mx:Button label="Stop"  mouseDown="stopRecording()" id="btnStop" enabled="false"/>
-	<mx:Button label="Play" click="startReplay()" id="btnReplay"/>
-</mx:HBox>
-
+<mx:TitleWindow title="Recording tool" xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" width="360" height="220"
+	creationComplete="hideRecording()">
 	
+	<mx:HBox width="100%">
+		<mx:HBox id="showTypesBox" width="100%" horizontalAlign="left">
+			
+			
+		</mx:HBox>
+		
+		<mx:HBox id="showHideBox" width="100%" horizontalAlign="right">
+			
+		</mx:HBox>
+	</mx:HBox>
+	
+	<mx:VBox id="outputBox" width="100%" height="100%">
+	  <mx:TextArea id="outputAdobe" width="100%" height="100%" visible="{currentState == ADOBE_STATE}" includeInLayout="{currentState == ADOBE_STATE}"/>
+    <mx:TextArea id="outputFunFX" width="100%" height="100%" visible="{currentState == FUNFX_STATE}" includeInLayout="{currentState == FUNFX_STATE}"/>
+	</mx:VBox>
+	
+	<mx:HBox>
+    <mx:Button id="btnRecord" label="Record" click="startRecording()" visible="{currentState != HIDDEN}"/>
+    <mx:Button id="btnStop" label="Stop"  mouseDown="stopRecording()" enabled="false" visible="{currentState != HIDDEN}"/>
+    <mx:Button id="btnReplay" label="Play" click="startReplay()" visible="{currentState != HIDDEN}"/>
+  </mx:HBox>
+
+  <mx:states>
+    <mx:State name="{HIDDEN}">
+        <mx:AddChild relativeTo="{showHideBox}" position="lastChild">
+          <mx:LinkButton id="showButton" label="Show" click="showRecording()"/>
+        </mx:AddChild>
+    </mx:State>
+    <mx:State name="{FUNFX_STATE}">
+        <mx:AddChild relativeTo="{showHideBox}" position="lastChild">
+          <mx:LinkButton label="Hide" click="hideRecording()" visible="true"/>
+        </mx:AddChild>
+        <mx:AddChild relativeTo="{showTypesBox}" position="lastChild">
+          <mx:LinkButton id="bShowAdobeRecording" label="Show Adobe Recording" click="showAdobeRecording()"/>
+        </mx:AddChild>
+    </mx:State>
+    <mx:State name="{ADOBE_STATE}">
+        <mx:AddChild relativeTo="{showHideBox}" position="lastChild">
+          <mx:LinkButton label="Hide" click="hideRecording()"/>
+        </mx:AddChild>
+        <mx:AddChild relativeTo="{showTypesBox}" position="lastChild">
+          <mx:LinkButton id="bShowFunFXRecording" label="Show FunFX Recording" click="showFunFXRecording()"/>
+        </mx:AddChild>
+    </mx:State>
+  </mx:states>
 <mx:Script>
 	<![CDATA[
 	
@@ -16,10 +54,40 @@
 	    import mx.automation.IAutomationObject;
 	    import mx.automation.AutomationID;
 		import mx.core.Application;
+		import mx.controls.Alert;
+		import funfx.model.FunFXRecordingModel;
 		
-		private function position():void{
+		[Bindable] private var FUNFX_STATE:String = "stateFunFX";
+		[Bindable] private var ADOBE_STATE:String = "stateAdobe";
+		[Bindable] private var HIDDEN:String = "hiddenControl";	
+		
+		private var SHOW:String = "Show";
+		private var HIDE:String = "Hide";
+		
+		private var funfxModel:FunFXRecordingModel = new FunFXRecordingModel();
+		
+		[Bindable] private var buttonText:String = SHOW;
+		
+		private function showAdobeRecording():void{
+			currentState = ADOBE_STATE;
+		}
+		
+		private function showFunFXRecording():void{
+			currentState = FUNFX_STATE;
+		}
+		
+		private function showRecording():void{
 			this.x = Application.application.width - this.width;
-			this.y = Application.application.height - this. height;
+			this.y = Application.application.height - this.height;
+			
+			currentState = FUNFX_STATE;
+		}
+		
+		private function hideRecording():void{
+			this.x = Application.application.width - this.width;
+			this.y = Application.application.height - 50;
+			
+			currentState = HIDDEN;
 		}
 	
 		private function startRecording():void
@@ -33,7 +101,8 @@
 		private function stopRecording():void
 		{
 			AQAdapter.aqAdapter.endRecording();
-			output.text = AQAdapter.aqAdapter.getRecords();
+			outputAdobe.text = AQAdapter.aqAdapter.getRecords();
+			outputFunFX.text = AQAdapter.aqAdapter.getFunFXRecords();
 			invalidateSize();
 			validateNow();
 			btnRecord.enabled = true;
@@ -44,18 +113,18 @@
 		private var currentStep:int;
 		private function onMemoryTimer(e:TimerEvent):void
 		{
-			var records:XML = new XML(output.text);
+			var records:XML = new XML(outputAdobe.text);
         	var step:XML = records.Step[currentStep];
         	if(step)
         	{
         	    var am:IAutomationManager = AQAdapter.aqAdapter.automationManager;
         	
-				if (!am.isSynchronized(null))
-					return ;
+				    if (!am.isSynchronized(null))
+					  return ;
 
-                var rid:AutomationID = AutomationID.parse(step.@id.toString());
+            var rid:AutomationID = AutomationID.parse(step.@id.toString());
 
-	            var obj:IAutomationObject = am.resolveIDToSingleObject(rid);
+            var obj:IAutomationObject = am.resolveIDToSingleObject(rid);
 
 		        if (!obj || !am.isSynchronized(obj))
 					return ;
@@ -73,12 +142,71 @@
 	        {	
 	        	memoryTimer.stop();
 	        	btnReplay.enabled = true;
-			    btnRecord.enabled = true;
-     	        btnStop.enabled = true;
+			      btnRecord.enabled = true;
+     	      btnStop.enabled = true;
+	        }
+		}
+		
+		private function replayFunFX(e:TimerEvent):void
+		{
+			var array:Array = outputFunFX.text.split('\r');
+			
+    	var step:String = array[currentStep];
+    	if(step && step != "")
+    	{
+    	    var am:IAutomationManager = AQAdapter.aqAdapter.automationManager;
+    	    
+    	    if (!am.isSynchronized(null))
+					return ;
+              var flexId:String = funfxModel.getIdFromString(step);
+              trace("Flex id: " + flexId);
+              var rid:AutomationID = AutomationID.parse(flexId);
+
+	            var obj:IAutomationObject = am.resolveIDToSingleObject(rid);
+
+		        if (!obj || !am.isSynchronized(obj))
+					return ;
+
+	            if (!am.isVisible(obj as DisplayObject))
+					return ;
+        	
+	        	AQAdapter.aqAdapter.run(funfxModel.getIdFromString(step), 
+		        						funfxModel.getEventFromString(step), 
+		        						funfxModel.getArgsFromString(step));
+	        	++currentStep;
+	        	memoryTimer.start();
+	        }
+	        else
+	        {	
+	        	memoryTimer.stop();
+	        	btnReplay.enabled = true;
+			      btnRecord.enabled = true;
+     	      btnStop.enabled = true;
 	        }
 		}
 		
 		private function startReplay():void
+		{
+		  if(currentState == FUNFX_STATE){
+		    startReplayFunFX();
+		  } else if(currentState == ADOBE_STATE){
+		    startReplayAdobe();
+		  }
+		}
+		
+		private function startReplayFunFX():void
+		{
+		  Alert.show("Replay of FunFX test code is not implemented yet");
+		  /*memoryTimer = new Timer(500,1);
+			memoryTimer.addEventListener(TimerEvent.TIMER_COMPLETE, replayFunFX);
+			memoryTimer.start();
+			currentStep = 0;
+			btnReplay.enabled = false;
+			btnRecord.enabled = false;
+			btnStop.enabled = false;*/
+		}
+		
+		private function startReplayAdobe():void
 		{
 			memoryTimer = new Timer(500,1);
 			memoryTimer.addEventListener(TimerEvent.TIMER_COMPLETE, onMemoryTimer);
@@ -93,6 +221,4 @@
 		
 	]]>
 </mx:Script>
-
-<mx:TextArea id="output" />
 </mx:TitleWindow>

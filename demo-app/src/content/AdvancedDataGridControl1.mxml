@@ -6,22 +6,14 @@
                   
             [Bindable]
             private var dpFlat:ArrayCollection = new ArrayCollection([
-              {Region:"Southwest", Territory:"Arizona", 
-                  Territory_Rep:"Barbara Jennings", Actual:38865, Estimate:40000}, 
-              {Region:"Southwest", Territory:"Arizona", 
-                  Territory_Rep:"Dana Binn", Actual:29885, Estimate:30000},  
-              {Region:"Southwest", Territory:"Central California", 
-                  Territory_Rep:"Joe Smith", Actual:29134, Estimate:30000},  
-              {Region:"Southwest", Territory:"Nevada", 
-                  Territory_Rep:"Bethany Pittman", Actual:52888, Estimate:45000},  
-              {Region:"Southwest", Territory:"Northern California", 
-                  Territory_Rep:"Lauren Ipsum", Actual:38805, Estimate:40000}, 
-              {Region:"Southwest", Territory:"Northern California", 
-                  Territory_Rep:"T.R. Smith", Actual:55498, Estimate:40000},  
-              {Region:"Southwest", Territory:"Southern California", 
-                  Territory_Rep:"Alice Treu", Actual:44985, Estimate:45000}, 
-              {Region:"Southwest", Territory:"Southern California", 
-                  Territory_Rep:"Jane Grove", Actual:44913, Estimate:45000}
+              {Region:"Southwest", Territory:"Arizona"}, 
+              {Region:"Southwest", Territory:"Arizona"},  
+              {Region:"Southwest", Territory:"Central California"},  
+              {Region:"Southwest", Territory:"Nevada"},  
+              {Region:"Southwest", Territory:"Northern California"}, 
+              {Region:"Southwest", Territory:"Northern California"},  
+              {Region:"Southwest", Territory:"Southern California"}, 
+              {Region:"Southwest", Territory:"Southern California"}
             ]);
         ]]>
     </mx:Script>
@@ -47,10 +39,6 @@
             <mx:columns>
                 <mx:AdvancedDataGridColumn dataField="Region"/>
                 <mx:AdvancedDataGridColumn dataField="Territory"/>
-                <mx:AdvancedDataGridColumn dataField="Territory_Rep"
-                    headerText="Territory Rep"/>
-                <mx:AdvancedDataGridColumn dataField="Actual"/>
-                <mx:AdvancedDataGridColumn dataField="Estimate"/>
             </mx:columns>
        </mx:AdvancedDataGrid>
     </mx:Panel>
