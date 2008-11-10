@@ -1,5 +1,5 @@
 /**
- * Portions Copyright Copyright 2008 Gorilla Logic, Inc. Licensed under the Apache License, Version 2.0 (the "License")
+ * Portions Copyright 2008 Gorilla Logic, Inc. Licensed under the Apache License, Version 2.0 (the "License"	)
  */
 package funfx {
     import com.blchq.mp.utility.ObjectUtility;
