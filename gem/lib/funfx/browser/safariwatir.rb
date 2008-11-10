@@ -19,20 +19,20 @@ module Watir
         @id_prefix = "id{#{app_name} string}"
       end
 
-      def fire_event(flex_id, event_name, args) # :nodoc:
-        eval_js %{return element.fireFunFXEvent(#{full_id(flex_id).inspect}, #{event_name.inspect}, "#{args}")}
+      def fire_event(flex_locator, event_name, args) # :nodoc:
+        eval_js %{return element.fireFunFXEvent(#{flex_locator}, #{event_name.inspect}, "#{args}")}
       end
 
-      def get_property_value(flex_id, property) # :nodoc:
-        eval_js %{return element.getFunFXPropertyValue(#{full_id(flex_id).inspect}, #{property.inspect})}
+      def get_property_value(flex_locator, property) # :nodoc:
+        eval_js %{return element.getFunFXPropertyValue(#{flex_locator}, #{property.inspect})}
       end
 
-      def get_tabular_property_value(flex_id, property) # :nodoc:
-        eval_js %{return element.getFunFXTabularPropertyValue(#{full_id(flex_id).inspect}, #{property.inspect})}
+      def get_tabular_property_value(flex_locator, property) # :nodoc:
+        eval_js %{return element.getFunFXTabularPropertyValue(#{flex_locator}, #{property.inspect})}
       end
 
-      def invoke_tabular_method(flex_id, method_name, *args) # :nodoc:
-        eval_js %{return element.invokeFunFXTabularMethod(#{full_id(flex_id).inspect}, #{method_name.inspect}, #{args.map{|a| a.inspect}.join(', ')})}
+      def invoke_tabular_method(flex_locator, method_name, *args) # :nodoc:
+        eval_js %{return element.invokeFunFXTabularMethod(#{flex_locator}, #{method_name.inspect}, #{args.map{|a| a.inspect}.join(', ')})}
       end
       
     private

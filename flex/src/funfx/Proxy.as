@@ -1,11 +1,16 @@
 package funfx {
+    import com.blchq.mp.utility.ObjectUtility;
+    
+    import flash.display.DisplayObject;
     import flash.external.ExternalInterface;
     
+    import mx.automation.Automation;
     import mx.automation.AutomationID;
-    import mx.automation.IAutomationObject;
     import mx.automation.IAutomationManager;
-    import mx.automation.IAutomationTabularData;
-    import flash.display.DisplayObject;
+    import mx.automation.IAutomationObject;
+    import mx.core.Application;
+    import mx.core.IChildList;
+    import mx.core.UIComponent;
     
     public class Proxy
     {
@@ -17,13 +22,13 @@ package funfx {
             ExternalInterface.addCallback("invokeFunFXTabularMethod", invokeFunFXTabularMethod);
         }
 
-        private function fireFunFXEvent(objID:String, eventName:String, args:String) : String
+        private function fireFunFXEvent(locator:Object, eventName:String, args:String) : String
         {
             if(!automationManager.isSynchronized(null)) {
                 return null;
             }
             try {
-                var target:IAutomationObject = findAutomationObject(objID);
+                var target:IAutomationObject = findAutomationObject(locator);
                 if (!target || !automationManager.isSynchronized(target)) {
                   return null;
                 }
@@ -38,13 +43,13 @@ package funfx {
             return null;
         }
 
-        private function getFunFXPropertyValue(objID:String, fieldName:String) : String
+        private function getFunFXPropertyValue(locator:Object, fieldName:String) : String
         {
             if(!automationManager.isSynchronized(null)) {
                 return null;
             }
             try {
-                var target:IAutomationObject = findAutomationObject(objID);
+                var target:IAutomationObject = findAutomationObject(locator);
                 var o:Object = Object(target);
                 if (o.hasOwnProperty(fieldName)) {
                     return o[fieldName];
@@ -57,13 +62,13 @@ package funfx {
             return null;
         }
 
-        private function getFunFXTabularPropertyValue(objID:String, fieldName:String) : String
+        private function getFunFXTabularPropertyValue(locator:Object, fieldName:String) : String
         {
             if(!automationManager.isSynchronized(null)) {
                 return null;
             }
             try {
-                var target:IAutomationObject = findAutomationObject(objID);
+                var target:IAutomationObject = findAutomationObject(locator);
                 var tab:Object = target.automationTabularData;
                 var o:Object = Object(tab);
                 if (o.hasOwnProperty(fieldName)) {
@@ -77,14 +82,14 @@ package funfx {
             return null;
         }
 
-        private function invokeFunFXTabularMethod(objID:String, methodName:String, ... args) : String
+        private function invokeFunFXTabularMethod(locator:Object, methodName:String, ... args) : String
         {
             if(!automationManager.isSynchronized(null)) {
                 return null;
             }
            
             try {
-                var target:IAutomationObject = findAutomationObject(objID);              
+                var target:IAutomationObject = findAutomationObject(locator);              
                 var tab:Object = target.automationTabularData;
                 var o:Object = Object(tab);
                 if (o.hasOwnProperty(methodName)) {
@@ -101,11 +106,10 @@ package funfx {
         /** 
          * Returns an automation object. If we're not synched, returns null, in which case the client must try again.
          */
-        private function findAutomationObject(objID:String) : IAutomationObject
+        private function findAutomationObject(locator:Object) : IAutomationObject
         {
             try {
-                var rid:AutomationID = AutomationID.parse(objID);
-                return automationManager.resolveIDToSingleObject(rid);
+                return Proxy.findComponentWith(locator);
             } catch(e:Error) {
                 throw e;
 //                throw new Error("Target not found: " + objID);
@@ -128,6 +132,102 @@ package funfx {
         {
             return AQAdapter.aqAdapter.automationManager;
         }
+        
+        /**
+    		 * From FlexMonkey source
+    		 *
+    		 * Find the first component with the specified property/value pair. If a container is specified, then
+    		 * only its children and descendents are searched. The search order is (currently) indeterminate. If no container is specified,
+    		 * then all components will be searched. If the prop value is "automationID", then the id is resolved directly without searching.
+    		 */
+    		public static function findComponentWith(locator:Object, container:UIComponent=null):UIComponent {
+				var automationID:String = automationID(locator);
+    			if (automationID) {
+                  	return findComponentUsingAutomationFramework(automationID);
+    			}
+    			
+    			return findComponentUsingCustomFramework(locator, container);
+
+    		}
+    		
+    		private static function findComponentUsingAutomationFramework(automationID:String):UIComponent {
+    			var rid:AutomationID = AutomationID.parse(automationID);
+	            var obj:IAutomationObject = Automation.automationManager.resolveIDToSingleObject(rid);
+	            return UIComponent(obj);
+    		}
+    		
+    		private static function findComponentUsingCustomFramework(locator:Object, container:UIComponent):UIComponent {
+    			if (container == null) {
+    				// Check windows whose parent is the SystemManager
+    				var kids:IChildList = UIComponent(Application.application).systemManager.rawChildren;
+    				for (i = 0; i < kids.numChildren; i++) {
+    					var child:DisplayObject = kids.getChildAt(i);
+
+    					if (!(child is UIComponent)) {
+    						continue;
+    					}
+    					
+    					if (childMatch(child, locator)) {
+    						return UIComponent(child);
+    					}
+    								
+    					child = findComponentWith(locator, UIComponent(child));
+    					if (child != null) {
+    						return UIComponent(child);
+    					}
+    				}
+    				return null;
+    			}
+    			
+    			var numChildren:int = container.numChildren;
+    			if (numChildren == 0) {
+    				return null;
+    			}
+
+    			var component:UIComponent;
+    			for (var i:int=0; i < numChildren; i++) {
+    				child = container.getChildAt(i);
+
+    				if (!(child is UIComponent)) {
+    					continue;
+    				}
+
+    				if (childMatch(child, locator)) {
+    					return UIComponent(child);
+    				} else {
+    					var grandChild:UIComponent = findComponentWith(locator, UIComponent(child));
+    					if (grandChild != null) {
+    						return grandChild;
+    					}
+    				}
+    			}
+
+    			return null;
+    		}
+    		
+    		private static function childMatch(child:DisplayObject, locator:Object):Boolean {
+    			var properties:Array = ObjectUtility.keys(locator);
+    			var values:Array = ObjectUtility.values(locator);
+    			for (var index:uint = 0; index < properties.length; index++) {
+    				var property:String = String(properties[index]);
+    				var value:String = decodeURIComponent(values[index]);
+    				if (!child.hasOwnProperty(property) || child[property] != value) {
+ 						return false;
+    				}
+    			}
+    			
+    			return true;
+    		}
+    		
+    		private static function automationID(locator:Object):String {
+    			var locatorProperties:Array = ObjectUtility.keys(locator);
+    			var index:int = locatorProperties.indexOf("automationID");
+    			if (index > -1) {
+    				return locatorProperties[index];
+    			}
+    			
+    			return null;
+    		}
 
     }
 }

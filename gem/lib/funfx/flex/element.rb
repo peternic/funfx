@@ -9,35 +9,33 @@ module FunFX
       MAX_TRIES = 10
 
       def initialize(flex_app, *locator_hashes)
-        @flex_app = flex_app
-        ids = locator_hashes.map do |locator_hash|
-          locator_hash.keys.sort{|a,b| a.to_s <=> b.to_s}.map do |key|
-            value = locator_hash[key]
-            "#{key}{#{URI.escape(value)} string}"
-          end.join
-        end
-        @flex_id = ids.join("|")
+        @flex_app = flex_app 
+        
+        @flex_locator  = build_flex_locator(locator_hashes)
+        
+        puts "flex locator: #{@flex_locator}"
+        
         @tries = 0
       end
 
       def fire_event(event_name, *args)
         flex_args = args.join("_ARG_SEP_");
         flex_invoke do
-          @flex_app.fire_event(@flex_id, event_name, flex_args)
+          @flex_app.fire_event(@flex_locator, event_name, flex_args)
         end
         sleep FunFX.fire_pause unless FunFX.fire_pause.nil?
       end
 
       def get_property_value(property, ruby_type)
         raw_value = flex_invoke do
-          @flex_app.get_property_value(@flex_id, property)
-        end
+          @flex_app.get_property_value(@flex_locator, property)
+        end        
         ruby_type.from_funfx_string(raw_value)
       end
       
       def get_tabular_property_value(property, ruby_type, codec)
         raw_value = flex_invoke do
-          @flex_app.get_tabular_property_value(@flex_id, property)
+          @flex_app.get_tabular_property_value(@flex_locator, property)
         end
         value = coerce(raw_value, ruby_type)
         decode(value, codec)
@@ -45,7 +43,7 @@ module FunFX
       
       def invoke_tabular_method(method_name, ruby_type, codec, *args)
         raw_value = flex_invoke do
-          @flex_app.invoke_tabular_method(@flex_id, method_name, *args)
+          @flex_app.invoke_tabular_method(@flex_locator, method_name, *args)
         end
         value = coerce(raw_value, ruby_type)
         decode(value, codec)
@@ -122,6 +120,37 @@ module FunFX
           result
         end
       end
+      
+      private
+      
+      def build_flex_locator(locator_hashes)
+        flex_locator = if locator_hashes.size > 1
+          build_flex_automation_id(locator_hashes)
+        else
+          locator_string = "{"
+          index = 0
+          locator_hashes.first.each_pair do |key, value|
+            locator_string += " , " if (index > 0)
+            locator_string += "#{key}: '#{URI.escape(value)}'"
+            index += 1
+          end
+          locator_string += "}"          
+        end
+        flex_locator
+      end
+      
+      def build_flex_automation_id(locator_hashes)
+        ids = locator_hashes.map do |locator_hash|
+          locator_hash.keys.sort{|a,b| a.to_s <=> b.to_s}.map do |key|
+            value = locator_hash[key]
+            "#{key}{#{URI.escape(value)} string}"
+          end.join
+        end 
+        
+        automation_id_value = full_id(ids.join("|"))
+        "{automationID: #{automation_id_value} }"
+      end
+      
     end
   end
 end
