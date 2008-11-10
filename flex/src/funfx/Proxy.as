@@ -2,8 +2,6 @@
  * Portions Copyright 2008 Gorilla Logic, Inc. Licensed under the Apache License, Version 2.0 (the "License"	)
  */
 package funfx {
-    import com.blchq.mp.utility.ObjectUtility;
-    
     import flash.display.DisplayObject;
     import flash.external.ExternalInterface;
     
@@ -23,6 +21,7 @@ package funfx {
             ExternalInterface.addCallback("getFunFXPropertyValue", getFunFXPropertyValue);
             ExternalInterface.addCallback("getFunFXTabularPropertyValue", getFunFXTabularPropertyValue);
             ExternalInterface.addCallback("invokeFunFXTabularMethod", invokeFunFXTabularMethod);
+            ExternalInterface.addCallback("findAutomationObject", findAutomationObject);
         }
 
         private function fireFunFXEvent(locator:Object, eventName:String, args:String) : String
@@ -209,26 +208,20 @@ package funfx {
 		}
 		
 		private static function childMatch(child:DisplayObject, locator:Object):Boolean {
-			var properties:Array = ObjectUtility.keys(locator);
-			var values:Array = ObjectUtility.values(locator);
-			for (var index:uint = 0; index < properties.length; index++) {
-				var property:String = String(properties[index]);
-				var value:String = decodeURIComponent(values[index]);
+			for (var property:String in locator) {
+				var value:String = decodeURIComponent(locator[property]);
 				if (!child.hasOwnProperty(property) || child[property] != value) {
  					return false;
 				}
 			}
-			
 			return true;
 		}
 		
 		private static function automationID(locator:Object):String {
-			var locatorProperties:Array = ObjectUtility.keys(locator);
-			var index:int = locatorProperties.indexOf("automationID");
-			if (index > -1) {
-				return locatorProperties[index];
+			var automationIdKey:String = 'automationID';
+			if (locator.hasOwnProperty(automationIdKey)) {
+				return locator[automationIdKey];
 			}
-			
 			return null;
 		}
     }
