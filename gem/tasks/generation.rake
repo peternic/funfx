@@ -1,8 +1,8 @@
-require 'funfx/meta/generator'
-
 namespace :generate do
   desc "Generate class diagrams"
   task :diagrams do
+    require 'funfx/meta/generator'
+    
     diagrams = {
       :all    => nil,
       :first  => %w{FlexMenuBar FlexLabel FlexObject},
@@ -23,6 +23,8 @@ namespace :generate do
 
   desc "Generate code"
   task :code do
+    require 'funfx/meta/generator'
+    
     lib = FunFX::Meta::ClassLib.new
     classes = lib.classes
     generator = FunFX::Meta::Generator.new(classes, :code)
