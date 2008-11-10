@@ -13,8 +13,6 @@ module FunFX
         
         @flex_locator  = build_flex_locator(locator_hashes)
         
-        puts "flex locator: #{@flex_locator}"
-        
         @tries = 0
       end
 
