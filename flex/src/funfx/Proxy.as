@@ -1,3 +1,6 @@
+/**
+ * Portions Copyright Copyright 2008 Gorilla Logic, Inc. Licensed under the Apache License, Version 2.0 (the "License")
+ */
 package funfx {
     import com.blchq.mp.utility.ObjectUtility;
     
@@ -134,100 +137,99 @@ package funfx {
         }
         
         /**
-    		 * From FlexMonkey source
-    		 *
-    		 * Find the first component with the specified property/value pair. If a container is specified, then
-    		 * only its children and descendents are searched. The search order is (currently) indeterminate. If no container is specified,
-    		 * then all components will be searched. If the prop value is "automationID", then the id is resolved directly without searching.
-    		 */
-    		public static function findComponentWith(locator:Object, container:UIComponent=null):UIComponent {
-				var automationID:String = automationID(locator);
-    			if (automationID) {
-                  	return findComponentUsingAutomationFramework(automationID);
-    			}
-    			
-    			return findComponentUsingCustomFramework(locator, container);
+		 * From FlexMonkey source
+		 *
+		 * Find the first component with the specified property/value pair. If a container is specified, then
+		 * only its children and descendents are searched. The search order is (currently) indeterminate. If no container is specified,
+		 * then all components will be searched. If the prop value is "automationID", then the id is resolved directly without searching.
+		 */
+		public static function findComponentWith(locator:Object, container:UIComponent=null):UIComponent {
+			var automationID:String = automationID(locator);
+			if (automationID) {
+              	return findComponentUsingAutomationFramework(automationID);
+			}
+			
+			return findComponentUsingCustomFramework(locator, container);
 
-    		}
-    		
-    		private static function findComponentUsingAutomationFramework(automationID:String):UIComponent {
-    			var rid:AutomationID = AutomationID.parse(automationID);
-	            var obj:IAutomationObject = Automation.automationManager.resolveIDToSingleObject(rid);
-	            return UIComponent(obj);
-    		}
-    		
-    		private static function findComponentUsingCustomFramework(locator:Object, container:UIComponent):UIComponent {
-    			if (container == null) {
-    				// Check windows whose parent is the SystemManager
-    				var kids:IChildList = UIComponent(Application.application).systemManager.rawChildren;
-    				for (i = 0; i < kids.numChildren; i++) {
-    					var child:DisplayObject = kids.getChildAt(i);
+		}
+		
+		private static function findComponentUsingAutomationFramework(automationID:String):UIComponent {
+			var rid:AutomationID = AutomationID.parse(automationID);
+            var obj:IAutomationObject = Automation.automationManager.resolveIDToSingleObject(rid);
+            return UIComponent(obj);
+		}
+		
+		private static function findComponentUsingCustomFramework(locator:Object, container:UIComponent):UIComponent {
+			if (container == null) {
+				// Check windows whose parent is the SystemManager
+				var kids:IChildList = UIComponent(Application.application).systemManager.rawChildren;
+				for (i = 0; i < kids.numChildren; i++) {
+					var child:DisplayObject = kids.getChildAt(i);
 
-    					if (!(child is UIComponent)) {
-    						continue;
-    					}
-    					
-    					if (childMatch(child, locator)) {
-    						return UIComponent(child);
-    					}
-    								
-    					child = findComponentWith(locator, UIComponent(child));
-    					if (child != null) {
-    						return UIComponent(child);
-    					}
-    				}
-    				return null;
-    			}
-    			
-    			var numChildren:int = container.numChildren;
-    			if (numChildren == 0) {
-    				return null;
-    			}
+					if (!(child is UIComponent)) {
+						continue;
+					}
+					
+					if (childMatch(child, locator)) {
+						return UIComponent(child);
+					}
+								
+					child = findComponentWith(locator, UIComponent(child));
+					if (child != null) {
+						return UIComponent(child);
+					}
+				}
+				return null;
+			}
+			
+			var numChildren:int = container.numChildren;
+			if (numChildren == 0) {
+				return null;
+			}
 
-    			var component:UIComponent;
-    			for (var i:int=0; i < numChildren; i++) {
-    				child = container.getChildAt(i);
+			var component:UIComponent;
+			for (var i:int=0; i < numChildren; i++) {
+				child = container.getChildAt(i);
 
-    				if (!(child is UIComponent)) {
-    					continue;
-    				}
+				if (!(child is UIComponent)) {
+					continue;
+				}
 
-    				if (childMatch(child, locator)) {
-    					return UIComponent(child);
-    				} else {
-    					var grandChild:UIComponent = findComponentWith(locator, UIComponent(child));
-    					if (grandChild != null) {
-    						return grandChild;
-    					}
-    				}
-    			}
+				if (childMatch(child, locator)) {
+					return UIComponent(child);
+				} else {
+					var grandChild:UIComponent = findComponentWith(locator, UIComponent(child));
+					if (grandChild != null) {
+						return grandChild;
+					}
+				}
+			}
 
-    			return null;
-    		}
-    		
-    		private static function childMatch(child:DisplayObject, locator:Object):Boolean {
-    			var properties:Array = ObjectUtility.keys(locator);
-    			var values:Array = ObjectUtility.values(locator);
-    			for (var index:uint = 0; index < properties.length; index++) {
-    				var property:String = String(properties[index]);
-    				var value:String = decodeURIComponent(values[index]);
-    				if (!child.hasOwnProperty(property) || child[property] != value) {
- 						return false;
-    				}
-    			}
-    			
-    			return true;
-    		}
-    		
-    		private static function automationID(locator:Object):String {
-    			var locatorProperties:Array = ObjectUtility.keys(locator);
-    			var index:int = locatorProperties.indexOf("automationID");
-    			if (index > -1) {
-    				return locatorProperties[index];
-    			}
-    			
-    			return null;
-    		}
-
+			return null;
+		}
+		
+		private static function childMatch(child:DisplayObject, locator:Object):Boolean {
+			var properties:Array = ObjectUtility.keys(locator);
+			var values:Array = ObjectUtility.values(locator);
+			for (var index:uint = 0; index < properties.length; index++) {
+				var property:String = String(properties[index]);
+				var value:String = decodeURIComponent(values[index]);
+				if (!child.hasOwnProperty(property) || child[property] != value) {
+ 					return false;
+				}
+			}
+			
+			return true;
+		}
+		
+		private static function automationID(locator:Object):String {
+			var locatorProperties:Array = ObjectUtility.keys(locator);
+			var index:int = locatorProperties.indexOf("automationID");
+			if (index > -1) {
+				return locatorProperties[index];
+			}
+			
+			return null;
+		}
     }
 }
