@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <link rel="stylesheet" href="stylesheets/screen.css" type="text/css" media="screen" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>
+      Tutorial
+  </title>
+  <script src="javascripts/rounded_corners_lite.inc.js" type="text/javascript"></script>
+<style>
+
+</style>
+  <script type="text/javascript">
+    window.onload = function() {
+      settings = {
+          tl: { radius: 10 },
+          tr: { radius: 10 },
+          bl: { radius: 10 },
+          br: { radius: 10 },
+          antiAlias: true,
+          autoPad: true,
+          validTags: ["div"]
+      }
+      var versionBox = new curvyCorners(settings, document.getElementById("version"));
+      versionBox.applyCornersToAll();
+    }
+  </script>
+</head>
+<body>
+<div id="main">
+
+    <h1>Tutorial</h1>
+    <div id="version" class="clickable" onclick='document.location = "http://rubyforge.org/projects/funfx"; return false'>
+      <p>Get Version</p>
+      <a href="http://rubyforge.org/projects/funfx" class="numbers">0.2.0</a>
+    </div>
+    <p>FunFX uses Ruby to talk to your Flex application. We have put a demo flex application up on <a href="http://funfx.rubyforge.org/DemoApp.html">FunFX&#8217; website</a> (<span class="caps">TODO</span>: actually put it up there).</p>
+<p>We&#8217;ll guide you through the steps required to run this.</p>
+<h3>Create a Ruby file</h3>
+<p>Just use a text editor and create a file called myfunfx.rb. Depending on what kind of browser you&#8217;re planning to use,<br />
+enter the following in the file:</p>
+<p><strong>Watir</strong></p>
+<pre><code>require 'funfx/browser/watir'
+
+browser = Watir::IE.new
+</code></pre>
+<p><strong>SafariWatir</strong></p>
+<pre><code>require 'funfx/browser/safariwatir'
+
+browser = Watir::Safari.new
+</code></pre>
+<p><strong>FireWatir</strong></p>
+<pre><code>require 'funfx/browser/firewatir'
+
+browser = FireWatir::Firefox.new
+</code></pre>
+<p>Open a shell, and run your file:</p>
+<pre><code>ruby myfunfx.rb
+</code></pre>
+<p>This should open a browser window. Now let&#8217;s start talking to the Flex app&#8230;</p>
+<h3>Getting a reference to a Flex application</h3>
+<p>In order to fire events and get values from Flex objects, you first have to tell the browser to<br />
+go to the page containing your Flex application, and then you must obtain a reference to the Flex <br />
+application itself.</p>
+<p>Add the following code to your Ruby file:</p>
+<pre><code>
+browser.goto("http://funfx.rubyforge.org/DemoApp.html") # The URL containing your Flex app
+flex = browser.flex_app('DemoAppId', 'DemoAppName') # See the API for FunFX::Browser::FlexAppLookup#flex_app for details
+</code></pre>
+<h3>Looking up Flex elements with Automation IDs</h3>
+<p>Once you have a reference to the Flex app, FunFX lets you look up a Flex element using a Hash:</p>
+<pre><code>message = flex.text_area({:id =&gt; 'message'})
+</code></pre>
+<p>or an Array of Hashes (each hash identifies an element in the tree of elements):</p>
+<pre><code>message = flex.text_area({:automationName =&gt; "Button Control Example"}, {:id =&gt; 'message'})
+</code></pre>
+<p>There is a lookup method for each element type. See the FunFX <span class="caps">API</span> or class diagram for more details.</p>
+<p>FunFX will translate the arguments you pass to the <a href="http://livedocs.adobe.com/flex/3/langref/mx/automation/AutomationID.html">Adobe Flex Automation ID format</a>.<br />
+For example, the last example would be translated to the following:</p>
+<pre><code>id{DemoApp string}|automationName{Button%20Control%20Example string}|id{message string}
+</code></pre>
+<h3>When an automation object is not found</h3>
+<p>FunFX will raise an error if you try to interact with an automation object that cannot be found.</p>
+<p>Note that FunFX will <strong>not</strong> raise any errors when you <strong>look up</strong> a Flex automation object that doesn&#8217;t exist. It&#8217;s only when you fire an event or ask for a property<br />
+that an error will be raised.</p>
+<h2>Using FunFX with your own Flex app</h2>
+<p><span class="caps">TODO</span> &#8211; explain how to build with automation and funfx swcs.</p>
+    <p class="coda">
+      <a href="motzfeldt@gmail.com">Peter Nicolai Motzfeldt</a>, 23rd September 2008<br>
+      Theme extended from <a href="http://rb2js.rubyforge.org/">Paul Battley</a>
+    </p>
+</div>
+
+<!-- insert site tracking codes here, like Google Urchin -->
+
+</body>
+</html>

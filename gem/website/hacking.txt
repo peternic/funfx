@@ -1,0 +1,17 @@
+h1. Hacking
+
+If you want to hack on FunFX (fix bugs, add features), start by building everything and running the specs.
+Go to the top level directory and open two console windows.
+
+* Window 1 *
+
+<pre><code>rake httpd</code></pre>
+
+* Window 2 *
+
+<pre><code>rake build</code></pre>
+
+After you've worked yourself through the first couple of error messages (you'll be told to
+install some additional ruby gems), you should see green output telling you that everything is ok.
+
+Now add some more specs, hack away and let us know when you've fixed something (specs should still be green).

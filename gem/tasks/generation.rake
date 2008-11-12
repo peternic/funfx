@@ -1,21 +1,32 @@
+require 'funfx/meta/generator'
+
 namespace :generate do
-  {
-    :code          => 'lib/funfx/flex/elements.rb',
-    :class_dot     => 'website/funfx.dot'
-  }.each do |generated, file|
-    desc "Generate #{generated}"
-    task generated do
-      require 'funfx/meta/generator'
-      lib = FunFX::Meta::ClassLib.new
-      classes = lib.classes
-      generator = FunFX::Meta::Generator.new(classes, generated)
-      generated = generator.generate
-      File.open(file, 'wb') {|io| io.write generated}
+  desc "Generate class diagrams"
+  task :diagrams do
+    diagrams = {
+      :all    => nil,
+      :first  => %w{FlexMenuBar FlexLabel FlexObject},
+      :second => %w{FlexButton FlexRadioButton FlexPopUpButton FlexCheckBox FlexDateChooser FlexSlider},
+      :third  => %w{FlexLabel FlexProgressBar FlexNumericStepper FlexLoader FlexRule FlexVideoDisplay},
+    }
+    
+    lib = FunFX::Meta::ClassLib.new
+    diagrams.each do |file, names|
+      classes = lib.classes(names)
+      generator = FunFX::Meta::Generator.new(classes, :class_dot)
+      dot = "website/diagrams/#{file}.dot"
+      pdf = "website/diagrams/#{file}.pdf"
+      File.open(dot, 'wb') {|io| io.write generator.generate}
+      sh "dot -T pdf -o #{pdf} #{dot}"
     end
   end
-  
-  desc "Generate class diagram"
-  task :class_diagram => :class_dot do
-    sh "dot -T pdf -o website/funfx.pdf website/funfx.dot"
+
+  desc "Generate code"
+  task :code do
+    lib = FunFX::Meta::ClassLib.new
+    classes = lib.classes
+    generator = FunFX::Meta::Generator.new(classes, :code)
+    code = 'lib/funfx/flex/elements.rb'
+    File.open(code, 'wb') {|io| io.write generator.generate}
   end
 end

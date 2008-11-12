@@ -9,6 +9,12 @@ module FunFX
       end
       
       it "should parse classes" do
+        @lib.classes.length.should == 66
+      end
+
+      it "should extract some classes" do
+        classes = @lib.classes(%w{FlexMenuBar FlexLabel FlexObject})
+        classes.map{|c| c.name}.should == %w{FlexObject FlexLabel FlexMenuBar}
         @lib.classes.length.should == 89
       end
 
