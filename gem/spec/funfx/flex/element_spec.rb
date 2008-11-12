@@ -3,30 +3,48 @@ require File.dirname(__FILE__) + '/../../spec_helper'
 module FunFX
   module Flex
     describe Element do
-      it "should convert array of id hashes to flex automation id" do
-        flex_app = mock('FlexApp')
-        element = Element.new(flex_app, {:id => 'box'}, {:automationName => 'Button Control Example'})
-
-        flex_app.should_receive(:get_property_value).
-          with('id{box string}|automationName{Button%20Control%20Example string}', 'WhatEver').
-          and_return('true')
-
-        value = element.get_property_value('WhatEver', TrueClass)
-        value.should == true
-      end
       
-      it "should be possible to add multiple definitions per object" do
-        flex_app = mock('FlexApp')
-        element = Element.new(flex_app, {:id => 'box'}, {:automationName => 'Button Control Example', :automationIndex => 'index:1'})
-
-        flex_app.should_receive(:get_property_value).
-          with('id{box string}|automationIndex{index:1 string}automationName{Button%20Control%20Example string}', 'WhatEver').
-          and_return('true')
-
-        value = element.get_property_value('WhatEver', TrueClass)
-        value.should == true
+      describe  'get_property_value' do
+        it "should convert array of id hashes to flex automation id" do
+          flex_app = mock('FlexApp')
+          flex_app.should_receive(:automation_id).with("id{box string}|automationName{Button%20Control%20Example string}").and_return('automation_id')
+        
+          element = Element.new(flex_app, {:id => 'box'}, {:automationName => 'Button Control Example'})
+        
+          flex_app.should_receive(:get_property_value).
+            with("automation_id", 'WhatEver').
+            and_return('true')
+        
+          element.get_property_value('WhatEver', TrueClass).should be_true
+        end
+        
+        it "should convert array of id hashes with multiple definitions per object to flex automation id" do
+          flex_app = mock('FlexApp')
+          flex_app.should_receive(:automation_id).
+            with("id{box string}|automationIndex{index:1 string}automationName{Button%20Control%20Example string}").
+            and_return('automation_id')
+        
+          element = Element.new(flex_app, {:id => 'box'}, {:automationName => 'Button Control Example', :automationIndex => 'index:1'})
+        
+          flex_app.should_receive(:get_property_value).
+            with("automation_id", 'WhatEver').
+            and_return('true')
+        
+          element.get_property_value('WhatEver', TrueClass).should be_true
+        end
+        
+        it "should sort a single hash and pass it through to flex as is" do
+          flex_app = mock('FlexApp')
+          element = Element.new(flex_app, {:id => 'box', :automationName => 'Button Control Example', :text => 'Arbitrary Text'})
+        
+          flex_app.should_receive(:get_property_value).
+            with("{automationName: 'Button%20Control%20Example', id: 'box', text: 'Arbitrary%20Text'}", 'WhatEver').
+            and_return('true')
+        
+          element.get_property_value('WhatEver', TrueClass).should be_true
+        end
       end
-      
+            
       it "should raise error with Flex backtrace formatted as Ruby backtrace" do
         flex_error = %{____FUNFX_ERROR:
 Error: Unable to resolve child for part 'undefined':'undefined' in parent 'FlexObjectTest'.

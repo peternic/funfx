@@ -1,18 +1,20 @@
 require 'uri'
+require 'funfx/flex/flex_app_id'
 
 module FunFX
   module Flex
     class FunFXError < StandardError; end
+    class CouldNotFindElementError < FunFXError; end
     
     # Base class for all Flex proxy elements
     class Element
       MAX_TRIES = 10
 
       def initialize(flex_app, *locator_hashes)
-        @flex_app = flex_app 
+        @flex_app = flex_app
         
         @flex_locator  = build_flex_locator(locator_hashes)
-        
+      
         @tries = 0
       end
 
@@ -122,14 +124,16 @@ module FunFX
       private
       
       def build_flex_locator(locator_hashes)
+        # supported_keys = [:automation_id, :automation_name, :id]
         flex_locator = if locator_hashes.size > 1
           build_flex_automation_id(locator_hashes)
         else
           locator_string = "{"
           index = 0
-          locator_hashes.first.each_pair do |key, value|
-            locator_string += " , " if (index > 0)
-            locator_string += "#{key}: '#{URI.escape(value)}'"
+          locator_hash = locator_hashes.first
+          locator_hash.keys.sort{|a,b| a.to_s <=> b.to_s}.each do |key|
+            locator_string += ", " if (index > 0)
+            locator_string += "#{key}: '#{URI.escape(locator_hash[key])}'"
             index += 1
           end
           locator_string += "}"          
@@ -145,10 +149,8 @@ module FunFX
           end.join
         end 
         
-        automation_id_value = full_id(ids.join("|"))
-        "{automationID: #{automation_id_value} }"
+        automation_id_value = @flex_app.automation_id(ids.join("|"))
       end
-      
     end
   end
 end

@@ -21,7 +21,6 @@ package funfx {
             ExternalInterface.addCallback("getFunFXPropertyValue", getFunFXPropertyValue);
             ExternalInterface.addCallback("getFunFXTabularPropertyValue", getFunFXTabularPropertyValue);
             ExternalInterface.addCallback("invokeFunFXTabularMethod", invokeFunFXTabularMethod);
-            ExternalInterface.addCallback("findAutomationObject", findAutomationObject);
         }
 
         private function fireFunFXEvent(locator:Object, eventName:String, args:String) : String
@@ -104,7 +103,7 @@ package funfx {
             }
             return null;
         }
-
+        
         /** 
          * Returns an automation object. If we're not synched, returns null, in which case the client must try again.
          */
@@ -144,9 +143,7 @@ package funfx {
 		 */
 		public static function findComponentWith(locator:Object, container:UIComponent=null):UIComponent {
 			var automationID:String = automationID(locator);
-			if (automationID) {
-              	return findComponentUsingAutomationFramework(automationID);
-			}
+			if (automationID) return findComponentUsingAutomationFramework(automationID);
 			
 			return findComponentUsingCustomFramework(locator, container);
 
@@ -154,41 +151,23 @@ package funfx {
 		
 		private static function findComponentUsingAutomationFramework(automationID:String):UIComponent {
 			var rid:AutomationID = AutomationID.parse(automationID);
-            var obj:IAutomationObject = Automation.automationManager.resolveIDToSingleObject(rid);
-            return UIComponent(obj);
+			var obj:IAutomationObject = Automation.automationManager.resolveIDToSingleObject(rid);
+			return UIComponent(obj);
 		}
 		
 		private static function findComponentUsingCustomFramework(locator:Object, container:UIComponent):UIComponent {
-			if (container == null) {
-				// Check windows whose parent is the SystemManager
-				var kids:IChildList = UIComponent(Application.application).systemManager.rawChildren;
-				for (i = 0; i < kids.numChildren; i++) {
-					var child:DisplayObject = kids.getChildAt(i);
+			var childContainer:IChildList = (container == null) ?
+											UIComponent(Application.application).systemManager.rawChildren :
+											container;
 
-					if (!(child is UIComponent)) {
-						continue;
-					}
-					
-					if (childMatch(child, locator)) {
-						return UIComponent(child);
-					}
-								
-					child = findComponentWith(locator, UIComponent(child));
-					if (child != null) {
-						return UIComponent(child);
-					}
-				}
-				return null;
-			}
-			
-			var numChildren:int = container.numChildren;
+			var numChildren:int = childContainer.numChildren;
 			if (numChildren == 0) {
 				return null;
 			}
 
 			var component:UIComponent;
 			for (var i:int=0; i < numChildren; i++) {
-				child = container.getChildAt(i);
+				var child:DisplayObject = childContainer.getChildAt(i);
 
 				if (!(child is UIComponent)) {
 					continue;
@@ -196,17 +175,17 @@ package funfx {
 
 				if (childMatch(child, locator)) {
 					return UIComponent(child);
-				} else {
-					var grandChild:UIComponent = findComponentWith(locator, UIComponent(child));
-					if (grandChild != null) {
-						return grandChild;
-					}
+				}
+				
+				var grandChild:UIComponent = findComponentUsingCustomFramework(locator, UIComponent(child));
+				if (grandChild != null) {
+					return grandChild;
 				}
 			}
 
 			return null;
 		}
-		
+	
 		private static function childMatch(child:DisplayObject, locator:Object):Boolean {
 			for (var property:String in locator) {
 				var value:String = decodeURIComponent(locator[property]);
@@ -224,5 +203,5 @@ package funfx {
 			}
 			return null;
 		}
-    }
+	}
 }
