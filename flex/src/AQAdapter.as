@@ -915,57 +915,55 @@ public class AQAdapter implements IAQCodecHelper
 		return AQCodecHelper;
 	}
 	
-        private function configureListeners(dispatcher:IEventDispatcher):void 
-        {
-            dispatcher.addEventListener(Event.COMPLETE, completeHandler);
-            dispatcher.addEventListener(Event.OPEN, openHandler);
-            dispatcher.addEventListener(ProgressEvent.PROGRESS, progressHandler);
-            dispatcher.addEventListener(SecurityErrorEvent.SECURITY_ERROR, securityErrorHandler);
-            dispatcher.addEventListener(HTTPStatusEvent.HTTP_STATUS, httpStatusHandler);
-            dispatcher.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
-        }
+    private function configureListeners(dispatcher:IEventDispatcher):void 
+    {
+        dispatcher.addEventListener(Event.COMPLETE, completeHandler);
+        dispatcher.addEventListener(Event.OPEN, openHandler);
+        dispatcher.addEventListener(ProgressEvent.PROGRESS, progressHandler);
+        dispatcher.addEventListener(SecurityErrorEvent.SECURITY_ERROR, securityErrorHandler);
+        dispatcher.addEventListener(HTTPStatusEvent.HTTP_STATUS, httpStatusHandler);
+        dispatcher.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
+    }
 
-        private function completeHandler(event:Event):void {
-            
-            var loader:URLLoader = URLLoader(event.target);
-            //trace("completeHandler: " + loader.data);
-       
-            setTestingEnvironment(loader.data);
+    private function completeHandler(event:Event):void {
+        var loader:URLLoader = URLLoader(event.target);
+        //trace("completeHandler: " + loader.data);
 
-            // Disable the popup by commenting out the line below
-			PopUpManager.createPopUp(DisplayObject(Application.application), AQToolBar);
-			//panel.x = Application.application.width - panel.width;
-			//panel.y = Application.application.height - panel.height;
-			new Proxy();
-        }
+        setTestingEnvironment(loader.data);
 
-        private function openHandler(event:Event):void {
-            //trace("openHandler: " + event);
-        }
+        // Disable the popup by commenting out the line below
+		// PopUpManager.createPopUp(DisplayObject(Application.application), AQToolBar);
 
-        private function progressHandler(event:ProgressEvent):void {
-            //trace("progressHandler loaded:" + event.bytesLoaded + " total: " + event.bytesTotal);
-        }
+		//panel.x = Application.application.width - panel.width;
+		//panel.y = Application.application.height - panel.height;
+		new Proxy();
+    }
 
-        private function securityErrorHandler(event:SecurityErrorEvent):void {
-            Alert.show("securityErrorHandler: " + event);
-        }
+    private function openHandler(event:Event):void {
+        //trace("openHandler: " + event);
+    }
 
-        private function httpStatusHandler(event:HTTPStatusEvent):void {
-            //trace("httpStatusHandler: " + event);
-        }
+    private function progressHandler(event:ProgressEvent):void {
+        //trace("progressHandler loaded:" + event.bytesLoaded + " total: " + event.bytesTotal);
+    }
 
-        private function ioErrorHandler(event:IOErrorEvent):void {
-            Alert.show("ioErrorHandler: " + event);
-        }
-    
-	public function getRecords():String
-	{
+    private function securityErrorHandler(event:SecurityErrorEvent):void {
+        Alert.show("securityErrorHandler: " + event);
+    }
+
+    private function httpStatusHandler(event:HTTPStatusEvent):void {
+        //trace("httpStatusHandler: " + event);
+    }
+
+    private function ioErrorHandler(event:IOErrorEvent):void {
+        Alert.show("ioErrorHandler: " + event);
+    }
+
+	public function getRecords():String {
 		return records.toXMLString();
 	}
 	
-	public function getFunFXRecords():String
-	{
+	public function getFunFXRecords():String {
 		return funfxRecords;
 	}
 

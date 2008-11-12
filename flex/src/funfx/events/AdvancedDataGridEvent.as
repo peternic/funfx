@@ -25,7 +25,7 @@ import mx.controls.advancedDataGridClasses.AdvancedDataGridColumn;
  */
 public class AdvancedDataGridEvent extends Event
 {
-    include "../core/Version.as";
+    //include "../core/Version.as";
 
     //--------------------------------------------------------------------------
     //
