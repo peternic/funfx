@@ -21,6 +21,16 @@ describe "DemoApp" do
       ["Mary Jones",          "555-219-2000", "mjones@fictitious.com"    ]
     ]
   end
+
+  it "should get num_columns from a datagrid" do
+    data_grid = @flex.data_grid({:id => 'dgPanel'}, {:id => 'dg'})
+    data_grid.num_columns.should == 3
+  end
+
+  it "should get num_rows from a datagrid" do
+    data_grid = @flex.data_grid({:id => 'dgPanel'}, {:id => 'dg'})
+    data_grid.num_rows.should == 4
+  end
   
   it "should select row" do
     data_grid = @flex.data_grid({:id => 'dgPanel'}, {:id => 'dg'})
