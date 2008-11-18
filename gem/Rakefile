@@ -2,4 +2,4 @@ ENV['NODOT'] = 'true' # We don't want diagrams in RDoc - we make our own Dot dia
 require 'config/requirements'
 require 'config/hoe' # setup Hoe + all gem configuration
 
-Dir['tasks/**/*.rake'].each { |rake| load rake }
+Dir['rake_tasks/**/*.rake'].each { |rake| load rake }
