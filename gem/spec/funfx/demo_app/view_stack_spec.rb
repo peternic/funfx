@@ -4,13 +4,13 @@ describe "DemoApp" do
   before do
     browser.goto(DEMO_APP)
     @flex = browser.flex_app('DemoAppId', 'DemoAppName')
+
+		tree = @flex.tree({:id => 'objectTree'})
+    tree.open('Container controls')
+    tree.select('Container controls>ViewStack1')
   end
   
   it "should switch tab in a view stack" do
-    tree = @flex.tree({:id => 'objectTree'})
-    tree.open('Container controls')
-    tree.select('Container controls>ViewStack1')
-  
     @flex.box({:id => 'search'}).visible?.should == true
     @flex.box({:id => 'custInfo'}).visible?.should == false
     @flex.box({:id => 'accountInfo'}).visible?.should == false

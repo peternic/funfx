@@ -149,7 +149,7 @@ module FunFX
           end.join
         end 
         
-        automation_id_value = @flex_app.automation_id(ids.join("|"))
+        @flex_app.automation_id(ids.join("|"))
       end
     end
   end
