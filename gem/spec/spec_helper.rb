@@ -1,5 +1,6 @@
 begin
   require 'spec'
+  require 'fastercsv'
 rescue LoadError
   require 'rubygems'
   gem 'rspec'

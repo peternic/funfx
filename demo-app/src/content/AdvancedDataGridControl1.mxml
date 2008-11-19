@@ -6,20 +6,20 @@
                   
             [Bindable]
             private var dpFlat:ArrayCollection = new ArrayCollection([
-              {Region:"Southwest", Territory:"Arizona"}, 
-              {Region:"Southwest", Territory:"Arizona"},  
-              {Region:"Southwest", Territory:"Central California"},  
-              {Region:"Southwest", Territory:"Nevada"},  
+              {Region:"Southwest", Territory:"Arizona"},
+              {Region:"Southwest", Territory:"Arizona"},
+              {Region:"Southwest", Territory:"Central California"},
+              {Region:"Southwest", Territory:"Nevada"},
               {Region:"Southwest", Territory:"Northern California"}, 
               {Region:"Southwest", Territory:"Northern California"},  
-              {Region:"Southwest", Territory:"Southern California"}, 
-              {Region:"Southwest", Territory:"Southern California"}
+              {Region:"Southwest", Territory:"Southern California"},
+              {Region:"Southwest", Territory:"Territory With,Comma"}
             ]);
         ]]>
     </mx:Script>
 
     <mx:Panel title="AdvancedDataGrid Control Example"
-        height="75%" width="75%" layout="horizontal"            showInAutomationHierarchy="false"
+        height="75%" width="75%" layout="horizontal" showInAutomationHierarchy="false"
         paddingTop="10" paddingBottom="10" paddingLeft="10" paddingRight="10">
 
         <mx:AdvancedDataGrid id="myADG" 

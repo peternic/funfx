@@ -86,7 +86,7 @@ module FunFX
       def decode(value, codec)
         case(codec)
         when :object_array
-          value.split(",")
+					csv = FasterCSV.parse(value)
         else
           value
         end

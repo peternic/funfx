@@ -2,6 +2,8 @@
  * Portions Copyright 2008 Gorilla Logic, Inc. Licensed under the Apache License, Version 2.0 (the "License"	)
  */
 package funfx {
+    import custom.utilities.CSVUtility;
+    
     import flash.display.DisplayObject;
     import flash.external.ExternalInterface;
     
@@ -71,9 +73,8 @@ package funfx {
             try {
                 var target:IAutomationObject = findAutomationObject(locator);
                 var tab:Object = target.automationTabularData;
-                var o:Object = Object(tab);
-                if (o.hasOwnProperty(fieldName)) {
-                    return o[fieldName];
+                if (tab.hasOwnProperty(fieldName)) {
+                    return tab[fieldName];
                 } else {
                     throw new Error("Field not found: " + target + " doesn't have a field named '" + fieldName + "'");
                 }
@@ -92,9 +93,13 @@ package funfx {
             try {
                 var target:IAutomationObject = findAutomationObject(locator);              
                 var tab:Object = target.automationTabularData;
-                var o:Object = Object(tab);
-                if (o.hasOwnProperty(methodName)) {
-                    return o[methodName].apply(null, args);
+                if (tab.hasOwnProperty(methodName)) {
+                	var result:* = tab[methodName].apply(null, args);
+					if (result is Array) {
+						result = CSVUtility.encode(result);
+					}
+                    
+                    return result;
                 } else {
                     throw new Error("Method not found: " + target + " doesn't have a method named '" + methodName + "'");
                 }
