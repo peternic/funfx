@@ -51,7 +51,7 @@ describe "DemoApp" do
 
 	it "should get the number of rows with data in an open advanceddatagrid" do
 		@advanced_data_grid.item_open("*Southwest* |  ")
-	  @advanced_data_grid.num_rows.should == 6
+	  @advanced_data_grid.num_rows.should == 7
 	end	
 
   it "should select a row" do
