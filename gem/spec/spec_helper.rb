@@ -1,11 +1,5 @@
-begin
-  require 'spec'
-  require 'fastercsv'
-rescue LoadError
-  require 'rubygems'
-  gem 'rspec'
-  require 'spec'
-end
+require 'rubygems'
+require 'spec'
 
 $:.unshift(File.dirname(__FILE__) + '/../lib')
 require 'funfx'
