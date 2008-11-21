@@ -5,16 +5,16 @@ module FunFX
   module Flex
     class FunFXError < StandardError; end
     class CouldNotFindElementError < FunFXError; end
-    
+
     # Base class for all Flex proxy elements
     class Element
       MAX_TRIES = 10
 
       def initialize(flex_app, *locator_hashes)
         @flex_app = flex_app
-        
+
         @flex_locator  = build_flex_locator(locator_hashes)
-      
+
         @tries = 0
       end
 
@@ -29,10 +29,10 @@ module FunFX
       def get_property_value(property, ruby_type)
         raw_value = flex_invoke do
           @flex_app.get_property_value(@flex_locator, property)
-        end        
+        end
         ruby_type.from_funfx_string(raw_value)
       end
-      
+
       def get_tabular_property_value(property, ruby_type, codec)
         raw_value = flex_invoke do
           @flex_app.get_tabular_property_value(@flex_locator, property)
@@ -40,7 +40,7 @@ module FunFX
         value = coerce(raw_value, ruby_type)
         decode(value, codec)
       end
-      
+
       def invoke_tabular_method(method_name, ruby_type, codec, *args)
         raw_value = flex_invoke do
           @flex_app.invoke_tabular_method(@flex_locator, method_name, *args)
@@ -65,7 +65,7 @@ module FunFX
 
         raise_if_funfx_error(raw_value)
       end
-      
+
       # TODO: Use classes, not symbols (use TrueClass for :true)
       # TODO, make return type the first arg
       def coerce(string_value, ruby_type)
@@ -82,16 +82,16 @@ module FunFX
           raise "I don't know how to convert #{string_value.inspect} to #{ruby_type.inspect}"
         end
       end
-      
+
       def decode(value, codec)
         case(codec)
         when :object_array
-					csv = FasterCSV.parse(value)
+          csv = FasterCSV.parse(value)
         else
           value
         end
       end
-      
+
       def raise_if_funfx_error(result)
         if result =~ /^____FUNFX_ERROR:\n(.*)/m
           lines = $1.split("\n")
@@ -120,12 +120,12 @@ module FunFX
           result
         end
       end
-      
+
       private
-      
+
+      # supported_keys = [:automation_id, :automation_name, :id]
       def build_flex_locator(locator_hashes)
-        # supported_keys = [:automation_id, :automation_name, :id]
-        flex_locator = if locator_hashes.size > 1
+        if locator_hashes.size > 1
           build_flex_automation_id(locator_hashes)
         else
           locator_string = "{"
@@ -136,19 +136,18 @@ module FunFX
             locator_string += "#{key}: '#{URI.escape(locator_hash[key])}'"
             index += 1
           end
-          locator_string += "}"          
+          locator_string += "}"
         end
-        flex_locator
       end
-      
+
       def build_flex_automation_id(locator_hashes)
         ids = locator_hashes.map do |locator_hash|
           locator_hash.keys.sort{|a,b| a.to_s <=> b.to_s}.map do |key|
             value = locator_hash[key]
             "#{key}{#{URI.escape(value)} string}"
           end.join
-        end 
-        
+        end
+
         @flex_app.automation_id(ids.join("|"))
       end
     end
