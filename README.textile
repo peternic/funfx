@@ -10,7 +10,7 @@ Code
 * (P) Get rid of the AutoQuick codebase - base FunFX only on the automation API
 ** Must not depend on XML file at runtime
 
-Website/Docs
+Website / Docs
 
 * Automate gem release on RubyForge (rake release)
 * Automate publish of website (rake website_upload)
