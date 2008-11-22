@@ -14,7 +14,7 @@ module FireWatir
     class FlexApp < ::Element #:nodoc:
       include FunFX::Flex::Elements
       include FunFX::Flex::FlexAppId
-      
+
       def initialize(dom_id, app_name)
         @dom_id, @app_name = dom_id, app_name
       end
@@ -30,7 +30,7 @@ module FireWatir
         $jssh_socket.send(javascript, 0)
         read_socket
       end
-      
+
       def get_tabular_property_value(flex_id, property) # :nodoc:
         javascript = %|#{DOCUMENT_VAR}.getElementById("#{@dom_id}").getFunFXTabularPropertyValue(#{full_id(flex_id).inspect}, #{property.inspect});\n|
         $jssh_socket.send(javascript, 0)

@@ -9,13 +9,13 @@ module FunFX
         invoke_tabular_method("getValues", :string, :object_array, start_index, end_index)
       end
 
-			def num_columns
-				get_tabular_property_value("numColumns", :int, :simple)
-			end
+      def num_columns
+        get_tabular_property_value("numColumns", :int, :simple)
+      end
 
-			def num_rows
-				get_tabular_property_value("numRows", :int, :simple)
-			end
+      def num_rows
+        get_tabular_property_value("numRows", :int, :simple)
+      end
 
     end
   end
