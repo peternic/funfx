@@ -1,43 +1,43 @@
 require 'uri'
+require 'funfx/flex/flex_app_id'
 
 module FunFX
   module Flex
     class FunFXError < StandardError; end
+    class CouldNotFindElementError < FunFXError; end
     
     # Base class for all Flex proxy elements
     class Element
       MAX_TRIES = 10
+      
+      attr_reader :flex_app, :flex_locator
 
-      def initialize(flex_app, *locator_hashes)
+      def initialize(flex_app, parent_locator, *locator_hashes)
         @flex_app = flex_app
-        ids = locator_hashes.map do |locator_hash|
-          locator_hash.keys.sort{|a,b| a.to_s <=> b.to_s}.map do |key|
-            value = locator_hash[key]
-            "#{key}{#{URI.escape(value)} string}"
-          end.join
-        end
-        @flex_id = ids.join("|")
+        
+        @flex_locator  = build_flex_locator(parent_locator, locator_hashes)
+      
         @tries = 0
       end
 
       def fire_event(event_name, *args)
         flex_args = args.join("_ARG_SEP_");
         flex_invoke do
-          @flex_app.fire_event(@flex_id, event_name, flex_args)
+          @flex_app.fire_event(@flex_locator, event_name, flex_args)
         end
         sleep FunFX.fire_pause unless FunFX.fire_pause.nil?
       end
 
       def get_property_value(property, ruby_type)
         raw_value = flex_invoke do
-          @flex_app.get_property_value(@flex_id, property)
-        end
+          @flex_app.get_property_value(@flex_locator, property)
+        end        
         ruby_type.from_funfx_string(raw_value)
       end
       
       def get_tabular_property_value(property, ruby_type, codec)
         raw_value = flex_invoke do
-          @flex_app.get_tabular_property_value(@flex_id, property)
+          @flex_app.get_tabular_property_value(@flex_locator, property)
         end
         value = coerce(raw_value, ruby_type)
         decode(value, codec)
@@ -45,7 +45,7 @@ module FunFX
       
       def invoke_tabular_method(method_name, ruby_type, codec, *args)
         raw_value = flex_invoke do
-          @flex_app.invoke_tabular_method(@flex_id, method_name, *args)
+          @flex_app.invoke_tabular_method(@flex_locator, method_name, *args)
         end
         value = coerce(raw_value, ruby_type)
         decode(value, codec)
@@ -88,7 +88,7 @@ module FunFX
       def decode(value, codec)
         case(codec)
         when :object_array
-          value.split(",")
+					csv = FasterCSV.parse(value)
         else
           value
         end
@@ -121,6 +121,55 @@ module FunFX
         else
           result
         end
+      end
+      
+      def shift_case(str)
+        return "Flex" + str.to_s.gsub(/^[a-z]|[_][a-z]/) { |a| a.upcase}.delete("_")
+      end
+      
+      private
+      
+      def build_flex_locator(parent_locator, locator_hashes)
+        # supported_keys = [:automation_id, :automation_name, :id]
+        flex_locator = if locator_hashes.size > 1
+          build_flex_automation_id(locator_hashes)
+        else
+          locator_string = "{"
+          index = 0
+          locator_string += add_parent_locator(parent_locator)
+          locator_string += "id: {"
+          locator_hash = locator_hashes.first
+          locator_hash.keys.sort{|a,b| a.to_s <=> b.to_s}.each do |key|
+            locator_string += ", " if (index > 0)
+            locator_string += "#{key}: '#{URI.escape(locator_hash[key])}'"
+            index += 1
+          end
+          locator_string += "}}"          
+        end
+        flex_locator
+      end
+      
+      def add_parent_locator(parent_locator)
+        flex_locator = if parent_locator.nil?
+          "parent: null, "
+        else
+          "parent: #{parent_locator}, "
+        end
+      end
+      
+      def build_flex_automation_id(locator_hashes)
+        ids = locator_hashes.map do |locator_hash|
+          locator_hash.keys.sort{|a,b| a.to_s <=> b.to_s}.map do |key|
+            value = locator_hash[key]
+            "#{key}{#{URI.escape(value)} string}"
+          end.join
+        end 
+        
+        @flex_app.automation_id(ids.join("|"))
+      end
+      
+      def method_missing(method_name, id)
+        Elements.const_get(shift_case(method_name)).new(@flex_app, @flex_locator, id)
       end
     end
   end

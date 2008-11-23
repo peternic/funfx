@@ -9,7 +9,8 @@
 	<mx:Style source="styles/general.css"/>
 	<mx:HBox height="100%" width="100%" id="box">
 		<mx:Tree id="objectTree" dataProvider="{treeData}" labelField="@label"
-				width="20%" height="100%" change="showComponent(event)"/>
+				width="20%" height="100%" change="showComponent(event)"
+				openDuration="0"/>
 		<mx:VBox id="contentBox" height="80%" width="100%" >
 
 		</mx:VBox>

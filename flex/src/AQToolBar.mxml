@@ -49,6 +49,8 @@
   </mx:states>
 <mx:Script>
 	<![CDATA[
+		import funfx.model.FunFXRecordedCommand;
+		import mx.collections.ArrayCollection;
 	
 	    import mx.automation.IAutomationManager;
 	    import mx.automation.IAutomationObject;
@@ -56,6 +58,7 @@
 		import mx.core.Application;
 		import mx.controls.Alert;
 		import funfx.model.FunFXRecordingModel;
+		import funfx.Proxy;
 		
 		[Bindable] private var FUNFX_STATE:String = "stateFunFX";
 		[Bindable] private var ADOBE_STATE:String = "stateAdobe";
@@ -65,6 +68,7 @@
 		private var HIDE:String = "Hide";
 		
 		private var funfxModel:FunFXRecordingModel = new FunFXRecordingModel();
+		private var funfxProxy:funfx.Proxy = new funfx.Proxy();
 		
 		[Bindable] private var buttonText:String = SHOW;
 		
@@ -102,7 +106,7 @@
 		{
 			AQAdapter.aqAdapter.endRecording();
 			outputAdobe.text = AQAdapter.aqAdapter.getRecords();
-			outputFunFX.text = AQAdapter.aqAdapter.getFunFXRecords();
+			outputFunFX.text = AQAdapter.aqAdapter.funFXRecorder.printRecords();
 			invalidateSize();
 			validateNow();
 			btnRecord.enabled = true;
@@ -149,30 +153,13 @@
 		
 		private function replayFunFX(e:TimerEvent):void
 		{
-			var array:Array = outputFunFX.text.split('\r');
+			var records:ArrayCollection = AQAdapter.aqAdapter.funFXRecorder.records;
 			
-    	var step:String = array[currentStep];
-    	if(step && step != "")
-    	{
-    	    var am:IAutomationManager = AQAdapter.aqAdapter.automationManager;
+	    	if(currentStep < records.length)
+	    	{
+	    		var step:FunFXRecordedCommand = records[currentStep];
+	    		funfxProxy.replayFunFXEvent(step.locator, step.eventName, step.args);
     	    
-    	    if (!am.isSynchronized(null))
-					return ;
-              var flexId:String = funfxModel.getIdFromString(step);
-              trace("Flex id: " + flexId);
-              var rid:AutomationID = AutomationID.parse(flexId);
-
-	            var obj:IAutomationObject = am.resolveIDToSingleObject(rid);
-
-		        if (!obj || !am.isSynchronized(obj))
-					return ;
-
-	            if (!am.isVisible(obj as DisplayObject))
-					return ;
-        	
-	        	AQAdapter.aqAdapter.run(funfxModel.getIdFromString(step), 
-		        						funfxModel.getEventFromString(step), 
-		        						funfxModel.getArgsFromString(step));
 	        	++currentStep;
 	        	memoryTimer.start();
 	        }
@@ -180,8 +167,8 @@
 	        {	
 	        	memoryTimer.stop();
 	        	btnReplay.enabled = true;
-			      btnRecord.enabled = true;
-     	      btnStop.enabled = true;
+			    btnRecord.enabled = true;
+     	      	btnStop.enabled = true;
 	        }
 		}
 		
@@ -196,14 +183,14 @@
 		
 		private function startReplayFunFX():void
 		{
-		  Alert.show("Replay of FunFX test code is not implemented yet");
-		  /*memoryTimer = new Timer(500,1);
+		  //Alert.show("Replay of FunFX test code is not implemented yet");
+		  memoryTimer = new Timer(500,1);
 			memoryTimer.addEventListener(TimerEvent.TIMER_COMPLETE, replayFunFX);
 			memoryTimer.start();
 			currentStep = 0;
 			btnReplay.enabled = false;
 			btnRecord.enabled = false;
-			btnStop.enabled = false;*/
+			btnStop.enabled = false;
 		}
 		
 		private function startReplayAdobe():void

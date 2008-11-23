@@ -26,9 +26,9 @@ module FunFX
       @fire_pause = t
     end
     
-    # How many seconds to sleep after an event is fired. Defaults to 1 second.
+    # How many seconds to sleep after an event is fired. Defaults to 2 seconds.
     def fire_pause
-      @fire_pause || 2.0
+      @fire_pause || 2
     end
   end
 end

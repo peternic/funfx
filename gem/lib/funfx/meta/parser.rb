@@ -6,6 +6,7 @@ rescue LoadError
   STDERR.puts "LibXML not installed. gem install libxml-ruby"
 end
 begin
+  #raise "WTF"
   require 'active_support'
 rescue LoadError
   STDERR.puts "activesupport not installed. gem install activesupport"

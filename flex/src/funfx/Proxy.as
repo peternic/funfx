@@ -1,36 +1,63 @@
+/**
+ * Portions Copyright 2008 Gorilla Logic, Inc. Licensed under the Apache License, Version 2.0 (the "License"	)
+ */
 package funfx {
+    import custom.utilities.CSVUtility;
+    import custom.utilities.FlexObjectLocatorUtility;
+    import custom.utilities.FlexObjectLocatorUtilityHelper;
+    
+    import flash.display.DisplayObject;
     import flash.external.ExternalInterface;
     
-    import mx.automation.AutomationID;
-    import mx.automation.IAutomationObject;
+    import funfx.flexlocator.FlexObjectLocator;
+    
     import mx.automation.IAutomationManager;
-    import mx.automation.IAutomationTabularData;
-    import flash.display.DisplayObject;
+    import mx.automation.IAutomationObject;
     
     public class Proxy
     {
+    	private var flexObjectlocator:FlexObjectLocator;
+    	
         public function Proxy()
         {
-            ExternalInterface.addCallback("fireFunFXEvent", fireFunFXEvent);
-            ExternalInterface.addCallback("getFunFXPropertyValue", getFunFXPropertyValue);
-            ExternalInterface.addCallback("getFunFXTabularPropertyValue", getFunFXTabularPropertyValue);
-            ExternalInterface.addCallback("invokeFunFXTabularMethod", invokeFunFXTabularMethod);
+        	flexObjectlocator = new FlexObjectLocator();
+        	flexObjectlocator.flexObjectLocatorUtility = new FlexObjectLocatorUtility();
+        	flexObjectlocator.flexObjectLocatorUtility.flexLocatorhelper = new FlexObjectLocatorUtilityHelper();
+        	
+	        ExternalInterface.addCallback("fireFunFXEvent", fireFunFXEvent);
+	        ExternalInterface.addCallback("getFunFXPropertyValue", getFunFXPropertyValue);
+	        ExternalInterface.addCallback("getFunFXTabularPropertyValue", getFunFXTabularPropertyValue);
+	        ExternalInterface.addCallback("invokeFunFXTabularMethod", invokeFunFXTabularMethod);
         }
+        
+        private function fireFunFXEvent(locator:Object, eventName:String, args:String) : String{
+        	return replayFunFXEvent(locator, eventName, convertArrayFromStringToAs(args));
+        }
+        
 
-        private function fireFunFXEvent(objID:String, eventName:String, args:String) : String
+        public function replayFunFXEvent(locator:Object, eventName:String, args:Array) : String
         {
+        	trace("Start replay");
             if(!automationManager.isSynchronized(null)) {
                 return null;
             }
             try {
-                var target:IAutomationObject = findAutomationObject(objID);
+                var target:IAutomationObject = flexObjectlocator.findAutomationObject(locator);
+                trace("target " + target);
                 if (!target || !automationManager.isSynchronized(target)) {
+                	trace("not sync " + !automationManager.isSynchronized(target));
                   return null;
                 }
                 if (!automationManager.isVisible(target as DisplayObject)){
+                	trace("not visible " + !automationManager.isVisible(target as DisplayObject));
                   return null;
                 }
-                var result:Object = AQAdapter.aqAdapter.replay(target, eventName, convertArrayFromStringToAs(args));
+                trace("------------------------");
+                trace("replay.target " + target);
+                trace("replay.eventName " + eventName);
+                trace("replay.args " + args.length + "-> " + args);
+                trace("------------------------");
+                var result:Object = AQAdapter.aqAdapter.replay(target, eventName, args);
                 return "OK";
             } catch(e:Error) {
                 return errorMessage(e);
@@ -38,13 +65,13 @@ package funfx {
             return null;
         }
 
-        private function getFunFXPropertyValue(objID:String, fieldName:String) : String
+        private function getFunFXPropertyValue(locator:Object, fieldName:String) : String
         {
             if(!automationManager.isSynchronized(null)) {
                 return null;
             }
             try {
-                var target:IAutomationObject = findAutomationObject(objID);
+                var target:IAutomationObject = flexObjectlocator.findAutomationObject(locator);
                 var o:Object = Object(target);
                 if (o.hasOwnProperty(fieldName)) {
                     return o[fieldName];
@@ -57,17 +84,16 @@ package funfx {
             return null;
         }
 
-        private function getFunFXTabularPropertyValue(objID:String, fieldName:String) : String
+        private function getFunFXTabularPropertyValue(locator:Object, fieldName:String) : String
         {
             if(!automationManager.isSynchronized(null)) {
                 return null;
             }
             try {
-                var target:IAutomationObject = findAutomationObject(objID);
+                var target:IAutomationObject = flexObjectlocator.findAutomationObject(locator);
                 var tab:Object = target.automationTabularData;
-                var o:Object = Object(tab);
-                if (o.hasOwnProperty(fieldName)) {
-                    return o[fieldName];
+                if (tab.hasOwnProperty(fieldName)) {
+                    return tab[fieldName];
                 } else {
                     throw new Error("Field not found: " + target + " doesn't have a field named '" + fieldName + "'");
                 }
@@ -77,38 +103,27 @@ package funfx {
             return null;
         }
 
-        private function invokeFunFXTabularMethod(objID:String, methodName:String, ... args) : String
+        private function invokeFunFXTabularMethod(locator:Object, methodName:String, ... args) : String
         {
             if(!automationManager.isSynchronized(null)) {
                 return null;
             }
            
             try {
-                var target:IAutomationObject = findAutomationObject(objID);              
+                var target:IAutomationObject = flexObjectlocator.findAutomationObject(locator);              
                 var tab:Object = target.automationTabularData;
-                var o:Object = Object(tab);
-                if (o.hasOwnProperty(methodName)) {
-                    return o[methodName].apply(null, args);
+                if (tab.hasOwnProperty(methodName)) {
+                	var result:* = tab[methodName].apply(null, args);
+					if (result is Array) {
+						result = CSVUtility.encode(result);
+					}
+                    
+                    return result;
                 } else {
                     throw new Error("Method not found: " + target + " doesn't have a method named '" + methodName + "'");
                 }
             } catch(e:Error) {
                 return errorMessage(e);
-            }
-            return null;
-        }
-
-        /** 
-         * Returns an automation object. If we're not synched, returns null, in which case the client must try again.
-         */
-        private function findAutomationObject(objID:String) : IAutomationObject
-        {
-            try {
-                var rid:AutomationID = AutomationID.parse(objID);
-                return automationManager.resolveIDToSingleObject(rid);
-            } catch(e:Error) {
-                throw e;
-//                throw new Error("Target not found: " + objID);
             }
             return null;
         }
@@ -128,6 +143,5 @@ package funfx {
         {
             return AQAdapter.aqAdapter.automationManager;
         }
-
-    }
+	}
 }
