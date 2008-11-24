@@ -131,7 +131,7 @@ module FunFX
       
       def build_flex_locator(parent_locator, locator_hashes)
         # supported_keys = [:automation_id, :automation_name, :id]
-        flex_locator = if locator_hashes.size > 1
+        flex_locator = if locator_hashes.size > 10
           build_flex_automation_id(locator_hashes)
         else
           locator_string = "{"

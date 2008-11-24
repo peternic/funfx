@@ -1,13 +1,13 @@
 package {
+
 	import custom.utilities.CSVUtilityTest;
 	import custom.utilities.FlexObjectLocatorUtilityTest;
 	
 	import flexlocator.LocatorTest;
-	
 	import flexunit.framework.TestSuite;
-	
 	import recording.FunFXRecordingTest;
-	
+	import custom.utilities.CSVUtilityTest;
+
 	
 	public class FunFxTestSuite extends TestSuite {
 		
