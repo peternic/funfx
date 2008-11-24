@@ -18,10 +18,13 @@
     <mx:TextArea id="outputFunFX" width="100%" height="100%" visible="{currentState == FUNFX_STATE}" includeInLayout="{currentState == FUNFX_STATE}"/>
 	</mx:VBox>
 	
-	<mx:HBox>
+	<mx:HBox width="100%">
     <mx:Button id="btnRecord" label="Record" click="startRecording()" visible="{currentState != HIDDEN}"/>
     <mx:Button id="btnStop" label="Stop"  mouseDown="stopRecording()" enabled="false" visible="{currentState != HIDDEN}"/>
     <mx:Button id="btnReplay" label="Play" click="startReplay()" visible="{currentState != HIDDEN}"/>
+    <mx:HBox width="100%" horizontalAlign="right">        		
+			<mx:Button id="btnFlexSpy" label="FlexSpy" click="FlexSpy.show()" />
+		</mx:HBox>
   </mx:HBox>
 
   <mx:states>
@@ -47,14 +50,16 @@
         </mx:AddChild>
     </mx:State>
   </mx:states>
+  
 <mx:Script>
 	<![CDATA[
+		import com.flexspy.FlexSpy;
 		import funfx.model.FunFXRecordedCommand;
 		import mx.collections.ArrayCollection;
 	
-	    import mx.automation.IAutomationManager;
-	    import mx.automation.IAutomationObject;
-	    import mx.automation.AutomationID;
+    import mx.automation.IAutomationManager;
+    import mx.automation.IAutomationObject;
+    import mx.automation.AutomationID;
 		import mx.core.Application;
 		import mx.controls.Alert;
 		import funfx.model.FunFXRecordingModel;
