@@ -4,3 +4,4 @@
 .settings
 commit_msg.txt
 *~
+.DS_Store
