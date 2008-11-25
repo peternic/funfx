@@ -28,11 +28,10 @@ import codec.TabObjectCodec;
 import codec.TriggerEventPropertyCodec;
 
 import custom.CustomAutomationClass;
+import custom.utilities.XMLUtility;
 
 import flash.display.DisplayObject;
 import flash.events.*;
-import flash.net.URLLoader;
-import flash.net.URLRequest;
 import flash.utils.getDefinitionByName;
 
 import funfx.Proxy;
@@ -48,12 +47,10 @@ import mx.automation.IAutomationObject;
 import mx.automation.IAutomationPropertyDescriptor;
 import mx.automation.IAutomationTabularData;
 import mx.automation.events.AutomationRecordEvent;
-import mx.controls.Alert;
 import mx.core.Application;
 import mx.core.UIComponent;
 import mx.core.mx_internal;
 import mx.events.FlexEvent;
-import mx.managers.PopUpManager;
 
 use namespace mx_internal;
 
@@ -91,6 +88,10 @@ public class AQAdapter implements IAQCodecHelper
 	private static var _root:DisplayObject;
 	
 	public static var aqAdapter:AQAdapter;
+	
+	[Embed(source="AutoQuickEnv.xml", mimeType="application/octet-stream")]
+	private static const AutoQuickEnvFile:Class;
+	private static const AutoQuickEnv:XML = XMLUtility.buildFromByteStream(AutoQuickEnvFile);
 	
     /**
 	 *  @private    
@@ -243,19 +244,10 @@ public class AQAdapter implements IAQCodecHelper
                 trace("Invalid PlayerID");
                 return;
             }*/
-
-		   // Load environment XML
-		   var te:String = "AutoQuickEnv.xml";
-	
-			var loader:URLLoader = new URLLoader();
-			configureListeners(loader);
-	
-			var request:URLRequest = new URLRequest(te);
-			try {
-				loader.load(request);
-			} catch (error:Error) {
-				Alert.show("Unable to load AutoQuickEnv.xml from current directory: " + error.message);
-			}
+            
+            setTestingEnvironment(AutoQuickEnv);
+            
+            new Proxy();
         }
     }
     
@@ -346,9 +338,9 @@ public class AQAdapter implements IAQCodecHelper
     /**
 	 *  @private
 	 */
-    public function setTestingEnvironment(te:String):void
+    public function setTestingEnvironment(te:XML):void
     {
-        automationManager.automationEnvironment = new AQEnvironment(new XML(te));
+        automationManager.automationEnvironment = new AQEnvironment(te);
     }
 
     /**
@@ -914,50 +906,6 @@ public class AQAdapter implements IAQCodecHelper
 	{
 		return AQCodecHelper;
 	}
-	
-    private function configureListeners(dispatcher:IEventDispatcher):void 
-    {
-        dispatcher.addEventListener(Event.COMPLETE, completeHandler);
-        dispatcher.addEventListener(Event.OPEN, openHandler);
-        dispatcher.addEventListener(ProgressEvent.PROGRESS, progressHandler);
-        dispatcher.addEventListener(SecurityErrorEvent.SECURITY_ERROR, securityErrorHandler);
-        dispatcher.addEventListener(HTTPStatusEvent.HTTP_STATUS, httpStatusHandler);
-        dispatcher.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
-    }
-
-    private function completeHandler(event:Event):void {
-        var loader:URLLoader = URLLoader(event.target);
-        //trace("completeHandler: " + loader.data);
-
-        setTestingEnvironment(loader.data);
-
-        // Disable the popup by commenting out the line below
-		// PopUpManager.createPopUp(DisplayObject(Application.application), AQToolBar);
-
-		//panel.x = Application.application.width - panel.width;
-		//panel.y = Application.application.height - panel.height;
-		new Proxy();
-    }
-
-    private function openHandler(event:Event):void {
-        //trace("openHandler: " + event);
-    }
-
-    private function progressHandler(event:ProgressEvent):void {
-        //trace("progressHandler loaded:" + event.bytesLoaded + " total: " + event.bytesTotal);
-    }
-
-    private function securityErrorHandler(event:SecurityErrorEvent):void {
-        Alert.show("securityErrorHandler: " + event);
-    }
-
-    private function httpStatusHandler(event:HTTPStatusEvent):void {
-        //trace("httpStatusHandler: " + event);
-    }
-
-    private function ioErrorHandler(event:IOErrorEvent):void {
-        Alert.show("ioErrorHandler: " + event);
-    }
 
 	public function getRecords():String {
 		return records.toXMLString();
