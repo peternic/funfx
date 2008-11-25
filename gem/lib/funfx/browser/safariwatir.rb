@@ -38,7 +38,9 @@ module Watir
       private
 
       def eval_js(js)
-        @scripter.__send__(:execute, operate{js}, self)
+        result = @scripter.__send__(:execute, operate{js}, self)
+        raise "Nothing returned from Safari. Are you sure you have compiled the Flex app with FunFX?" if result.nil?
+        result
       end
     end
   end
