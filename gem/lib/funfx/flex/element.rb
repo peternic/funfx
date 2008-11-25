@@ -36,19 +36,18 @@ module FunFX
         ruby_type.from_funfx_string(raw_value)
       end
       
-      def get_tabular_property_value(property, ruby_type, codec)
+      def get_tabular_property_value(property, ruby_type)
         raw_value = flex_invoke do
           @flex_app.get_tabular_property_value(@flex_locator, property)
         end
-        value = coerce(raw_value, ruby_type)
-        decode(value, codec)
+        ruby_type.from_funfx_string(raw_value)
       end
       
-      def invoke_tabular_method(method_name, ruby_type, codec, *args)
+      def invoke_tabular_method(method_name, ruby_type, *args)
         raw_value = flex_invoke do
           @flex_app.invoke_tabular_method(@flex_locator, method_name, *args)
         end
-        Table.from_funfx_string(raw_value)
+        ruby_type.from_funfx_string(raw_value)
       end
 
       def flex_invoke
@@ -66,31 +65,6 @@ module FunFX
         @tries = 0
 
         raise_if_funfx_error(raw_value)
-      end
-      
-      # TODO: Get rid of this method. Use the code in decoder.rb instead.
-      def coerce(string_value, ruby_type)
-        case(ruby_type)
-        when :string
-          string_value
-        when :number
-        when :int
-          string_value.to_i
-        when :boolean
-          string_value == "true"
-        when :date
-        else
-          raise "I don't know how to convert #{string_value.inspect} to #{ruby_type.inspect}"
-        end
-      end
-      
-      def decode(value, codec)
-        case(codec)
-        when :object_array
-					csv = FasterCSV.parse(value)
-        else
-          value
-        end
       end
       
       def raise_if_funfx_error(result)

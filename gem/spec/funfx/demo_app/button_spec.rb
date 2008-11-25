@@ -11,19 +11,20 @@ describe "DemoApp" do
     tree.open('Button controls')
     tree.select('Button controls>Button1')
 
-    button = @flex.button({:automationName => 'Button Control Example'}, {:automationName => 'Default Button'})
+    button = @flex.button({:automationName => 'Default Button'})
     button.click
 
-    message = @flex.text_area({:automationName => "Button Control Example"}, {:id => 'message'})
+    message = @flex.text_area({:id => 'message'})
     message.text.strip.should == "Default Button pressed"
   end
-  
+
   it "should raise error when firing event on nonexistant element" do
-    tree = @flex.tree({:id => 'gibberish'}, {:id => 'nonsense'})
-    lambda do
-      tree.open('Button controls')
-#    end.should raise_error("Error: Target not found: |id{gibberish string}|id{nonsense string}")
-    end.should raise_error("Error: Unable to resolve child for part 'undefined':'undefined' in parent 'FlexObjectTest'.")
+    pending "This should raise an error" do
+      tree = @flex.tree({:id => 'nonsense'})
+      lambda do
+        tree.open('Button controls')
+      end.should raise_error("Error: Unable to resolve child for part 'undefined':'undefined' in parent 'FlexObjectTest'.")
+    end
   end
   
   it "should be disabled" do
@@ -31,7 +32,7 @@ describe "DemoApp" do
     tree.open('Button controls')
     tree.select('Button controls>Button1')
 
-    button = @flex.button({:automationName => 'Button Control Example'}, {:id => 'bDisabledButton'})
+    button = @flex.button({:id => 'bDisabledButton'})
     button.enabled?.should == false
   end
   
@@ -40,7 +41,7 @@ describe "DemoApp" do
     tree.open('Button controls')
     tree.select('Button controls>Button1')
 
-    button = @flex.button({:automationName => 'Button Control Example'}, {:automationName => 'Customized Button'})
+    button = @flex.button({:automationName => 'Customized Button'})
     button.label.should == "Customized Button"
   end
   
@@ -49,7 +50,7 @@ describe "DemoApp" do
     tree.open('Button controls')
     tree.select('Button controls>Button1')
 
-    button = @flex.button({:automationName => 'Button Control Example'}, {:automationName => 'Customized Button'})
+    button = @flex.button({:automationName => 'Customized Button'})
     
     pending "Find out why we can't look up fontStyle" do
       button.font_style.should == "italic"

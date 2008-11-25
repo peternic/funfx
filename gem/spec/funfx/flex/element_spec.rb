@@ -57,7 +57,7 @@ module FunFX
           flex_app = mock('FlexApp')
           element = Element.new(flex_app, nil, {:id => 'box'})
           flex_app.should_receive(:invoke_tabular_method).and_return("a,b\nc,d")
-          element.invoke_tabular_method("getValues", :string, :object_array, 3, 4).should == [["a", "b"], ["c", "d"]]
+          element.invoke_tabular_method("getValues", Table, 3, 4).should == [["a", "b"], ["c", "d"]]
         end
       end
 

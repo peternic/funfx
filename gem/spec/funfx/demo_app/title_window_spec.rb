@@ -21,20 +21,20 @@ describe "DemoApp" do
     button.click
     
     title_window = @flex.title_window({:automationName => 'login'})
-    title_window.visible?.should == true
-    title_window.show_close_button?.should == false
+    title_window.should be_visible
+    title_window.should_not be_show_close_button
     title_window.title.strip.should == "Title Window"
     
     text_area = @flex.text_area({:id => 'userName'})
     text_area.input("Tester")
     
-    button = @flex.button({:automationName => 'login'}, {:automationName => 'OK'})
+    button = @flex.button({:automationName => 'OK'})
     button.click
     
     title_window = @flex.title_window({:automationName => 'login'})
     
     lambda do
       title_window.visible?
-    end.should raise_error
+    end.should raise_error(FunFX::Flex::FunFXError)
   end
 end
