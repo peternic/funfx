@@ -17,6 +17,7 @@ module Watir
       def initialize(ole_object, dom_id, app_name)
         super(ole_object)
         @flex_object = ole_object.ie.Document.getElementsByName(dom_id).item(0)
+        raise "Couldn't find Flex object with id #{dom_id.inspect}" if @flex_object.nil?
         @app_name = app_name
       end
 

@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'spec'
 
+$:.unshift(File.dirname(__FILE__) + '/../../../../gem/lib')
 require 'funfx/browser/safariwatir'
 BROWSER = Watir::Safari.new
 #require 'funfx/browser/firewatir'
