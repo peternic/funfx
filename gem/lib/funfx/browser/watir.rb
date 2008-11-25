@@ -19,7 +19,7 @@ module Watir
         @flex_object = ole_object.ie.Document.getElementsByName(dom_id).item(0)
         @app_name = app_name
       end
-      
+
       def fire_event(flex_locator, event_name, args) # :nodoc:
         @flex_object.fireFunFXEvent(flex_locator, event_name, args)
       end

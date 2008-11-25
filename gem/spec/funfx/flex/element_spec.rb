@@ -4,15 +4,13 @@ module FunFX
   module Flex
     describe Element do
       
-      describe  'get_property_value' do
+      describe 'get_property_value' do
         it "should convert array of id hashes to flex automation id" do
           flex_app = mock('FlexApp')
-          flex_app.should_receive(:automation_id).with("id{box string}|automationName{Button%20Control%20Example string}").and_return('automation_id')
-        
-          element = Element.new(flex_app, nil, {:id => 'box'}, {:automationName => 'Button Control Example'})
+          element = Element.new(flex_app, nil, {:id => 'box'})
         
           flex_app.should_receive(:get_property_value).
-            with("automation_id", 'WhatEver').
+            with("{parent: null, id: {id: 'box'}}", 'WhatEver').
             and_return('true')
         
           element.get_property_value('WhatEver', TrueClass).should be_true
@@ -20,14 +18,10 @@ module FunFX
         
         it "should convert array of id hashes with multiple definitions per object to flex automation id" do
           flex_app = mock('FlexApp')
-          flex_app.should_receive(:automation_id).
-            with("id{box string}|automationIndex{index:1 string}automationName{Button%20Control%20Example string}").
-            and_return('automation_id')
-        
-          element = Element.new(flex_app, nil, {:id => 'box'}, {:automationName => 'Button Control Example', :automationIndex => 'index:1'})
+          element = Element.new(flex_app, nil, {:id => 'box'})
         
           flex_app.should_receive(:get_property_value).
-            with("automation_id", 'WhatEver').
+            with("{parent: null, id: {id: 'box'}}", 'WhatEver').
             and_return('true')
         
           element.get_property_value('WhatEver', TrueClass).should be_true
