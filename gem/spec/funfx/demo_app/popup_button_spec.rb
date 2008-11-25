@@ -14,7 +14,7 @@ describe "DemoApp" do
     popup_button = @flex.pop_up_button({:id => 'popB'})
     popup_button.open
 
-    menu = @flex.menu({:id => 'popB'}, {:automationName => 'popMenu'})
+    menu = @flex.menu({:automationName => 'popMenu'})
     menu.select("Sent Items")
     
     popup_button.label.strip.should == "Put in: Sent Items"
@@ -28,7 +28,7 @@ describe "DemoApp" do
     popup_button = @flex.pop_up_button({:id => 'popB'})
     popup_button.open
 
-    menu = @flex.menu({:id => 'popB'}, {:automationName => 'popMenu'})
+    menu = @flex.menu({:automationName => 'popMenu'})
     
     menu.row_count.should == 3
   end

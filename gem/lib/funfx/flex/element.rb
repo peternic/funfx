@@ -48,8 +48,7 @@ module FunFX
         raw_value = flex_invoke do
           @flex_app.invoke_tabular_method(@flex_locator, method_name, *args)
         end
-        value = coerce(raw_value, ruby_type)
-        decode(value, codec)
+        Table.from_funfx_string(raw_value)
       end
 
       def flex_invoke
@@ -69,8 +68,7 @@ module FunFX
         raise_if_funfx_error(raw_value)
       end
       
-      # TODO: Use classes, not symbols (use TrueClass for :true)
-      # TODO, make return type the first arg
+      # TODO: Get rid of this method. Use the code in decoder.rb instead.
       def coerce(string_value, ruby_type)
         case(ruby_type)
         when :string
@@ -128,6 +126,12 @@ module FunFX
         return "Flex" + str.to_s.gsub(/^[a-z]|[_][a-z]/) { |a| a.upcase}.delete("_")
       end
       
+      # Hack to work around name clash for label. It can be a primitive property or
+      # a sub element
+      def label_element(id)
+        Elements::FlexLabel.new(@flex_app, @flex_locator, id)
+      end
+      
       private
       
       def build_flex_locator(parent_locator, locator_hashes)
@@ -169,6 +173,11 @@ module FunFX
         @flex_app.automation_id(ids.join("|"))
       end
       
+      # TODO: Find a better way to look up children that:
+      # * Is a documented API
+      # * No method_missing
+      # * Doesn't clash with properties
+      # * Is only available on elements that can contain other elements (Container?)
       def method_missing(method_name, id)
         Elements.const_get(shift_case(method_name)).new(@flex_app, @flex_locator, id)
       end

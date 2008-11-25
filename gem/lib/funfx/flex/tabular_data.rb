@@ -1,6 +1,6 @@
 module FunFX
   module Flex
-    module TabularData
+    module TabularData      
       def column_names
         get_tabular_property_value("columnNames", :string, :object_array).first
       end

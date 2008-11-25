@@ -1,4 +1,5 @@
 require 'date'
+require 'fastercsv'
 
 module FunFX
   class Decoder
@@ -23,7 +24,17 @@ module FunFX
       end
     end
   end
+
+  class Table
+    # Returns a two-dimensional array
+    def self.from_funfx_string(s)
+      FasterCSV.parse(s)
+    end
+  end
 end
+
+# Standard Ruby type extensions
+# :stopdoc:
 
 class Integer
   def self.from_funfx_string(s)

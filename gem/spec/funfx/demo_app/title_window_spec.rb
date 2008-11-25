@@ -25,7 +25,7 @@ describe "DemoApp" do
     title_window.show_close_button?.should == false
     title_window.title.strip.should == "Title Window"
     
-    text_area = @flex.text_area({:automationName => 'login'}, {:id => 'userName'})
+    text_area = @flex.text_area({:id => 'userName'})
     text_area.input("Tester")
     
     button = @flex.button({:automationName => 'login'}, {:automationName => 'OK'})
