@@ -1,7 +1,13 @@
 require 'rubygems'
 require 'spec'
+
 require 'funfx/browser/safariwatir'
 BROWSER = Watir::Safari.new
+#require 'funfx/browser/firewatir'
+#BROWSER = FireWatir::Firefox.new
+#require 'funfx/browser/watir'
+#BROWSER = Watir::IE.new
+
 DEMO_APP = "http://localhost:9851/index.html"
 
 Before do
