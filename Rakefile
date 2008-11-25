@@ -3,9 +3,6 @@ win = Config::CONFIG['host_os'] =~ /mswin|mingw/
 suffix = win ? '.bat' : ''
 build = win ? 'build.bat' : './build.sh'
 
-desc 'Compile everything and run specs'
-task :build => [:demo_app, :generate, :spec]
-
 desc 'Compile the Demo app'
 task :demo_app => :flex do
   cp 'flex/src/AutoQuickEnv.xml', 'gem/website/demo-app/AutoQuickEnv.xml'
@@ -22,9 +19,16 @@ task :generate do
 end
 
 desc 'Run specs'
-task :spec do
+task :spec => [:demo_app] do
   Dir.chdir('gem') do
     sh "rake#{suffix} spec"
+  end
+end
+
+desc 'Compile Rubygem'
+task :gem => [:flex, :generate] do
+  Dir.chdir('gem') do
+    sh "rake#{suffix} gem"
   end
 end
 
@@ -40,4 +44,4 @@ task :httpd do
   ruby "gem/website/demo-app/httpd.rb"
 end
 
-task :default => :build
+task :default => :gem

@@ -18,7 +18,7 @@ def browser
 end
 
 def require_watir
-  if ENV['FIREWATIR']
+  if ENV['FIREWATIR'] # Set this in your shell if you want FireFox
     require 'funfx/browser/firewatir'
     $browser_class = FireWatir::Firefox
   else
@@ -27,10 +27,8 @@ def require_watir
       require 'funfx/browser/safariwatir'
       $browser_class = Watir::Safari
     when /win32|mingw/
-      require 'funfx/browser/firewatir'
-      $browser_class = FireWatir::Firefox
-      #require 'funfx/browser/watir'
-      #$browser_class = Watir::IE
+      require 'funfx/browser/watir'
+      $browser_class = Watir::IE
     when /linux/
       require 'funfx/browser/firewatir'
       $browser_class = FireWatir::Firefox

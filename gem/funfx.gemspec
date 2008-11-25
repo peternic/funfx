@@ -4,7 +4,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Peter Nicolai Motzfeldt", "Aslak Helles\303\270y"]
-  s.date = %q{2008-11-21}
+  s.date = %q{2008-11-25}
   s.description = %q{description of gem}
   s.email = ["motzfeldt@gmail.com", "aslak.hellesoy@gmail.com"]
   s.extra_rdoc_files = ["History.txt", "License.txt", "Manifest.txt", "README.txt"]
@@ -23,11 +23,14 @@ Gem::Specification.new do |s|
     s.specification_version = 2
 
     if current_version >= 3 then
+      s.add_runtime_dependency(%q<fastercsv>, [">= 1.4.0"])
       s.add_development_dependency(%q<hoe>, [">= 1.8.2"])
     else
+      s.add_dependency(%q<fastercsv>, [">= 1.4.0"])
       s.add_dependency(%q<hoe>, [">= 1.8.2"])
     end
   else
+    s.add_dependency(%q<fastercsv>, [">= 1.4.0"])
     s.add_dependency(%q<hoe>, [">= 1.8.2"])
   end
 end

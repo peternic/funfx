@@ -3,6 +3,7 @@ License.txt
 Manifest.txt
 README.txt
 Rakefile
+code
 config/hoe.rb
 config/requirements.rb
 ext/FunFX.swc
@@ -66,6 +67,7 @@ spec/funfx/demo_app/record_test_spec.rb
 spec/funfx/demo_app/repeater_control_spec.rb
 spec/funfx/demo_app/tab_bar_spec.rb
 spec/funfx/demo_app/tab_navigator_spec.rb
+spec/funfx/demo_app/test_spec.rb
 spec/funfx/demo_app/text_area_spec.rb
 spec/funfx/demo_app/text_input_spec.rb
 spec/funfx/demo_app/text_spec.rb
