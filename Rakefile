@@ -5,7 +5,6 @@ build = win ? 'build.bat' : './build.sh'
 
 desc 'Compile the Demo app'
 task :demo_app => :flex do
-  cp 'flex/src/AutoQuickEnv.xml', 'gem/website/demo-app/AutoQuickEnv.xml'
   Dir.chdir('demo-app') do
     sh build
   end

@@ -28,13 +28,15 @@ import codec.TabObjectCodec;
 import codec.TriggerEventPropertyCodec;
 
 import custom.CustomAutomationClass;
+<<<<<<< HEAD:flex/src/AQAdapter.as
 import custom.utilities.FlexObjectLocatorUtility;
 import custom.utilities.FlexObjectLocatorUtilityHelper;
+=======
+import custom.utilities.XMLUtility;
+>>>>>>> c3a3784606829f234eb0040990b63f92554512e8:flex/src/AQAdapter.as
 
 import flash.display.DisplayObject;
 import flash.events.*;
-import flash.net.URLLoader;
-import flash.net.URLRequest;
 import flash.utils.getDefinitionByName;
 
 import funfx.Proxy;
@@ -52,12 +54,10 @@ import mx.automation.IAutomationObject;
 import mx.automation.IAutomationPropertyDescriptor;
 import mx.automation.IAutomationTabularData;
 import mx.automation.events.AutomationRecordEvent;
-import mx.controls.Alert;
 import mx.core.Application;
 import mx.core.UIComponent;
 import mx.core.mx_internal;
 import mx.events.FlexEvent;
-import mx.managers.PopUpManager;
 
 use namespace mx_internal;
 
@@ -96,6 +96,10 @@ public class AQAdapter implements IAQCodecHelper
 	
 	public static var aqAdapter:AQAdapter;
 	
+  [Embed(source="AutoQuickEnv.xml", mimeType="application/octet-stream")]
+  private static const AutoQuickEnvFile:Class;
+  private static const AutoQuickEnv:XML = XMLUtility.buildFromByteStream(AutoQuickEnvFile);
+
     /**
 	 *  @private    
 	 */
@@ -247,19 +251,10 @@ public class AQAdapter implements IAQCodecHelper
                 trace("Invalid PlayerID");
                 return;
             }*/
-			
-		   // Load environment XML
-		   var te:String = "AutoQuickEnv.xml";
-	
-			var loader:URLLoader = new URLLoader();
-			configureListeners(loader);
-	
-			var request:URLRequest = new URLRequest(te);
-			try {
-				loader.load(request);
-			} catch (error:Error) {
-				Alert.show("Unable to load AutoQuickEnv.xml from current directory: " + error.message);
-			}
+            
+            setTestingEnvironment(AutoQuickEnv);
+            
+            new Proxy();
         }
     }
     
@@ -356,9 +351,9 @@ public class AQAdapter implements IAQCodecHelper
     /**
 	 *  @private
 	 */
-    public function setTestingEnvironment(te:String):void
+    public function setTestingEnvironment(te:XML):void
     {
-        automationManager.automationEnvironment = new AQEnvironment(new XML(te));
+        automationManager.automationEnvironment = new AQEnvironment(te);
     }
 
     /**
@@ -876,6 +871,7 @@ public class AQAdapter implements IAQCodecHelper
 	{
 		return AQCodecHelper;
 	}
+<<<<<<< HEAD:flex/src/AQAdapter.as
 	
     private function configureListeners(dispatcher:IEventDispatcher):void 
     {
@@ -923,6 +919,8 @@ public class AQAdapter implements IAQCodecHelper
     private function ioErrorHandler(event:IOErrorEvent):void {
         Alert.show("ioErrorHandler: " + event);
     }
+=======
+>>>>>>> c3a3784606829f234eb0040990b63f92554512e8:flex/src/AQAdapter.as
 
 		public function getRecords():String {
 			return records.toXMLString();
