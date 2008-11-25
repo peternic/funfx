@@ -9,7 +9,7 @@ module FunFX
           flex_app = mock('FlexApp')
           flex_app.should_receive(:automation_id).with("id{box string}|automationName{Button%20Control%20Example string}").and_return('automation_id')
         
-          element = Element.new(flex_app, {:id => 'box'}, {:automationName => 'Button Control Example'})
+          element = Element.new(flex_app, nil, {:id => 'box'}, {:automationName => 'Button Control Example'})
         
           flex_app.should_receive(:get_property_value).
             with("automation_id", 'WhatEver').
@@ -24,7 +24,7 @@ module FunFX
             with("id{box string}|automationIndex{index:1 string}automationName{Button%20Control%20Example string}").
             and_return('automation_id')
         
-          element = Element.new(flex_app, {:id => 'box'}, {:automationName => 'Button Control Example', :automationIndex => 'index:1'})
+          element = Element.new(flex_app, nil, {:id => 'box'}, {:automationName => 'Button Control Example', :automationIndex => 'index:1'})
         
           flex_app.should_receive(:get_property_value).
             with("automation_id", 'WhatEver').
@@ -35,16 +35,49 @@ module FunFX
         
         it "should sort a single hash and pass it through to flex as is" do
           flex_app = mock('FlexApp')
-          element = Element.new(flex_app, {:id => 'box', :automationName => 'Button Control Example', :text => 'Arbitrary Text'})
+          element = Element.new(flex_app, nil, {:id => 'box', :automationName => 'Button Control Example', :text => 'Arbitrary Text'})
         
           flex_app.should_receive(:get_property_value).
-            with("{automationName: 'Button%20Control%20Example', id: 'box', text: 'Arbitrary%20Text'}", 'WhatEver').
+            with("{parent: null, id: {automationName: 'Button%20Control%20Example', id: 'box', text: 'Arbitrary%20Text'}}", 'WhatEver').
             and_return('true')
         
           element.get_property_value('WhatEver', TrueClass).should be_true
         end
+        
+        it "should be able to use a parent object" do
+          flex_app = mock('FlexApp')
+
+          parent = Element.new(flex_app, nil, {:id => 'parent'})
+          child = parent.box({:id => 'child'})
+          
+          flex_app.should_receive(:get_property_value).
+            with("{parent: {parent: null, id: {id: 'parent'}}, id: {id: 'child'}}", 'WhatEver').
+            and_return('true')
+          
+          child.get_property_value('WhatEver', TrueClass).should be_true
+        end  
       end
-            
+      
+      describe  'shift_case' do
+        it "should rename rubysyntax to automationenv notation" do
+          flex_app = mock('FlexApp')
+          element = Element.new(flex_app, nil, {:id => 'element'})
+          element.shift_case("box").should == "FlexBox"
+        end
+        
+        it "should rename mutiple names with _ to automationenv notation" do
+          flex_app = mock('FlexApp')
+          element = Element.new(flex_app, nil, {:id => 'element'})
+          element.shift_case("menu_bar_item").should == "FlexMenuBarItem"
+        end
+        
+        it "should rename mutiple names with _ to automationenv notation where each word is single character" do
+          flex_app = mock('FlexApp')
+          element = Element.new(flex_app, nil, {:id => 'element'})
+          element.shift_case("v_scroll_bar").should == "FlexVScrollBar"
+        end
+      end
+       
       it "should raise error with Flex backtrace formatted as Ruby backtrace" do
         flex_error = %{____FUNFX_ERROR:
 Error: Unable to resolve child for part 'undefined':'undefined' in parent 'FlexObjectTest'.
@@ -57,7 +90,7 @@ Error: Unable to resolve child for part 'undefined':'undefined' in parent 'FlexO
         at flash.external::ExternalInterface$/_callIn()
         at <anonymous>()}
 
-        element = Element.new(nil, {})
+        element = Element.new(nil, nil, {})
         begin
           element.raise_if_funfx_error(flex_error)
           violated

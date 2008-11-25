@@ -23,7 +23,7 @@ module FunFX
       end
       
       def <%= klass.lookup_method %>(*locator_hash)
-        <%= klass.name %>.new(self, *locator_hash)
+        <%= klass.name %>.new(self, nil, *locator_hash)
       end
     <% end %>
     end

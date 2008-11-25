@@ -19,26 +19,26 @@ module FireWatir
         @dom_id, @app_name = dom_id, app_name
       end
 
-      def fire_event(flex_id, event_name, args) # :nodoc:
-        javascript = %|#{DOCUMENT_VAR}.getElementById("#{@dom_id}").fireFunFXEvent(#{full_id(flex_id).inspect}, #{event_name.inspect}, "#{args}");\n|
+      def fire_event(flex_locator, event_name, args) # :nodoc:
+        javascript = %|#{DOCUMENT_VAR}.getElementById("#{@dom_id}").fireFunFXEvent(#{flex_locator}, #{event_name.inspect}, "#{args}");\n|
         $jssh_socket.send(javascript, 0)
         read_socket
       end
 
-      def get_property_value(flex_id, property) # :nodoc:
-        javascript = %|#{DOCUMENT_VAR}.getElementById("#{@dom_id}").getFunFXPropertyValue(#{full_id(flex_id).inspect}, #{property.inspect});\n|
+      def get_property_value(flex_locator, property) # :nodoc:
+        javascript = %|#{DOCUMENT_VAR}.getElementById("#{@dom_id}").getFunFXPropertyValue(#{flex_locator}, #{property.inspect});\n|
+        $jssh_socket.send(javascript, 0)
+        read_socket
+      end
+      
+      def get_tabular_property_value(flex_locator, property) # :nodoc:
+        javascript = %|#{DOCUMENT_VAR}.getElementById("#{@dom_id}").getFunFXTabularPropertyValue(#{flex_locator}, #{property.inspect});\n|
         $jssh_socket.send(javascript, 0)
         read_socket
       end
 
-      def get_tabular_property_value(flex_id, property) # :nodoc:
-        javascript = %|#{DOCUMENT_VAR}.getElementById("#{@dom_id}").getFunFXTabularPropertyValue(#{full_id(flex_id).inspect}, #{property.inspect});\n|
-        $jssh_socket.send(javascript, 0)
-        read_socket
-      end
-
-      def invoke_tabular_method(flex_id, method_name, *args) # :nodoc:
-        javascript = %|#{DOCUMENT_VAR}.getElementById("#{@dom_id}").invokeFunFXTabularMethod(#{full_id(flex_id).inspect}, #{method_name.inspect}, #{args.map{|a| a.inspect}.join(', ')});\n|
+      def invoke_tabular_method(flex_locator, method_name, *args) # :nodoc:
+        javascript = %|#{DOCUMENT_VAR}.getElementById("#{@dom_id}").invokeFunFXTabularMethod(#{flex_locator}, #{method_name.inspect}, #{args.map{|a| a.inspect}.join(', ')});\n|
         $jssh_socket.send(javascript, 0)
         read_socket
       end

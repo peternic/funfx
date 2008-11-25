@@ -61,7 +61,7 @@ module FunFX
       end
       
       def display_object(*locator_hash)
-        FlexDisplayObject.new(self, *locator_hash)
+        FlexDisplayObject.new(self, nil, *locator_hash)
       end
     
       class FlexListLabel < FlexDisplayObject
@@ -87,7 +87,7 @@ module FunFX
       end
       
       def list_label(*locator_hash)
-        FlexListLabel.new(self, *locator_hash)
+        FlexListLabel.new(self, nil, *locator_hash)
       end
     
       class FlexMenuBarItem < FlexListLabel
@@ -97,7 +97,7 @@ module FunFX
       end
       
       def menu_bar_item(*locator_hash)
-        FlexMenuBarItem.new(self, *locator_hash)
+        FlexMenuBarItem.new(self, nil, *locator_hash)
       end
     
       class FlexTreeItemRenderer < FlexListLabel
@@ -107,7 +107,7 @@ module FunFX
       end
       
       def tree_item_renderer(*locator_hash)
-        FlexTreeItemRenderer.new(self, *locator_hash)
+        FlexTreeItemRenderer.new(self, nil, *locator_hash)
       end
     
       class FlexTileListItemRenderer < FlexListLabel
@@ -117,7 +117,7 @@ module FunFX
       end
       
       def tile_list_item_renderer(*locator_hash)
-        FlexTileListItemRenderer.new(self, *locator_hash)
+        FlexTileListItemRenderer.new(self, nil, *locator_hash)
       end
     
       class FlexMenuItemRenderer < FlexListLabel
@@ -127,7 +127,7 @@ module FunFX
       end
       
       def menu_item_renderer(*locator_hash)
-        FlexMenuItemRenderer.new(self, *locator_hash)
+        FlexMenuItemRenderer.new(self, nil, *locator_hash)
       end
     
       class FlexDataGridItemRenderer < FlexListLabel
@@ -137,7 +137,7 @@ module FunFX
       end
       
       def data_grid_item_renderer(*locator_hash)
-        FlexDataGridItemRenderer.new(self, *locator_hash)
+        FlexDataGridItemRenderer.new(self, nil, *locator_hash)
       end
     
       class FlexListItemRenderer < FlexListLabel
@@ -147,7 +147,7 @@ module FunFX
       end
       
       def list_item_renderer(*locator_hash)
-        FlexListItemRenderer.new(self, *locator_hash)
+        FlexListItemRenderer.new(self, nil, *locator_hash)
       end
     
       class FlexObject < FlexDisplayObject
@@ -233,7 +233,7 @@ module FunFX
       end
       
       def object(*locator_hash)
-        FlexObject.new(self, *locator_hash)
+        FlexObject.new(self, nil, *locator_hash)
       end
     
       class FlexScrollBar < FlexObject
@@ -267,7 +267,7 @@ module FunFX
       end
       
       def scroll_bar(*locator_hash)
-        FlexScrollBar.new(self, *locator_hash)
+        FlexScrollBar.new(self, nil, *locator_hash)
       end
     
       class FlexHScrollBar < FlexScrollBar
@@ -277,7 +277,7 @@ module FunFX
       end
       
       def h_scroll_bar(*locator_hash)
-        FlexHScrollBar.new(self, *locator_hash)
+        FlexHScrollBar.new(self, nil, *locator_hash)
       end
     
       class FlexVScrollBar < FlexScrollBar
@@ -287,7 +287,7 @@ module FunFX
       end
       
       def v_scroll_bar(*locator_hash)
-        FlexVScrollBar.new(self, *locator_hash)
+        FlexVScrollBar.new(self, nil, *locator_hash)
       end
     
       class FlexMenu < FlexObject
@@ -343,7 +343,7 @@ module FunFX
       end
       
       def menu(*locator_hash)
-        FlexMenu.new(self, *locator_hash)
+        FlexMenu.new(self, nil, *locator_hash)
       end
     
       class FlexLabel < FlexObject
@@ -401,7 +401,7 @@ module FunFX
       end
       
       def label(*locator_hash)
-        FlexLabel.new(self, *locator_hash)
+        FlexLabel.new(self, nil, *locator_hash)
       end
     
       class FlexText < FlexLabel
@@ -411,7 +411,7 @@ module FunFX
       end
       
       def text(*locator_hash)
-        FlexText.new(self, *locator_hash)
+        FlexText.new(self, nil, *locator_hash)
       end
     
       class FlexDateChooser < FlexObject
@@ -549,7 +549,7 @@ module FunFX
       end
       
       def date_chooser(*locator_hash)
-        FlexDateChooser.new(self, *locator_hash)
+        FlexDateChooser.new(self, nil, *locator_hash)
       end
     
       class FlexSWFLoader < FlexObject
@@ -563,7 +563,7 @@ module FunFX
       end
       
       def swf_loader(*locator_hash)
-        FlexSWFLoader.new(self, *locator_hash)
+        FlexSWFLoader.new(self, nil, *locator_hash)
       end
     
       class FlexImage < FlexSWFLoader
@@ -573,7 +573,7 @@ module FunFX
       end
       
       def image(*locator_hash)
-        FlexImage.new(self, *locator_hash)
+        FlexImage.new(self, nil, *locator_hash)
       end
     
       class FlexAxisRenderer < FlexObject
@@ -645,7 +645,7 @@ module FunFX
       end
       
       def axis_renderer(*locator_hash)
-        FlexAxisRenderer.new(self, *locator_hash)
+        FlexAxisRenderer.new(self, nil, *locator_hash)
       end
     
       class FlexProgressBar < FlexObject
@@ -747,7 +747,7 @@ module FunFX
       end
       
       def progress_bar(*locator_hash)
-        FlexProgressBar.new(self, *locator_hash)
+        FlexProgressBar.new(self, nil, *locator_hash)
       end
     
       class FlexScrollBase < FlexObject
@@ -761,7 +761,7 @@ module FunFX
       end
       
       def scroll_base(*locator_hash)
-        FlexScrollBase.new(self, *locator_hash)
+        FlexScrollBase.new(self, nil, *locator_hash)
       end
     
       class FlexTextArea < FlexScrollBase
@@ -851,7 +851,7 @@ module FunFX
       end
       
       def text_area(*locator_hash)
-        FlexTextArea.new(self, *locator_hash)
+        FlexTextArea.new(self, nil, *locator_hash)
       end
     
       class FlexTextInput < FlexTextArea
@@ -861,7 +861,7 @@ module FunFX
       end
       
       def text_input(*locator_hash)
-        FlexTextInput.new(self, *locator_hash)
+        FlexTextInput.new(self, nil, *locator_hash)
       end
     
       class FlexAdvancedListBase < FlexScrollBase
@@ -877,7 +877,7 @@ module FunFX
       end
       
       def advanced_list_base(*locator_hash)
-        FlexAdvancedListBase.new(self, *locator_hash)
+        FlexAdvancedListBase.new(self, nil, *locator_hash)
       end
     
       class FlexAdvancedDataGridBase < FlexAdvancedListBase
@@ -889,7 +889,7 @@ module FunFX
       end
       
       def advanced_data_grid_base(*locator_hash)
-        FlexAdvancedDataGridBase.new(self, *locator_hash)
+        FlexAdvancedDataGridBase.new(self, nil, *locator_hash)
       end
     
       class FlexAdvancedDataGridBaseEx < FlexAdvancedDataGridBase
@@ -901,7 +901,7 @@ module FunFX
       end
       
       def advanced_data_grid_base_ex(*locator_hash)
-        FlexAdvancedDataGridBaseEx.new(self, *locator_hash)
+        FlexAdvancedDataGridBaseEx.new(self, nil, *locator_hash)
       end
     
       class FlexAdvancedDataGrid < FlexAdvancedDataGridBaseEx
@@ -929,7 +929,7 @@ module FunFX
       end
       
       def advanced_data_grid(*locator_hash)
-        FlexAdvancedDataGrid.new(self, *locator_hash)
+        FlexAdvancedDataGrid.new(self, nil, *locator_hash)
       end
     
       class FlexScrollControlBase < FlexScrollBase
@@ -939,7 +939,7 @@ module FunFX
       end
       
       def scroll_control_base(*locator_hash)
-        FlexScrollControlBase.new(self, *locator_hash)
+        FlexScrollControlBase.new(self, nil, *locator_hash)
       end
     
       class FlexListBase < FlexScrollBase
@@ -1105,7 +1105,7 @@ module FunFX
       end
       
       def list_base(*locator_hash)
-        FlexListBase.new(self, *locator_hash)
+        FlexListBase.new(self, nil, *locator_hash)
       end
     
       class FlexDataGrid < FlexListBase
@@ -1165,7 +1165,7 @@ module FunFX
       end
       
       def data_grid(*locator_hash)
-        FlexDataGrid.new(self, *locator_hash)
+        FlexDataGrid.new(self, nil, *locator_hash)
       end
     
       class FlexList < FlexListBase
@@ -1181,7 +1181,7 @@ module FunFX
       end
       
       def list(*locator_hash)
-        FlexList.new(self, *locator_hash)
+        FlexList.new(self, nil, *locator_hash)
       end
     
       class FlexHorizontalList < FlexList
@@ -1193,7 +1193,7 @@ module FunFX
       end
       
       def horizontal_list(*locator_hash)
-        FlexHorizontalList.new(self, *locator_hash)
+        FlexHorizontalList.new(self, nil, *locator_hash)
       end
     
       class FlexTileList < FlexList
@@ -1205,7 +1205,7 @@ module FunFX
       end
       
       def tile_list(*locator_hash)
-        FlexTileList.new(self, *locator_hash)
+        FlexTileList.new(self, nil, *locator_hash)
       end
     
       class FlexTree < FlexListBase
@@ -1245,7 +1245,7 @@ module FunFX
       end
       
       def tree(*locator_hash)
-        FlexTree.new(self, *locator_hash)
+        FlexTree.new(self, nil, *locator_hash)
       end
     
       class FlexVideoDisplay < FlexObject
@@ -1267,7 +1267,7 @@ module FunFX
       end
       
       def video_display(*locator_hash)
-        FlexVideoDisplay.new(self, *locator_hash)
+        FlexVideoDisplay.new(self, nil, *locator_hash)
       end
     
       class FlexMenuBar < FlexObject
@@ -1351,7 +1351,7 @@ module FunFX
       end
       
       def menu_bar(*locator_hash)
-        FlexMenuBar.new(self, *locator_hash)
+        FlexMenuBar.new(self, nil, *locator_hash)
       end
     
       class FlexRule < FlexObject
@@ -1369,7 +1369,7 @@ module FunFX
       end
       
       def rule(*locator_hash)
-        FlexRule.new(self, *locator_hash)
+        FlexRule.new(self, nil, *locator_hash)
       end
     
       class FlexVRule < FlexRule
@@ -1379,7 +1379,7 @@ module FunFX
       end
       
       def v_rule(*locator_hash)
-        FlexVRule.new(self, *locator_hash)
+        FlexVRule.new(self, nil, *locator_hash)
       end
     
       class FlexHRule < FlexRule
@@ -1389,7 +1389,7 @@ module FunFX
       end
       
       def h_rule(*locator_hash)
-        FlexHRule.new(self, *locator_hash)
+        FlexHRule.new(self, nil, *locator_hash)
       end
     
       class FlexComboBase < FlexObject
@@ -1531,7 +1531,7 @@ module FunFX
       end
       
       def combo_base(*locator_hash)
-        FlexComboBase.new(self, *locator_hash)
+        FlexComboBase.new(self, nil, *locator_hash)
       end
     
       class FlexComboBox < FlexComboBase
@@ -1583,7 +1583,7 @@ module FunFX
       end
       
       def combo_box(*locator_hash)
-        FlexComboBox.new(self, *locator_hash)
+        FlexComboBox.new(self, nil, *locator_hash)
       end
     
       class FlexColorPicker < FlexComboBase
@@ -1617,7 +1617,7 @@ module FunFX
       end
       
       def color_picker(*locator_hash)
-        FlexColorPicker.new(self, *locator_hash)
+        FlexColorPicker.new(self, nil, *locator_hash)
       end
     
       class FlexDateField < FlexComboBase
@@ -1691,7 +1691,7 @@ module FunFX
       end
       
       def date_field(*locator_hash)
-        FlexDateField.new(self, *locator_hash)
+        FlexDateField.new(self, nil, *locator_hash)
       end
     
       class FlexContainer < FlexObject
@@ -1783,7 +1783,7 @@ module FunFX
       end
       
       def container(*locator_hash)
-        FlexContainer.new(self, *locator_hash)
+        FlexContainer.new(self, nil, *locator_hash)
       end
     
       class FlexForm < FlexContainer
@@ -1795,7 +1795,7 @@ module FunFX
       end
       
       def form(*locator_hash)
-        FlexForm.new(self, *locator_hash)
+        FlexForm.new(self, nil, *locator_hash)
       end
     
       class FlexBox < FlexContainer
@@ -1819,7 +1819,7 @@ module FunFX
       end
       
       def box(*locator_hash)
-        FlexBox.new(self, *locator_hash)
+        FlexBox.new(self, nil, *locator_hash)
       end
     
       class FlexDividedBox < FlexBox
@@ -1847,7 +1847,7 @@ module FunFX
       end
       
       def divided_box(*locator_hash)
-        FlexDividedBox.new(self, *locator_hash)
+        FlexDividedBox.new(self, nil, *locator_hash)
       end
     
       class FlexTile < FlexBox
@@ -1859,7 +1859,7 @@ module FunFX
       end
       
       def tile(*locator_hash)
-        FlexTile.new(self, *locator_hash)
+        FlexTile.new(self, nil, *locator_hash)
       end
     
       class FlexNavBar < FlexBox
@@ -1887,7 +1887,7 @@ module FunFX
       end
       
       def nav_bar(*locator_hash)
-        FlexNavBar.new(self, *locator_hash)
+        FlexNavBar.new(self, nil, *locator_hash)
       end
     
       class FlexLinkBar < FlexNavBar
@@ -1907,7 +1907,7 @@ module FunFX
       end
       
       def link_bar(*locator_hash)
-        FlexLinkBar.new(self, *locator_hash)
+        FlexLinkBar.new(self, nil, *locator_hash)
       end
     
       class FlexButtonBar < FlexNavBar
@@ -1927,7 +1927,7 @@ module FunFX
       end
       
       def button_bar(*locator_hash)
-        FlexButtonBar.new(self, *locator_hash)
+        FlexButtonBar.new(self, nil, *locator_hash)
       end
     
       class FlexToggleButtonBar < FlexButtonBar
@@ -1947,7 +1947,7 @@ module FunFX
       end
       
       def toggle_button_bar(*locator_hash)
-        FlexToggleButtonBar.new(self, *locator_hash)
+        FlexToggleButtonBar.new(self, nil, *locator_hash)
       end
     
       class FlexTabBar < FlexToggleButtonBar
@@ -1959,7 +1959,7 @@ module FunFX
       end
       
       def tab_bar(*locator_hash)
-        FlexTabBar.new(self, *locator_hash)
+        FlexTabBar.new(self, nil, *locator_hash)
       end
     
       class FlexApplication < FlexBox
@@ -1975,7 +1975,7 @@ module FunFX
       end
       
       def application(*locator_hash)
-        FlexApplication.new(self, *locator_hash)
+        FlexApplication.new(self, nil, *locator_hash)
       end
     
       class FlexPanel < FlexContainer
@@ -2011,7 +2011,7 @@ module FunFX
       end
       
       def panel(*locator_hash)
-        FlexPanel.new(self, *locator_hash)
+        FlexPanel.new(self, nil, *locator_hash)
       end
     
       class FlexTitleWindow < FlexPanel
@@ -2027,7 +2027,7 @@ module FunFX
       end
       
       def title_window(*locator_hash)
-        FlexTitleWindow.new(self, *locator_hash)
+        FlexTitleWindow.new(self, nil, *locator_hash)
       end
     
       class FlexAlert < FlexPanel
@@ -2065,7 +2065,7 @@ module FunFX
       end
       
       def alert(*locator_hash)
-        FlexAlert.new(self, *locator_hash)
+        FlexAlert.new(self, nil, *locator_hash)
       end
     
       class FlexViewStack < FlexContainer
@@ -2089,7 +2089,7 @@ module FunFX
       end
       
       def view_stack(*locator_hash)
-        FlexViewStack.new(self, *locator_hash)
+        FlexViewStack.new(self, nil, *locator_hash)
       end
     
       class FlexTabNavigator < FlexViewStack
@@ -2121,7 +2121,7 @@ module FunFX
       end
       
       def tab_navigator(*locator_hash)
-        FlexTabNavigator.new(self, *locator_hash)
+        FlexTabNavigator.new(self, nil, *locator_hash)
       end
     
       class FlexAccordion < FlexContainer
@@ -2173,7 +2173,7 @@ module FunFX
       end
       
       def accordion(*locator_hash)
-        FlexAccordion.new(self, *locator_hash)
+        FlexAccordion.new(self, nil, *locator_hash)
       end
     
       class FlexFormItem < FlexContainer
@@ -2187,7 +2187,7 @@ module FunFX
       end
       
       def form_item(*locator_hash)
-        FlexFormItem.new(self, *locator_hash)
+        FlexFormItem.new(self, nil, *locator_hash)
       end
     
       class FlexCanvas < FlexContainer
@@ -2199,7 +2199,7 @@ module FunFX
       end
       
       def canvas(*locator_hash)
-        FlexCanvas.new(self, *locator_hash)
+        FlexCanvas.new(self, nil, *locator_hash)
       end
     
       class FlexLegend < FlexObject
@@ -2251,7 +2251,7 @@ module FunFX
       end
       
       def legend(*locator_hash)
-        FlexLegend.new(self, *locator_hash)
+        FlexLegend.new(self, nil, *locator_hash)
       end
     
       class FlexSeries < FlexObject
@@ -2275,7 +2275,7 @@ module FunFX
       end
       
       def series(*locator_hash)
-        FlexSeries.new(self, *locator_hash)
+        FlexSeries.new(self, nil, *locator_hash)
       end
     
       class FlexLineSeries < FlexSeries
@@ -2307,7 +2307,7 @@ module FunFX
       end
       
       def line_series(*locator_hash)
-        FlexLineSeries.new(self, *locator_hash)
+        FlexLineSeries.new(self, nil, *locator_hash)
       end
     
       class FlexPieSeries < FlexSeries
@@ -2363,7 +2363,7 @@ module FunFX
       end
       
       def pie_series(*locator_hash)
-        FlexPieSeries.new(self, *locator_hash)
+        FlexPieSeries.new(self, nil, *locator_hash)
       end
     
       class FlexBubbleSeries < FlexSeries
@@ -2391,7 +2391,7 @@ module FunFX
       end
       
       def bubble_series(*locator_hash)
-        FlexBubbleSeries.new(self, *locator_hash)
+        FlexBubbleSeries.new(self, nil, *locator_hash)
       end
     
       class FlexPlotSeries < FlexSeries
@@ -2415,7 +2415,7 @@ module FunFX
       end
       
       def plot_series(*locator_hash)
-        FlexPlotSeries.new(self, *locator_hash)
+        FlexPlotSeries.new(self, nil, *locator_hash)
       end
     
       class FlexColumnSeries < FlexSeries
@@ -2455,7 +2455,7 @@ module FunFX
       end
       
       def column_series(*locator_hash)
-        FlexColumnSeries.new(self, *locator_hash)
+        FlexColumnSeries.new(self, nil, *locator_hash)
       end
     
       class FlexAreaSeries < FlexSeries
@@ -2487,7 +2487,7 @@ module FunFX
       end
       
       def area_series(*locator_hash)
-        FlexAreaSeries.new(self, *locator_hash)
+        FlexAreaSeries.new(self, nil, *locator_hash)
       end
     
       class FlexBarSeries < FlexSeries
@@ -2523,7 +2523,7 @@ module FunFX
       end
       
       def bar_series(*locator_hash)
-        FlexBarSeries.new(self, *locator_hash)
+        FlexBarSeries.new(self, nil, *locator_hash)
       end
     
       class FlexChartBase < FlexObject
@@ -2591,7 +2591,7 @@ module FunFX
       end
       
       def chart_base(*locator_hash)
-        FlexChartBase.new(self, *locator_hash)
+        FlexChartBase.new(self, nil, *locator_hash)
       end
     
       class FlexCartesianChart < FlexChartBase
@@ -2627,7 +2627,7 @@ module FunFX
       end
       
       def cartesian_chart(*locator_hash)
-        FlexCartesianChart.new(self, *locator_hash)
+        FlexCartesianChart.new(self, nil, *locator_hash)
       end
     
       class FlexAreaChart < FlexCartesianChart
@@ -2643,7 +2643,7 @@ module FunFX
       end
       
       def area_chart(*locator_hash)
-        FlexAreaChart.new(self, *locator_hash)
+        FlexAreaChart.new(self, nil, *locator_hash)
       end
     
       class FlexColumnChart < FlexCartesianChart
@@ -2663,7 +2663,7 @@ module FunFX
       end
       
       def column_chart(*locator_hash)
-        FlexColumnChart.new(self, *locator_hash)
+        FlexColumnChart.new(self, nil, *locator_hash)
       end
     
       class FlexLineChart < FlexCartesianChart
@@ -2675,7 +2675,7 @@ module FunFX
       end
       
       def line_chart(*locator_hash)
-        FlexLineChart.new(self, *locator_hash)
+        FlexLineChart.new(self, nil, *locator_hash)
       end
     
       class FlexBarChart < FlexCartesianChart
@@ -2695,7 +2695,7 @@ module FunFX
       end
       
       def bar_chart(*locator_hash)
-        FlexBarChart.new(self, *locator_hash)
+        FlexBarChart.new(self, nil, *locator_hash)
       end
     
       class FlexHLOCChart < FlexCartesianChart
@@ -2715,7 +2715,7 @@ module FunFX
       end
       
       def hloc_chart(*locator_hash)
-        FlexHLOCChart.new(self, *locator_hash)
+        FlexHLOCChart.new(self, nil, *locator_hash)
       end
     
       class FlexPieChart < FlexChartBase
@@ -2735,7 +2735,7 @@ module FunFX
       end
       
       def pie_chart(*locator_hash)
-        FlexPieChart.new(self, *locator_hash)
+        FlexPieChart.new(self, nil, *locator_hash)
       end
     
       class FlexNumericStepper < FlexObject
@@ -2825,7 +2825,7 @@ module FunFX
       end
       
       def numeric_stepper(*locator_hash)
-        FlexNumericStepper.new(self, *locator_hash)
+        FlexNumericStepper.new(self, nil, *locator_hash)
       end
     
       class FlexButton < FlexObject
@@ -2915,7 +2915,7 @@ module FunFX
       end
       
       def button(*locator_hash)
-        FlexButton.new(self, *locator_hash)
+        FlexButton.new(self, nil, *locator_hash)
       end
     
       class FlexRadioButton < FlexButton
@@ -2933,7 +2933,7 @@ module FunFX
       end
       
       def radio_button(*locator_hash)
-        FlexRadioButton.new(self, *locator_hash)
+        FlexRadioButton.new(self, nil, *locator_hash)
       end
     
       class FlexPopUpButton < FlexButton
@@ -2951,7 +2951,7 @@ module FunFX
       end
       
       def pop_up_button(*locator_hash)
-        FlexPopUpButton.new(self, *locator_hash)
+        FlexPopUpButton.new(self, nil, *locator_hash)
       end
     
       class FlexPopUpMenuButton < FlexPopUpButton
@@ -2961,7 +2961,7 @@ module FunFX
       end
       
       def pop_up_menu_button(*locator_hash)
-        FlexPopUpMenuButton.new(self, *locator_hash)
+        FlexPopUpMenuButton.new(self, nil, *locator_hash)
       end
     
       class FlexCheckBox < FlexButton
@@ -2971,7 +2971,7 @@ module FunFX
       end
       
       def check_box(*locator_hash)
-        FlexCheckBox.new(self, *locator_hash)
+        FlexCheckBox.new(self, nil, *locator_hash)
       end
     
       class FlexSlider < FlexObject
@@ -3053,7 +3053,7 @@ module FunFX
       end
       
       def slider(*locator_hash)
-        FlexSlider.new(self, *locator_hash)
+        FlexSlider.new(self, nil, *locator_hash)
       end
     
       class FlexHSlider < FlexSlider
@@ -3063,7 +3063,7 @@ module FunFX
       end
       
       def h_slider(*locator_hash)
-        FlexHSlider.new(self, *locator_hash)
+        FlexHSlider.new(self, nil, *locator_hash)
       end
     
       class FlexVSlider < FlexSlider
@@ -3073,7 +3073,7 @@ module FunFX
       end
       
       def v_slider(*locator_hash)
-        FlexVSlider.new(self, *locator_hash)
+        FlexVSlider.new(self, nil, *locator_hash)
       end
     
       class FlexRepeater < Element
@@ -3105,7 +3105,7 @@ module FunFX
       end
       
       def repeater(*locator_hash)
-        FlexRepeater.new(self, *locator_hash)
+        FlexRepeater.new(self, nil, *locator_hash)
       end
     
     end

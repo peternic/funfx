@@ -3,42 +3,61 @@
  */
 package funfx {
     import custom.utilities.CSVUtility;
+    import custom.utilities.FlexObjectLocatorUtility;
+    import custom.utilities.FlexObjectLocatorUtilityHelper;
     
     import flash.display.DisplayObject;
     import flash.external.ExternalInterface;
     
-    import mx.automation.Automation;
-    import mx.automation.AutomationID;
+    import funfx.flexlocator.FlexObjectLocator;
+    
     import mx.automation.IAutomationManager;
     import mx.automation.IAutomationObject;
-    import mx.core.Application;
-    import mx.core.IChildList;
-    import mx.core.UIComponent;
     
     public class Proxy
     {
+    	private var flexObjectlocator:FlexObjectLocator;
+    	
         public function Proxy()
         {
-            ExternalInterface.addCallback("fireFunFXEvent", fireFunFXEvent);
-            ExternalInterface.addCallback("getFunFXPropertyValue", getFunFXPropertyValue);
-            ExternalInterface.addCallback("getFunFXTabularPropertyValue", getFunFXTabularPropertyValue);
-            ExternalInterface.addCallback("invokeFunFXTabularMethod", invokeFunFXTabularMethod);
+        	flexObjectlocator = new FlexObjectLocator();
+        	flexObjectlocator.flexObjectLocatorUtility = new FlexObjectLocatorUtility();
+        	flexObjectlocator.flexObjectLocatorUtility.flexLocatorhelper = new FlexObjectLocatorUtilityHelper();
+        	
+	        ExternalInterface.addCallback("fireFunFXEvent", fireFunFXEvent);
+	        ExternalInterface.addCallback("getFunFXPropertyValue", getFunFXPropertyValue);
+	        ExternalInterface.addCallback("getFunFXTabularPropertyValue", getFunFXTabularPropertyValue);
+	        ExternalInterface.addCallback("invokeFunFXTabularMethod", invokeFunFXTabularMethod);
         }
+        
+        private function fireFunFXEvent(locator:Object, eventName:String, args:String) : String{
+        	return replayFunFXEvent(locator, eventName, convertArrayFromStringToAs(args));
+        }
+        
 
-        private function fireFunFXEvent(locator:Object, eventName:String, args:String) : String
+        public function replayFunFXEvent(locator:Object, eventName:String, args:Array) : String
         {
+        	trace("Start replay");
             if(!automationManager.isSynchronized(null)) {
                 return null;
             }
             try {
-                var target:IAutomationObject = findAutomationObject(locator);
+                var target:IAutomationObject = flexObjectlocator.findAutomationObject(locator);
+                trace("target " + target);
                 if (!target || !automationManager.isSynchronized(target)) {
+                	trace("not sync " + !automationManager.isSynchronized(target));
                   return null;
                 }
                 if (!automationManager.isVisible(target as DisplayObject)){
+                	trace("not visible " + !automationManager.isVisible(target as DisplayObject));
                   return null;
                 }
-                var result:Object = AQAdapter.aqAdapter.replay(target, eventName, convertArrayFromStringToAs(args));
+                trace("------------------------");
+                trace("replay.target " + target);
+                trace("replay.eventName " + eventName);
+                trace("replay.args " + args.length + "-> " + args);
+                trace("------------------------");
+                var result:Object = AQAdapter.aqAdapter.replay(target, eventName, args);
                 return "OK";
             } catch(e:Error) {
                 return errorMessage(e);
@@ -52,7 +71,7 @@ package funfx {
                 return null;
             }
             try {
-                var target:IAutomationObject = findAutomationObject(locator);
+                var target:IAutomationObject = flexObjectlocator.findAutomationObject(locator);
                 var o:Object = Object(target);
                 if (o.hasOwnProperty(fieldName)) {
                     return o[fieldName];
@@ -71,7 +90,7 @@ package funfx {
                 return null;
             }
             try {
-                var target:IAutomationObject = findAutomationObject(locator);
+                var target:IAutomationObject = flexObjectlocator.findAutomationObject(locator);
                 var tab:Object = target.automationTabularData;
                 if (tab.hasOwnProperty(fieldName)) {
                     return tab[fieldName];
@@ -91,7 +110,7 @@ package funfx {
             }
            
             try {
-                var target:IAutomationObject = findAutomationObject(locator);              
+                var target:IAutomationObject = flexObjectlocator.findAutomationObject(locator);              
                 var tab:Object = target.automationTabularData;
                 if (tab.hasOwnProperty(methodName)) {
                 	var result:* = tab[methodName].apply(null, args);
@@ -105,20 +124,6 @@ package funfx {
                 }
             } catch(e:Error) {
                 return errorMessage(e);
-            }
-            return null;
-        }
-        
-        /** 
-         * Returns an automation object. If we're not synched, returns null, in which case the client must try again.
-         */
-        private function findAutomationObject(locator:Object) : IAutomationObject
-        {
-            try {
-                return Proxy.findComponentWith(locator);
-            } catch(e:Error) {
-                throw e;
-//                throw new Error("Target not found: " + objID);
             }
             return null;
         }
@@ -138,75 +143,5 @@ package funfx {
         {
             return AQAdapter.aqAdapter.automationManager;
         }
-        
-        /**
-		 * From FlexMonkey source
-		 *
-		 * Find the first component with the specified property/value pair. If a container is specified, then
-		 * only its children and descendents are searched. The search order is (currently) indeterminate. If no container is specified,
-		 * then all components will be searched. If the prop value is "automationID", then the id is resolved directly without searching.
-		 */
-		public static function findComponentWith(locator:Object, container:UIComponent=null):UIComponent {
-			var automationID:String = automationID(locator);
-			if (automationID) return findComponentUsingAutomationFramework(automationID);
-			
-			return findComponentUsingCustomFramework(locator, container);
-
-		}
-		
-		private static function findComponentUsingAutomationFramework(automationID:String):UIComponent {
-			var rid:AutomationID = AutomationID.parse(automationID);
-			var obj:IAutomationObject = Automation.automationManager.resolveIDToSingleObject(rid);
-			return UIComponent(obj);
-		}
-		
-		private static function findComponentUsingCustomFramework(locator:Object, container:UIComponent):UIComponent {
-			var childContainer:IChildList = (container == null) ?
-											UIComponent(Application.application).systemManager.rawChildren :
-											container;
-
-			var numChildren:int = childContainer.numChildren;
-			if (numChildren == 0) {
-				return null;
-			}
-
-			var component:UIComponent;
-			for (var i:int=0; i < numChildren; i++) {
-				var child:DisplayObject = childContainer.getChildAt(i);
-
-				if (!(child is UIComponent)) {
-					continue;
-				}
-
-				if (childMatch(child, locator)) {
-					return UIComponent(child);
-				}
-				
-				var grandChild:UIComponent = findComponentUsingCustomFramework(locator, UIComponent(child));
-				if (grandChild != null) {
-					return grandChild;
-				}
-			}
-
-			return null;
-		}
-	
-		private static function childMatch(child:DisplayObject, locator:Object):Boolean {
-			for (var property:String in locator) {
-				var value:String = decodeURIComponent(locator[property]);
-				if (!child.hasOwnProperty(property) || child[property] != value) {
- 					return false;
-				}
-			}
-			return true;
-		}
-		
-		private static function automationID(locator:Object):String {
-			var automationIdKey:String = 'automationID';
-			if (locator.hasOwnProperty(automationIdKey)) {
-				return locator[automationIdKey];
-			}
-			return null;
-		}
 	}
 }

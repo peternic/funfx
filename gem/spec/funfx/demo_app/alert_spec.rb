@@ -15,7 +15,7 @@ describe "DemoApp" do
     # Hav tried to do some more sync work on the flex side, but it seems to be a bug
     tree.select('General controls>Alert1')
     
-    button = @flex.button({:automationName => 'Alert Control'}, {:id => 'bWorld'})
+    button = @flex.button({:id => 'bWorld'})
     button.click
     
     alert = @flex.alert({:automationName => 'Message'})
@@ -23,7 +23,7 @@ describe "DemoApp" do
     
     alert.text.strip.should == "Hello World!"
     
-    button = @flex.button({:automationName => 'Message'},{:automationName => 'OK'})
+    button = @flex.alert({:automationName => 'Message'}).button({:automationName => 'OK'})
     button.click
     
     lambda do
