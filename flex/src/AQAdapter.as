@@ -89,10 +89,10 @@ public class AQAdapter implements IAQCodecHelper
 	
 	public static var aqAdapter:AQAdapter;
 	
-	[Embed(source="AutoQuickEnv.xml", mimeType="application/octet-stream")]
-	private static const AutoQuickEnvFile:Class;
-	private static const AutoQuickEnv:XML = XMLUtility.buildFromByteStream(AutoQuickEnvFile);
-	
+  [Embed(source="AutoQuickEnv.xml", mimeType="application/octet-stream")]
+  private static const AutoQuickEnvFile:Class;
+  private static const AutoQuickEnv:XML = XMLUtility.buildFromByteStream(AutoQuickEnvFile);
+
     /**
 	 *  @private    
 	 */
