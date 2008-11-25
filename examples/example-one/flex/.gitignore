@@ -1,0 +1,10 @@
+.actionScriptProperties
+.flexLibProperties
+.project
+.settings
+commit_msg.txt
+html-template
+bin-debug
+bin
+bin-release
+*~
