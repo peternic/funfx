@@ -1,11 +1,5 @@
-.actionScriptProperties
-.flexProperties
-.project
 .settings
-<<<<<<< HEAD:flextest/.gitignore
 bin
 bin-debug
 html-template
-=======
 bin
->>>>>>> d30d7f2cc956963ac9716a6b06f67bc77647f374:flextest/.gitignore
