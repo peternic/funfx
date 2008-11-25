@@ -1,0 +1,9 @@
+h1. Using FunFX with Cucumber
+
+h2. Install Cucumber
+
+<code>gem install cucumber</code>
+
+h2. Run the tests
+
+<code>cucumber features</code>
