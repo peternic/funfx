@@ -1,4 +1,5 @@
 require 'uri'
+require 'fastercsv'
 require 'funfx/flex/flex_app_id'
 
 module FunFX

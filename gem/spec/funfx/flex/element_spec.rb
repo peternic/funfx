@@ -4,7 +4,7 @@ module FunFX
   module Flex
     describe Element do
       
-      describe 'get_property_value' do
+      describe '#get_property_value' do
         it "should convert array of id hashes to flex automation id" do
           flex_app = mock('FlexApp')
           element = Element.new(flex_app, nil, {:id => 'box'})
@@ -52,7 +52,16 @@ module FunFX
         end  
       end
       
-      describe  'shift_case' do
+      describe "#invoke_tabular_method" do
+        it "should get tabular data as two-dimensional array" do
+          flex_app = mock('FlexApp')
+          element = Element.new(flex_app, nil, {:id => 'box'})
+          flex_app.should_receive(:invoke_tabular_method).and_return("a,b\nc,d")
+          element.invoke_tabular_method("getValues", :string, :object_array, 3, 4).should == [["a", "b"], ["c", "d"]]
+        end
+      end
+
+      describe 'shift_case' do
         it "should rename rubysyntax to automationenv notation" do
           flex_app = mock('FlexApp')
           element = Element.new(flex_app, nil, {:id => 'element'})
