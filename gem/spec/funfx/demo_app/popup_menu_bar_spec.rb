@@ -14,7 +14,7 @@ describe "DemoApp" do
     popup_menu = @flex.pop_up_menu_button({:id => 'p2'})
     popup_menu.open
     
-    menu = @flex.menu({:id => 'p2'}, {:automationName => 'index:0'})
+    menu = @flex.menu({:automationName => 'index:0'})
     menu.select('Calendar')
     
     alert = @flex.alert({:automationName => 'Message'})

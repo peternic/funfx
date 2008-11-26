@@ -13,14 +13,14 @@ describe "DemoApp" do
   
     accordion = @flex.accordion({:id => 'accordion'})
     
-    @flex.box({:id => 'accordion'}, {:automationName => 'Accordion Button for Panel 1'}).visible?.should == true
-    @flex.box({:id => 'accordion'}, {:automationName => 'Accordion Button for Panel 2'}).visible?.should == false
-    @flex.box({:id => 'accordion'}, {:automationName => 'Accordion Button for Panel 3'}).visible?.should == false
+    accordion.box({:automationName => 'Accordion Button for Panel 1'}).visible?.should == true
+    accordion.box({:automationName => 'Accordion Button for Panel 2'}).visible?.should == false
+    accordion.box({:automationName => 'Accordion Button for Panel 3'}).visible?.should == false
     
     accordion.change("Accordion Button for Panel 3")
     
-    @flex.box({:id => 'accordion'}, {:automationName => 'Accordion Button for Panel 1'}).visible?.should == false
-    @flex.box({:id => 'accordion'}, {:automationName => 'Accordion Button for Panel 2'}).visible?.should == false
-    @flex.box({:id => 'accordion'}, {:automationName => 'Accordion Button for Panel 3'}).visible?.should == true
+    accordion.box({:automationName => 'Accordion Button for Panel 1'}).visible?.should == false
+    accordion.box({:automationName => 'Accordion Button for Panel 2'}).visible?.should == false
+    accordion.box({:automationName => 'Accordion Button for Panel 3'}).visible?.should == true
   end
 end

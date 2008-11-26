@@ -11,14 +11,12 @@ describe "DemoApp" do
     tree.open('Container controls')
     tree.select('Container controls>Form1')
   
-    text_area_first_name = @flex.text_area({:id => 'form'}, {:automationName => 'First name'}, {:id => 'frmFname'})
-    text_area_email_address = @flex.text_area({:id => 'form'}, {:automationName => 'E-mail address'}, {:id => 'frmEmail'})
+    text_area_first_name = @flex.text_area({:id => 'frmFname'})
+    text_area_email_address = @flex.text_area({:id => 'frmEmail'})
     
     text_area_first_name.input("Test Testing")
     text_area_first_name.text.strip.should == "Test Testing"
     text_area_email_address.input("test@testing.com")
     text_area_email_address.text.strip.should == "test@testing.com"
-    
-    
   end
 end

@@ -34,8 +34,8 @@ module Watir
       def invoke_tabular_method(flex_locator, method_name, *args) # :nodoc:
         eval_js %{return element.invokeFunFXTabularMethod(#{flex_locator}, #{method_name.inspect}, #{args.map{|a| a.inspect}.join(', ')})}
       end
-      
-    private
+
+      private
 
       def eval_js(js)
         @scripter.__send__(:execute, operate{js}, self)

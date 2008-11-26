@@ -19,21 +19,21 @@ module Watir
         @flex_object = ole_object.ie.Document.getElementsByName(dom_id).item(0)
         @app_name = app_name
       end
-      
-      def fire_event(flex_id, event_name, args) # :nodoc:
-        @flex_object.fireFunFXEvent(full_id(flex_id), event_name, args)
+
+      def fire_event(flex_locator, event_name, args) # :nodoc:
+        @flex_object.fireFunFXEvent(flex_locator, event_name, args)
       end
 
-      def get_property_value(flex_id, property) # :nodoc:
-        @flex_object.getFunFXPropertyValue(full_id(flex_id), property)
+      def get_property_value(flex_locator, property) # :nodoc:
+        @flex_object.getFunFXPropertyValue(flex_locator, property)
       end
 
-      def get_tabular_property_value(flex_id, property) # :nodoc:
-        @flex_object.getFunFXTabularPropertyValue(full_id(flex_id), property)
+      def get_tabular_property_value(flex_locator, property) # :nodoc:
+        @flex_object.getFunFXTabularPropertyValue(flex_locator, property)
       end
 
-      def invoke_tabular_method(flex_id, method_name, *args) # :nodoc:
-        @flex_object.invokeFunFXTabularMethod(full_id(flex_id), method_name, *args)
+      def invoke_tabular_method(flex_locator, method_name, *args) # :nodoc:
+        @flex_object.invokeFunFXTabularMethod(flex_locator, method_name, *args)
       end
     end
   end

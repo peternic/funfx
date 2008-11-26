@@ -1,3 +1,5 @@
 .settings
 bin
 tmp
+bin-debug
+html-template

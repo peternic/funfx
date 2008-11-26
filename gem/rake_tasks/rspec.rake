@@ -1,21 +1,28 @@
-begin
-  require 'spec'
-rescue LoadError
-  require 'rubygems'
-  require 'spec'
-end
-begin
-  require 'spec/rake/spectask'
-rescue LoadError
-  puts <<-EOS
-To use rspec for testing you must install rspec gem:
-    gem install rspec
-EOS
-  exit(0)
+require 'rubygems'
+require 'spec/rake/spectask'
+
+namespace :spec do
+  desc "Run the API specs"
+  Spec::Rake::SpecTask.new(:api) do |t|
+    t.rcov = true
+    t.rcov_opts = ["--exclude gems,spec"]
+    t.spec_opts = ['--options', "spec/spec.opts"]
+    t.spec_files = FileList['spec/funfx/flex/**/*_spec.rb']
+  end
+
+  desc "Run the meta specs (code generation)"
+  Spec::Rake::SpecTask.new(:meta) do |t|
+    t.spec_opts = ['--options', "spec/spec.opts"]
+    t.spec_files = FileList['spec/funfx/meta/**/*_spec.rb']
+  end
+
+  desc "Run the Demo App specs"
+  Spec::Rake::SpecTask.new(:demo_app) do |t|
+    t.rcov = true
+    t.rcov_opts = ["--exclude gems,spec"]
+    t.spec_opts = ['--options', "spec/spec.opts"]
+    t.spec_files = FileList['spec/funfx/demo_app/**/*_spec.rb']
+  end
 end
 
-desc "Run the specs under spec/models"
-Spec::Rake::SpecTask.new do |t|
-  t.spec_opts = ['--options', "spec/spec.opts"]
-  t.spec_files = FileList['spec/**/*_spec.rb']
-end
+task :spec => ['spec:api', 'spec:meta', 'spec:demo_app']

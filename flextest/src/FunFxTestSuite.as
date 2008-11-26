@@ -1,6 +1,8 @@
 package {
 	import flexunit.framework.TestSuite;
 
+	import flexlocator.*;
+	import recording.*;
 	import custom.utilities.*;
 
 	/*
@@ -16,8 +18,15 @@ package {
 		}
 
 		protected function addTests():void {
+			// flexlocator			
+			addTestSuite(LocatorTest)
+
+			// recording			
+			addTestSuite(FunFXRecordingTest)
+
 			// custom.utilities			
 			addTestSuite(CSVUtilityTest)
+			addTestSuite(FlexObjectLocatorUtilityTest)
 
 		}
 	}

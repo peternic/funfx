@@ -11,7 +11,7 @@ describe "DemoApp" do
     tree.open('Container controls')
     tree.select('Container controls>GridLayout1')
   
-    button = @flex.button({:id => 'grid'}, {:id => 'gridRow2'}, {:automationName => 'Row 2 Col 1'})
+    button = @flex.button({:automationName => 'Row 2 Col 1'})
     
     button.click
     
