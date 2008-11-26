@@ -11,13 +11,13 @@ describe "DemoApp" do
   end
 
   it "should open tree and select item" do
-    tree = @flex.tree({:id => 'dBox'}, {:id => 'myTree'})
+    tree = @flex.tree({:id => 'myTree'})
     tree.open('Inbox')
     tree.select('Inbox>Product Management')
   end
   
   it "should open tree and close item" do
-    tree = @flex.tree({:id => 'dBox'}, {:id => 'myTree'})
+    tree = @flex.tree({:id => 'myTree'})
     tree.open('Inbox')
     tree.close('Inbox')
   end

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute">
+	<mx:HBox height="100%" width="100%" horizontalAlign="center" verticalAlign="middle">
+		<mx:Label id="lLabel" text="Text:"/>		
+		<mx:TextInput id="tText" width="100"/>
+	</mx:HBox>
+</mx:Application>

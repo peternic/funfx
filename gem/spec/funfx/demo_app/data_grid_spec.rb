@@ -9,7 +9,7 @@ describe "DemoApp" do
     tree.open('General controls')
     tree.select('General controls>DataGrid1')
 
-		@data_grid = @flex.data_grid({:id => 'dgPanel'}, {:id => 'dg'})
+		@data_grid = @flex.data_grid({:id => 'dg'})
   end
 
   it "should get data from a datagrid" do
@@ -46,7 +46,7 @@ describe "DemoApp" do
   it "should drag and drop" do
     @data_grid.drag_start("*Joanne Wall* | 555-219-2012 | jwall@fictitious.com")
     
-    data_grid_drop = @flex.data_grid({:id => 'dgPanel'}, {:id => 'dgDrop'})
+    data_grid_drop = @flex.data_grid({:id => 'dgDrop'})
     data_grid_drop.drag_drop('copy')
     
     data_grid_drop.values(0,0).should == [

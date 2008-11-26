@@ -11,10 +11,12 @@ describe "DemoApp" do
     tree.open('Repeater controls')
     tree.select('Repeater controls>Repeater1')
     
-    button = @flex.button({:automationName => 'Repeater'}, {:automationIndex => 'index:1', :id => 'repeaterButton'})
-    button.click
+    box = @flex.box({:automationName => 'Repeater'})
     
-    label = @flex.label({:automationName => 'Repeater'},{:id => 'lLabel'})
+    button = box.button({:index => 'index:1', :id => 'repeaterButton'})
+    button.click
+
+    label = @flex.label({:id => 'lLabel'})
     label.text.strip.should == "2"
   end
   
@@ -23,10 +25,10 @@ describe "DemoApp" do
     tree.open('Repeater controls')
     tree.select('Repeater controls>Repeater1')
     
-    button = @flex.button({:automationName => 'Repeater'},{:automationName => '2'})
+    button = @flex.box({:automationName => 'Repeater'}).button({:automationName => '2'})
     button.click
     
-    label = @flex.label({:automationName => 'Repeater'},{:id => 'lLabel'})
+    label = @flex.label({:id => 'lLabel'})
     label.text.strip.should == "2"
   end
   
@@ -35,15 +37,15 @@ describe "DemoApp" do
     tree.open('Repeater controls')
     tree.select('Repeater controls>Repeater2')
     
-    button = @flex.button({:automationName => 'Repeater'}, {:id => 'bAddItem'})
+    button = @flex.box({:automationName => 'Repeater'}).button({:id => 'bAddItem'})
     button.click
     button.click
     
-    text_area_first_item = @flex.text_area({:automationName => 'Repeater'}, {:id => 'rp'}, {:automationIndex => 'index:0', :id => 'tTextInput'})
+    text_area_first_item = @flex.box({:automationName => 'Repeater'}).repeater({:id => 'rp'}).text_area({:index => 'index:0', :id => 'tTextInput'})
     text_area_first_item.input('First item')
     text_area_first_item.text.strip.should == "First item"
     
-    text_area_second_item = @flex.text_area({:automationName => 'Repeater'}, {:id => 'rp'}, {:automationIndex => 'index:1', :id => 'tTextInput'})
+    text_area_second_item = @flex.box({:automationName => 'Repeater'}).repeater({:id => 'rp'}).text_area({:index => 'index:1', :id => 'tTextInput'})
     text_area_second_item.input('Second item')
     text_area_second_item.text.strip.should == "Second item"
   end
@@ -53,10 +55,10 @@ describe "DemoApp" do
     tree.open('Repeater controls')
     tree.select('Repeater controls>Repeater2')
     
-    button = @flex.button({:automationName => 'Repeater'}, {:id => 'bAddItem'})
+    button = @flex.box({:automationName => 'Repeater'}).button({:id => 'bAddItem'})
     button.click
     
-    text_area = @flex.text_area({:automationName => 'Repeater'}, {:id => 'rp'}, {:automationIndex => 'index:0', :id => 'tTextInput'})
+    text_area = @flex.box({:automationName => 'Repeater'}).repeater({:id => 'rp'}).text_area({:index => 'index:0', :id => 'tTextInput'})
     text_area.input('Test')
     text_area.text.strip.should == "Test"
   end

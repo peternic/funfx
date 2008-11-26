@@ -1,4 +1,5 @@
 require 'uri'
+require 'fastercsv'
 require 'funfx/flex/flex_app_id'
 
 module FunFX
@@ -9,11 +10,13 @@ module FunFX
     # Base class for all Flex proxy elements
     class Element
       MAX_TRIES = 10
+      
+      attr_reader :flex_app, :flex_locator
 
-      def initialize(flex_app, *locator_hashes)
+      def initialize(flex_app, parent_locator, *locator_hashes)
         @flex_app = flex_app
         
-        @flex_locator  = build_flex_locator(locator_hashes)
+        @flex_locator  = build_flex_locator(parent_locator, locator_hashes)
       
         @tries = 0
       end
@@ -33,20 +36,18 @@ module FunFX
         ruby_type.from_funfx_string(raw_value)
       end
       
-      def get_tabular_property_value(property, ruby_type, codec)
+      def get_tabular_property_value(property, ruby_type)
         raw_value = flex_invoke do
           @flex_app.get_tabular_property_value(@flex_locator, property)
         end
-        value = coerce(raw_value, ruby_type)
-        decode(value, codec)
+        ruby_type.from_funfx_string(raw_value)
       end
       
-      def invoke_tabular_method(method_name, ruby_type, codec, *args)
+      def invoke_tabular_method(method_name, ruby_type, *args)
         raw_value = flex_invoke do
           @flex_app.invoke_tabular_method(@flex_locator, method_name, *args)
         end
-        value = coerce(raw_value, ruby_type)
-        decode(value, codec)
+        ruby_type.from_funfx_string(raw_value)
       end
 
       def flex_invoke
@@ -64,32 +65,6 @@ module FunFX
         @tries = 0
 
         raise_if_funfx_error(raw_value)
-      end
-      
-      # TODO: Use classes, not symbols (use TrueClass for :true)
-      # TODO, make return type the first arg
-      def coerce(string_value, ruby_type)
-        case(ruby_type)
-        when :string
-          string_value
-        when :number
-        when :int
-          string_value.to_i
-        when :boolean
-          string_value == "true"
-        when :date
-        else
-          raise "I don't know how to convert #{string_value.inspect} to #{ruby_type.inspect}"
-        end
-      end
-      
-      def decode(value, codec)
-        case(codec)
-        when :object_array
-					csv = FasterCSV.parse(value)
-        else
-          value
-        end
       end
       
       def raise_if_funfx_error(result)
@@ -121,24 +96,44 @@ module FunFX
         end
       end
       
+      def shift_case(str)
+        return "Flex" + str.to_s.gsub(/^[a-z]|[_][a-z]/) { |a| a.upcase}.delete("_")
+      end
+      
+      # Hack to work around name clash for label. It can be a primitive property or
+      # a sub element
+      def label_element(id)
+        Elements::FlexLabel.new(@flex_app, @flex_locator, id)
+      end
+      
       private
       
-      def build_flex_locator(locator_hashes)
+      def build_flex_locator(parent_locator, locator_hashes)
         # supported_keys = [:automation_id, :automation_name, :id]
-        flex_locator = if locator_hashes.size > 1
+        flex_locator = if locator_hashes.size > 10
           build_flex_automation_id(locator_hashes)
         else
           locator_string = "{"
           index = 0
+          locator_string += add_parent_locator(parent_locator)
+          locator_string += "id: {"
           locator_hash = locator_hashes.first
           locator_hash.keys.sort{|a,b| a.to_s <=> b.to_s}.each do |key|
             locator_string += ", " if (index > 0)
             locator_string += "#{key}: '#{URI.escape(locator_hash[key])}'"
             index += 1
           end
-          locator_string += "}"          
+          locator_string += "}}"          
         end
         flex_locator
+      end
+      
+      def add_parent_locator(parent_locator)
+        flex_locator = if parent_locator.nil?
+          "parent: null, "
+        else
+          "parent: #{parent_locator}, "
+        end
       end
       
       def build_flex_automation_id(locator_hashes)
@@ -150,6 +145,15 @@ module FunFX
         end 
         
         @flex_app.automation_id(ids.join("|"))
+      end
+      
+      # TODO: Find a better way to look up children that:
+      # * Is a documented API
+      # * No method_missing
+      # * Doesn't clash with properties
+      # * Is only available on elements that can contain other elements (Container?)
+      def method_missing(method_name, id)
+        Elements.const_get(shift_case(method_name)).new(@flex_app, @flex_locator, id)
       end
     end
   end

@@ -35,10 +35,12 @@ import flash.events.*;
 import flash.utils.getDefinitionByName;
 
 import funfx.Proxy;
+import funfx.recording.FunFXRecording;
 
 import mx.automation.Automation;
 import mx.automation.AutomationError;
 import mx.automation.AutomationID;
+import mx.automation.AutomationIDPart;
 import mx.automation.IAutomationClass;
 import mx.automation.IAutomationEventDescriptor;
 import mx.automation.IAutomationManager;
@@ -47,6 +49,7 @@ import mx.automation.IAutomationObject;
 import mx.automation.IAutomationPropertyDescriptor;
 import mx.automation.IAutomationTabularData;
 import mx.automation.events.AutomationRecordEvent;
+import mx.controls.Alert;
 import mx.core.Application;
 import mx.core.UIComponent;
 import mx.core.mx_internal;
@@ -126,7 +129,7 @@ public class AQAdapter implements IAQCodecHelper
      *  Constructor
 	 */
 	public function AQAdapter()
-    {
+  {
 		super();
 		
 		if (!isInitailized)
@@ -244,7 +247,7 @@ public class AQAdapter implements IAQCodecHelper
                 trace("Invalid PlayerID");
                 return;
             }*/
-            
+
             setTestingEnvironment(AutoQuickEnv);
             
             new Proxy();
@@ -282,7 +285,11 @@ public class AQAdapter implements IAQCodecHelper
 	 */
     public function get automationManager():IAutomationManager
     {
-        return Automation.automationManager ;
+        return Automation.automationManager;
+    }
+    
+    public function createAutomationID(object:UIComponent):String{
+    	return automationManager.createIDPart(object as IAutomationObject, object.parent as IAutomationObject).toString();
     }
 
 	//----------------------------------
@@ -297,7 +304,9 @@ public class AQAdapter implements IAQCodecHelper
         return Application.application.id;
     }
     
-    private var funfxRecords:String = "";
+    private var funFXRecording:FunFXRecording;
+		private var funFXProxy:Proxy;
+
     private var records:XML = <Records></Records>;
     private var lastRecord:String;
 
@@ -442,15 +451,18 @@ public class AQAdapter implements IAQCodecHelper
 
         try
         {
-            var obj:IAutomationObject = event.automationObject ;
-            var rid:AutomationID = automationManager.createID(obj);
-
-			buildAdobeRecord(event, obj, rid);
-			buildFunFXRecord(event, obj, rid);
+	        var obj:IAutomationObject = event.automationObject ;
+	        var rid:AutomationID = automationManager.createID(obj);
+	
+					var shortRid:AutomationIDPart = automationManager.createIDPart(obj, UIComponent(obj).parent as IAutomationObject);
+	
+					buildAdobeRecord(event, obj, shortRid);
+					funFXRecording.addRecord(event);
             
         }
         catch (e:Error)
         {
+            Alert.show("Error " + e.message + "\n" + e.getStackTrace().toString());
             lastError = e;
             trace(e.message);
         }
@@ -458,65 +470,14 @@ public class AQAdapter implements IAQCodecHelper
         automationManager.decrementCacheCounter();
     }
     
-    private function buildAdobeRecord(event:AutomationRecordEvent, obj:IAutomationObject, rid:AutomationID):void{
+    private function buildAdobeRecord(event:AutomationRecordEvent, obj:IAutomationObject, rid:AutomationIDPart):void{
     	var rec:XML = (<Step id={rid.toString()} method={event.name} ></Step>);
-        XML.prettyPrinting = false;
-            
-       	rec.appendChild(<Args value={event.args.join("_ARG_SEP_")} />);
+	    XML.prettyPrinting = false;
+	        
+	   	rec.appendChild(<Args value={event.args.join("_ARG_SEP_")} />);
 			
-		records.appendChild(rec);
+			records.appendChild(rec);
     }
-    
-    private function buildFunFXRecord(event:AutomationRecordEvent, obj:IAutomationObject, rid:AutomationID):void{
-    	var record:String = "@flex." + changeName(UIComponent(obj).className) + "("
-    	var array:Array = rid.toString().split("|");
-    	record += "{" + getRecord(array[1]) + "}";
-    	for(var i:int=2; i<array.length; i++){
-    		record += ", {" + getRecord(array[i]) + "}";
-    	}
-    	record += ")." + changeName(event.name);
-    	
-    	if(event.args.length > 0 && !getRecordArguments(event.args).match(/'null'/)){
-    		record += "(" + getRecordArguments(event.args) + ")";
-    	}
-    	
-    	funfxRecords += record + "\r";
-    }
-    
-    private function changeName(name:String):String{
-    	name = name.replace(/([a-z]*)([A-Z])/g, "$1_$2");
-    	name = name.toLowerCase();
-    	return name.substr(1, name.length);
-    }
-    
-    private function getRecord(str:String):String{
-    	try{
-	    	var automationNamePattern:RegExp = new RegExp("\.*automationName{([A-Za-z0-9-!\"#$%&'()*+,./:;<>=?@[\\\]_|]*) string|object}\.*", "i");
-	    	var automationIndexPattern:RegExp = new RegExp("\.*automationIndex{([A-Za-z0-9-!\"#$%&'()*+,./:;<>=?@[\\\]_|]*) string|object}\.*", "i");
-	    	var idPattern:RegExp = new RegExp("\.*id{([A-Za-z0-9-!\"#$%&'()*+,./:;<>=?@[\\\]_|]*) string|object}\.*", "i");
-	    	
-	    	var resultAutomationName:Array = automationNamePattern.exec(str);
-	    	var resultAutomationIndex:Array = automationIndexPattern.exec(str);
-	    	var resultId:Array = idPattern.exec(str);
-			
-			var result:String = ":id => '" + resultId[1] + "'";
-			result += ", :automationName => '" + resultAutomationName[1] + "'";
-			result += !resultAutomationIndex[1].match("index:-1") ? (", :automationIndex => '" + resultAutomationIndex[1] + "'") : "";
-    	}
-    	catch(e:Error){
-    		return e.message;
-    	}
-    	return result;
-    }
-    
-    
-  	private function getRecordArguments(args:Array):String{
-  		var str:String = "'" + args[0] + "'";
-  		for(var i:int=1; i<args.length; i++){
-  			str += ", " + "'" + args[i] + "'";
-  		}
-  		return str;
-  	}
 
     /**
 	 *  @private
@@ -907,14 +868,15 @@ public class AQAdapter implements IAQCodecHelper
 		return AQCodecHelper;
 	}
 
-	public function getRecords():String {
-		return records.toXMLString();
-	}
+		public function getRecords():String {
+			return records.toXMLString();
+		}
+		
+		public function get funFXRecorder():FunFXRecording{
+			return funFXRecording;
+		} 
 	
-	public function getFunFXRecords():String {
-		return funfxRecords;
-	}
 
-}
+	}
 
 }

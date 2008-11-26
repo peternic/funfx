@@ -11,10 +11,10 @@ describe "DemoApp" do
     tree.open('Button controls')
     tree.select('Button controls>ButtonBar1')
     
-    button_bar = @flex.button_bar({:automationName => 'ButtonBar'}, {:id => 'bBar'})
+    button_bar = @flex.button_bar({:id => 'bBar'})
     button_bar.change('Flash')
     
-    text_area = @flex.text_area({:automationName => 'ButtonBar'}, {:id => 'myTA'})
+    text_area = @flex.text_area({:id => 'myTA'})
     text_area.text.strip.should == "Selected button index: 0\rSelected button label: Flash"
   end
 

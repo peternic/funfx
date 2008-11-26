@@ -36,6 +36,7 @@
             <node label="ImageLoader1" data="content.ImageLoader"/>
             <node label="SyncTest1" data="content.SyncTest"/>
             <node label="SameIdControl1" data="content.SameIdControl"/>
+            <node label="DeepHierarchyControl1" data="content.DeepHierarchyControl"/>
             <!--<node label="SwfLoader1" data="content.SWFLoaderControl"/>-->
         </node>
         <node label="Button controls">
@@ -131,6 +132,7 @@
 			import content.AdvancedDataGridControl1;
 			import content.SameIdControl;
 			import content.SameIdComponent;
+			import content.DeepHierarchyControl;
 			
 			private var c1:AlertControl;
 			private var c2:ColorPickerControl1;
@@ -181,6 +183,7 @@
 			private var c47:AdvancedDataGridControl1;
 			private var c48:SameIdControl;
 			private var c49:SameIdComponent;
+			private var c50:DeepHierarchyControl;
 			
 			
 			private function showComponent(event:Event):void{
