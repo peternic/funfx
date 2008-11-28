@@ -28,10 +28,13 @@ import codec.TabObjectCodec;
 import codec.TriggerEventPropertyCodec;
 
 import custom.CustomAutomationClass;
-import custom.utilities.XMLUtility;
+import custom.utilities.FlexObjectLocatorUtility;
+import custom.utilities.FlexObjectLocatorUtilityHelper;
 
 import flash.display.DisplayObject;
 import flash.events.*;
+import flash.net.URLLoader;
+import flash.net.URLRequest;
 import flash.utils.getDefinitionByName;
 
 import funfx.Proxy;
@@ -54,6 +57,7 @@ import mx.core.Application;
 import mx.core.UIComponent;
 import mx.core.mx_internal;
 import mx.events.FlexEvent;
+import mx.managers.PopUpManager;
 
 use namespace mx_internal;
 
@@ -92,10 +96,6 @@ public class AQAdapter implements IAQCodecHelper
 	
 	public static var aqAdapter:AQAdapter;
 	
-  [Embed(source="AutoQuickEnv.xml", mimeType="application/octet-stream")]
-  private static const AutoQuickEnvFile:Class;
-  private static const AutoQuickEnv:XML = XMLUtility.buildFromByteStream(AutoQuickEnvFile);
-
     /**
 	 *  @private    
 	 */
@@ -247,10 +247,19 @@ public class AQAdapter implements IAQCodecHelper
                 trace("Invalid PlayerID");
                 return;
             }*/
-
-            setTestingEnvironment(AutoQuickEnv);
-            
-            new Proxy();
+			
+		   // Load environment XML
+		   var te:String = "AutoQuickEnv.xml";
+	
+			var loader:URLLoader = new URLLoader();
+			configureListeners(loader);
+	
+			var request:URLRequest = new URLRequest(te);
+			try {
+				loader.load(request);
+			} catch (error:Error) {
+				Alert.show("Unable to load AutoQuickEnv.xml from current directory: " + error.message);
+			}
         }
     }
     
@@ -347,9 +356,9 @@ public class AQAdapter implements IAQCodecHelper
     /**
 	 *  @private
 	 */
-    public function setTestingEnvironment(te:XML):void
+    public function setTestingEnvironment(te:String):void
     {
-        automationManager.automationEnvironment = new AQEnvironment(te);
+        automationManager.automationEnvironment = new AQEnvironment(new XML(te));
     }
 
     /**
@@ -462,7 +471,7 @@ public class AQAdapter implements IAQCodecHelper
         }
         catch (e:Error)
         {
-            Alert.show("Error " + e.message + "\n" + e.getStackTrace().toString());
+        		Alert.show("Error " + e.message + "\n" + e.getStackTrace().toString());
             lastError = e;
             trace(e.message);
         }
@@ -867,6 +876,53 @@ public class AQAdapter implements IAQCodecHelper
 	{
 		return AQCodecHelper;
 	}
+	
+    private function configureListeners(dispatcher:IEventDispatcher):void 
+    {
+        dispatcher.addEventListener(Event.COMPLETE, completeHandler);
+        dispatcher.addEventListener(Event.OPEN, openHandler);
+        dispatcher.addEventListener(ProgressEvent.PROGRESS, progressHandler);
+        dispatcher.addEventListener(SecurityErrorEvent.SECURITY_ERROR, securityErrorHandler);
+        dispatcher.addEventListener(HTTPStatusEvent.HTTP_STATUS, httpStatusHandler);
+        dispatcher.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
+    }
+
+    private function completeHandler(event:Event):void {
+    	
+			funFXRecording = new FunFXRecording();
+ 			funFXRecording.locatorUtility = new FlexObjectLocatorUtility();
+ 			funFXRecording.locatorUtility.flexLocatorhelper = new FlexObjectLocatorUtilityHelper();
+ 			   	
+	    var loader:URLLoader = URLLoader(event.target);
+	    //trace("completeHandler: " + loader.data);
+	
+	    setTestingEnvironment(loader.data);
+	
+	    // Disable the popup by commenting out the line below
+			PopUpManager.createPopUp(DisplayObject(Application.application), AQToolBar);
+			
+			funFXProxy = new Proxy();
+    }
+
+    private function openHandler(event:Event):void {
+        //trace("openHandler: " + event);
+    }
+
+    private function progressHandler(event:ProgressEvent):void {
+        //trace("progressHandler loaded:" + event.bytesLoaded + " total: " + event.bytesTotal);
+    }
+
+    private function securityErrorHandler(event:SecurityErrorEvent):void {
+        Alert.show("securityErrorHandler: " + event);
+    }
+
+    private function httpStatusHandler(event:HTTPStatusEvent):void {
+        //trace("httpStatusHandler: " + event);
+    }
+
+    private function ioErrorHandler(event:IOErrorEvent):void {
+        Alert.show("ioErrorHandler: " + event);
+    }
 
 		public function getRecords():String {
 			return records.toXMLString();
