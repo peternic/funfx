@@ -28,15 +28,14 @@ import codec.TabObjectCodec;
 import codec.TriggerEventPropertyCodec;
 
 import custom.CustomAutomationClass;
-<<<<<<< HEAD:flex/src/AQAdapter.as
 import custom.utilities.FlexObjectLocatorUtility;
 import custom.utilities.FlexObjectLocatorUtilityHelper;
-=======
 import custom.utilities.XMLUtility;
->>>>>>> c3a3784606829f234eb0040990b63f92554512e8:flex/src/AQAdapter.as
 
 import flash.display.DisplayObject;
 import flash.events.*;
+import flash.net.URLLoader;
+import flash.net.URLRequest;
 import flash.utils.getDefinitionByName;
 
 import funfx.Proxy;
@@ -54,10 +53,12 @@ import mx.automation.IAutomationObject;
 import mx.automation.IAutomationPropertyDescriptor;
 import mx.automation.IAutomationTabularData;
 import mx.automation.events.AutomationRecordEvent;
+import mx.controls.Alert;
 import mx.core.Application;
 import mx.core.UIComponent;
 import mx.core.mx_internal;
 import mx.events.FlexEvent;
+import mx.managers.PopUpManager;
 
 use namespace mx_internal;
 
@@ -95,11 +96,11 @@ public class AQAdapter implements IAQCodecHelper
 	private static var _root:DisplayObject;
 	
 	public static var aqAdapter:AQAdapter;
-	
-  [Embed(source="AutoQuickEnv.xml", mimeType="application/octet-stream")]
-  private static const AutoQuickEnvFile:Class;
-  private static const AutoQuickEnv:XML = XMLUtility.buildFromByteStream(AutoQuickEnvFile);
 
+    [Embed(source="AutoQuickEnv.xml", mimeType="application/octet-stream")]
+    private static const AutoQuickEnvFile:Class;
+    private static const AutoQuickEnv:XML = XMLUtility.buildFromByteStream(AutoQuickEnvFile);
+	
     /**
 	 *  @private    
 	 */
@@ -252,9 +253,11 @@ public class AQAdapter implements IAQCodecHelper
                 return;
             }*/
             
-            setTestingEnvironment(AutoQuickEnv);
-            
-            new Proxy();
+           setTestingEnvironment(AutoQuickEnv);
+           
+           PopUpManager.createPopUp(DisplayObject(Application.application), AQToolBar);
+           
+           funFXProxy = new Proxy();
         }
     }
     
@@ -871,56 +874,6 @@ public class AQAdapter implements IAQCodecHelper
 	{
 		return AQCodecHelper;
 	}
-<<<<<<< HEAD:flex/src/AQAdapter.as
-	
-    private function configureListeners(dispatcher:IEventDispatcher):void 
-    {
-        dispatcher.addEventListener(Event.COMPLETE, completeHandler);
-        dispatcher.addEventListener(Event.OPEN, openHandler);
-        dispatcher.addEventListener(ProgressEvent.PROGRESS, progressHandler);
-        dispatcher.addEventListener(SecurityErrorEvent.SECURITY_ERROR, securityErrorHandler);
-        dispatcher.addEventListener(HTTPStatusEvent.HTTP_STATUS, httpStatusHandler);
-        dispatcher.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
-    }
-
-    private function completeHandler(event:Event):void {
-    	
-			funFXRecording = new FunFXRecording();
- 			funFXRecording.locatorUtility = new FlexObjectLocatorUtility();
- 			funFXRecording.locatorUtility.flexLocatorhelper = new FlexObjectLocatorUtilityHelper();
- 			   	
-	    var loader:URLLoader = URLLoader(event.target);
-	    //trace("completeHandler: " + loader.data);
-	
-	    setTestingEnvironment(loader.data);
-	
-	    // Disable the popup by commenting out the line below
-			PopUpManager.createPopUp(DisplayObject(Application.application), AQToolBar);
-			
-			funFXProxy = new Proxy();
-    }
-
-    private function openHandler(event:Event):void {
-        //trace("openHandler: " + event);
-    }
-
-    private function progressHandler(event:ProgressEvent):void {
-        //trace("progressHandler loaded:" + event.bytesLoaded + " total: " + event.bytesTotal);
-    }
-
-    private function securityErrorHandler(event:SecurityErrorEvent):void {
-        Alert.show("securityErrorHandler: " + event);
-    }
-
-    private function httpStatusHandler(event:HTTPStatusEvent):void {
-        //trace("httpStatusHandler: " + event);
-    }
-
-    private function ioErrorHandler(event:IOErrorEvent):void {
-        Alert.show("ioErrorHandler: " + event);
-    }
-=======
->>>>>>> c3a3784606829f234eb0040990b63f92554512e8:flex/src/AQAdapter.as
 
 		public function getRecords():String {
 			return records.toXMLString();

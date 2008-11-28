@@ -1,0 +1,5 @@
+Dir["#{File.dirname(__FILE__)}/spec/tasks/**/*.rake"].sort.each { |ext| load ext }
+
+test_config.app_name = 'FunFx'
+test_config.test_dir = "src"
+test_config.test_suite_dir = 'src'
