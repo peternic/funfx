@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../../spec_helper'
 
-describe "DemoApp" do
+describe "DataGrid" do
   before do
     browser.goto(DEMO_APP)
     @flex = browser.flex_app('DemoAppId', 'DemoAppName')

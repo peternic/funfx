@@ -37,7 +37,6 @@ package custom.utilities
 		public function getAutomationIndexForObject(automationString:String):String{
 			var automationIndexPattern:RegExp = new RegExp("\.*automationIndex{([A-Za-z0-9-!\"#$%&'()*+,./:;<>=?@[\\\]_|]*) string|object}\.*", "i");
 			var resultAutomationIndex:Array = automationIndexPattern.exec(automationString);
-			
 			if(resultAutomationIndex == null || resultAutomationIndex.length < 2) return null; 
 			else if(resultAutomationIndex[1].match("index:-1"))
 				return null;
@@ -51,7 +50,9 @@ package custom.utilities
 			if(object.id && object.id != "")
 				locator["id"] = object.id;
 			if(automationString)
-				locator["index"] = automationString;			
+				locator["automationIndex"] = automationString;
+			if(object.automationValue && object.automationValue.length > 0)
+				locator["automationValue"] = object.automationValue;
 			return locator;
 		}
 

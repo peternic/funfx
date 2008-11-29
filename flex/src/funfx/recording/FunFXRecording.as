@@ -6,7 +6,6 @@ package funfx.recording
 	
 	import mx.automation.events.AutomationRecordEvent;
 	import mx.collections.ArrayCollection;
-	import mx.controls.Alert;
 	import mx.core.UIComponent;
 	
 	public class FunFXRecording
@@ -47,26 +46,21 @@ package funfx.recording
 		}
 		
 		private function printProperties(locator:Object):String{
-			var print:String = "({";
-			var idBoolean:Boolean = false;
-			var automationNameBoolean:Boolean = false;
-			if(locator["id"] && locator["id"] != ""){
-				idBoolean = true;
-				print += ":id => '" + locator["id"] + "'";
-			}
-			if(locator["automationName"] && locator["automationName"] != ""){
-				automationNameBoolean = true;
-				if(idBoolean)
+			var print:String = "";
+			print += printProperty(locator, "id", (print == ""));
+			print += printProperty(locator, "automationName", (print == ""));
+			print += printProperty(locator, "automationIndex", (print == ""));
+			print += printProperty(locator, "automationValue", (print == ""));
+			return "({" + print + "})";
+		}
+		
+		private function printProperty(locator:Object, locatorName:String, first:Boolean):String{
+			var print:String = "";
+			if(locator[locatorName] && locator[locatorName] != ""){
+				if(!first)
 					print += ", ";
-				print += ":automationName => '" + locator["automationName"] + "'";
+				print += ":" + locatorName + " => '" + locator[locatorName] + "'";
 			}
-			if(locator["index"] && locator["index"] != "" && locator["index"] != "index:-1"){
-				if(idBoolean && automationNameBoolean)
-					print += ", ";
-				print += ":index => '" + locator["index"] + "'";
-			}
-				
-			print += "})";
 			return print;
 		}
 		

@@ -1,5 +1,6 @@
 package custom.utilities
 {
+	import mx.controls.Alert;
 	import mx.core.UIComponent;
 	
 	public class FlexObjectLocatorUtilityHelper implements IFlexObjectLocatorUtilityHelper
@@ -9,7 +10,14 @@ package custom.utilities
 		}
 		
 		public function createAutomationID(object:UIComponent):String{
-			return AQAdapter.aqAdapter.createAutomationID(object).toString();
+			//try{
+				var str:String = AQAdapter.aqAdapter.createAutomationID(object).toString();
+				return str;
+			/*} catch(e:Error){
+				return "null";
+			} finally{
+				return "null";
+			}*/
 		}
 		
 	}

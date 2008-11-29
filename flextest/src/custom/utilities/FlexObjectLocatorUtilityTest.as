@@ -119,6 +119,12 @@ package custom.utilities
 			var result:String = locator.getAutomationIndexForObject(testString);
 			assertNull(result);
 		}
+		
+		public function testShouldExtractAutomationIndexFromAutomationIDWhereTheValueIsColumnName():void{
+			var testString:String = "id{null object}automationIndex{phone:1 string}automationName{FlexObjectTest string}";
+			var result:String = locator.getAutomationIndexForObject(testString);
+			assertEquals("phone:1", result);
+		}
 
 	}
 }
