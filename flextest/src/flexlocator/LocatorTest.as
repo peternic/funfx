@@ -126,7 +126,7 @@ package flexlocator
 			mockFlexObjectLocatorUtility.childList = object;
 			
 			locator["parent"] = null;
-			locator["id"] = {id: "correctID", index: "index:0"};
+			locator["id"] = {id: "correctID", automationIndex: "index:0"};
 
 			mockFlexObjectLocatorUtility.automationId = "index:0"; 
 			objLocator.flexObjectLocatorUtility = mockFlexObjectLocatorUtility; 

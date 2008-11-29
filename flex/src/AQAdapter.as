@@ -28,14 +28,11 @@ import codec.TabObjectCodec;
 import codec.TriggerEventPropertyCodec;
 
 import custom.CustomAutomationClass;
-import custom.utilities.FlexObjectLocatorUtility;
 import custom.utilities.FlexObjectLocatorUtilityHelper;
 import custom.utilities.XMLUtility;
 
 import flash.display.DisplayObject;
 import flash.events.*;
-import flash.net.URLLoader;
-import flash.net.URLRequest;
 import flash.utils.getDefinitionByName;
 
 import funfx.Proxy;
@@ -258,6 +255,9 @@ public class AQAdapter implements IAQCodecHelper
            PopUpManager.createPopUp(DisplayObject(Application.application), AQToolBar);
            
            funFXProxy = new Proxy();
+           funFXRecording = new FunFXRecording();
+           funFXRecording.locatorUtility.flexLocatorhelper = new FlexObjectLocatorUtilityHelper();
+           
         }
     }
     
@@ -296,7 +296,7 @@ public class AQAdapter implements IAQCodecHelper
     }
     
     public function createAutomationID(object:UIComponent):String{
-    	return automationManager.createIDPart(object as IAutomationObject, object.parent as IAutomationObject).toString();
+    	return automationManager.createID(object as IAutomationObject).toString();
     }
 
 	//----------------------------------
@@ -461,9 +461,7 @@ public class AQAdapter implements IAQCodecHelper
 	        var obj:IAutomationObject = event.automationObject ;
 	        var rid:AutomationID = automationManager.createID(obj);
 	
-					var shortRid:AutomationIDPart = automationManager.createIDPart(obj, UIComponent(obj).parent as IAutomationObject);
-	
-					buildAdobeRecord(event, obj, shortRid);
+					buildAdobeRecord(event, obj, rid);
 					funFXRecording.addRecord(event);
             
         }
@@ -477,7 +475,7 @@ public class AQAdapter implements IAQCodecHelper
         automationManager.decrementCacheCounter();
     }
     
-    private function buildAdobeRecord(event:AutomationRecordEvent, obj:IAutomationObject, rid:AutomationIDPart):void{
+    private function buildAdobeRecord(event:AutomationRecordEvent, obj:IAutomationObject, rid:AutomationID):void{
     	var rec:XML = (<Step id={rid.toString()} method={event.name} ></Step>);
 	    XML.prettyPrinting = false;
 	        

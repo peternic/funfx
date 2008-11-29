@@ -66,8 +66,7 @@ package funfx.flexlocator
 			if (numChildren == 0) {
 				return null;
 			}
-
-			var component:UIComponent;
+			
 			for (var i:int=0; i < numChildren; i++) {
 				var child:DisplayObject = childContainer.getChildAt(i);
 
@@ -87,12 +86,13 @@ package funfx.flexlocator
 			return null;
 		}
 		
+		
 		public function childMatch(child:DisplayObject, locator:Object):Boolean {
 			var indexValue:String = "";
 			for (var property:String in locator) {
 				var value:String = decodeURIComponent(locator[property]);
 				
-				if(property == "index"){
+				if(property == "automationIndex"){
 					indexValue = value;
 				} else {
 					if (!child.hasOwnProperty(property) || child[property] != value)

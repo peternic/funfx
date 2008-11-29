@@ -22,6 +22,7 @@
             <node label="ComboBox1" data="content.ComboBoxControl1"/>
             <node label="DataGrid1" data="content.DataGridControl"/>
             <node label="AdvancedDataGrid1" data="content.AdvancedDataGridControl1"/>
+            <node label="EditableDataGrid1" data="content.EditableDataGridControl"/>
             <node label="HorizontalList1" data="content.HorizontalListControl"/>
             <node label="HScrollBar1" data="content.ScrollbarControl"/>
             <node label="HSlider1" data="content.SliderControl"/>
@@ -133,6 +134,7 @@
 			import content.SameIdControl;
 			import content.SameIdComponent;
 			import content.DeepHierarchyControl;
+			import content.EditableDataGridControl;
 			
 			private var c1:AlertControl;
 			private var c2:ColorPickerControl1;
@@ -184,6 +186,7 @@
 			private var c48:SameIdControl;
 			private var c49:SameIdComponent;
 			private var c50:DeepHierarchyControl;
+			private var c51:EditableDataGridControl;
 			
 			
 			private function showComponent(event:Event):void{
