@@ -21,9 +21,6 @@ describe "EditableDataGrid" do
     ]
     
     @data_grid.select("*Joanne Wall* | 555-219-2012 | jwall@fictitious.com")
-    
-    pending "Find a way to choose automation element from for instance a datagrid by columnname index" do
-    
       @data_grid.text_area({:automationIndex => 'name:1'}).input('Peter')
       @data_grid.change_focus('TAB')
     
@@ -33,8 +30,6 @@ describe "EditableDataGrid" do
         ["Maurice Smith",       "555-219-2012", "maurice@fictitious.com"   ],
         ["Mary Jones",          "555-219-2000", "mjones@fictitious.com"    ]
       ]
-    
-    end
     
     
   end

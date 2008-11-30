@@ -37,7 +37,7 @@ package custom.utilities
 		public function getAutomationIndexForObject(automationString:String):String{
 			var automationIndexPattern:RegExp = new RegExp("\.*automationIndex{([A-Za-z0-9-!\"#$%&'()*+,./:;<>=?@[\\\]_|]*) string|object}\.*", "i");
 			var resultAutomationIndex:Array = automationIndexPattern.exec(automationString);
-			if(resultAutomationIndex == null || resultAutomationIndex.length < 2) return null; 
+			if(resultAutomationIndex == null || resultAutomationIndex.length < 2) return null;
 			else if(resultAutomationIndex[1].match("index:-1"))
 				return null;
 			else return resultAutomationIndex[1];

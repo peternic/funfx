@@ -5,8 +5,8 @@
       <!-- Specifies the locales for internationalization. -->
       <locale>
           <locale-element>en_US</locale-element>
-      </locale>      
-
+      </locale>
+ 
       <source-path>
          <path-element>${applib}/src</path-element>
       </source-path>

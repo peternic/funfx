@@ -37,26 +37,17 @@ package funfx {
 
         public function replayFunFXEvent(locator:Object, eventName:String, args:Array) : String
         {
-        	trace("Start replay");
             if(!automationManager.isSynchronized(null)) {
                 return null;
             }
             try {
                 var target:IAutomationObject = flexObjectlocator.findAutomationObject(locator);
-                trace("target " + target);
                 if (!target || !automationManager.isSynchronized(target)) {
-                	trace("not sync " + !automationManager.isSynchronized(target));
                   return null;
                 }
                 if (!automationManager.isVisible(target as DisplayObject)){
-                	trace("not visible " + !automationManager.isVisible(target as DisplayObject));
                   return null;
                 }
-                trace("------------------------");
-                trace("replay.target " + target);
-                trace("replay.eventName " + eventName);
-                trace("replay.args " + args.length + "-> " + args);
-                trace("------------------------");
                 var result:Object = AQAdapter.aqAdapter.replay(target, eventName, args);
                 return "OK";
             } catch(e:Error) {
