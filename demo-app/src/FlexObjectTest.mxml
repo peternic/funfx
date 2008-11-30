@@ -75,6 +75,7 @@
        		<node label="TileButtons1" data="content.TileButtons"/>
        		<node label="TitleWindow1" data="content.TitleWindowControl"/>
        		<node label="ViewStack1" data="content.ViewStackControl1"/>
+       		<node label="ControlBar" data="content.ControlBarControl"/>
        	</node>
        	<node label="Repeater controls">
        		<node label="Repeater1" data="content.RepeaterControl"/>
@@ -135,6 +136,7 @@
 			import content.SameIdComponent;
 			import content.DeepHierarchyControl;
 			import content.EditableDataGridControl;
+			import content.ControlBarControl;
 			
 			private var c1:AlertControl;
 			private var c2:ColorPickerControl1;
@@ -187,6 +189,7 @@
 			private var c49:SameIdComponent;
 			private var c50:DeepHierarchyControl;
 			private var c51:EditableDataGridControl;
+			private var c52:ControlBarControl;
 			
 			
 			private function showComponent(event:Event):void{
