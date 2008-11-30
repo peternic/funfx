@@ -10,14 +10,13 @@ package custom.utilities
 		}
 		
 		public function createAutomationID(object:UIComponent):String{
-			//try{
+			try{
 				var str:String = AQAdapter.aqAdapter.createAutomationID(object).toString();
 				return str;
-			/*} catch(e:Error){
+			} catch(e:Error){
 				return "null";
-			} finally{
-				return "null";
-			}*/
+			}
+			return "null";
 		}
 		
 	}

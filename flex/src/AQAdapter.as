@@ -296,7 +296,7 @@ public class AQAdapter implements IAQCodecHelper
     }
     
     public function createAutomationID(object:UIComponent):String{
-    	return automationManager.createID(object as IAutomationObject).toString();
+    	return automationManager.createIDPart(object as IAutomationObject).toString();
     }
 
 	//----------------------------------
