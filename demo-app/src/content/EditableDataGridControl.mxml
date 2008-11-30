@@ -36,6 +36,18 @@
                 <mx:DataGridColumn dataField="name" headerText="Name"/>
                 <mx:DataGridColumn dataField="phone" headerText="Phone"/>
                 <mx:DataGridColumn dataField="email" headerText="Email"/>
+                <mx:DataGridColumn dataField="active" headerText="Active">
+                  <mx:itemEditor>
+                      <mx:Component>
+                          <mx:ComboBox editable="true">
+                              <mx:dataProvider>
+                                  <mx:String>true</mx:String>
+                                  <mx:String>false</mx:String>
+                              </mx:dataProvider>
+                          </mx:ComboBox>
+                      </mx:Component>
+                  </mx:itemEditor>
+                </mx:DataGridColumn>
             </mx:columns>
         </mx:DataGrid>
         
