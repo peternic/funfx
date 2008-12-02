@@ -51,6 +51,7 @@
                 <mx:DataGridColumn dataField="name" headerText="Name"/>
                 <mx:DataGridColumn dataField="phone" headerText="Phone"/>
                 <mx:DataGridColumn dataField="email" headerText="Email"/>
+                <mx:DataGridColumn dataField="active" headerText="Active" visible="false"/>
             </mx:columns>
         </mx:DataGrid>
 
@@ -59,6 +60,7 @@
                 <mx:DataGridColumn dataField="name" headerText="Name"/>
                 <mx:DataGridColumn dataField="phone" headerText="Phone"/>
                 <mx:DataGridColumn dataField="email" headerText="Email"/>
+                <mx:DataGridColumn dataField="active" headerText="Active" visible="false"/>
             </mx:columns>
         </mx:DataGrid>
         

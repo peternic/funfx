@@ -1,5 +1,6 @@
 require File.dirname(__FILE__) + '/../../spec_helper'
 
+
 describe "DemoApp" do
   before do
     browser.goto(DEMO_APP)
