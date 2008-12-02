@@ -70,7 +70,7 @@ package flexlocator
 			assertEquals(childOne.id, UIComponent(result).id);
 		}
 		
-		  public function testShouldLocateGrandchildObjectWithoutSpecifyingAnyParent():void{
+		public function testShouldLocateGrandchildObjectWithoutSpecifyingAnyParent():void{
 			grandChildOne.id = "correctID";
 			childOne.addChild(grandChildOne);
 			object.addChild(childOne);

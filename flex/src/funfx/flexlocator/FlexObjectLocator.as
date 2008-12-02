@@ -7,7 +7,6 @@ package funfx.flexlocator
 	import mx.automation.Automation;
 	import mx.automation.AutomationID;
 	import mx.automation.IAutomationObject;
-	import mx.controls.Alert;
 	import mx.core.IChildList;
 	import mx.core.UIComponent;
 	
@@ -62,19 +61,19 @@ package funfx.flexlocator
 											flexObjectLocatorUtility.getApplicationChildren() :
 											container;
 			
-			var numChildren:int = childContainer.numChildren;
+			var numChildren:int = getNumberOfChildren(childContainer);
+			
 			if (numChildren == 0) {
 				return null;
 			}
-			
 			for (var i:int=0; i < numChildren; i++) {
-				var child:DisplayObject = childContainer.getChildAt(i);
+			  var child:DisplayObject = getChild(childContainer, i);
 
 				if (!(child is UIComponent)) {
 					continue;
 				}
 
-				if (childMatch(child, locator)) {
+				if (childMatch(DisplayObject(child), locator)) {
 					return UIComponent(child);
 				}
 				
@@ -84,6 +83,20 @@ package funfx.flexlocator
 				}
 			}
 			return null;
+		}
+		
+		public function getNumberOfChildren(container:IChildList):int{
+		  if(container is UIComponent)
+			  return UIComponent(container).numAutomationChildren != 0 ? UIComponent(container).numAutomationChildren : UIComponent(container).numChildren;
+			else
+			  return container.numChildren;
+		}
+		
+		public function getChild(container:IChildList, position:int):DisplayObject{
+		  if(container is UIComponent)
+			  return UIComponent(container).numAutomationChildren != 0 ? (UIComponent(container).getAutomationChildAt(position) as DisplayObject) : container.getChildAt(position);
+			else
+			  return container.getChildAt(position);
 		}
 		
 		
