@@ -3,6 +3,8 @@ win = Config::CONFIG['host_os'] =~ /mswin|mingw/
 suffix = win ? '.bat' : ''
 build = win ? 'build.bat' : './build.sh'
 
+cp 'flex/src/AutoQuickEnv.xml', 'gem/ext/AutoQuickEnv.xml'
+
 desc 'Compile the Demo app'
 task :demo_app => :flex do
   Dir.chdir('demo-app') do
