@@ -21,7 +21,7 @@ end
 module FunFX
   module Meta
     class ClassLib
-      def initialize(xml_file=File.dirname(__FILE__) + '/../../../../flex/src/AutoQuickEnv.xml')
+      def initialize(xml_file=File.dirname(__FILE__) + '/../../../ext/AutoQuickEnv.xml')
         @lib = Hash.new(MetaClass.new)
         
         doc = LibXML::XML::Document.file(xml_file)

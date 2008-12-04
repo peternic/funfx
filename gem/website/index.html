@@ -5,7 +5,7 @@
   <link rel="stylesheet" href="stylesheets/screen.css" type="text/css" media="screen" />
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>
-      funfx
+      FunFX
   </title>
   <script src="javascripts/rounded_corners_lite.inc.js" type="text/javascript"></script>
 <style>
@@ -30,25 +30,45 @@
 <body>
 <div id="main">
 
-    <h1>funfx</h1>
+    <h1>FunFX</h1>
     <div id="version" class="clickable" onclick='document.location = "http://rubyforge.org/projects/funfx"; return false'>
       <p>Get Version</p>
       <a href="http://rubyforge.org/projects/funfx" class="numbers">0.2.0</a>
     </div>
-    <h1>&amp;#x2192; &#8216;funfx&#8217;</h1>
-<h2>What</h2>
+    <h3>- Functional testing of Flex applications</h3>
+<h2>What is FunFX</h2>
+<p>FunFX is an open source tool for funtional testing of Flex applications.<br />
+It uses Ruby as scripting language for its tests.</p>
 <h2>Installing</h2>
-<p><pre class='syntax'><span class="ident">sudo</span> <span class="ident">gem</span> <span class="ident">install</span> <span class="ident">funfx</span></pre></p>
+<p>FunFX is a two part framework. One Ruby gem and one Actionscript library (funfx.swc). The gem also contains the funfx.swc, but it is possible to get the funfx.swc with maven.</p>
+<p>To install the Ruby gem:<br />
+<pre class='syntax'><span class="ident">sudo</span> <span class="ident">gem</span> <span class="ident">install</span> <span class="ident">funfx</span></pre></p>
+<p>To get funfx.swc with maven, specify the following repository and dependency:<br />
+<pre class='syntax'>
+  <span class="punct">&lt;</span><span class="ident">repository</span><span class="punct">&gt;</span>
+    <span class="punct">&lt;</span><span class="ident">id</span><span class="punct">&gt;</span><span class="ident">funfx</span><span class="punct">-</span><span class="ident">repository</span><span class="punct">&lt;/</span><span class="regex">id&gt;
+    &lt;url&gt;http:</span><span class="punct">//</span><span class="ident">funfx</span><span class="punct">.</span><span class="ident">rubyforge</span><span class="punct">.</span><span class="ident">org</span><span class="punct">/</span><span class="ident">maven</span><span class="punct">&lt;/</span><span class="regex">url&gt;
+    &lt;releases&gt;
+      &lt;enabled&gt;true&lt;</span><span class="punct">/</span><span class="ident">enabled</span><span class="punct">&gt;</span>
+    <span class="punct">&lt;/</span><span class="regex">releases&gt;
+    &lt;snapshots&gt;
+      &lt;enabled&gt;true&lt;</span><span class="punct">/</span><span class="ident">enabled</span><span class="punct">&gt;</span>
+    <span class="punct">&lt;/</span><span class="regex">snapshots&gt;
+  &lt;</span><span class="punct">/</span><span class="ident">repository</span><span class="punct">&gt;</span>
+
+  <span class="punct">&lt;</span><span class="ident">dependency</span><span class="punct">&gt;</span>
+    <span class="punct">&lt;</span><span class="ident">groupId</span><span class="punct">&gt;</span><span class="ident">org</span><span class="punct">.</span><span class="ident">rubyforge</span><span class="punct">&lt;/</span><span class="regex">groupId&gt;
+    &lt;artifactId&gt;funfx&lt;</span><span class="punct">/</span><span class="ident">artifactId</span><span class="punct">&gt;</span>
+    <span class="punct">&lt;</span><span class="ident">version</span><span class="punct">&gt;</span><span class="number">0.2</span><span class="punct">.</span><span class="number">0</span><span class="punct">&lt;/</span><span class="regex">version&gt;
+    &lt;type&gt;swc&lt;</span><span class="punct">/</span><span class="ident">type</span><span class="punct">&gt;</span>
+  <span class="punct">&lt;</span><span class="ident">dependency</span><span class="punct">&gt;</span>
+</pre></p>
 <h2>The basics</h2>
 <h2>Demonstration of usage</h2>
 <h2>Forum</h2>
 <p><a href="http://groups.google.com/group/funfx">http://groups.google.com/group/funfx</a></p>
-<p><span class="caps">TODO</span> &#8211; create Google Group &#8211; funfx</p>
 <h2>How to submit patches</h2>
 <p>Read the <a href="http://drnicwilliams.com/2007/06/01/8-steps-for-fixing-other-peoples-code/">8 steps for fixing other people&#8217;s code</a> and for section <a href="http://drnicwilliams.com/2007/06/01/8-steps-for-fixing-other-peoples-code/#8b-google-groups">8b: Submit patch to Google Groups</a>, use the Google Group above.</p>
-<p><span class="caps">TODO</span> &#8211; pick <span class="caps">SVN</span> or Git instructions</p>
-<p>The trunk repository is <code>svn://rubyforge.org/var/svn/funfx/trunk</code> for anonymous access.</p>
-<p><span class="caps">OOOORRRR</span></p>
 <p>You can fetch the source from either:</p>
 <ul>
 	<li>rubyforge: <span class="caps">MISSING</span> IN <span class="caps">ACTION</span></li>
@@ -75,7 +95,7 @@ rake install_gem</pre>
 <h2>Contact</h2>
 <p>Comments are welcome. Send an email to <a href="mailto:motzfeldt@gmail.com">Peter Nicolai Motzfeldt</a> via the <a href="http://groups.google.com/group/funfx">forum</a></p>
     <p class="coda">
-      <a href="motzfeldt@gmail.com">Peter Nicolai Motzfeldt</a>, 19th August 2008<br>
+      <a href="motzfeldt@gmail.com">Peter Nicolai Motzfeldt</a>, 4th December 2008<br>
       Theme extended from <a href="http://rb2js.rubyforge.org/">Paul Battley</a>
     </p>
 </div>

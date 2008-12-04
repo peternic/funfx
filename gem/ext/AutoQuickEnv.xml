@@ -1,0 +1,2049 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TypeInformation>
+    <ClassInfo Name="FlexDisplayObject" >
+                <Implementation Class="flash.display::DisplayObject"/>
+        <Events>
+            <Event Name="MouseMove" >
+                <Implementation Class="flash.events::MouseEvent" Type="mouseMove"/>
+                <Property Name="localX"  DefaultValue="0">
+                    <PropertyType Type="int"/>                
+                  </Property>
+                <Property Name="localY"  DefaultValue="0">
+                    <PropertyType Type="int"/>                
+                </Property>
+                <Property Name="keyModifier"  DefaultValue="0">
+                     <PropertyType Type="Enumeration" ListOfValuesName="FlexKeyModifierValues" Codec="keyModifier"/>
+                </Property>
+            </Event>
+            <Event Name="Click" >
+                <Implementation Class="flash.events::MouseEvent" Type="click"/>
+                <Property Name="keyModifier"  DefaultValue="0">
+                    <PropertyType Type="Enumeration" ListOfValuesName="FlexKeyModifierValues" Codec="keyModifier"/>
+               </Property>
+            </Event>
+        </Events>
+        <Properties>
+            <Property Name="tabChildren" ForVerification="true"><PropertyType Type="Boolean"/></Property>
+            <Property Name="tabEnabled" ForVerification="true"><PropertyType Type="Boolean"/></Property>
+            <Property Name="tabIndex" ForVerification="true"><PropertyType Type="int"/></Property>
+            <Property Name="mouseEnabled" ForVerification="true"><PropertyType Type="Boolean"/></Property>
+            <Property Name="alpha" ForVerification="true"><PropertyType Type="Number"/></Property>
+            <Property Name="height" ForVerification="true"><PropertyType Type="Number"/></Property>
+            <Property Name="visible" ForVerification="true"><PropertyType Type="Boolean"/></Property>
+            <Property Name="width" ForVerification="true"><PropertyType Type="Number"/></Property>
+            <Property Name="x" ForVerification="true"><PropertyType Type="Number"/></Property>
+            <Property Name="y" ForVerification="true"><PropertyType Type="Number"/></Property>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexObject"  Extends="FlexDisplayObject">
+                <Implementation Class="mx.core::UIComponent"/>
+        <Methods>
+            <Method Name="SetFocus" >
+                <Implementation Type="setFocus"/>
+            </Method>
+        </Methods>
+        <Events>
+            <Event  Name="ChangeFocus" >
+                <Implementation Class="flash.events::FocusEvent" Type="keyFocusChange"/>
+                <Property Name="shiftKey"  DefaultValue="false">
+				    <PropertyType Type="Boolean"/>
+                </Property>
+                <Property Name="keyCode"  DefaultValue="TAB">
+                    <PropertyType Type="String" Codec="keyCode"/>                   
+                </Property>
+            </Event>
+        </Events>
+        <Properties>
+            <Property Name="automationName" ForDescription="true"><PropertyType Type="String"/>
+            	</Property>
+            <Property Name="automationClassName" ForDescription="true">
+            	<PropertyType Type="String"/>
+							</Property>
+            <Property Name="id" ForDescription="true" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="className" ForDescription="true">
+            	<PropertyType Type="String"/>
+		                    </Property>
+            <Property Name="automationIndex" ForDescription="true"><PropertyType Type="String"/></Property>
+            <Property Name="currentState" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="focusEnabled" ForVerification="true"><PropertyType Type="Boolean"/></Property>
+            <Property Name="toolTip" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="errorString" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="percentHeight" ForVerification="true"><PropertyType Type="Number"/></Property>
+            <Property Name="percentWidth" ForVerification="true"><PropertyType Type="Number"/></Property>
+            <Property Name="scaleX" ForVerification="true"><PropertyType Type="Number"/></Property>
+            <Property Name="scaleY" ForVerification="true"><PropertyType Type="Number"/></Property>
+            <Property Name="errorColor" ForVerification="true"><PropertyType Type="String" Codec="color"/></Property>
+            <Property Name="themeColor" ForVerification="true"><PropertyType Type="String" Codec="color"/></Property>
+            <Property Name="enabled" ForVerification="true"><PropertyType Type="Boolean"/></Property>
+            <Property Name="useHandCursor" ForVerification="true"><PropertyType Type="Boolean"/></Property>
+  		    <Property Name="numAutomationChildren" ForVerification="true">
+				<PropertyType Type="int"/>
+							</Property>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexContainer" Extends="FlexObject" SupportsTabularData="true">
+                        <Implementation Class="mx.core::Container"/>
+        <Events>
+            <Event Name="MouseScroll" >
+                <Implementation Class="flash.events::MouseEvent" Type="mouseWheel"/>
+                <Property Name="delta"  DefaultValue="0">
+                    <PropertyType Type="int"/> 
+               </Property>
+            </Event>
+            <Event Name="Scroll">
+                <Implementation Class="mx.events::ScrollEvent" Type="scroll"/>
+                <Property Name="position" >
+                    <PropertyType Type="int"/>                   
+                </Property>
+                <Property Name="direction" >
+                    <PropertyType Type="Enumeration" ListOfValuesName="FlexScrollDirectionValues" Codec="scrollDirection"/>                   
+                </Property>
+                <Property Name="detail"  DefaultValue="null">
+                    <PropertyType Type="Enumeration" ListOfValuesName="FlexScrollDetailValues" Codec="scrollDetail"/>                   
+                </Property>
+            </Event>
+            <Event Name="DragStart" >
+                <Implementation Class="mx.automation.events::AutomationDragEvent" Type="dragStart"/>
+                <Property Name="draggedItem" >
+                  <PropertyType Type="String" Codec="automationObject"/>                   
+                </Property>
+                <Property Name="keyModifier"  DefaultValue="0">
+                    <PropertyType Type="Enumeration" ListOfValuesName="FlexKeyModifierValues" Codec="keyModifier"/>
+                </Property>
+            </Event>
+            <Event Name="DragDrop" >
+                <Implementation Class="mx.automation.events::AutomationDragEvent" Type="dragDrop"/>
+                <Property Name="action" >
+                  <PropertyType Type="String"/>                
+                </Property>
+                <Property Name="draggedItem"  DefaultValue="">
+                  <PropertyType Type="String" Codec="automationObject"/>                   
+                </Property>
+                <Property Name="keyModifier"  DefaultValue="0">
+                    <PropertyType Type="Enumeration" ListOfValuesName="FlexKeyModifierValues" Codec="keyModifier"/>
+                                    </Property>
+            </Event>
+            <Event Name="DragCancel" >
+                <Implementation Class="mx.automation.events::AutomationDragEvent" Type="dragComplete"/>
+                <Property Name="keyModifier"  DefaultValue="0">
+                    <PropertyType Type="Enumeration" ListOfValuesName="FlexKeyModifierValues" Codec="keyModifier"/>
+                </Property>
+            </Event>
+        </Events>
+        <Properties>
+            <Property Name="numChildren" ForVerification="true"><PropertyType Type="int"/></Property>
+            <Property Name="label" ForDescription="true" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="creationPolicy" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="creationIndex" ForVerification="true"><PropertyType Type="int"/></Property>
+            <Property Name="backgroundAlpha" ForVerification="true"><PropertyType Type="Number"/></Property>
+            <Property Name="backgroundColor" ForVerification="true"><PropertyType Type="String" Codec="color"/></Property>
+            <Property Name="backgroundDisabledColor" ForVerification="true"><PropertyType Type="String" Codec="color"/></Property>
+            <Property Name="backgroundImage" ForVerification="true"><PropertyType Type="String" Codec="asset"/></Property>
+            <Property Name="backgroundSize" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="fontFamily" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="fontSize" ForVerification="true"><PropertyType Type="Number"/></Property>
+            <Property Name="fontStyle" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="fontWeight" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="fillAlphas" ForVerification="true"><PropertyType Type="String" Codec="object[]"/></Property>
+            <Property Name="fillColors" ForVerification="true"><PropertyType Type="String" Codec="color[]"/></Property>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexForm" Extends="FlexContainer" SupportsTabularData="true">
+                        <Implementation Class="mx.containers::Form"/>
+        <Events>
+        </Events>
+        <Properties>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexCanvas" Extends="FlexContainer" SupportsTabularData="true">
+                        <Implementation Class="mx.containers::Canvas"/>
+        <Events>
+        </Events>
+        <Properties>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexBox" Extends="FlexContainer" SupportsTabularData="true">
+                        <Implementation Class="mx.containers::Box"/>
+        <Implementation Class="mx.containers::Tile"/>
+        <Events>
+        </Events>
+        <Properties>
+            <Property Name="direction" ForVerification="true" ForDefaultVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="horizontalAlign" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="verticalAlign" ForVerification="true"><PropertyType Type="String"/></Property>
+        </Properties>
+    </ClassInfo>
+    
+    <ClassInfo Name="FlexTile" Extends="FlexBox" SupportsTabularData="true">
+        <Implementation Class="mx.containers::Tile"/>
+        <Events>
+        </Events>
+        <Properties>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexProgressBar"  Extends="FlexObject">
+                        <Implementation Class="mx.controls::ProgressBar"/>
+        <Events>
+        </Events>
+        <Properties>
+            <Property Name="conversion" ForVerification="true"><PropertyType Type="Number"/></Property>
+            <Property Name="direction" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="indeterminate" ForVerification="true"><PropertyType Type="Boolean"/></Property>
+            <Property Name="label" ForDescription="true" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="labelPlacement" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="maximum" ForVerification="true"><PropertyType Type="Number"/></Property>
+            <Property Name="minimum" ForVerification="true"><PropertyType Type="Number"/></Property>
+            <Property Name="percentComplete" ForVerification="true"><PropertyType Type="Number"/></Property>
+            <Property Name="value" ForDefaultVerification="true" ForVerification="true"><PropertyType Type="Number"/></Property>
+            <Property Name="barColor" ForVerification="true"><PropertyType Type="String" Codec="color"/></Property>
+            <Property Name="borderColor" ForVerification="true"><PropertyType Type="String" Codec="color"/></Property>
+            <Property Name="color" ForVerification="true"><PropertyType Type="String" Codec="color"/></Property>
+            <Property Name="disabledColor" ForVerification="true"><PropertyType Type="String" Codec="color"/></Property>
+            <Property Name="fillColors" ForVerification="true"><PropertyType Type="String" Codec="color[]"/></Property>
+            <Property Name="fontFamily" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="fontSize" ForVerification="true"><PropertyType Type="Number"/></Property>
+            <Property Name="fontStyle" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="fontWeight" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="labelWidth" ForVerification="true"><PropertyType Type="Number"/></Property>
+            <Property Name="textAlign" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="textDecoration" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="textIndent" ForVerification="true"><PropertyType Type="Number"/></Property>
+            <Property Name="themeColor" ForVerification="true"><PropertyType Type="String" Codec="color"/></Property>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexAccordion" Extends="FlexContainer" SupportsTabularData="true">
+                        <Implementation Class="mx.containers::Accordion"/>
+        <Events>
+            <Event Name="Change" >
+                <Implementation Class="mx.events::IndexChangedEvent" Type="change"/>
+                <Property Name="relatedObject"  DefaultValue="mouse">
+                    <PropertyType Type="String" Codec="automationObject"/>                </Property>
+            </Event>
+            <Event Name="Type" >
+                <Implementation Class="flash.events::KeyboardEvent" Type="keyPress"/>
+                <Property Name="keyCode" >
+                    <PropertyType Type="String" Codec="keyCode"/>                </Property>
+                <Property Name="keyModifier"  DefaultValue="0">
+                    <PropertyType Type="Enumeration" ListOfValuesName="FlexKeyModifierValues" Codec="keyModifier"/>
+                                    </Property>
+            </Event>
+        </Events>
+        <Properties>
+            <Property Name="selectedIndex" ForVerification="true"><PropertyType Type="int"/></Property>
+            <Property Name="selectedChild" ForDefaultVerification="true" ForVerification="true"><PropertyType Type="String" Codec="automationObject"/></Property>
+            <Property Name="headerHeight" ForVerification="true"><PropertyType Type="int"/></Property>
+            <Property Name="horizontalGap" ForVerification="true"><PropertyType Type="Number"/></Property>
+            <Property Name="paddingTop" ForVerification="true"><PropertyType Type="Number"/></Property>
+            <Property Name="paddingBottom" ForVerification="true"><PropertyType Type="Number"/></Property>
+            <Property Name="textSelectedColor" ForVerification="true"><PropertyType Type="String" Codec="color"/></Property>
+            <Property Name="verticalGap" ForVerification="true"><PropertyType Type="Number"/></Property>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexButton" Extends="FlexObject">
+                        <Implementation Class="mx.controls::Button"/>
+        <Events>
+            <Event Name="Type" >
+                <Implementation Class="flash.events::KeyboardEvent" Type="keyPress"/>
+                <Property Name="keyCode" >
+                    <PropertyType Type="String" Codec="keyCode" DefaultValue="SPACE"/>                </Property>
+                <Property Name="keyModifier"  DefaultValue="0">
+                    <PropertyType Type="Enumeration" ListOfValuesName="FlexKeyModifierValues" Codec="keyModifier"/>
+                                    </Property>
+            </Event>
+        </Events>
+        <Properties>
+            <Property Name="enabled" ForDefaultVerification="true" ForVerification="true"><PropertyType Type="Boolean"/></Property>
+            <Property Name="label" ForDefaultVerification="true" ForDescription="true" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="labelPlacement" ForVerification="true"><PropertyType Type="String"/>
+		                    	</Property>
+            <Property Name="selected" ForDefaultVerification="true" ForVerification="true"><PropertyType Type="Boolean"/></Property>
+            <Property Name="toggle" ForVerification="true"><PropertyType Type="Boolean"/></Property>
+            <Property Name="color" ForVerification="true"><PropertyType Type="String" Codec="color"/></Property>
+            <Property Name="disabledColor" ForVerification="true"><PropertyType Type="String" Codec="color"/></Property>
+            <Property Name="fontFamily" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="fontSize" ForVerification="true"><PropertyType Type="Number"/></Property>
+            <Property Name="fontStyle" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="fontWeight" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="fillAlphas" ForVerification="true"><PropertyType Type="String" Codec="object[]"/></Property>
+            <Property Name="fillColors" ForVerification="true"><PropertyType Type="String" Codec="color[]"/></Property>
+            <Property Name="focusAlpha" ForVerification="true"><PropertyType Type="Number"/></Property>
+            <Property Name="textAlign" ForVerification="true"><PropertyType Type="String"/>
+		                    </Property>
+            <Property Name="textDecoration" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="textIndent" ForVerification="true"><PropertyType Type="Number"/></Property>
+            <Property Name="textRollOverColor" ForVerification="true"><PropertyType Type="String" Codec="color"/></Property>
+            <Property Name="textSelectedColor" ForVerification="true"><PropertyType Type="String" Codec="color"/></Property>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexPopUpButton" Extends="FlexButton">
+                        <Implementation Class="mx.controls::PopUpButton"/>
+        <Events>
+            <Event Name="Open" >
+                <Implementation Class="mx.events::DropdownEvent" Type="open"/>
+                <Property Name="triggerEvent"  DefaultValue="1">
+                    <PropertyType Type="Enumeration" ListOfValuesName="FlexTriggerEventValues" Codec="event"/>                   
+                </Property>
+            </Event>
+            <Event Name="Close" >
+                <Implementation Class="mx.events::DropdownEvent" Type="close"/>
+                <Property Name="triggerEvent"  DefaultValue="1">
+                  <PropertyType Type="Enumeration" ListOfValuesName="FlexTriggerEventValues" Codec="event"/>                   
+                </Property>
+            </Event>
+        </Events>
+        <Properties>
+        </Properties>
+    </ClassInfo>
+    
+    <ClassInfo Name="FlexPopUpMenuButton" Extends="FlexPopUpButton">
+        <Implementation Class="mx.controls::PopUpMenuButton"/>
+        <Events>
+        </Events>
+        <Properties>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexCheckBox" Extends="FlexButton">
+                        <Implementation Class="mx.controls::CheckBox"/>
+        <Events>
+        </Events>
+        <Properties>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexRadioButton" Extends="FlexButton">
+                        <Implementation Class="mx.controls::RadioButton"/>
+        <Events>            
+        </Events>
+        <Properties>
+            <Property Name="groupName" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="labelPlacement" ForVerification="true"><PropertyType Type="String"/></Property>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexScrollBase" Extends="FlexObject">
+                <Implementation Class="mx.core::ScrollControlBase"/>
+        <Events>
+            <Event Name="MouseScroll" >
+                <Implementation Class="flash.events::MouseEvent" Type="mouseWheel"/>
+                <Property Name="delta"  DefaultValue="0">
+                    <PropertyType Type="int"/>                
+                </Property>
+            </Event>
+        </Events>
+    </ClassInfo>
+    
+    <ClassInfo Name="FlexScrollControlBase" Extends="FlexScrollBase">
+                <Implementation Class="mx.core::ScrollControlBase"/>
+        <Events>
+        </Events>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexListBase" Extends="FlexScrollBase">
+                <Implementation Class="mx.controls.listClasses::ListBase"/>
+        <Events>
+            <Event Name="MouseScroll" >
+                <Implementation Class="flash.events::MouseEvent" Type="mouseWheel"/>
+                <Property Name="delta"  DefaultValue="0">
+                    <PropertyType Type="int"/>                
+                </Property>
+            </Event>
+            <Event Name="DragStart" >
+                <Implementation Class="mx.automation.events::AutomationDragEvent" Type="dragStart"/>
+                <Property Name="draggedItem" >
+                  <PropertyType Type="String" Codec="automationObject"/>                   
+                </Property>
+                <Property Name="keyModifier"  DefaultValue="0">
+                    <PropertyType Type="Enumeration" ListOfValuesName="FlexKeyModifierValues" Codec="keyModifier"/>
+                                    </Property>
+            </Event>
+            <Event Name="DragDrop" >
+                <Implementation Class="mx.automation.events::AutomationDragEvent" Type="dragDrop"/>
+                <Property Name="action" >
+                  <PropertyType Type="String"/>                
+				</Property>
+                <Property Name="draggedItem"  DefaultValue="">
+                  <PropertyType Type="String" Codec="automationObject"/>                   
+                </Property>
+                <Property Name="keyModifier"  DefaultValue="0">
+                    <PropertyType Type="Enumeration" ListOfValuesName="FlexKeyModifierValues" Codec="keyModifier"/>
+                                    </Property>
+            </Event>
+            <Event Name="DragCancel" >
+                <Implementation Class="mx.automation.events::AutomationDragEvent" Type="dragComplete"/>
+                <Property Name="keyModifier"  DefaultValue="0">
+                    <PropertyType Type="Enumeration" ListOfValuesName="FlexKeyModifierValues" Codec="keyModifier"/>
+                                    </Property>
+            </Event>
+            <Event  Name="Select" >
+                <Implementation Class="mx.automation.events::ListItemSelectEvent" Type="select"/>
+                <Property Name="itemRenderer" >
+                  <PropertyType Type="String" Codec="automationObject"/>                   
+                </Property>
+                <Property Name="triggerEvent"  DefaultValue="1">
+                  <PropertyType Type="Enumeration" ListOfValuesName="FlexTriggerEventValues" Codec="event"/>                   
+                </Property>
+                <Property Name="keyModifier"  DefaultValue="0">
+                    <PropertyType Type="Enumeration" ListOfValuesName="FlexKeyModifierValues" Codec="keyModifier"/>
+                                    </Property>
+            </Event>
+            <Event  Name="MultiSelect" >
+                <Implementation Class="mx.automation.events::ListItemSelectEvent" Type="multiSelect"/>
+                <Property Name="itemRenderer" >
+                  <PropertyType Type="String" Codec="automationObject"/>                   
+                </Property>
+                <Property Name="triggerEvent"  DefaultValue="1">
+                  <PropertyType Type="Enumeration" ListOfValuesName="FlexTriggerEventValues" Codec="event"/>                   
+                </Property>
+                <Property Name="keyModifier"  DefaultValue="0">
+                    <PropertyType Type="Enumeration" ListOfValuesName="FlexKeyModifierValues" Codec="keyModifier"/>
+                                    </Property>
+            </Event>
+            <Event  Name="Deselect" >
+                <Implementation Class="mx.automation.events::ListItemSelectEvent" Type="deselect"/>
+                <Property Name="itemRenderer" >
+                  <PropertyType Type="String" Codec="automationObject"/>
+                                     
+                </Property>
+                <Property Name="triggerEvent"  DefaultValue="1">
+                  <PropertyType Type="Enumeration" ListOfValuesName="FlexTriggerEventValues" Codec="event"/>                   
+                </Property>
+                <Property Name="keyModifier"  DefaultValue="0">
+                    <PropertyType Type="Enumeration" ListOfValuesName="FlexKeyModifierValues" Codec="keyModifier"/>
+                                    </Property>
+            </Event>
+            <Event  Name="Scroll" >
+                <Implementation Class="mx.events::ScrollEvent" Type="scroll"/>
+                <Property Name="position" >
+                    <PropertyType Type="int"/>                   
+                </Property>
+                <Property Name="direction" >
+                    <PropertyType Type="Enumeration" ListOfValuesName="FlexScrollDirectionValues" Codec="scrollDirection"/>                   
+                </Property>
+                <Property Name="detail"  DefaultValue="null">
+                    <PropertyType Type="Enumeration" ListOfValuesName="FlexScrollDetailValues" Codec="scrollDetail"/>                   
+                </Property>
+            </Event>
+            <Event Name="Type" >
+                <Implementation Class="flash.events::KeyboardEvent" Type="keyPress"/>
+                <Property Name="keyCode" >
+                    <PropertyType Type="String" Codec="keyCode"/>                </Property>
+                <Property Name="keyModifier"  DefaultValue="0">
+                    <PropertyType Type="Enumeration" ListOfValuesName="FlexKeyModifierValues" Codec="keyModifier"/>
+                                    </Property>
+            </Event>
+            <Event  Name="DoubleClick" >
+                <Implementation Class="mx.events::ListEvent" Type="itemDoubleClick"/>
+				<Property Name="itemRenderer" >
+				  <PropertyType Type="String" Codec="automationObject"/>
+				  				</Property>
+            </Event>
+        </Events>
+        <Properties>
+            <Property Name="columnCount" ForVerification="true"><PropertyType Type="int"/></Property>
+            <Property Name="columnWidth" ForVerification="true"><PropertyType Type="Number"/></Property>
+            <Property Name="dataTipField" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="iconField" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="labelField" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="lockedColumnCount" ForVerification="true"><PropertyType Type="int"/></Property>
+            <Property Name="lockedRowCount" ForVerification="true"><PropertyType Type="int"/></Property>
+            <Property Name="allowMultipleSelection" ForVerification="true"><PropertyType Type="Boolean"/></Property>
+            <Property Name="numAutomationChildren" ForVerification="true"><PropertyType Type="int"/></Property>
+            <Property Name="rowCount" ForVerification="true"><PropertyType Type="int"/></Property>
+            <Property Name="rowHeight" ForVerification="true"><PropertyType Type="Number"/></Property>
+            <Property Name="selectable" ForVerification="true"><PropertyType Type="Boolean"/></Property>
+            <Property Name="selectedIndex" ForVerification="true"><PropertyType Type="int"/></Property>
+            <Property Name="selectedIndices" ForVerification="true"><PropertyType Type="String" Codec="object[]"/></Property>
+            <Property Name="selectedItem" ForVerification="true"><PropertyType Type="String" Codec="listDataObject"/></Property>
+            <Property Name="selectedItems" ForDefaultVerification="true" ForVerification="true"><PropertyType Type="String" Codec="listDataObject[]"/></Property>
+            <Property Name="showDataTips" ForVerification="true"><PropertyType Type="Boolean"/></Property>
+            <Property Name="variableRowHeight" ForVerification="true"><PropertyType Type="Boolean"/></Property>
+            <Property Name="wordWrap" ForVerification="true"><PropertyType Type="Boolean"/></Property>
+            <Property Name="alternatingRowColors" ForVerification="true"><PropertyType Type="String" Codec="color[]"/></Property>
+            <Property Name="focusAlpha" ForVerification="true"><PropertyType Type="Number"/></Property>
+            <Property Name="rollOverColor" ForVerification="true"><PropertyType Type="String" Codec="color"/></Property>
+            <Property Name="selectionColor" ForVerification="true"><PropertyType Type="String" Codec="color"/></Property>
+            <Property Name="selectionDisabledColor" ForVerification="true"><PropertyType Type="String" Codec="color"/></Property>
+            <Property Name="textRollOverColor" ForVerification="true"><PropertyType Type="String" Codec="color"/></Property>
+            <Property Name="textSelectedColor" ForVerification="true"><PropertyType Type="String" Codec="color"/></Property>
+            <Property Name="backgroundDisabledColor" ForVerification="true"><PropertyType Type="String" Codec="color"/></Property>
+            <Property Name="useRollOver" ForVerification="true"><PropertyType Type="Boolean"/></Property>
+            <Property Name="verticalAlign" ForVerification="true"><PropertyType Type="String"/></Property>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexDataGrid" Extends="FlexListBase" SupportsTabularData="true">
+                        <Implementation Class="mx.controls::DataGrid"/>
+        <Events>
+            <Event  Name="HeaderClick" >
+                <Implementation Class="mx.events::DataGridEvent" Type="headerRelease"/>
+                <Property Name="columnIndex" >
+                    <PropertyType Type="int"/>                   
+                </Property>
+            </Event>
+            <Event  Name="ColumnStretch" >
+                <Implementation Class="mx.events::DataGridEvent" Type="columnStretch"/>
+                <Property Name="columnIndex" >
+                    <PropertyType Type="int"/>                   
+                </Property>
+                <Property Name="localX" >
+                    <PropertyType Type="Number"/>                   
+                </Property>
+            </Event>
+            <Event  Name="HeaderShift" >
+                <Implementation Class="mx.events::IndexChangedEvent" Type="headerShift"/>
+                <Property Name="newIndex" >
+                    <PropertyType Type="int"/>                
+                </Property>
+                <Property Name="oldIndex" >
+                    <PropertyType Type="int"/>                
+                </Property>
+                <Property Name="triggerEvent"  DefaultValue="1">
+                  <PropertyType Type="Enumeration" ListOfValuesName="FlexTriggerEventValues" Codec="event"/>                </Property>
+            </Event>
+			<Event  Name="Edit" >
+				<Implementation Class="mx.events::DataGridEvent" Type="itemEditBegin"/>
+				<Property Name="itemRenderer" >
+				  <PropertyType Type="String" Codec="automationObject"/>
+				  				</Property>
+				<Property Name="rowIndex" >
+				  <PropertyType Type="int"/>
+				  				</Property>
+				<Property Name="columnIndex" >
+				  <PropertyType Type="int"/>
+		          				</Property>
+			 </Event>
+        </Events>
+        <Properties>
+            <Property Name="editable" ForVerification="true"><PropertyType Type="Boolean" /></Property>
+            <Property Name="columnNames" ForVerification="true"><PropertyType Type="String" Codec="object[]"/></Property>
+            <Property Name="minColumnWidth" ForVerification="true"><PropertyType Type="Number"/></Property>
+            <Property Name="resizableColumns" ForVerification="true"><PropertyType Type="Boolean"/></Property>
+            <Property Name="sortableColumns" ForVerification="true"><PropertyType Type="Boolean"/></Property>
+            <Property Name="headerColors" ForVerification="true"><PropertyType Type="String" Codec="color[]"/></Property>
+            <Property Name="headerStyle" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="vGridLineColor" ForVerification="true"><PropertyType Type="String" Codec="color"/></Property>
+            <Property Name="vGridLines" ForVerification="true"><PropertyType Type="Boolean"/></Property>
+        </Properties>
+    </ClassInfo>
+	
+	<ClassInfo Name="FlexAdvancedListBase" Extends="FlexScrollBase" SupportsTabularData="true">
+        <Implementation Class="mx.controls::AdvancedListBase"/>
+        <Events>
+			<Event  Name="Select" >
+                <Implementation Class="mx.automation.events::ListItemSelectEvent" Type="select"/>
+                <Property Name="itemRenderer" >
+                  <PropertyType Type="String" Codec="automationObject"/>                   
+                </Property>
+                <Property Name="triggerEvent"  DefaultValue="1">
+                  <PropertyType Type="Enumeration" ListOfValuesName="FlexTriggerEventValues" Codec="event"/>                   
+                </Property>
+                <Property Name="keyModifier"  DefaultValue="0">
+                    <PropertyType Type="Enumeration" ListOfValuesName="FlexKeyModifierValues" Codec="keyModifier"/>
+				</Property>
+            </Event>
+        </Events>
+    </ClassInfo>
+    
+	<ClassInfo Name="FlexAdvancedDataGridBase" Extends="FlexAdvancedListBase" SupportsTabularData="true">
+        <Implementation Class="mx.controls::AdvancedDataGridBase"/>
+        <Events>
+        </Events>
+    </ClassInfo>
+    
+	<ClassInfo Name="FlexAdvancedDataGridBaseEx" Extends="FlexAdvancedDataGridBase" SupportsTabularData="true">
+        <Implementation Class="mx.controls::AdvancedDataGridBaseEx"/>
+        <Events>
+        </Events>
+    </ClassInfo>
+	
+    <ClassInfo Name="FlexAdvancedDataGrid" Extends="FlexAdvancedDataGridBaseEx" SupportsTabularData="true">
+        <Implementation Class="mx.controls::AdvancedDataGrid"/>
+        <Events>
+			<Event  Name="Select" >
+                <Implementation Class="mx.automation.events::ListItemSelectEvent" Type="select"/>
+                <Property Name="itemRenderer" >
+					<PropertyType Type="String" Codec="automationObject"/>                   
+                </Property>
+                <Property Name="triggerEvent"  DefaultValue="1">
+					<PropertyType Type="Enumeration" ListOfValuesName="FlexTriggerEventValues" Codec="event"/>                   
+                </Property>
+                <Property Name="keyModifier"  DefaultValue="0">
+                    <PropertyType Type="Enumeration" ListOfValuesName="FlexKeyModifierValues" Codec="keyModifier"/>
+				</Property>
+            </Event>
+			<Event  Name="ItemOpen" >
+                <Implementation Class="mx.events::AdvancedDataGridEvent" Type="itemOpen"/>
+                <Property Name="itemRenderer" >
+					<PropertyType Type="String" Codec="automationObject"/>                   
+                </Property>
+                <Property Name="triggerEvent"  DefaultValue="1">
+					<PropertyType Type="Enumeration" ListOfValuesName="FlexTriggerEventValues" Codec="event"/>                   
+                </Property>
+                <Property Name="keyModifier"  DefaultValue="0">
+                    <PropertyType Type="Enumeration" ListOfValuesName="FlexKeyModifierValues" Codec="keyModifier"/>
+				</Property>
+            </Event>
+			<Event  Name="ItemClose" >
+                <Implementation Class="mx.events::AdvancedDataGridEvent" Type="itemClose"/>
+                <Property Name="itemRenderer" >
+					<PropertyType Type="String" Codec="automationObject"/>                   
+                </Property>
+                <Property Name="triggerEvent"  DefaultValue="1">
+					<PropertyType Type="Enumeration" ListOfValuesName="FlexTriggerEventValues" Codec="event"/>                   
+                </Property>
+                <Property Name="keyModifier"  DefaultValue="0">
+                    <PropertyType Type="Enumeration" ListOfValuesName="FlexKeyModifierValues" Codec="keyModifier"/>
+				</Property>
+            </Event>
+            <Event Name="SelectIndex" >
+                 <Implementation Class="mx.automation.events::ListItemSelectEvent" Type="selectIndex"/>
+                 <Property Name="itemIndex"><PropertyType Type="int"/></Property>
+                 <Property Name="triggerEvent" DefaultValue="1">
+                   <PropertyType Type="Enumeration" ListOfValuesName="FlexTriggerEventValues" Codec="event"/>     
+                   </Property>
+
+             </Event>
+
+        </Events>
+        <Properties>
+            
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexList" Extends="FlexListBase" SupportsTabularData="true">
+        <Implementation Class="mx.controls::List"/>
+        <Implementation Class="mx.controls::HorizontalList"/>
+        <Implementation Class="mx.controls::TileList"/>
+        <Events>
+		  <Event  Name="Edit" >
+			<Implementation Class="mx.events::ListEvent" Type="itemEditBegin"/>
+			<Property Name="itemRenderer" >
+			  <PropertyType Type="String" Codec="automationObject"/>
+			  			</Property>
+			<Property Name="rowIndex" >
+			  <PropertyType Type="int"/>
+			  			</Property>
+			<Property Name="columnIndex" >
+			  <PropertyType Type="int"/>
+	          			</Property>
+		  </Event>
+        </Events>
+        <Properties>
+        </Properties>
+    </ClassInfo>
+    
+    <ClassInfo Name="FlexHorizontalList" Extends="FlexList" SupportsTabularData="true">
+        <Implementation Class="mx.controls::HorizontalList"/>
+        <Events>
+        </Events>
+        <Properties>
+        </Properties>
+    </ClassInfo>
+    
+
+    
+    <ClassInfo Name="FlexTileList" Extends="FlexList" SupportsTabularData="true">
+                        <Implementation Class="mx.controls::List"/>
+        <Implementation Class="mx.controls::TileList"/>
+        <Events>
+        </Events>
+        <Properties>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexTree" Extends="FlexListBase" SupportsTabularData="true">
+                        <Implementation Class="mx.controls::Tree"/>
+        <Events>
+            <Event Name="DragDrop" >
+                <Implementation Class="mx.automation.events::AutomationDragEvent" Type="dragDrop"/>
+                <Property Name="action" >
+                  <PropertyType Type="String"/>                
+                </Property>
+                <Property Name="dropParent"  DefaultValue="">
+                  <PropertyType Type="String" Codec="automationObject"/>                   
+                </Property>
+                <Property Name="draggedItem"  DefaultValue="">
+                  <PropertyType Type="String" Codec="automationObject"/>                   
+                </Property>
+                <Property Name="keyModifier"  DefaultValue="0">
+                    <PropertyType Type="Enumeration" ListOfValuesName="FlexKeyModifierValues" Codec="keyModifier"/>
+                </Property>
+            </Event>
+            <Event Name="Open" >
+                <Implementation Class="mx.events::TreeEvent" Type="itemOpen"/>
+                <Property Name="itemRenderer" >
+                  <PropertyType Type="String" Codec="automationObject"/>                </Property>
+                <Property Name="triggerEvent"  DefaultValue="1">
+                    <PropertyType Type="Enumeration" ListOfValuesName="FlexTriggerEventValues" Codec="event"/>                </Property>
+            </Event>
+            <Event Name="Close" >
+                <Implementation Class="mx.events::TreeEvent" Type="itemClose"/>
+                <Property Name="itemRenderer" >
+                  <PropertyType Type="String" Codec="automationObject"/>                </Property>
+                <Property Name="triggerEvent"  DefaultValue="1">
+                    <PropertyType Type="Enumeration" ListOfValuesName="FlexTriggerEventValues" Codec="event"/>                </Property>
+            </Event>
+        </Events>
+        <Properties>
+            <Property Name="editable" ForVerification="true"><PropertyType Type="Boolean"/></Property>
+            <Property Name="depthColors" ForVerification="true"><PropertyType Type="String" Codec="color[]"/></Property>
+            <Property Name="indentation" ForVerification="true"><PropertyType Type="Number"/></Property>
+            <Property Name="textDisabledColor" ForVerification="true"><PropertyType Type="String" Codec="color"/></Property>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexApplication" Extends="FlexBox" SupportsTabularData="true">
+                        <Implementation Class="mx.core::Application"/>
+        <Events>
+        </Events>
+        <Properties>
+            <Property Name="url" ForVerification="true" ForDefaultVerification="true"><PropertyType Type="String"/></Property>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexScrollBar" Extends="FlexObject">
+                        <Implementation Class="mx.controls::HScrollBar"/>
+        <Implementation Class="mx.controls::VScrollBar"/>
+        <Events>
+            <Event  Name="Scroll" >
+            <Implementation Class="mx.events::ScrollEvent" Type="scroll"/>
+                <Property Name="position" >
+                    <PropertyType Type="int"/>                   
+                </Property>
+                <Property Name="direction" >
+                    <PropertyType Type="Enumeration" ListOfValuesName="FlexScrollDirectionValues" Codec="scrollDirection"/>                   
+                </Property>
+                <Property Name="detail"  DefaultValue="null">
+                    <PropertyType Type="Enumeration" ListOfValuesName="FlexScrollDetailValues" Codec="scrollDetail"/>                   
+                </Property>
+            </Event>
+        </Events>
+        <Properties>
+            <Property Name="lineScrollSize" ForVerification="true"><PropertyType Type="Number"/></Property>
+            <Property Name="pageScrollSize" ForVerification="true"><PropertyType Type="Number"/></Property>
+            <Property Name="scrollPosition" ForVerification="true" ForDefaultVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="trackColors" ForVerification="true"><PropertyType Type="String" Codec="color[]"/></Property>
+            <Property Name="fillColors" ForVerification="true"><PropertyType Type="String" Codec="color[]"/></Property>
+        </Properties>
+    </ClassInfo>
+    
+    <ClassInfo Name="FlexHScrollBar" Extends="FlexScrollBar">
+        <Implementation Class="mx.controls::HScrollBar"/>
+        <Events>
+        </Events>
+        <Properties>
+        </Properties>
+    </ClassInfo>
+    
+    <ClassInfo Name="FlexVScrollBar" Extends="FlexScrollBar">
+        <Implementation Class="mx.controls::VScrollBar"/>
+        <Events>
+        </Events>
+        <Properties>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexNumericStepper" Extends="FlexObject">
+                        <Implementation Class="mx.controls::NumericStepper"/>
+        <Events>
+            <Event Name="Change" >
+                <Implementation Class="mx.events::NumericStepperEvent" Type="change"/>
+                <Property Name="value" >
+                    <PropertyType Type="Number"/>                </Property>
+            </Event>
+            <Event Name="Input" >
+            <Implementation Class="flash.events::TextEvent" Type="textInput"/>
+                <Property Name="text" >
+                  <PropertyType Type="String"/>                </Property>
+            </Event>
+            <Event Name="SelectText" >
+                <Implementation Class="mx.automation.events::TextSelectionEvent" Type="textSelectionChange"/>
+                <Property Name="beginIndex" >
+                    <PropertyType Type="int"/>                </Property>
+                <Property Name="endIndex" >
+                    <PropertyType Type="int"/>                </Property>
+            </Event>
+            <Event Name="Type" >
+                <Implementation Class="flash.events::KeyboardEvent" Type="keyPress"/>
+                <Property Name="keyCode" >
+                    <PropertyType Type="String" Codec="keyCode"/>                </Property>
+                <Property Name="keyModifier"  DefaultValue="0">
+                    <PropertyType Type="Enumeration" ListOfValuesName="FlexKeyModifierValues" Codec="keyModifier"/>
+                                    </Property>
+            </Event>
+        </Events>
+        <Properties>
+            <Property Name="value" ForVerification="true" ForDefaultVerification="true"><PropertyType Type="Number"/></Property>
+            <Property Name="minimum" ForVerification="true"><PropertyType Type="Number"/></Property>
+            <Property Name="maximum" ForVerification="true"><PropertyType Type="Number"/></Property>
+            <Property Name="nextValue" ForVerification="true"><PropertyType Type="Number"/></Property>
+            <Property Name="previousValue" ForVerification="true"><PropertyType Type="Number"/></Property>
+            <Property Name="stepSize" ForVerification="true"><PropertyType Type="Number"/></Property>
+			<Property Name="color" ForVerification="true"><PropertyType Type="int" Codec="color"/></Property>
+            <Property Name="disabledColor" ForVerification="true"><PropertyType Type="String" Codec="color"/></Property>
+            <Property Name="fillColors" ForVerification="true"><PropertyType Type="String" Codec="color[]"/></Property>
+            <Property Name="fontFamily" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="fontSize" ForVerification="true"><PropertyType Type="Number"/></Property>
+            <Property Name="fontStyle" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="fontWeight" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="textAlign" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="textDecoration" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="textIndent" ForVerification="true"><PropertyType Type="int"/></Property>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexVideoDisplay" Extends="FlexObject">
+                        <Implementation Class="mx.controls::VideoDisplay"/>
+        <Events>
+        </Events>
+        <Properties>
+            <Property Name="source" ForVerification="true" ForDefaultVerification="true"><PropertyType Type="String" Codec="asset"/></Property>
+            <Property Name="totalTime" ForVerification="true" ForDefaultVerification="false"><PropertyType Type="Number"/></Property>
+            <Property Name="volume" ForVerification="true" ForDefaultVerification="false"><PropertyType Type="Number"/></Property>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexSWFLoader" Extends="FlexObject">
+                        <Implementation Class="mx.controls::SWFLoader"/>
+        <Events>
+        </Events>
+        <Properties>
+            <Property Name="source" ForVerification="true" ForDefaultVerification="true"><PropertyType Type="String" Codec="asset"/></Property>
+        </Properties>
+    </ClassInfo>
+	
+    <ClassInfo Name="FlexImage" Extends="FlexSWFLoader">
+                        <Implementation Class="mx.controls::Image"/>
+        <Events>
+        </Events>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexSlider" Extends="FlexObject">
+                        <Implementation Class="mx.controls::VSlider"/>
+        <Implementation Class="mx.controls::HSlider"/>
+        <Events>
+            <Event  Name="Change" >
+                <Implementation Class="mx.events::SliderEvent" Type="change"/>
+                <Property Name="value" >
+                    <PropertyType Type="Number"/>                   
+                </Property>
+                <Property Name="thumbIndex"  DefaultValue="0">
+                    <PropertyType Type="int"/>                </Property>
+                <Property Name="clickTarget"  DefaultValue="thumb">
+                    <PropertyType Type="String"/>                   
+                </Property>
+                <Property Name="triggerEvent"  DefaultValue="1">
+                    <PropertyType Type="Enumeration" ListOfValuesName="FlexTriggerEventValues" Codec="event"/>                   
+                </Property>
+                <Property Name="keyCode"  DefaultValue="">
+                    <PropertyType Type="String" Codec="keyCode"/>                </Property>
+            </Event>
+        </Events>
+        <Properties>
+            <Property Name="direction" ForDescription="true" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="value" ForVerification="true"><PropertyType Type="Number"/></Property>
+            <Property Name="values" ForVerification="true" ForDefaultVerification="true"><PropertyType Type="String" Codec="object[]"/></Property>
+            <Property Name="maximum" ForVerification="true"><PropertyType Type="Number"/></Property>
+            <Property Name="minimum" ForVerification="true"><PropertyType Type="Number"/></Property>
+            <Property Name="thumbCount" ForVerification="true"><PropertyType Type="int"/></Property>
+            <Property Name="labels" ForVerification="true"><PropertyType Type="String" Codec="object[]"/></Property>
+            <Property Name="liveDragging" ForVerification="true"><PropertyType Type="Boolean"/></Property>
+            <Property Name="toolTipShow" ForVerification="true"><PropertyType Type="Boolean"/></Property>
+            <Property Name="snapInterval" ForVerification="true"><PropertyType Type="Number"/></Property>
+            <Property Name="fillColors" ForVerification="true"><PropertyType Type="String" Codec="colors[]"/></Property>
+            <Property Name="labelStyleName" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="tickColor" ForVerification="true"><PropertyType Type="String" Codec="color"/></Property>
+            <Property Name="tickLength" ForVerification="true"><PropertyType Type="Number"/></Property>
+            <Property Name="tickThickness" ForVerification="true"><PropertyType Type="Number"/></Property>
+            <Property Name="dataTipPrecision" ForVerification="true"><PropertyType Type="Number"/></Property>
+            <Property Name="trackColors" ForVerification="true"><PropertyType Type="String" Codec="color[]"/></Property>
+        </Properties>
+    </ClassInfo>
+    
+    <ClassInfo Name="FlexHSlider" Extends="FlexSlider">
+        <Implementation Class="mx.controls::HSlider"/>
+        <Events>
+        </Events>
+        <Properties>
+        </Properties>
+    </ClassInfo>
+    
+    <ClassInfo Name="FlexVSlider" Extends="FlexSlider">
+                        <Implementation Class="mx.controls::VSlider"/>
+        <Events>
+        </Events>
+        <Properties>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexComboBase" Extends="FlexObject">
+                        <Implementation Class="mx.controls::ComboBase"/>
+        <Events>
+            <Event Name="Open" >
+                <Implementation Class="mx.events::DropdownEvent" Type="open"/>
+                <Property Name="triggerEvent"  DefaultValue="1">
+                    <PropertyType Type="Enumeration" ListOfValuesName="FlexTriggerEventValues" Codec="event"/>                   
+                </Property>
+            </Event>
+            <Event Name="Close" >
+                <Implementation Class="mx.events::DropdownEvent" Type="close"/>
+                <Property Name="triggerEvent"  DefaultValue="1">
+                  <PropertyType Type="Enumeration" ListOfValuesName="FlexTriggerEventValues" Codec="event"/>                   
+                </Property>
+            </Event>
+            <Event Name="Scroll" >
+                <Implementation Class="mx.events::ScrollEvent" Type="scroll"/>
+                <Property Name="position" >
+                    <PropertyType Type="int"/>                   
+                </Property>
+                <Property Name="direction" >
+                    <PropertyType Type="Enumeration" ListOfValuesName="FlexScrollDirectionValues" Codec="scrollDirection"/>                   
+                </Property>
+                <Property Name="detail"  DefaultValue="null">
+                    <PropertyType Type="Enumeration" ListOfValuesName="FlexScrollDetailValues" Codec="scrollDetail"/>                </Property>
+            </Event>
+            <Event Name="Input" >
+                <Implementation Class="flash.events::TextEvent" Type="textInput"/>
+                <Property Name="text" >
+                  <PropertyType Type="String"/>                </Property>
+            </Event>
+            <Event Name="SelectText" >
+                <Implementation Class="mx.automation.events::TextSelectionEvent" Type="textSelectionChange"/>
+                <Property Name="beginIndex" >
+                    <PropertyType Type="int"/>                </Property>
+                <Property Name="endIndex" >
+                    <PropertyType Type="int"/>                </Property>
+            </Event>
+            <Event Name="Type" >
+                <Implementation Class="flash.events::KeyboardEvent" Type="keyPress"/>
+                <Property Name="keyCode" >
+                    <PropertyType Type="String" Codec="keyCode"/>                </Property>
+                <Property Name="keyModifier"  DefaultValue="0">
+                    <PropertyType Type="Enumeration" ListOfValuesName="FlexKeyModifierValues" Codec="keyModifier"/>
+                                    </Property>
+            </Event>
+        </Events>
+        <Properties>
+            <Property Name="text" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="restrict" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="editable" ForVerification="true"><PropertyType Type="Boolean"/></Property>
+            <Property Name="selectedIndex" ForVerification="true"><PropertyType Type="int"/></Property>
+            <Property Name="horizontalScrollPosition" ForVerification="true"><PropertyType Type="int"/></Property>
+            <Property Name="horizontalScrollPolicy" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="liveScrolling" ForVerification="true"><PropertyType Type="Boolean"/></Property>
+            <Property Name="showScrollTips" ForVerification="true"><PropertyType Type="Boolean"/></Property>
+            <Property Name="verticalScrollPosition" ForVerification="true"><PropertyType Type="int"/></Property>
+            <Property Name="verticalScrollPolicy" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="backgroundAlpha" ForVerification="true"><PropertyType Type="Number"/></Property>
+            <Property Name="backgroundColor" ForVerification="true"><PropertyType Type="String" Codec="color"/></Property>
+            <Property Name="backgroundImage" ForVerification="true"><PropertyType Type="String" Codec="asset"/></Property>
+            <Property Name="backgroundSize" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="color" ForVerification="true"><PropertyType Type="int" Codec="color"/></Property>
+            <Property Name="disabledColor" ForVerification="true"><PropertyType Type="String" Codec="color"/></Property>
+            <Property Name="dropShadowEnabled" ForVerification="true"><PropertyType Type="Boolean"/></Property>
+            <Property Name="fillAlphas" ForVerification="true"><PropertyType Type="String" Codec="object[]"/></Property>
+            <Property Name="fillColors" ForVerification="true"><PropertyType Type="String" Codec="color[]"/></Property>
+            <Property Name="fontFamily" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="fontSize" ForVerification="true"><PropertyType Type="Number"/></Property>
+            <Property Name="fontStyle" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="fontWeight" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="highlightColor" ForVerification="true"><PropertyType Type="String" Codec="color"/></Property>
+            <Property Name="textAlign" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="textDecoration" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="textIndent" ForVerification="true"><PropertyType Type="int"/></Property>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexComboBox" Extends="FlexComboBase" SupportsTabularData="true">
+                        <Implementation Class="mx.controls::ComboBox"/>
+        <Events>
+            <Event Name="Select" >
+                <Implementation Class="mx.automation.events::ListItemSelectEvent" Type="select"/>
+                <Property Name="itemRenderer" >
+                    <PropertyType Type="String" Codec="automationObject"/>
+                                       
+                </Property>
+                <Property Name="triggerEvent"  DefaultValue="1">
+                    <PropertyType Type="Enumeration" ListOfValuesName="FlexTriggerEventValues" Codec="event"/>                   
+                </Property>
+                <Property Name="keyModifier"  DefaultValue="0">
+                    <PropertyType Type="Enumeration" ListOfValuesName="FlexKeyModifierValues" Codec="keyModifier"/>
+                                    </Property>
+            </Event>
+            <Event Name="Type" >
+                <Implementation Class="flash.events::KeyboardEvent" Type="keyPress"/>
+                <Property Name="keyCode" >
+                    <PropertyType Type="String" Codec="keyCode"/>                </Property>
+                <Property Name="keyModifier"  DefaultValue="0">
+                    <PropertyType Type="Enumeration" ListOfValuesName="FlexKeyModifierValues" Codec="keyModifier"/>
+                                    </Property>
+            </Event>
+            <Event Name="Input" >
+                <Implementation Class="flash.events::TextEvent" Type="textInput"/>
+                <Property Name="text" >
+                  <PropertyType Type="String"/>                </Property>
+            </Event>
+        </Events>
+        <Properties>
+            <Property Name="text" ForVerification="true" ForDefaultVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="selectedIndex" ForVerification="true"><PropertyType Type="int" /></Property>
+            <Property Name="editable" ForVerification="true"><PropertyType Type="Boolean" /></Property>
+            <Property Name="alternatingRowColors" ForVerification="true"><PropertyType Type="String" Codec="color[]" /></Property>
+            <Property Name="fillColors" ForVerification="true"><PropertyType Type="String" Codec="color[]"/></Property>
+            <Property Name="rollOverColor" ForVerification="true"><PropertyType Type="Boolean" Codec="color"/></Property>
+            <Property Name="selectionColor" ForVerification="true"><PropertyType Type="Boolean" Codec="color"/></Property>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexDateField" Extends="FlexComboBase" SupportsTabularData="false">
+                        <Implementation Class="mx.controls::DateField"/>
+        <Events>
+            <Event Name="Change" >
+                <Implementation Class="mx.events::CalendarLayoutChangeEvent" Type="change"/>
+                <Property Name="newDate" >
+                    <PropertyType Type="Date" Codec="dateObject"/>                </Property>
+            </Event>
+            <Event Name="Scroll" >
+                <Implementation Class="mx.events::DateChooserEvent" Type="scroll"/>
+                <Property Name="detail" >
+                    <PropertyType Type="Enumeration" ListOfValuesName="FlexDateChooserDetailValues" Codec="dateScrollDetail" />
+                                    </Property>
+            </Event>
+            <Event Name="Type" >
+                <Implementation Class="flash.events::KeyboardEvent" Type="keyPress"/>
+                <Property Name="keyCode" >
+                    <PropertyType Type="String" Codec="keyCode"/>                </Property>
+                <Property Name="keyModifier"  DefaultValue="0">
+                    <PropertyType Type="Enumeration" ListOfValuesName="FlexKeyModifierValues" Codec="keyModifier"/>
+                                    </Property>
+            </Event>
+        </Events>
+        <Properties>
+            <Property Name="selectedDate" ForDefaultVerification="true" ForVerification="true"><PropertyType Type="Date" Codec="dateObject"/></Property>
+            <Property Name="disabledDays" ForVerification="true"><PropertyType Type="String" Codec="object[]" /></Property>
+            <Property Name="disabledRanges" ForVerification="true"><PropertyType Type="String" Codec="object[]" /></Property>
+            <Property Name="displayedMonth" ForVerification="true"><PropertyType Type="Number" /></Property>
+            <Property Name="displayedYear" ForVerification="true"><PropertyType Type="Number" /></Property>
+            <Property Name="firstDayOfWeek" ForVerification="true"><PropertyType Type="Number" /></Property>
+            <Property Name="maxYear" ForVerification="true"><PropertyType Type="Number" /></Property>
+            <Property Name="minYear" ForVerification="true"><PropertyType Type="Number" /></Property>
+            <Property Name="showToday" ForVerification="true"><PropertyType Type="Boolean" /></Property>
+            <Property Name="yearNavigationEnabled" ForVerification="true"><PropertyType Type="Boolean" /></Property>
+            <Property Name="headerColors" ForVerification="true"><PropertyType Type="String" Codec="color[]"/></Property>
+            <Property Name="rollOverColor" ForVerification="true"><PropertyType Type="String" Codec="color" /></Property>
+            <Property Name="todayColor" ForVerification="true"><PropertyType Type="String" Codec="color"/></Property>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexDateChooser" Extends="FlexObject" SupportsTabularData="false">
+                        <Implementation Class="mx.controls::DateChooser"/>
+        <Events>
+            <Event Name="Change" >
+                <Implementation Class="mx.events::CalendarLayoutChangeEvent" Type="change"/>
+                <Property Name="newDate" >
+                    <PropertyType Type="Date" Codec="dateObject"/>                </Property>
+            </Event>
+            <Event Name="Scroll" >
+                <Implementation Class="mx.events::DateChooserEvent" Type="scroll"/>
+                <Property Name="detail" >
+                    <PropertyType Type="Enumeration" ListOfValuesName="FlexDateChooserDetailValues" Codec="dateScrollDetail"/>                </Property>
+            </Event>
+            <Event Name="Type" >
+                <Implementation Class="flash.events::KeyboardEvent" Type="keyPress"/>
+                <Property Name="keyCode" >
+                    <PropertyType Type="String" Codec="keyCode"/>                </Property>
+                <Property Name="keyModifier"  DefaultValue="0">
+                    <PropertyType Type="Enumeration" ListOfValuesName="FlexKeyModifierValues" Codec="keyModifier"/>
+                                    </Property>
+            </Event>
+        </Events>
+        <Properties>
+            <Property Name="selectedDate" ForDefaultVerification="true" ForVerification="true"><PropertyType Type="Date" Codec="dateObject"/></Property>
+            <Property Name="disabledDays" ForVerification="true"><PropertyType Type="String" Codec="object[]" /></Property>
+            <Property Name="disabledRanges" ForVerification="true"><PropertyType Type="String" Codec="dateRange[]" /></Property>
+            <Property Name="allowDisjointSelection" ForVerification="true"><PropertyType Type="Boolean" /></Property>
+            <Property Name="displayedMonth" ForVerification="true"><PropertyType Type="Number" /></Property>
+            <Property Name="displayedYear" ForVerification="true"><PropertyType Type="Number" /></Property>
+            <Property Name="firstDayOfWeek" ForVerification="true"><PropertyType Type="Number" /></Property>
+            <Property Name="maxYear" ForVerification="true"><PropertyType Type="Number" /></Property>
+            <Property Name="minYear" ForVerification="true"><PropertyType Type="Number" /></Property>
+            <Property Name="allowMultipleSelection" ForVerification="true"><PropertyType Type="Boolean" /></Property>
+            <Property Name="selectedRanges" ForDefaultVerification="true" ForVerification="true"><PropertyType Type="String" Codec="dateRange[]" /></Property>
+            <Property Name="showToday" ForVerification="true"><PropertyType Type="Boolean" /></Property>
+            <Property Name="yearNavigationEnabled" ForVerification="true"><PropertyType Type="Boolean" /></Property>
+            <Property Name="headerColors" ForVerification="true"><PropertyType Type="String" Codec="color[]"/></Property>
+            <Property Name="rollOverColor" ForVerification="true"><PropertyType Type="String" Codec="color" /></Property>
+            <Property Name="todayColor" ForVerification="true"><PropertyType Type="String" Codec="color"/></Property>
+            <Property Name="color" ForVerification="true"><PropertyType Type="String" Codec="color"/></Property>
+            <Property Name="disabledColor" ForVerification="true"><PropertyType Type="String" Codec="color"/></Property>
+            <Property Name="fillColors" ForVerification="true"><PropertyType Type="String" Codec="color[]"/></Property>
+            <Property Name="fontFamily" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="fontSize" ForVerification="true"><PropertyType Type="Number"/></Property>
+            <Property Name="fontStyle" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="fontWeight" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="textAlign" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="textDecoration" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="textIndent" ForVerification="true"><PropertyType Type="int"/></Property>
+            <Property Name="headerColors" ForVerification="true"><PropertyType Type="String" Codec="color[]"/></Property>
+            <Property Name="rollOverColor" ForVerification="true"><PropertyType Type="String" Codec="color"/></Property>
+            <Property Name="selectionColor" ForVerification="true"><PropertyType Type="String" Codec="color"/></Property>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexColorPicker"  Extends="FlexComboBase" SupportsTabularData="false">
+                        <Implementation Class="mx.controls::ColorPicker"/>
+        <Events>
+            <Event Name="Open" >
+                <Implementation Class="mx.events::DropdownEvent" Type="open"/>
+                <Property Name="triggerEvent"  DefaultValue="1">
+                    <PropertyType Type="Enumeration" ListOfValuesName="FlexTriggerEventValues" Codec="event"/>                   
+                </Property>
+            </Event>
+            <Event Name="Close" >
+                <Implementation Class="mx.events::DropdownEvent" Type="close"/>
+                <Property Name="triggerEvent"  DefaultValue="1">
+                    <PropertyType Type="Enumeration" ListOfValuesName="FlexTriggerEventValues" Codec="event"/>                   
+                </Property>
+            </Event>
+            <Event Name="Change" >
+                <Implementation Class="mx.events::ColorPickerEvent" Type="change"/>
+                <Property Name="color" >
+                    <PropertyType Type="String" Codec="color"/>                </Property>
+            </Event>
+        </Events>
+        <Properties>
+            <Property Name="selectedColor" ForDefaultVerification="true" ForVerification="true"><PropertyType Type="int" Codec="color"/></Property>
+            <Property Name="showTextField" ForVerification="true"><PropertyType Type="Boolean" /></Property>
+            <Property Name="columnCount" ForVerification="true"><PropertyType Type="int" /></Property>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexTextArea" Extends="FlexScrollBase">
+                        <Implementation Class="mx.controls::TextArea"/>
+        <Implementation Class="mx.controls::TextInput"/>
+        <Events>
+            <Event Name="Input" >
+                <Implementation Class="flash.events::TextEvent" Type="textInput"/>
+                <Property Name="text" >
+                  <PropertyType Type="String"/>                </Property>
+            </Event>
+            <Event Name="SelectText" >
+                <Implementation Class="mx.automation.events::TextSelectionEvent" Type="textSelectionChange"/>
+                <Property Name="beginIndex" >
+                    <PropertyType Type="int"/>                </Property>
+                <Property Name="endIndex" >
+                    <PropertyType Type="int"/>                </Property>
+            </Event>
+            <Event Name="Type" >
+                <Implementation Class="flash.events::KeyboardEvent" Type="keyPress"/>
+                <Property Name="keyCode" >
+                    <PropertyType Type="String" Codec="keyCode"/>                </Property>
+                <Property Name="keyModifier"  DefaultValue="0">
+                    <PropertyType Type="Enumeration" ListOfValuesName="FlexKeyModifierValues" Codec="keyModifier"/>
+                                    </Property>
+            </Event>
+            <Event Name="Scroll" >
+                <Implementation Class="mx.events::ScrollEvent" Type="scroll"/>
+                <Property Name="position" >
+                    <PropertyType Type="int"/>                   
+                </Property>
+                <Property Name="direction" >
+                    <PropertyType Type="Enumeration" ListOfValuesName="FlexScrollDirectionValues" Codec="scrollDirection"/>                   
+                </Property>
+                <Property Name="detail"  DefaultValue="null">
+                    <PropertyType Type="Enumeration" ListOfValuesName="FlexScrollDetailValues" Codec="scrollDetail"/>                   
+                </Property>
+            </Event>
+        </Events>
+        <Properties>
+            <Property Name="editable" ForDescription="true"><PropertyType Type="Boolean"/></Property>
+            <Property Name="displayAsPassword" ForDescription="true"><PropertyType Type="Boolean"/></Property>
+            <Property Name="text" ForDefaultVerification="true" ForVerification="true"><PropertyType Type="String"/></Property>
+			<Property Name="color" ForVerification="true"><PropertyType Type="int" Codec="color"/></Property>
+            <Property Name="horizontalScrollPolicy" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="htmlText" ForDefaultVerification="true" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="length" ForVerification="true"><PropertyType Type="Number"/></Property>
+            <Property Name="maxChars" ForVerification="true"><PropertyType Type="Number"/></Property>
+            <Property Name="restrict" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="selection" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="wordWrap" ForVerification="true"><PropertyType Type="Boolean"/></Property>
+            <Property Name="disabledColor" ForVerification="true"><PropertyType Type="String" Codec="color"/></Property>
+            <Property Name="fontFamily" ForVerification="true">
+            	<PropertyType Type="String"/>
+            	            </Property>
+            <Property Name="fontSize" ForVerification="true">
+            	<PropertyType Type="Number"/>
+            	            </Property>
+            <Property Name="fontStyle" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="fontWeight" ForVerification="true"><PropertyType Type="String"/></Property>
+        </Properties>
+    </ClassInfo>
+    
+    <ClassInfo Name="FlexTextInput" Extends="FlexTextArea">
+        <Implementation Class="mx.controls::TextInput"/>
+        <Events>
+        </Events>
+        <Properties>
+        </Properties>
+    </ClassInfo>
+    
+    <ClassInfo Name="FlexPanel" Extends="FlexContainer" SupportsTabularData="true">
+                        <Implementation Class="mx.containers::Panel"/>
+        <Events>
+        </Events>
+        <Properties>
+            <Property Name="title" ForDefaultVerification="true" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="status" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="dropShadowEnabled" ForVerification="true"><PropertyType Type="Boolean"/></Property>
+            <Property Name="footerColors" ForVerification="true">
+            	<PropertyType Type="String" Codec="color[]"/>
+		                   	</Property>
+            <Property Name="headerColors" ForVerification="true">
+            	<PropertyType Type="String" Codec="color[]"/>
+		                    	</Property>
+            <Property Name="headerHeight" ForVerification="true">
+            	<PropertyType Type="int"/>
+            	            </Property>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexTitleWindow" Extends="FlexPanel"  SupportsTabularData="true">
+                        <Implementation Class="mx.containers::TitleWindow"/>
+        <Events>
+        </Events>
+        <Properties>
+            <Property Name="showCloseButton" ForVerification="true"><PropertyType Type="Boolean"/></Property>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexAlert" Extends="FlexPanel">
+                        <Implementation Class="mx.controls::Alert"/>
+        <Events>
+            <Event Name="Type" >
+                <Implementation Class="flash.events::KeyboardEvent" Type="keyPress"/>
+                <Property Name="keyCode" >
+                    <PropertyType Type="String" Codec="keyCode"/>                </Property>
+                <Property Name="keyModifier"  DefaultValue="0">
+                    <PropertyType Type="Enumeration" ListOfValuesName="FlexKeyModifierValues" Codec="keyModifier"/>
+                                    </Property>
+            </Event>
+        </Events>
+        <Properties>
+            <Property Name="text" ForDefaultVerification="true" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="cancelLabel" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="defaultButtonFlag" ForVerification="true"><PropertyType Type="Number"/></Property>
+            <Property Name="noLabel" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="okLabel" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="yesLabel" ForVerification="true"><PropertyType Type="String"/></Property>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexDividedBox" Extends="FlexBox"  SupportsTabularData="true">
+                        <Implementation Class="mx.containers::DividedBox"/>
+        <Events>
+            <Event  Name="Pressed" >
+                <Implementation Class="mx.events::DividerEvent" Type="dividerPress"/>
+                <Property Name="dividerIndex" >
+                    <PropertyType Type="int"/>                   
+                </Property>
+                <Property Name="delta" >
+                    <PropertyType Type="Number"/>                   
+                </Property>
+            </Event>
+            <Event  Name="Dragged" >
+                <Implementation Class="mx.events::DividerEvent" Type="dividerDrag"/>
+                <Property Name="dividerIndex" >
+                    <PropertyType Type="int"/>                   
+                </Property>
+                <Property Name="delta" >
+                    <PropertyType Type="Number"/>                   
+                </Property>
+            </Event>
+            <Event  Name="Released" >
+                <Implementation Class="mx.events::DividerEvent" Type="dividerRelease"/>
+                <Property Name="dividerIndex" >
+                    <PropertyType Type="int"/>                   
+                </Property>
+                <Property Name="delta" >
+                    <PropertyType Type="Number"/>                   
+                </Property>
+            </Event>
+        </Events>
+        <Properties>
+            <Property Name="resizeToContent" ForVerification="true"><PropertyType Type="Boolean"/></Property>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexMenu" Extends="FlexObject" SupportsTabularData="true">
+                        <Implementation Class="mx.controls::Menu"/>
+        <Events>
+            <Event Name="Type" >
+                <Implementation Class="flash.events::KeyboardEvent" Type="keyPress"/>
+                <Property Name="keyCode" >
+                    <PropertyType Type="String" Codec="keyCode"/>                </Property>
+                <Property Name="keyModifier"  DefaultValue="0">
+                    <PropertyType Type="Enumeration" ListOfValuesName="FlexKeyModifierValues" Codec="keyModifier"/>
+                                    </Property>
+            </Event>
+            <Event  Name="Show" >
+                <Implementation Class="mx.events::MenuEvent" Type="menuShow"/>
+                <Property Name="itemRenderer" >
+                    <PropertyType Type="String" Codec="automationObject"/>                </Property>
+            </Event>
+            <Event  Name="Hide" >
+                <Implementation Class="mx.events::MenuEvent" Type="menuHide"/>
+            </Event>
+            <Event  Name="Select" >
+                <Implementation Class="mx.events::MenuEvent" Type="itemClick"/>
+                <Property Name="itemRenderer" >
+                    <PropertyType Type="String" Codec="automationObject"/>                   
+                </Property>
+            </Event>
+        </Events>
+        <Properties>
+            <Property Name="rowCount" ForDefaultVerification="true" ForVerification="true"><PropertyType Type="int"/></Property>
+            <Property Name="selectedIndex" ForVerification="true"><PropertyType Type="int"/></Property>
+            <Property Name="alternatingRowColors" ForVerification="true"><PropertyType Type="String" Codec="color[]"/></Property>
+            <Property Name="rollOverColor" ForVerification="true"><PropertyType Type="String" Codec="color[]"/></Property>
+            <Property Name="selectionColor" ForVerification="true"><PropertyType Type="String" Codec="color[]"/></Property>
+            <Property Name="textRollOverColor" ForVerification="true"><PropertyType Type="String" Codec="color[]"/></Property>
+            <Property Name="textSelectedColor" ForVerification="true"><PropertyType Type="String" Codec="color[]"/></Property>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexMenuBar" Extends="FlexObject" SupportsTabularData="true">
+                        <Implementation Class="mx.controls::MenuBar"/>
+        <Events>
+            <Event Name="Type" >
+                <Implementation Class="flash.events::KeyboardEvent" Type="keyPress"/>
+                <Property Name="keyCode" >
+                    <PropertyType Type="String" Codec="keyCode"/>                </Property>
+                <Property Name="keyModifier"  DefaultValue="0">
+                    <PropertyType Type="Enumeration" ListOfValuesName="FlexKeyModifierValues" Codec="keyModifier"/>
+                                    </Property>
+            </Event>
+            <Event  Name="Show" >
+                <Implementation Class="mx.automation.events::MenuShowEvent" Type="menuShow"/>
+                <Property Name="itemRenderer" >
+                    <PropertyType Type="String" Codec="automationObject"/>                </Property>
+            </Event>
+            <Event  Name="Hide" >
+                <Implementation Class="mx.events::MenuEvent" Type="menuHide"/>
+            </Event>
+        </Events>
+        <Properties>
+            <Property Name="numChildren" ForDefaultVerification="true" ForVerification="true"><PropertyType Type="int"/>
+		                    </Property>
+            <Property Name="selectedIndex" ForVerification="true"><PropertyType Type="Number" /></Property>
+            <Property Name="backgroundColor" ForVerification="true"><PropertyType Type="String" Codec="color"/></Property>
+            <Property Name="color" ForVerification="true"><PropertyType Type="String" Codec="color" /></Property>
+            <Property Name="disabledColor" ForVerification="true"><PropertyType Type="String" Codec="color" /></Property>
+            <Property Name="fillColors" ForVerification="true"><PropertyType Type="String" Codec="color[]" /></Property>
+            <Property Name="fontFamily" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="fontSize" ForVerification="true"><PropertyType Type="Number"/></Property>
+            <Property Name="fontStyle" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="fontWeight" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="textAlign" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="textDecoration" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="rollOverColor" ForVerification="true"><PropertyType Type="String" Codec="color"/></Property>
+            <Property Name="selectionColor" ForVerification="true"><PropertyType Type="String" Codec="color"/></Property>
+            <Property Name="textIndent" ForVerification="true"><PropertyType Type="int"/></Property>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexRepeater" GenericTypeID="list" SupportsTabularData="true">
+                <Implementation Class="mx.core::Repeater"/>
+        <Properties>
+            <Property Name="automationName" ForDescription="true"><PropertyType Type="String"/></Property>
+            <Property Name="id" ForDescription="true" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="className" ForDescription="true">
+            	<PropertyType Type="String"/>
+		                    </Property>
+            <Property Name="automationIndex" ForDescription="true"><PropertyType Type="String"/></Property>
+            <Property Name="count" ForDescription="true" ForVerification="true" ForDefaultVerification="true"><PropertyType Type="String"/></Property>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexLabel" Extends="FlexObject">
+                        <Implementation Class="mx.controls::Label"/>
+        <Events>
+            <Event Name="Click" >
+            <Implementation Class="flash.events::MouseEvent" Type="click"/>
+                <Property Name="ctrlKey"  DefaultValue="false">
+                  <PropertyType Type="Boolean"/>                </Property>
+                <Property Name="altKey"  DefaultValue="false">
+                  <PropertyType Type="Boolean"/>                </Property>
+                <Property Name="shiftKey"  DefaultValue="false">
+                  <PropertyType Type="Boolean"/>                </Property>
+            </Event>
+        </Events>
+        <Properties>
+            <Property Name="text" ForVerification="true" ForDefaultVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="htmlText" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="color" ForVerification="true"><PropertyType Type="String" Codec="color"/></Property>
+            <Property Name="disabledColor" ForVerification="true"><PropertyType Type="String" Codec="color"/></Property>
+            <Property Name="fontFamily" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="fontSize" ForVerification="true"><PropertyType Type="Number"/></Property>
+            <Property Name="fontStyle" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="fontWeight" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="textAlign" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="textDecoration" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="textIndent" ForVerification="true"><PropertyType Type="int"/></Property>
+        </Properties>
+    </ClassInfo>
+    
+    <ClassInfo Name="FlexText" Extends="FlexLabel">
+                        <Implementation Class="mx.controls::Text"/>
+        <Events>
+        </Events>
+        <Properties>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexRule"  Extends="FlexObject">
+                        <Implementation Class="mx.controls::HRule"/>
+        <Implementation Class="mx.controls::VRule"/>
+        <Events>
+        </Events>
+        <Properties>
+            <Property Name="color" ForVerification="true" ForDefaultVerification="true"><PropertyType Type="String" Codec="color"/></Property>
+            <Property Name="strokeWidth" ForVerification="true"><PropertyType Type="Number" /></Property>
+        </Properties>
+    </ClassInfo>
+    
+    <ClassInfo Name="FlexHRule"  Extends="FlexRule">
+        <Implementation Class="mx.controls::HRule"/>
+        <Events>
+        </Events>
+        <Properties>
+        </Properties>
+    </ClassInfo>
+    
+    <ClassInfo Name="FlexVRule"  Extends="FlexRule">
+        <Implementation Class="mx.controls::VRule"/>
+        <Events>
+        </Events>
+        <Properties>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexFormItem"  Extends="FlexContainer">
+                        <Implementation Class="mx.containers::FormItem"/>
+        <Events>
+        </Events>
+        <Properties>
+            <Property Name="horizontalAlign" ForVerification="true"><PropertyType Type="String" /></Property>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexViewStack" Extends="FlexContainer" SupportsTabularData="true">
+                        <Implementation Class="mx.containers::ViewStack"/>
+        <Events>
+            <Event Name="Type" >
+                <Implementation Class="flash.events::KeyboardEvent" Type="keyPress"/>
+                <Property Name="keyCode" >
+                    <PropertyType Type="String" Codec="keyCode"/>                </Property>
+                <Property Name="keyModifier"  DefaultValue="0">
+                    <PropertyType Type="Enumeration" ListOfValuesName="FlexKeyModifierValues" Codec="keyModifier"/>
+                                    </Property>
+            </Event>
+        </Events>
+        <Properties>
+            <Property Name="selectedIndex" ForVerification="true"><PropertyType Type="int"/></Property>
+            <Property Name="selectedChild" ForDefaultVerification="true" ForVerification="true">
+            	<PropertyType Type="String" Codec="automationObject"/>
+		                    </Property>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexTabNavigator" Extends="FlexViewStack" SupportsTabularData="true">
+                        <Implementation Class="mx.containers::TabNavigator"/>
+        <Events>
+            <Event  Name="Change" >
+                <Implementation Class="mx.events::ItemClickEvent" Type="itemClick"/>
+                <Property Name="relatedObject" >
+                  <PropertyType Type="String" Codec="tab"/>                </Property>
+            </Event>
+        </Events>
+        <Properties>
+            <Property Name="horizontalAlign" ForVerification="true"><PropertyType Type="String" /></Property>
+            <Property Name="horizontalGap" ForVerification="true"><PropertyType Type="Number" /></Property>
+            <Property Name="tabHeight" ForVerification="true"><PropertyType Type="Number" /></Property>
+            <Property Name="tabWidth" ForVerification="true"><PropertyType Type="Number" /></Property>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexNavBar" Extends="FlexBox" SupportsTabularData="true">
+                        <Implementation Class="mx.controls::NavBar"/>
+        <Events>
+            <Event Name="Change" >
+                <Implementation Class="mx.events::ItemClickEvent" Type="itemClick"/>
+                <Property Name="relatedObject" >
+                  <PropertyType Type="String" Codec="automationObject"/>                </Property>
+            </Event>
+            <Event Name="Type" >
+                <Implementation Class="flash.events::KeyboardEvent" Type="keyPress"/>
+                <Property Name="keyCode" >
+                    <PropertyType Type="String" Codec="keyCode"/>                </Property>
+                <Property Name="keyModifier"  DefaultValue="0">
+                    <PropertyType Type="Enumeration" ListOfValuesName="FlexKeyModifierValues" Codec="keyModifier"/>
+                                    </Property>
+            </Event>
+        </Events>
+        <Properties>
+            <Property Name="direction" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="selectedIndex" ForDefaultVerification="true" ForVerification="true"><PropertyType Type="int"/></Property>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexLinkBar" Extends="FlexNavBar" SupportsTabularData="true">
+                        <Implementation Class="mx.controls::LinkBar"/>
+        <Events>
+        </Events>
+        <Properties>
+            <Property Name="selectedIndex" ForVerification="true"><PropertyType Type="int" /></Property>
+            <Property Name="numChildren" ForDefaultVerification="true" ForVerification="true"><PropertyType Type="int" /></Property>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexButtonBar" Extends="FlexNavBar" SupportsTabularData="true">
+                        <Implementation Class="mx.controls::ButtonBar"/>
+        <Events>
+        </Events>
+        <Properties>
+            <Property Name="selectedIndex" ForVerification="true"><PropertyType Type="String" Codec="automationObject"/>
+		                    </Property>
+            <Property Name="numChildren" ForDefaultVerification="true" ForVerification="true"><PropertyType Type="String" Codec="automationObject"/>
+		                    </Property>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexToggleButtonBar" Extends="FlexButtonBar" SupportsTabularData="true">
+                        <Implementation Class="mx.controls::ToggleButtonBar"/>
+        <Events>
+        </Events>
+        <Properties>
+            <Property Name="selectedIndex" ForDefaultVerification="true" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="numChildren" ForVerification="true"><PropertyType Type="String"/></Property>
+        </Properties>
+    </ClassInfo>
+    
+    <ClassInfo Name="FlexTabBar" Extends="FlexToggleButtonBar" SupportsTabularData="true">
+                        <Implementation Class="mx.controls::TabBar"/>
+        <Events>
+        </Events>
+        <Properties>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexChartBase" Extends="FlexObject" SupportsTabularData="true">
+                        <Implementation Class="mx.charts.chartClasses::ChartBase"/>
+        <Properties>
+            <Property Name="description">
+                <PropertyType Type="String"/>
+		                    </Property>
+            <Property Name="clipContent" ForVerification="true">
+                <PropertyType Type="Boolean"/>
+        		                
+            </Property>
+			<Property Name="dataTipLayerIndex" ForVerification="true">
+                <PropertyType Type="int"/>
+		                    </Property>            
+			<Property Name="dataTipMode" ForVerification="true">
+                <PropertyType Type="String"/>
+		                    </Property>            
+			<Property Name="mouseSensitivity" ForVerification="true">
+                <PropertyType Type="int"/>
+		                        
+            </Property>            
+			<Property Name="showDataTips" ForVerification="true">
+                <PropertyType Type="Boolean"/>
+		                    </Property>            
+			<Property Name="fontFamily" ForVerification="true">
+                <PropertyType Type="String"/>
+                            </Property>            
+			<Property Name="fontSize" ForVerification="true">
+                <PropertyType Type="int"/>
+                            </Property>            
+			<Property Name="maximumDataTipCount" ForVerification="true">
+                <PropertyType Type="int"/>
+		                    </Property>            
+			<Property Name="paddingBottom" ForVerification="true">
+                <PropertyType Type="int"/>
+		                    </Property>            
+			<Property Name="paddingTop" ForVerification="true">
+                <PropertyType Type="int"/>
+		                    </Property>            
+			<Property Name="paddingLeft" ForVerification="true">
+                <PropertyType Type="int"/>
+		                    </Property>            
+			<Property Name="paddingRight" ForVerification="true">
+                <PropertyType Type="int"/>
+		                    </Property>            
+			<Property Name="showDataTipTargets" ForVerification="true">
+                <PropertyType Type="Boolean"/>
+		                    </Property>            
+       </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexCartesianChart" Extends="FlexChartBase" SupportsTabularData="true">
+                        <Implementation Class="mx.charts.chartClasses::CartesianChart"/>
+        <Properties>
+            <Property Name="horizontalAxisRatio" ForVerification="true">
+                <PropertyType Type="Number"/>
+		                    </Property>
+            <Property Name="gutterLeft" ForVerification="true">
+                <PropertyType Type="int"/>
+		                    </Property>
+            <Property Name="gutterRight" ForVerification="true">
+                <PropertyType Type="int"/>
+		                    </Property>
+            <Property Name="gutterBottom" ForVerification="true">
+                <PropertyType Type="int"/>
+		                    </Property>
+            <Property Name="gutterTop" ForVerification="true">
+                <PropertyType Type="int"/>
+        		            
+            </Property>
+            <Property Name="textAlign" ForVerification="true">
+                <PropertyType Type="String"/>
+		                    </Property>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexAreaChart" Extends="FlexCartesianChart" SupportsTabularData="true">
+                        <Implementation Class="mx.charts::AreaChart"/>
+        <Properties>
+            <Property Name="type" ForVerification="true">
+                <PropertyType Type="String"/>
+		                    </Property>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexBarChart" Extends="FlexCartesianChart" SupportsTabularData="true">
+                        <Implementation Class="mx.charts::BarChart"/>
+        <Properties>
+            <Property Name="barWidthRatio" ForVerification="true">
+                <PropertyType Type="Number"/>
+		                    </Property>
+            <Property Name="maxBarWidth" ForVerification="true">
+                <PropertyType Type="Number"/>
+			                </Property>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexColumnChart" Extends="FlexCartesianChart" SupportsTabularData="true">
+                        <Implementation Class="mx.charts::ColumnChart"/>
+        <Properties>
+            <Property Name="columnWidthRatio" ForVerification="true">
+                <PropertyType Type="Number"/>
+		                    </Property>
+            <Property Name="maxColumnWidth" ForVerification="true">
+                <PropertyType Type="Number"/>
+		                    </Property>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexHLOCChart" Extends="FlexCartesianChart" SupportsTabularData="true">
+                        <Implementation Class="mx.charts::HLOCChart"/>
+        <Properties>
+            <Property Name="columnWidthRatio" ForVerification="true">
+                <PropertyType Type="Number"/>
+                            </Property>
+            <Property Name="maxColumnWidth" ForVerification="true">
+                <PropertyType Type="Number"/>            </Property>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexLineChart" Extends="FlexCartesianChart" SupportsTabularData="true">
+                        <Implementation Class="mx.charts::LineChart"/>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexPieChart" Extends="FlexChartBase" SupportsTabularData="true">
+                        <Implementation Class="mx.charts::PieChart"/>
+        <Properties>
+            <Property Name="innerRadius" ForVerification="true">
+                <PropertyType Type="Number"/>            </Property>
+            <Property Name="textAlign" ForVerification="true">
+                <PropertyType Type="String"/>            </Property>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexAreaSeries" Extends="FlexSeries" SupportsTabularData="true">
+                        <Implementation Class="mx.charts.series::AreaSeries"/>
+        <Properties>
+            <Property Name="minField" ForVerification="true">
+                <PropertyType Type="String"/>
+		                    </Property>
+            <Property Name="xField" ForVerification="true">
+                <PropertyType Type="String"/>
+		                    </Property>
+            <Property Name="yField" ForVerification="true">
+                <PropertyType Type="String"/>
+		                    </Property>
+            <Property Name="form" ForVerification="true">
+                <PropertyType Type="String"/>
+		                    </Property>
+            <Property Name="radius" ForVerification="true">
+                <PropertyType Type="Number"/>
+		                    </Property>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexBarSeries" Extends="FlexSeries" SupportsTabularData="true">
+                        <Implementation Class="mx.charts.series::BarSeries"/>
+        <Properties>
+            <Property Name="barWidthRatio" ForVerification="true">
+                <PropertyType Type="Number"/>
+		                    </Property>
+            <Property Name="maxBarWidth" ForVerification="true">
+                <PropertyType Type="Number"/>
+		                    </Property>
+            <Property Name="minField" ForVerification="true">
+                <PropertyType Type="String"/>
+		                    </Property>
+            <Property Name="offset" ForVerification="true">
+                <PropertyType Type="Number"/>
+		                    </Property>
+            <Property Name="xField" ForVerification="true">
+                <PropertyType Type="String"/>
+		                    </Property>
+            <Property Name="yField" ForVerification="true">
+                <PropertyType Type="String"/>
+		                    </Property>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexBubbleSeries" Extends="FlexSeries" SupportsTabularData="true">
+                        <Implementation Class="mx.charts.series::BubbleSeries"/>
+        <Properties>
+            <Property Name="maxRadius" ForVerification="true">
+                <PropertyType Type="Number"/>
+		                    </Property>
+            <Property Name="radiusField" ForVerification="true">
+                <PropertyType Type="String"/>
+		                    </Property>
+            <Property Name="xField" ForVerification="true">
+                <PropertyType Type="String"/>
+		                    </Property>
+            <Property Name="yField" ForVerification="true">
+                <PropertyType Type="String"/>
+		                    </Property>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexColumnSeries" Extends="FlexSeries" SupportsTabularData="true">
+                        <Implementation Class="mx.charts.series::ColumnSeries"/>
+        <Properties>
+            <Property Name="columnWidthRatio" ForVerification="true">
+                <PropertyType Type="Number"/>
+		                    </Property>
+            <Property Name="maxColumnWidth" ForVerification="true">
+                <PropertyType Type="Number"/>
+		                    </Property>
+            <Property Name="offset" ForVerification="true">
+                <PropertyType Type="Number"/>
+		                    </Property>
+            <Property Name="sortOnXField" ForVerification="true">
+                <PropertyType Type="Boolean"/>
+		                    </Property>
+            <Property Name="minField" ForVerification="true">
+                <PropertyType Type="String"/>
+		                    </Property>
+            <Property Name="xField" ForVerification="true">
+                <PropertyType Type="String"/>
+		                    </Property>
+            <Property Name="yField" ForVerification="true">
+                <PropertyType Type="String"/>
+		                    </Property>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexLineSeries" Extends="FlexSeries" SupportsTabularData="true">
+                        <Implementation Class="mx.charts.series::LineSeries"/>
+        <Properties>
+            <Property Name="form" ForVerification="true">
+                <PropertyType Type="String"/>
+            </Property>
+            <Property Name="radius" ForVerification="true">
+                <PropertyType Type="Number"/>            </Property>
+            <Property Name="sortOnXField" ForVerification="true">
+                <PropertyType Type="Boolean"/>            </Property>
+            <Property Name="xField" ForVerification="true">
+                <PropertyType Type="String"/>            </Property>
+            <Property Name="yField" ForVerification="true">
+                <PropertyType Type="String"/>            </Property>
+        </Properties>
+    </ClassInfo>
+    <ClassInfo Name="FlexPieSeries" Extends="FlexSeries" SupportsTabularData="true">
+                        <Implementation Class="mx.charts.series::PieSeries"/>
+        <Properties>
+            <Property Name="explodeRadius" ForVerification="true">
+                <PropertyType Type="Number"/>
+                            </Property>
+            <Property Name="field" ForVerification="true">
+                <PropertyType Type="String"/>
+                            </Property>
+            <Property Name="maxLabelRadius" ForVerification="true">
+                <PropertyType Type="Number"/>
+                            </Property>
+            <Property Name="nameField" ForVerification="true">
+                <PropertyType Type="String"/>
+                            </Property>
+            <Property Name="outerRadius" ForVerification="true">
+                <PropertyType Type="Number"/>
+                            </Property>
+            <Property Name="insideLabelSizeLimit" ForVerification="true">
+                <PropertyType Type="Number"/>
+                            </Property>
+            <Property Name="innerRadius" ForVerification="true">
+                <PropertyType Type="Number"/>
+                            </Property>
+            <Property Name="fontSize" ForVerification="true">
+                <PropertyType Type="int"/>
+                            </Property>
+            <Property Name="calloutGap" ForVerification="true">
+                <PropertyType Type="Number"/>
+                            </Property>
+            <Property Name="startAngle" ForVerification="true">
+                <PropertyType Type="Number"/>
+                            </Property>
+            <Property Name="labelPosition" ForVerification="true">
+                <PropertyType Type="String"/>
+                            </Property>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexPlotSeries" Extends="FlexSeries" SupportsTabularData="true">
+                        <Implementation Class="mx.charts.series::PlotSeries"/>
+        <Properties>
+            <Property Name="radius" ForVerification="true">
+                <PropertyType Type="Number"/>
+                            </Property>
+            <Property Name="xField" ForVerification="true">
+                <PropertyType Type="String"/>
+                            </Property>
+            <Property Name="yField" ForVerification="true">
+                <PropertyType Type="String"/>
+                            </Property>
+        </Properties>
+    </ClassInfo>
+    <ClassInfo Name="FlexAxisRenderer" Extends="FlexObject" SupportsTabularData="true">
+                        <Implementation Class="mx.charts::AxisRenderer"/>
+        <Properties>
+            <Property Name="heightLimit" ForVerification="true">
+                <PropertyType Type="Number"/>
+	        	            
+            </Property>
+            <Property Name="length" ForVerification="true">
+                <PropertyType Type="Number"/>
+		                    </Property>
+            <Property Name="placement" ForVerification="true" ForDescription="true">
+                <PropertyType Type="String"/>
+		                    </Property>
+            <Property Name="canDropLabels" ForVerification="true">
+                <PropertyType Type="Boolean"/>
+		                    </Property>
+            <Property Name="canStagger" ForVerification="true">
+                <PropertyType Type="Boolean"/>
+		                    </Property>
+            <Property Name="labelGap" ForVerification="true">
+                <PropertyType Type="Number"/>
+		                    </Property>
+            <Property Name="labelRotation" ForVerification="true">
+                <PropertyType Type="Number"/>
+		                    </Property>
+            <Property Name="minorTickLength" ForVerification="true">
+                <PropertyType Type="Number"/>
+		                    </Property>
+            <Property Name="minorTickPlacement" ForVerification="true">
+                <PropertyType Type="String"/>
+		                    </Property>
+            <Property Name="showLabels" ForVerification="true">
+                <PropertyType Type="Boolean"/>
+		                    </Property>
+            <Property Name="showLine" ForVerification="true">
+                <PropertyType Type="Boolean"/>
+		                    </Property>
+            <Property Name="tickLength" ForVerification="true">
+                <PropertyType Type="Number"/>
+		                    </Property>
+            <Property Name="tickPlacement" ForVerification="true">
+                <PropertyType Type="String"/>
+		                    </Property>
+            <Property Name="ticks" ForVerification="true">
+            	<PropertyType Type="String" Codec="object[]"/>
+            	            </Property>
+            <Property Name="minorTicks" ForVerification="true">
+            	<PropertyType Type="String" Codec="object[]"/>
+            	            </Property>
+        </Properties>
+    </ClassInfo>
+    <ClassInfo Name="FlexSeries" Extends="FlexObject" SupportsTabularData="true">
+                        <Implementation Class="mx.charts.chartClasses::Series"/>
+        <Events>
+            <Event  Name="Click" >
+                <Implementation Class="mx.charts.events::ChartItemEvent" Type="itemClick"/>
+                <Property Name="hitSet" >
+                    <PropertyType Type="Number" Codec="hitDataCodec[]"/>
+		                          </Property>
+            </Event>
+            <Event  Name="DoubleClick" >
+                <Implementation Class="mx.charts.events::ChartItemEvent" Type="itemDoubleClick"/>
+                <Property Name="hitSet" >
+                    <PropertyType Type="Number" Codec="hitDataCodec[]"/>
+			                        </Property>
+            </Event>
+			<Event  Name="ItemRollOver" >
+				<Implementation Class="mx.charts.events::ChartItemEvent" Type="itemRollOver"/>
+				<Property Name="hitSet" >
+					  <PropertyType Type="Number" Codec="hitDataCodec[]"/>
+			          				</Property>
+			</Event>
+        </Events>
+    </ClassInfo>
+    
+    <ClassInfo Name="FlexLegend" Extends="FlexObject" SupportsTabularData="true">
+                        <Implementation Class="mx.charts::Legend"/>
+        <Events>
+            <Event  Name="Click" >
+                <Implementation Class="mx.charts.events::LegendMouseEvent" Type="itemClick"/>
+                <Property Name="item" >
+                  <PropertyType Type="String" Codec="automationObject"/>
+		                          </Property>
+            </Event>
+        </Events>
+        <Properties>
+            <Property Name="label" ForVerfication="true">
+                <PropertyType Type="String"/>
+		                    </Property>
+            <Property Name="markerAspectRatio" ForVerfication="true">
+                <PropertyType Type="Number"/>
+		                    </Property>
+            <Property Name="fontWeight" ForVerfication="true">
+                <PropertyType Type="String"/>
+		                    </Property>
+            <Property Name="labelPlacement" ForVerfication="true">
+                <PropertyType Type="String"/>
+		                    </Property>
+            <Property Name="markerHeight" ForVerfication="true">
+                <PropertyType Type="int"/>
+		                    </Property>
+            <Property Name="markerWidth" ForVerfication="true">
+                <PropertyType Type="int"/>
+		                    </Property>
+            <Property Name="paddingLeft" ForVerfication="true">
+                <PropertyType Type="int"/>
+		                    </Property>
+            <Property Name="paddingRight" ForVerfication="true">
+                <PropertyType Type="int"/>
+		                    </Property>
+            <Property Name="verticalGap" ForVerfication="true">
+                <PropertyType Type="int"/>
+		                    </Property>
+		</Properties>
+    </ClassInfo>
+    <ClassInfo Name="FlexListLabel" Extends="FlexDisplayObject">
+                        <Implementation Class="mx.controls.menuClasses::MenuItemRenderer" />
+        <Implementation Class="mx.controls.menuClasses::MenuBarItem" />
+        <Implementation Class="mx.controls.treeClasses::TreeItemRenderer" />
+        <Implementation Class="mx.controls.listClasses::ListItemRenderer" />
+        <Implementation Class="mx.controls.dataGridClasses::DataGridItemRenderer" />
+        <Implementation Class="mx.controls.listClasses::TileListItemRenderer" />
+        <Properties>
+            <Property Name="automationValue" ForDefaultVerification="true" ForVerification="true"><PropertyType Type="String"/></Property>
+            <Property Name="automationName" ForDescription="true"><PropertyType Type="String"/></Property>
+            <Property Name="className" ForDescription="true">
+            	<PropertyType Type="String"/>
+		                    </Property>
+            <Property Name="automationIndex" ForDescription="true"><PropertyType Type="String"/></Property>
+        </Properties>
+    </ClassInfo>
+    
+    <ClassInfo Name="FlexMenuItemRenderer" Extends="FlexListLabel">
+        <Implementation Class="mx.controls.menuClasses::MenuItemRenderer" />
+        <Properties>
+        </Properties>
+    </ClassInfo>
+    <ClassInfo Name="FlexMenuBarItem" Extends="FlexListLabel">
+        <Implementation Class="mx.controls.menuClasses::MenuBarItem" />
+        <Properties>
+        </Properties>
+    </ClassInfo>
+    <ClassInfo Name="FlexTreeItemRenderer" Extends="FlexListLabel">
+        <Implementation Class="mx.controls.treeClasses::TreeItemRenderer" />
+        <Properties>
+        </Properties>
+    </ClassInfo>
+    <ClassInfo Name="FlexListItemRenderer" Extends="FlexListLabel">
+        <Implementation Class="mx.controls.listClasses::ListItemRenderer" />
+        <Properties>
+        </Properties>
+    </ClassInfo>
+    <ClassInfo Name="FlexDataGridItemRenderer" Extends="FlexListLabel">
+        <Implementation Class="mx.controls.dataGridClasses::DataGridItemRenderer" />
+        <Properties>
+        </Properties>
+    </ClassInfo>
+    <ClassInfo Name="FlexTileListItemRenderer" Extends="FlexListLabel">
+        <Implementation Class="mx.controls.listClasses::TileListItemRenderer" />
+        <Properties>
+        </Properties>
+    </ClassInfo>
+
+    <ListOfValues Name="FlexKeyModifierValues">
+        <EnumValue Name="flexControl"                   RealValue="1" />
+        <EnumValue Name="flexShift"                     RealValue="2" />
+        <EnumValue Name="flexAlt"                       RealValue="4" />
+        <EnumValue Name="flexControlShift"              RealValue="3" />
+        <EnumValue Name="flexControlAlt"                RealValue="5" />
+        <EnumValue Name="flexShiftAlt"                  RealValue="6" />
+        <EnumValue Name="flexControlShiftAlt"           RealValue="7" />
+    </ListOfValues>
+
+    <ListOfValues Name="FlexScrollDetailValues">
+		<EnumValue Name="flexAtBottom"         			RealValue="1" />
+		<EnumValue Name="flexAtLeft"					RealValue="2" />
+		<EnumValue Name="flexAtRight"           		RealValue="3" />
+		<EnumValue Name="flexAtTop"           			RealValue="4" />
+		<EnumValue Name="flexLineDown"           		RealValue="5" />
+		<EnumValue Name="flexLineLeft"           		RealValue="6" />
+		<EnumValue Name="flexLineRight"          		RealValue="7" />
+		<EnumValue Name="flexLineUp"           			RealValue="8" />
+		<EnumValue Name="flexPageDown"           		RealValue="9" />
+		<EnumValue Name="flexPageLeft"           		RealValue="10" />
+		<EnumValue Name="flexPageRight"          		RealValue="11" />
+		<EnumValue Name="flexPageUp"           			RealValue="12" />
+		<EnumValue Name="flexThumbPosition"    			RealValue="13" />
+		<EnumValue Name="flexThumbTrack"       			RealValue="14" />
+    </ListOfValues>
+    
+    <ListOfValues Name="FlexDateChooserDetailValues">
+		<EnumValue Name="flexNextMonth"						RealValue="1" />
+		<EnumValue Name="flexNextYear"       				RealValue="2" />
+		<EnumValue Name="flexPreviousMonth"       			RealValue="3" />
+		<EnumValue Name="flexPreviousYear"       			RealValue="4" />
+    </ListOfValues>
+
+    <ListOfValues Name="FlexScrollDirectionValues">
+		<EnumValue Name="flexScrollHorizontal"       				RealValue="1" />
+		<EnumValue Name="flexScrollVertical"						RealValue="2" />
+    </ListOfValues>
+    
+    <ListOfValues Name="FlexTriggerEventValues">
+    	<EnumValue Name="flexMouse"						RealValue="1" />
+    	<EnumValue Name="flexKeyboard"					RealValue="2" />
+    </ListOfValues>
+
+</TypeInformation>
+

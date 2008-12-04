@@ -1,14 +1,39 @@
-h1. funfx
+h1. FunFX 
+h3. - Functional testing of Flex applications
 
-h1. &#x2192; 'funfx'
+h2. What is FunFX
 
-
-h2. What
-
+FunFX is an open source tool for funtional testing of Flex applications.
+It uses Ruby as scripting language for its tests.
 
 h2. Installing
 
+FunFX is a two part framework. One Ruby gem and one Actionscript library (funfx.swc). The gem also contains the funfx.swc, but it is possible to get the funfx.swc with maven.
+
+To install the Ruby gem:
 <pre syntax="ruby">sudo gem install funfx</pre>
+
+To get funfx.swc with maven, specify the following repository and dependency:
+<pre syntax="ruby">
+  <repository>
+    <id>funfx-repository</id>
+    <url>http://funfx.rubyforge.org/maven</url>
+    <releases>
+      <enabled>true</enabled>
+    </releases>
+    <snapshots>
+      <enabled>true</enabled>
+    </snapshots>
+  </repository>
+
+  <dependency>
+    <groupId>org.rubyforge</groupId>
+    <artifactId>funfx</artifactId>
+    <version>0.2.0</version>
+    <type>swc</type>
+  <dependency>
+</pre>
+
 
 h2. The basics
 
@@ -21,17 +46,9 @@ h2. Forum
 
 "http://groups.google.com/group/funfx":http://groups.google.com/group/funfx
 
-TODO - create Google Group - funfx
-
 h2. How to submit patches
 
 Read the "8 steps for fixing other people's code":http://drnicwilliams.com/2007/06/01/8-steps-for-fixing-other-peoples-code/ and for section "8b: Submit patch to Google Groups":http://drnicwilliams.com/2007/06/01/8-steps-for-fixing-other-peoples-code/#8b-google-groups, use the Google Group above.
-
-TODO - pick SVN or Git instructions
-
-The trunk repository is <code>svn://rubyforge.org/var/svn/funfx/trunk</code> for anonymous access.
-
-OOOORRRR
 
 You can fetch the source from either:
 
