@@ -19,12 +19,10 @@ describe "DemoApp" do
   end
 
   it "should raise error when firing event on nonexistant element" do
-    pending "This should raise an error" do
-      tree = @flex.tree({:id => 'nonsense'})
-      lambda do
-        tree.open('Button controls')
-      end.should raise_error("Error: Unable to resolve child for part 'undefined':'undefined' in parent 'FlexObjectTest'.")
-    end
+    tree = @flex.tree({:id => 'nonsense'})
+    lambda do
+      tree.open('Button controls')
+    end.should raise_error("Error: Unable to resolve child with locator: {:id => 'nonsense'}")
   end
   
   it "should be disabled" do
