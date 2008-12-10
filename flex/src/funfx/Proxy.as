@@ -42,12 +42,16 @@ package funfx {
             }
             try {
                 var target:IAutomationObject = flexObjectlocator.findAutomationObject(locator);
-                if (!target || !automationManager.isSynchronized(target)) {
-                  return null;
+                if(!target){
+                	throw new Error("Unable to resolve child with locator: " + flexObjectlocator.toString(locator["id"]) + (locator["parent"] != null ? ", and parent: " + flexObjectlocator.toString(locator["parent"]["id"]) : ""));
+                }
+                if (!automationManager.isSynchronized(target)) {
+                  throw new Error("Target is not synchronized: " + flexObjectlocator.toString(locator["id"]) + (locator["parent"] != null ? ", and parent: " + flexObjectlocator.toString(locator["parent"]["id"]) : ""));
                 }
                 if (!automationManager.isVisible(target as DisplayObject)){
-                  return null;
+                  throw new Error("Target is not visible: " + flexObjectlocator.toString(locator["id"]) + (locator["parent"] != null ? ", and parent: " + flexObjectlocator.toString(locator["parent"]["id"]) : ""));
                 }
+                
                 var result:Object = AQAdapter.aqAdapter.replay(target, eventName, args);
                 return "OK";
             } catch(e:Error) {

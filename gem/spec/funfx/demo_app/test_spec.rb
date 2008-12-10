@@ -11,9 +11,9 @@ describe "DemoApp" do
     @flex.tree({:id => 'objectTree', :automationName => 'objectTree'}).select('Repeater controls>Repeater2', '1', '0')
     @flex.button({:id => 'bAddItem', :automationName => 'Add item'}).click('0')
     @flex.button({:id => 'bAddItem', :automationName => 'Add item'}).click('0')
-    @flex.text_input({:id => 'tTextInput', :automationName => 'tTextInput', :index => 'index:0'}).select_text('0', '0')
-    @flex.text_input({:id => 'tTextInput', :automationName => 'tTextInput', :index => 'index:0'}).input('Test1')
-    @flex.text_input({:id => 'tTextInput', :automationName => 'tTextInput', :index => 'index:1'}).select_text('0', '0')
-    @flex.text_input({:id => 'tTextInput', :automationName => 'tTextInput', :index => 'index:1'}).input('Test2')
+    @flex.text_input({:id => 'tTextInput', :automationName => 'tTextInput', :automationIndex => 'index:0'}).select_text('0', '0')
+    @flex.text_input({:id => 'tTextInput', :automationName => 'tTextInput', :automationIndex => 'index:0'}).input('Test1')
+    @flex.text_input({:id => 'tTextInput', :automationName => 'tTextInput', :automationIndex => 'index:1'}).select_text('0', '0')
+    @flex.text_input({:id => 'tTextInput', :automationName => 'tTextInput', :automationIndex => 'index:1'}).input('Test2')
   end
 end

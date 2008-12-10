@@ -131,6 +131,17 @@ package funfx.flexlocator
 			}
 			return null;
 		}
+		
+		public function toString(locator:Object):String{
+			var result:String = "{";
+			for (var property:String in locator) {
+				var value:String = decodeURIComponent(locator[property]);
+					if(result != "{") result += ", ";
+					result += ":" + property + " => '" + value + "'"; 
+			}
+			result += "}";
+			return result;
+		}
 
 	}
 }
