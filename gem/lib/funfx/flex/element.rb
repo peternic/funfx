@@ -80,6 +80,7 @@ module FunFX
               meth = $1
               file_line = "UNKNOWN"
             else
+              puts "Result\n" + result.to_s
               raise "Unmatched line: #{line}"
             end
             "#{file_line}:in `#{meth}'"

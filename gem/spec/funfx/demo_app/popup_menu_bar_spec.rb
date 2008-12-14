@@ -14,14 +14,28 @@ describe "DemoApp" do
     popup_menu = @flex.pop_up_menu_button({:id => 'p2'})
     popup_menu.open
     
-    menu = @flex.menu({:automationIndex => 'index:0', :automationValue => 'Inbox'})
+    menu = popup_menu.menu({:automationIndex => 'index:0'})
     menu.select('Calendar')
     
     alert = @flex.alert({:automationName => 'Message'})
     
-    lambda do
-      alert.visible?
-    end.should raise_error
+
+    alert.visible?.should == true
+
+  end
+  
+  it "should check selected item" do
+    popup_menu = @flex.pop_up_menu_button({:id => 'p2'})
+    popup_menu.open
+    
+    menu = popup_menu.menu({:automationIndex => 'index:0'})
+    menu.select('Calendar')
+    
+    alert = @flex.alert({:automationName => 'Message'})
+    button = @flex.alert({:automationName => 'Message'}).button({:automationName => 'OK'})
+    button.click
+    
+    popup_menu.label.should == 'Calendar'
 
   end
   

@@ -9,8 +9,8 @@
             private var treeDP2:XMLList =
                 <>
                     <menuitem label="Inbox"/>
-			        <menuitem label="Calendar"/>
-			        <menuitem label="Deleted Items"/>
+						        <menuitem label="Calendar"/>
+						        <menuitem label="Deleted Items"/>
                 </>;
 			
             //Event handler, invoked when you select from the menu.
