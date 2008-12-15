@@ -1,4 +1,11 @@
-== 0.2.0 yyyy-mm-dd
+== 0.2.1 (In Git)
+
+=== New features
+* The FunFX.swc is no longer part of the gem, but must be downloaded from http://rubyforge.org/frs/?group_id=3898 (Aslak Hellesøy)
+
+=== Bugfixes
+
+== 0.2.0 2008-12-15
 
 Complete rewrite of FunFX.
 

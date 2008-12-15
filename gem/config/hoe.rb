@@ -54,7 +54,6 @@ $hoe = Hoe.new(GEM_NAME, VERS) do |p|
   p.rubyforge_name = RUBYFORGE_PROJECT if RUBYFORGE_PROJECT
   p.test_globs = ["test/**/test_*.rb"]
   p.clean_globs |= ['**/.*.sw?', '*.gem', '.config', '**/.DS_Store', 'coverage']  #An array of file patterns to delete on clean.
-  p.rdoc_pattern = /^(lib|bin)|txt$/ # We don't want the ext/FunFX.swc in RDoc!
 
   p.changes = p.paragraphs_of("History.txt", 0..1).join("\n\n")
   p.extra_deps = [ ['fastercsv', '>= 1.4.0'] ]

@@ -5,7 +5,6 @@ README.txt
 Rakefile
 config/hoe.rb
 config/requirements.rb
-ext/FunFX.swc
 lib/funfx.rb
 lib/funfx/browser/firewatir.rb
 lib/funfx/browser/flex_app_lookup.rb
