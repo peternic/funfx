@@ -1,6 +1,6 @@
 require 'funfx/version'
 
-DESCRIPTION = "description of gem"
+DESCRIPTION = "Functional testing for Flex"
 GEM_NAME = 'funfx' # what ppl will type to install your gem
 RUBYFORGE_PROJECT = 'funfx' # The unix name for your project
 HOMEPATH = "http://#{RUBYFORGE_PROJECT}.rubyforge.org"
@@ -8,7 +8,7 @@ DOWNLOAD_PATH = "http://rubyforge.org/projects/#{RUBYFORGE_PROJECT}"
 
 @config_file = "~/.rubyforge/user-config.yml"
 @config = nil
-RUBYFORGE_USERNAME = "aslak_hellesoy"
+RUBYFORGE_USERNAME = nil
 def rubyforge_username
   unless @config
     begin
@@ -29,7 +29,7 @@ end
 REV = nil
 # UNCOMMENT IF REQUIRED:
 # REV = YAML.load(`svn info`)['Revision']
-VERS = Funfx::VERSION::STRING + (REV ? ".#{REV}" : "")
+VERS = FunFX::VERSION::STRING + (REV ? ".#{REV}" : "")
 RDOC_OPTS = ['--quiet', '--title', 'FunFX documentation',
     "--opname", "index.html",
     "--line-numbers",

@@ -1,4 +1,4 @@
-module Funfx
+module FunFX
   module VERSION #:nodoc:
     MAJOR = 0
     MINOR = 2
