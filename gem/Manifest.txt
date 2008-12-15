@@ -3,11 +3,9 @@ License.txt
 Manifest.txt
 README.txt
 Rakefile
-code
 config/hoe.rb
 config/requirements.rb
 ext/FunFX.swc
-ext/AutoQuickEnv.xml
 lib/funfx.rb
 lib/funfx/browser/firewatir.rb
 lib/funfx/browser/flex_app_lookup.rb
@@ -43,7 +41,9 @@ spec/funfx/demo_app/alert_spec.rb
 spec/funfx/demo_app/button_bar_spec.rb
 spec/funfx/demo_app/button_spec.rb
 spec/funfx/demo_app/check_box_spec.rb
+spec/funfx/demo_app/control_bar_spec.rb
 spec/funfx/demo_app/controls_with_same_id_spec.rb
+spec/funfx/demo_app/data_grid_editable_spec.rb
 spec/funfx/demo_app/data_grid_spec.rb
 spec/funfx/demo_app/date_chooser_spec.rb
 spec/funfx/demo_app/date_field_spec.rb
