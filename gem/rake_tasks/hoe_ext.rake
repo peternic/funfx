@@ -1,9 +1,9 @@
 task :release do
-
-  puts "Uploading FunFX.swc....."
+  swc = "funfx-#{FunFX::VERSION::STRING}.swc"
+  puts "Uploading #{swc}"
   rf = RubyForge.new.configure
   rf.login
-  rf.add_file("funfx", "funfx", FunFX::VERSION::STRING, File.dirname(__FILE__) + '/../../flex/FunFX.swc')
+  rf.add_file("funfx", "funfx", FunFX::VERSION::STRING, File.dirname(__FILE__) + "/../../flex/bin/#{swc}")
 
   puts %{
 ****************************************
