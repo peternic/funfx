@@ -19,6 +19,7 @@ namespace :generate do
       pdf = "website/diagrams/#{file}.pdf"
       File.open(dot, 'wb') {|io| io.write generator.generate}
       sh "dot -T pdf -o #{pdf} #{dot}"
+      rm dot
     end
   end
 

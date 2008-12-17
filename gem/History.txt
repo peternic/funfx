@@ -1,4 +1,26 @@
-== 0.2.0 yyyy-mm-dd
+== 0.2.3 (In Git)
+
+=== New features
+
+=== Bugfixes
+
+
+== 0.2.2 2008-12-15
+
+=== New features
+* FunFX.swc renamed to funfx-0.2.2.swc to avoid upload conflicts at RubyForge (Aslak Hellesøy)
+* Better automation of the release process (Aslak Hellesøy)
+
+=== Bugfixes
+
+== 0.2.1 2008-12-15
+
+=== New features
+* The FunFX.swc is no longer part of the gem, but must be downloaded from http://rubyforge.org/frs/?group_id=3898 (Aslak Hellesøy)
+
+=== Bugfixes
+
+== 0.2.0 2008-12-15
 
 Complete rewrite of FunFX.
 
@@ -13,6 +35,6 @@ Complete rewrite of FunFX.
   * Full demo app included in the source tree
   * Moved to Git
   * Automated build using Rake
-  * Proper packaging as a Ruby gem (NEEDS WORK TO INCLUDE THE FUNFX.SWC)
+  * Proper packaging as a Ruby gem
   * Automated testing using RSpec
   * The code is largely based on Adobe's AutoQuick example

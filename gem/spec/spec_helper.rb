@@ -22,7 +22,7 @@ def require_watir
     require 'funfx/browser/firewatir'
     $browser_class = FireWatir::Firefox
   else
-    case PLATFORM
+    case RUBY_PLATFORM
     when /darwin/
       require 'funfx/browser/safariwatir'
       $browser_class = Watir::Safari
@@ -35,7 +35,7 @@ def require_watir
       require 'funfx/browser/firewatir'
       $browser_class = FireWatir::Firefox
     else 
-      raise "This platform is not supported (#{PLATFORM})"
+      raise "This platform is not supported (#{RUBY_PLATFORM})"
     end
   end
 end
