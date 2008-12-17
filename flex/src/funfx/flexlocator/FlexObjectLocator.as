@@ -20,43 +20,29 @@ package funfx.flexlocator
 		
         public function findAutomationObject(locator:Object) : *
         {
-        		return findComponentWith(locator["id"], findAutomationParent(locator["parent"]) as UIComponent);
+          return findComponentWith(locator["id"], findAutomationParent(locator["parent"]) as UIComponent);
         }
         
         public function findAutomationParent(locator:Object):UIComponent{
-        	try {
-            	if(locator)
-                	return findComponentWith(locator["id"], findAutomationParent(locator["parent"]) as UIComponent);
-                else
-                	return null;
+          try {
+              if(locator)
+                  return findComponentWith(locator["id"], findAutomationParent(locator["parent"]) as UIComponent);
+              else
+                  return null;
             } catch(e:Error) {
                 throw e;
             } 
             return null;
         }
         
-        /**
-		 * From FlexMonkey source
-		 *
-		 * Find the first component with the specified property/value pair. If a container is specified, then
-		 * only its children and descendents are searched. The search order is (currently) indeterminate. If no container is specified,
-		 * then all components will be searched. If the prop value is "automationID", then the id is resolved directly without searching.
-		 */
-		public function findComponentWith(locator:Object, container:UIComponent=null):UIComponent {
-			var automationID:String = automationID(locator);
-			if (automationID) return findComponentUsingAutomationFramework(automationID);
-			
-			return findComponentUsingCustomFramework(locator, container);
-
-		}
-		
-		private static function findComponentUsingAutomationFramework(automationID:String):UIComponent {
-			var rid:AutomationID = AutomationID.parse(automationID);
-			var obj:IAutomationObject = Automation.automationManager.resolveIDToSingleObject(rid);
-			return UIComponent(obj);
-		}
-		
-		public function findComponentUsingCustomFramework(locator:Object, container:UIComponent):UIComponent {
+    /**
+    * From FlexMonkey source
+    *
+    * Find the first component with the specified property/value pair. If a container is specified, then
+    * only its children and descendents are searched. The search order is (currently) indeterminate. If no container is specified,
+    * then all components will be searched.
+    */
+		public function findComponentWith(locator:Object, container:UIComponent):UIComponent {
 			var childContainer:IChildList = (container == null) ?
 											flexObjectLocatorUtility.getApplicationChildren() :
 											container;
@@ -77,7 +63,7 @@ package funfx.flexlocator
 					return UIComponent(child);
 				}
 				
-				var grandChild:UIComponent = findComponentUsingCustomFramework(locator, UIComponent(child));
+				var grandChild:UIComponent = findComponentWith(locator, UIComponent(child));
 				if (grandChild != null) {
 					return grandChild;
 				}
@@ -119,19 +105,6 @@ package funfx.flexlocator
 				return true;
 		}
 		
-		private function checkIndex(child:DisplayObject, value:String):Boolean{
-			var index:String = flexObjectLocatorUtility.createAutomationID(child as UIComponent);
-			return index == value;
-		}
-		
-		private function automationID(locator:Object):String {
-			var automationIdKey:String = 'automationID';
-			if (locator.hasOwnProperty(automationIdKey)) {
-				return locator[automationIdKey];
-			}
-			return null;
-		}
-		
 		public function toString(locator:Object):String{
 			var result:String = "{";
 			for (var property:String in locator) {
@@ -141,6 +114,11 @@ package funfx.flexlocator
 			}
 			result += "}";
 			return result;
+		}
+
+		private function checkIndex(child:DisplayObject, value:String):Boolean{
+			var index:String = flexObjectLocatorUtility.createAutomationID(child as UIComponent);
+			return index == value;
 		}
 
 	}

@@ -33,7 +33,6 @@ package funfx {
         private function fireFunFXEvent(locator:Object, eventName:String, args:String) : String{
         	return replayFunFXEvent(locator, eventName, convertArrayFromStringToAs(args));
         }
-        
 
         public function replayFunFXEvent(locator:Object, eventName:String, args:Array) : String
         {
@@ -103,17 +102,17 @@ package funfx {
             if(!automationManager.isSynchronized(null)) {
                 return null;
             }
-           
+
             try {
                 var target:IAutomationObject = flexObjectlocator.findAutomationObject(locator);              
                 var tab:Object = target.automationTabularData;
                 if (tab.hasOwnProperty(methodName)) {
                 	var result:* = tab[methodName].apply(null, args);
-					if (result is Array) {
-						result = CSVUtility.encode(result);
-					}
-                    
-                    return result;
+                  if (result is Array) {
+                    result = CSVUtility.encode(result);
+                  }
+
+                  return result;
                 } else {
                     throw new Error("Method not found: " + target + " doesn't have a method named '" + methodName + "'");
                 }
