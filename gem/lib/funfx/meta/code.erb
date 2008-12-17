@@ -5,27 +5,29 @@ require 'funfx/flex/tabular_data'
 module FunFX
   module Flex
     module Elements
-    <% classes.each do |klass| %>
+<% classes.each do |klass| -%>
+
       class <%= klass.name %> < <%= klass.superclass_name || 'Element' %>
-      <% if klass.tabular? %>
+<% if klass.tabular? -%>
         include TabularData
-      <% end %>
-      <% klass.properties.each do |property| %>
+<% end -%>
+<% klass.properties.each do |property| -%>
+
         def <%= property.ruby_name %>
           get_property_value('<%= property.name %>', <%= property.ruby_type %>)
         end
-      <% end %>
-      <% klass.events.each do |event| %>
+<% end -%>
+<% klass.events.each do |event| -%>
         def <%= event.to_method %>
           fire_event(<%= event.arg_list("'#{event.name}'") %>)
         end
-      <% end %>
+<% end -%>
       end
       
       def <%= klass.lookup_method %>(*locator_hash)
         <%= klass.name %>.new(self, nil, *locator_hash)
       end
-    <% end %>
+<% end -%>
     end
   end
 end

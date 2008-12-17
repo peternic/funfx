@@ -6,25 +6,20 @@ rescue LoadError
   STDERR.puts "LibXML not installed. gem install libxml-ruby"
 end
 begin
-  #raise "WTF"
   require 'active_support'
 rescue LoadError
   STDERR.puts "activesupport not installed. gem install activesupport"
 end
 
-class String
-  def escape_quotes
-    gsub(/"/, '\"')
-  end
-end
-
 module FunFX
   module Meta
     class ClassLib
-      def initialize(xml_file=File.dirname(__FILE__) + '/../../../ext/AutoQuickEnv.xml')
+      META_API = File.dirname(__FILE__) + '/../../../../flex/src/AutoQuickEnv.xml'
+
+      def initialize
         @lib = Hash.new(MetaClass.new)
         
-        doc = LibXML::XML::Document.file(xml_file)
+        doc = LibXML::XML::Document.file(META_API)
         doc.find('/TypeInformation/ClassInfo').map do |class_info|
           klass = FlexMetaClass.new(class_info)
           @lib[klass.name] = klass
@@ -111,7 +106,7 @@ module FunFX
       end
 
       def dot_event_list
-        l = events.map{|e| e.to_method.escape_quotes}.join('\l')
+        l = events.map{|e| e.to_method.gsub(/"/, '\"')}.join('\l')
         l == "" ? l : "#{l}\\l"
       end
       

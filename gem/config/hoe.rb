@@ -1,6 +1,6 @@
 require 'funfx/version'
 
-DESCRIPTION = "description of gem"
+DESCRIPTION = "Functional testing for Flex"
 GEM_NAME = 'funfx' # what ppl will type to install your gem
 RUBYFORGE_PROJECT = 'funfx' # The unix name for your project
 HOMEPATH = "http://#{RUBYFORGE_PROJECT}.rubyforge.org"
@@ -8,7 +8,7 @@ DOWNLOAD_PATH = "http://rubyforge.org/projects/#{RUBYFORGE_PROJECT}"
 
 @config_file = "~/.rubyforge/user-config.yml"
 @config = nil
-RUBYFORGE_USERNAME = "aslak_hellesoy"
+RUBYFORGE_USERNAME = nil
 def rubyforge_username
   unless @config
     begin
@@ -29,7 +29,7 @@ end
 REV = nil
 # UNCOMMENT IF REQUIRED:
 # REV = YAML.load(`svn info`)['Revision']
-VERS = Funfx::VERSION::STRING + (REV ? ".#{REV}" : "")
+VERS = FunFX::VERSION::STRING + (REV ? ".#{REV}" : "")
 RDOC_OPTS = ['--quiet', '--title', 'FunFX documentation',
     "--opname", "index.html",
     "--line-numbers",
@@ -54,7 +54,6 @@ $hoe = Hoe.new(GEM_NAME, VERS) do |p|
   p.rubyforge_name = RUBYFORGE_PROJECT if RUBYFORGE_PROJECT
   p.test_globs = ["test/**/test_*.rb"]
   p.clean_globs |= ['**/.*.sw?', '*.gem', '.config', '**/.DS_Store', 'coverage']  #An array of file patterns to delete on clean.
-  p.rdoc_pattern = /^(lib|bin)|txt$/ # We don't want the ext/FunFX.swc in RDoc!
 
   p.changes = p.paragraphs_of("History.txt", 0..1).join("\n\n")
   p.extra_deps = [ ['fastercsv', '>= 1.4.0'] ]

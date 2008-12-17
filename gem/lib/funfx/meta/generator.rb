@@ -9,7 +9,7 @@ module FunFX
       end
       
       def generate
-        template = ERB.new(IO.read(File.dirname(__FILE__) + "/#{@template_name}.erb"))
+        template = ERB.new(IO.read(File.dirname(__FILE__) + "/#{@template_name}.erb"), nil, '-<>')
         classes = @classes
         template.result(binding)
       end

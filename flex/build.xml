@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="funfx" basedir="." default="compile">
+  <property environment="ENV" />
+  <property name="FLEX_HOME" value="${ENV.FLEX_HOME}"/>
+  <taskdef resource="flexTasks.tasks" classpath="${FLEX_HOME}/ant/lib/flexTasks.jar"/>
+  
+  <target name="compile">
+    <!-- http://labs.adobe.com/wiki/index.php/Talk:Flex_Ant_Tasks#include-classes_without_pattern_matching -->
+    <pathconvert property="flex.classes" pathsep=" ">
+    	<fileset dir="${basedir}/src">
+    		<include name="**/*.as"/>
+    	</fileset>
+
+    	<compositemapper>
+    		<packagemapper from="${basedir}\src\*.as" to="*"/>
+    		<packagemapper from="${basedir}/src/*.as" to="*"/>
+    	</compositemapper>
+    </pathconvert>
+
+    <!-- TODO - make an swc with version number. Ideally only keep version in one file across source, dunno how yet -->
+    <compc output="${basedir}/bin/funfx.swc" include-classes="${flex.classes}">
+      <verbose-stacktraces>true</verbose-stacktraces>
+      <include-libraries file="${basedir}/libs/FlexSpy.swc"/>
+      <load-config filename="${FLEX_HOME}/frameworks/flex-config.xml"/>
+      <source-path path-element="${basedir}/src"/>
+    </compc>
+  </target>
+</project>
+
