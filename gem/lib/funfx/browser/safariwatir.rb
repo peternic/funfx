@@ -20,7 +20,7 @@ module Watir
       end
 
       def fire_event(flex_locator, event_name, args) # :nodoc:
-        eval_js %{return element.fireFunFXEvent(#{flex_locator}, #{event_name.inspect}, "#{args}")}
+        eval_js %{return element.fireFunFXEvent(#{flex_locator}, #{event_name.inspect}, "#{escape_double_quotes(args)}")}
       end
 
       def get_property_value(flex_locator, property) # :nodoc:
@@ -41,6 +41,10 @@ module Watir
         result = @scripter.__send__(:execute, operate{js}, self)
         raise "Nothing returned from Safari. Are you sure you have compiled the Flex app with FunFX?" if result.nil?
         result
+      end
+      
+      def escape_double_quotes(_string)
+        _string.gsub(/"/, '\\\\"')
       end
     end
   end

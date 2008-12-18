@@ -17,6 +17,20 @@ describe "DemoApp" do
     text_area.text.should == "Text"
   end
   
+  it "should allow to enter text with quotes" do
+    text_area = @flex.text_area({:id => 'tTextArea'})
+    text_area.input('"test with double quotes"')
+    
+    text_area.text.should == '"test with double quotes"'
+  end
+  
+  it "should allow to pass nil and should skip adding value" do
+    text_area = @flex.text_area({:id => 'tTextArea'})
+    text_area.input(nil)
+    
+    text_area.text.should == ''
+  end
+  
   it "should select text and enter new text" do
     text_area = @flex.text_area({:id => 'tTextArea'})
     text_area.input('Old text message')
