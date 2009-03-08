@@ -36,12 +36,13 @@ import flash.events.*;
 import flash.utils.getDefinitionByName;
 
 import funfx.Proxy;
+import funfx.log.LogElement;
+import funfx.log.Logger;
 import funfx.recording.FunFXRecording;
 
 import mx.automation.Automation;
 import mx.automation.AutomationError;
 import mx.automation.AutomationID;
-import mx.automation.AutomationIDPart;
 import mx.automation.IAutomationClass;
 import mx.automation.IAutomationEventDescriptor;
 import mx.automation.IAutomationManager;
@@ -564,16 +565,18 @@ public class AQAdapter implements IAQCodecHelper
         var o:Object = { result:null, error:0 };
         try
         {
-			 o.result = replayMethod(target, method, args);        	
+			    o.result = replayMethod(target, method, args);        	
         }
         catch(e:Error)
         {
 	        try
 	        {
-			     o.result = replayEvent(target, method, args);        	
+	          Logger.addError("Replay failed", new LogElement("Error", e.message));
+			      o.result = replayEvent(target, method, args);        	
 	        }
 	        catch(e:Error)
     	    {
+    	      Logger.addError("Replay failed", new LogElement("Error", e.message));
 		        automationManager.decrementCacheCounter();
     	    	throw e;
     	    }

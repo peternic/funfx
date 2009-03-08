@@ -17,7 +17,7 @@ module FunFX
         @flex_app = flex_app
 
         @flex_locator  = build_flex_locator(parent_locator, locator_hashes)
-
+        
         @tries = 0
       end
 

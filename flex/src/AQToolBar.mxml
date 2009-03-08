@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:TitleWindow title="Recording tool" xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" width="360" height="220"
+<mx:TitleWindow title="Recording tool" xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" width="560" height="320"
 	creationComplete="hideRecording()">
 	
 	<mx:HBox width="100%">
@@ -16,13 +16,15 @@
 	<mx:VBox id="outputBox" width="100%" height="100%">
 	  <mx:TextArea id="outputAdobe" width="100%" height="100%" visible="{currentState == ADOBE_STATE}" includeInLayout="{currentState == ADOBE_STATE}"/>
     <mx:TextArea id="outputFunFX" width="100%" height="100%" visible="{currentState == FUNFX_STATE}" includeInLayout="{currentState == FUNFX_STATE}"/>
+    <mx:TextArea id="log" width="100%" height="100%" visible="{currentState == LOG_STATE}" includeInLayout="{currentState == LOG_STATE}"/>
 	</mx:VBox>
 	
 	<mx:HBox width="100%">
     <mx:Button id="btnRecord" label="Record" click="startRecording()" visible="{currentState != HIDDEN}"/>
     <mx:Button id="btnStop" label="Stop"  mouseDown="stopRecording()" enabled="false" visible="{currentState != HIDDEN}"/>
     <mx:Button id="btnReplay" label="Play" click="startReplay()" visible="{currentState != HIDDEN}"/>
-    <mx:HBox width="100%" horizontalAlign="right">        		
+    <mx:HBox width="100%" horizontalAlign="right">
+		  <mx:Button id="btnLog" label="Log" click="showLog()" />
 			<mx:Button id="btnFlexSpy" label="FlexSpy" click="FlexSpy.show()" />
 		</mx:HBox>
   </mx:HBox>
@@ -31,6 +33,14 @@
     <mx:State name="{HIDDEN}">
         <mx:AddChild relativeTo="{showHideBox}" position="lastChild">
           <mx:LinkButton id="showButton" label="Show" click="showRecording()"/>
+        </mx:AddChild>
+    </mx:State>
+    <mx:State name="{LOG_STATE}">
+        <mx:AddChild relativeTo="{showHideBox}" position="lastChild">
+          <mx:LinkButton label="Hide" click="hideRecording()" visible="true"/>
+        </mx:AddChild>
+        <mx:AddChild relativeTo="{showTypesBox}" position="lastChild">
+          <mx:LinkButton id="bShowFunFXRecordingWhenLogIsShown" label="Show FunFX Recording" click="showFunFXRecording()"/>
         </mx:AddChild>
     </mx:State>
     <mx:State name="{FUNFX_STATE}">
@@ -53,6 +63,7 @@
   
 <mx:Script>
 	<![CDATA[
+	  import funfx.log.Logger;
 		import com.flexspy.FlexSpy;
 		import funfx.model.FunFXRecordedCommand;
 		import mx.collections.ArrayCollection;
@@ -65,6 +76,7 @@
 		import funfx.model.FunFXRecordingModel;
 		import funfx.Proxy;
 		
+		[Bindable] private var LOG_STATE:String = "stateLog";
 		[Bindable] private var FUNFX_STATE:String = "stateFunFX";
 		[Bindable] private var ADOBE_STATE:String = "stateAdobe";
 		[Bindable] private var HIDDEN:String = "hiddenControl";	
@@ -76,6 +88,11 @@
 		private var funfxProxy:funfx.Proxy = new funfx.Proxy();
 		
 		[Bindable] private var buttonText:String = SHOW;
+		
+		private function showLog():void{
+		  log.text = Logger.printLog();
+		  currentState = LOG_STATE;
+		}
 		
 		private function showAdobeRecording():void{
 			currentState = ADOBE_STATE;

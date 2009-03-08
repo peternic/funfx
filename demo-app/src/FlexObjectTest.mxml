@@ -38,6 +38,7 @@
             <node label="SyncTest1" data="content.SyncTest"/>
             <node label="SameIdControl1" data="content.SameIdControl"/>
             <node label="DeepHierarchyControl1" data="content.DeepHierarchyControl"/>
+            <node label="MouseMoveControl" data="content.MouseMoveControl1"/>
             <!--<node label="SwfLoader1" data="content.SWFLoaderControl"/>-->
         </node>
         <node label="Button controls">
@@ -137,6 +138,7 @@
 			import content.DeepHierarchyControl;
 			import content.EditableDataGridControl;
 			import content.ControlBarControl;
+			import content.MouseMoveControl1;
 			
 			private var c1:AlertControl;
 			private var c2:ColorPickerControl1;
@@ -190,6 +192,7 @@
 			private var c50:DeepHierarchyControl;
 			private var c51:EditableDataGridControl;
 			private var c52:ControlBarControl;
+			private var c53:MouseMoveControl1;
 			
 			
 			private function showComponent(event:Event):void{

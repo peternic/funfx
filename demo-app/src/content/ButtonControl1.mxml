@@ -9,6 +9,7 @@
             // describing the selected Button control.
             private function printMessage(event:Event):void  {
               message.text += event.target.label + " pressed" + "\n";
+              event.target.hasOwnProperty("x");
             }
 
       ]]>

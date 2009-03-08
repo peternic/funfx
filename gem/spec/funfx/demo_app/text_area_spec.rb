@@ -19,7 +19,7 @@ describe "DemoApp" do
   
   it "should allow to enter text with quotes" do
     text_area = @flex.text_area({:id => 'tTextArea'})
-    text_area.input('"test with double quotes"')
+    text_area.input('\"test with double quotes\"')
     
     text_area.text.should == '"test with double quotes"'
   end

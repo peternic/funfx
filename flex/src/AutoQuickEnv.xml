@@ -17,7 +17,13 @@
             </Event>
             <Event Name="Click" >
                 <Implementation Class="flash.events::MouseEvent" Type="click"/>
-                <Property Name="keyModifier"  DefaultValue="0">
+               <Property Name="localX"  DefaultValue="0">
+                <PropertyType Type="int"/>
+               </Property>
+               <Property Name="localY"  DefaultValue="0">
+                <PropertyType Type="int"/>
+               </Property>
+               <Property Name="keyModifier"  DefaultValue="0">
                     <PropertyType Type="Enumeration" ListOfValuesName="FlexKeyModifierValues" Codec="keyModifier"/>
                </Property>
             </Event>
@@ -33,6 +39,7 @@
             <Property Name="width" ForVerification="true"><PropertyType Type="Number"/></Property>
             <Property Name="x" ForVerification="true"><PropertyType Type="Number"/></Property>
             <Property Name="y" ForVerification="true"><PropertyType Type="Number"/></Property>
+            <Property Name="null" ForVerification="true"><PropertyType Type="Boolean"/></Property>
         </Properties>
     </ClassInfo>
 
@@ -47,7 +54,7 @@
             <Event  Name="ChangeFocus" >
                 <Implementation Class="flash.events::FocusEvent" Type="keyFocusChange"/>
                 <Property Name="shiftKey"  DefaultValue="false">
-				    <PropertyType Type="Boolean"/>
+                    <PropertyType Type="Boolean"/>
                 </Property>
                 <Property Name="keyCode"  DefaultValue="TAB">
                     <PropertyType Type="String" Codec="keyCode"/>                   

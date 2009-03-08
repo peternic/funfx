@@ -47,11 +47,15 @@ module FunFX
         def y
           get_property_value('y', Integer)
         end
+
+        def null?
+          get_property_value('null', TrueClass)
+        end
         def mouse_move(local_x=0, local_y=0, key_modifier=["0"])
           fire_event('MouseMove', local_x, local_y, key_modifier)
         end
-        def click(key_modifier=["0"])
-          fire_event('Click', key_modifier)
+        def click(local_x=0, local_y=0, key_modifier=["0"])
+          fire_event('Click', local_x, local_y, key_modifier)
         end
       end
       
@@ -2327,6 +2331,18 @@ module FunFX
       
       def line_chart(*locator_hash)
         FlexLineChart.new(self, nil, *locator_hash)
+      end
+
+      class FlexVcCartesianChart < FlexCartesianChart
+        include TabularData
+
+        def grid_is_shown?
+          get_property_value('gridIsShown', TrueClass)
+        end
+      end
+      
+      def vc_cartesian_chart(*locator_hash)
+        FlexVcCartesianChart.new(self, nil, *locator_hash)
       end
 
       class FlexBarChart < FlexCartesianChart

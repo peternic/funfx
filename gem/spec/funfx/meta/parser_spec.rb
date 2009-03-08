@@ -81,7 +81,7 @@ num_automation_children : Integer}
 
       it "should generate dot event method list" do
         @lib['FlexDisplayObject'].dot_event_list.gsub(/\\l/, "\n").strip.should == %{mouse_move(local_x=0, local_y=0, key_modifier=[\\\"0\\\"])
-click(key_modifier=[\\\"0\\\"])}
+click(local_x=0, local_y=0, key_modifier=[\\\"0\\\"])}
       end
     end
   end

@@ -4,4 +4,16 @@
 		<mx:Label id="lLabel" text="Text:"/>		
 		<mx:TextInput id="tText" width="100"/>
 	</mx:HBox>
+	<mx:Script>
+	  <![CDATA[
+	    
+	    private function test():void{
+	      var event:MouseEvent = new MouseEvent();
+	      
+	      var focus:FocusEvent = new FocusEvent();
+	      focus.
+	    }
+	  ]]>
+	</mx:Script>
+	
 </mx:Application>

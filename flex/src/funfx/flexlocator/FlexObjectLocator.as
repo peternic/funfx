@@ -4,9 +4,9 @@ package funfx.flexlocator
 	
 	import flash.display.DisplayObject;
 	
-	import mx.automation.Automation;
-	import mx.automation.AutomationID;
-	import mx.automation.IAutomationObject;
+	import funfx.log.LogElement;
+	import funfx.log.Logger;
+	
 	import mx.core.IChildList;
 	import mx.core.UIComponent;
 	
@@ -20,6 +20,7 @@ package funfx.flexlocator
 		
         public function findAutomationObject(locator:Object) : *
         {
+          Logger.addInfo("Starting locating element", new LogElement("Locator", Logger.convertLocator(locator)));
           return findComponentWith(locator["id"], findAutomationParent(locator["parent"]) as UIComponent);
         }
         
@@ -30,6 +31,7 @@ package funfx.flexlocator
               else
                   return null;
             } catch(e:Error) {
+                Logger.addError("FunFX faild", new LogElement("Error", e.message), new LogElement("Stacktrace", e.getStackTrace()));
                 throw e;
             } 
             return null;
@@ -48,6 +50,8 @@ package funfx.flexlocator
 											container;
 			
 			var numChildren:int = getNumberOfChildren(childContainer);
+			
+			Logger.addInfo("Locating element", new LogElement("Locator", Logger.convertLocator(locator)), new LogElement("Container", Logger.createComponentText(container)), new LogElement("Children", numChildren.toString()));
 			
 			if (numChildren == 0) {
 				return null;
@@ -87,6 +91,7 @@ package funfx.flexlocator
 		
 		
 		public function childMatch(child:DisplayObject, locator:Object):Boolean {
+		  Logger.addInfo("Child match", new LogElement("Locator", Logger.convertLocator(locator)), new LogElement("Child", Logger.createComponentText(child)));
 			var indexValue:String = "";
 			for (var property:String in locator) {
 				var value:String = decodeURIComponent(locator[property]);
@@ -94,15 +99,26 @@ package funfx.flexlocator
 				if(property == "automationIndex"){
 					indexValue = value;
 				} else {
-					if (!child.hasOwnProperty(property) || child[property] != value)
+					if (!child.hasOwnProperty(property) || trim(child[property]) != trim(value)){
+					  Logger.addInfo("NO MATCH", new LogElement("Locator", Logger.convertLocator(locator)), new LogElement("Child", Logger.createComponentText(child)));
+					  Logger.addInfo("NO MATCH II", new LogElement("Property", property), new LogElement("HasOwnProperty", child.hasOwnProperty(property).toString()));
+					  if(child.hasOwnProperty(property)){
+					    Logger.addInfo("NO MATCH III", new LogElement("Child[property]", trim(child[property])), new LogElement("Value", value), new LogElement("Comparison", (child[property] == value).toString()));
+					    Logger.addInfo("NO MATCH IV", new LogElement("Child[property].length", trim(child[property]) != null ? trim(child[property]).length.toString() : "null"), new LogElement("Value.length", value.length.toString()));
+					  } else {
+					    Logger.addInfo("NO MATCH V", new LogElement("Value", value));
+					  }
 	 					return false;
+	 			 }
 	 			}
 			}
 			if(indexValue != ""){
 				return checkIndex(child, indexValue);
 			}
-			else
+			else {
+			  Logger.addInfo("MATCH", new LogElement("Locator", Logger.convertLocator(locator)), new LogElement("Child", Logger.createComponentText(child)));
 				return true;
+			}
 		}
 		
 		public function toString(locator:Object):String{
@@ -118,8 +134,18 @@ package funfx.flexlocator
 
 		private function checkIndex(child:DisplayObject, value:String):Boolean{
 			var index:String = flexObjectLocatorUtility.createAutomationID(child as UIComponent);
+			Logger.addInfo("Check index", new LogElement("Actual index", index), new LogElement("Provided index", value), new LogElement("Child", Logger.createComponentText(child)));
 			return index == value;
 		}
+		
+    private function trim(str:String):String
+    {
+        if(str == null) return str;
+        for(var i:uint = 0; str.charCodeAt(i) < 33; i++);
+        for(var j:uint = str.length-1; str.charCodeAt(j) < 33; j--);
+        return str.substring(i, j+1);
+    }
+
 
 	}
 }

@@ -32,19 +32,7 @@
 	</build>
   
   <dependencies>
-    <dependency>
-      <groupId>com.adobe.flex.sdk</groupId>
-      <artifactId>datavisualization</artifactId>
-      <version>3.1.0-fb3</version>
-      <type>swc</type>
-    </dependency>
-    <dependency>
-      <groupId>com.adobe.flex.sdk</groupId>
-      <artifactId>datavisualization</artifactId>
-      <version>3.1.0-fb3</version>
-      <type>swc</type>
-      <classifier>en_US</classifier>
-    </dependency>
+    
     
     <dependency>
 			<groupId>com.adobe.flex.framework</groupId>

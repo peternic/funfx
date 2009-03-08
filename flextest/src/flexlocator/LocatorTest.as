@@ -142,7 +142,7 @@ package flexlocator
 			
 			locator["id"] = "correctID";
 			
-			var result:UIComponent = objLocator.findComponentUsingCustomFramework(locator, object);
+			var result:UIComponent = objLocator.findComponentWith(locator, object);
 			assertNotNull(result);
 			assertEquals(childOne.id, result.id);
 		}
@@ -153,7 +153,7 @@ package flexlocator
 			
 			locator["id"] = "wrongId";
 			
-			var result:UIComponent = objLocator.findComponentUsingCustomFramework(locator, object);
+			var result:UIComponent = objLocator.findComponentWith(locator, object);
 			assertNull(result);
 		}
 		
@@ -164,7 +164,7 @@ package flexlocator
 			
 			locator["id"] = "correctID";
 			
-			var result:UIComponent = objLocator.findComponentUsingCustomFramework(locator, object);
+			var result:UIComponent = objLocator.findComponentWith(locator, object);
 			assertNotNull(result);
 			assertEquals(grandChildOne.id, result.id);
 		}
