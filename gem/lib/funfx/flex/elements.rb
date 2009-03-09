@@ -2333,18 +2333,6 @@ module FunFX
         FlexLineChart.new(self, nil, *locator_hash)
       end
 
-      class FlexVcCartesianChart < FlexCartesianChart
-        include TabularData
-
-        def grid_is_shown?
-          get_property_value('gridIsShown', TrueClass)
-        end
-      end
-      
-      def vc_cartesian_chart(*locator_hash)
-        FlexVcCartesianChart.new(self, nil, *locator_hash)
-      end
-
       class FlexBarChart < FlexCartesianChart
         include TabularData
 

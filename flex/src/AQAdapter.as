@@ -32,7 +32,10 @@ import custom.utilities.FlexObjectLocatorUtilityHelper;
 import custom.utilities.XMLUtility;
 
 import flash.display.DisplayObject;
+import flash.display.LoaderInfo;
 import flash.events.*;
+import flash.net.URLLoader;
+import flash.net.URLRequest;
 import flash.utils.getDefinitionByName;
 
 import funfx.Proxy;
@@ -90,7 +93,8 @@ public class AQAdapter implements IAQCodecHelper
 	//  Class methods
 	//
 	//--------------------------------------------------------------------------
-
+  
+  private var myLoader:URLLoader;
 	private static var _root:DisplayObject;
 	
 	public static var aqAdapter:AQAdapter;
@@ -99,7 +103,7 @@ public class AQAdapter implements IAQCodecHelper
     private static const AutoQuickEnvFile:Class;
     private static const AutoQuickEnv:XML = XMLUtility.buildFromByteStream(AutoQuickEnvFile);
 	
-    /**
+  /**
 	 *  @private    
 	 */
 	public static function init(root:DisplayObject):void
@@ -112,7 +116,7 @@ public class AQAdapter implements IAQCodecHelper
     	}
      }
 	
-    /**
+  /**
 	 *  @private    
 	 */
 	private static function applicationCompleteHandler(event:FlexEvent):void
@@ -250,14 +254,22 @@ public class AQAdapter implements IAQCodecHelper
                 trace("Invalid PlayerID");
                 return;
             }*/
+           
+            Logger.addInfo("Automation environment creation");
             
-           setTestingEnvironment(AutoQuickEnv);
-           
-           PopUpManager.createPopUp(DisplayObject(Application.application), AQToolBar);
-           
-           funFXProxy = new Proxy();
-           funFXRecording = new FunFXRecording();
-           funFXRecording.locatorUtility.flexLocatorhelper = new FlexObjectLocatorUtilityHelper();
+            var paramObj:Object = LoaderInfo(_root.loaderInfo).parameters;
+            if(paramObj["UseCustomFunFXAutEnv"] != null){
+              Logger.addInfo("Using custom automation environment file, AutoQuickEnv.xml should be placed in the same directory as the swf");
+              setCustomTestingEnvironment("AutoQuickEnv.xml");
+            }
+            else {
+              setTestingEnvironment(AutoQuickEnv);
+            }
+            PopUpManager.createPopUp(DisplayObject(Application.application), AQToolBar);
+             
+            funFXProxy = new Proxy();
+            funFXRecording = new FunFXRecording();
+            funFXRecording.locatorUtility.flexLocatorhelper = new FlexObjectLocatorUtilityHelper();
            
         }
     }
@@ -351,6 +363,20 @@ public class AQAdapter implements IAQCodecHelper
     {
         propertyCodecMap[codecName] = codec;
     }
+    
+    public function setCustomTestingEnvironment(te:String):void
+    {
+    	// Loading the XML file
+    	var myXMLURL:URLRequest = new URLRequest(te);
+		  myLoader = new URLLoader(myXMLURL);
+		  myLoader.addEventListener("complete", xmlLoaded);
+    }
+	    
+    private function xmlLoaded(evtObj:Event):void
+		{ 
+      var source:XML = XML(myLoader.data);
+      setTestingEnvironment(source);
+		}
 
     /**
 	 *  @private
