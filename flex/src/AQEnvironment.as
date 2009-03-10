@@ -9,14 +9,16 @@
 
 package 
 {
+import custom.CustomAutomationClass;
+import custom.utilities.EnvXMLParser;
+
+import flash.utils.describeType;
+
 import mx.automation.IAutomationClass;
 import mx.automation.IAutomationEnvironment;
 import mx.automation.IAutomationEventDescriptor;
 import mx.automation.IAutomationMethodDescriptor;
 import mx.automation.IAutomationObject;
-
-import custom.CustomAutomationClass;
-import custom.utilities.EnvXMLParser;
 
 /**
  *  @private
@@ -218,28 +220,25 @@ public class AQEnvironment implements IAutomationEnvironment
 			automationClassName2automationClass[automationClass]);
     }
 
-    /**
-     *  Finds the closest ancestor to this object about which information was 
-     *  passed in the environment XML.
-     *  @private
-     */
-    private function findClosestAncestor(obj:Object):IAutomationClass
-    {   	
+     /**
+    *  Finds the closest ancestor to this object about which information was
+    *  passed in the environment XML.
+    *  @private
+    */
+   private function findClosestAncestor(obj:Object):IAutomationClass
+   {
         var className:String = CustomAutomationClass.getClassName(obj);
         if (className in className2automationClass)
-            return className2automationClass[className];
-		
-        var ancestors:Array = findAllAncestors(obj);
-        if (ancestors.length != 0)
-        {
-            className2automationClass[className] = ancestors[0];
-            return className2automationClass[className];
+           return className2automationClass[className];
+        var ancestors:XMLList = describeType(obj).descendants("extendsClass");
+        for each (var ancestor:XML in ancestors) {
+            var ancestorClassName:String = ancestor.attribute("type").toString().replace("::", ".");
+            var automationClass:IAutomationClass = className2automationClass[ancestorClassName];
+            if (automationClass != null)
+                return automationClass;
         }
-        else
-		{
-            return null;
-		}
-    }
+        return null;
+   }
 
     /**
 	 *  @private

@@ -14,7 +14,7 @@ end
 module FunFX
   module Meta
     class ClassLib
-      META_API = File.dirname(__FILE__) + '/../../../../flex/src/AutoQuickEnv.xml'
+      META_API = File.dirname(__FILE__) + '/../../../ext/AutoQuickEnv.xml'
 
       def initialize
         @lib = Hash.new(MetaClass.new)
