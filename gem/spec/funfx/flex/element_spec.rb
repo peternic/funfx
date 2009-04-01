@@ -110,6 +110,69 @@ UNKNOWN:in `<anonymous>()'}
           e.backtrace[8].should =~ /lib\/funfx\/flex\/element.rb:\d+:in `raise_if_funfx_error'/
         end
       end
+
+      it "should try flex invoking with a max retry times" do
+        flex_app = mock('FlexApp')
+        FunFX.fire_max_tries = 5
+        flex_app.should_receive(:fire_event_return_nil).exactly(4).and_return(nil)
+        flex_app.should_receive(:fire_event_return_right_result).once.and_return("right result")
+        def flex_app.fire_event(*args)
+          @fire_event_times ||= 0
+          @fire_event_times += 1
+          if @fire_event_times < FunFX.fire_max_tries
+            fire_event_return_nil
+          else
+            fire_event_return_right_result
+          end
+        end
+        element = Element.new(flex_app, nil, {:id => 'box'})
+
+        element.fire_event("keydown")
+      end
+
+      it "should raise error after retried flex invoking with a max retry times" do
+        FunFX.fire_max_tries = 2
+
+        flex_app = mock('FlexApp')
+        element = Element.new(flex_app, nil, {:id => 'box'})
+        flex_app.should_receive(:fire_event).exactly(3).times.and_return(nil)
+
+        begin
+          element.fire_event("keydown")
+          violated
+        rescue => e
+          e.message.should == "Flex app is busy and seems to stay busy!"
+        end
+      end
+
+      it "should raise the flex error threw from flex app after retried flex invoking with a max retry times" do
+        FunFX.fire_max_tries = 2
+        flex_error = %{____FUNFX_ERROR:
+Error: Unable to resolve child for part 'undefined':'undefined' in parent 'FlexObjectTest'.
+        at mx.automation::AutomationManager/resolveID()[C:\\work\\flex\\dmv_automation\\projects\\automation\\src\\mx\\automation\\AutomationManager.as:1332]
+        at mx.automation::AutomationManager/resolveIDToSingleObject()[C:\\work\\flex\\dmv_automation\\projects\\automation\\src\\mx\\automation\\AutomationManager.as:1238]
+        at funfx::Proxy/findAutomationObject()[C:\\scm\\funfx\\flex\\src\\funfx\\Proxy.as:46]
+        at funfx::Proxy/fireEvent()[C:\\scm\\funfx\\flex\\src\\funfx\\Proxy.as:18]
+        at Function/http://adobe.com/AS3/2006/builtin::apply()
+        at <anonymous>()
+        at flash.external::ExternalInterface$/_callIn()
+        at <anonymous>()}
+
+        flex_app = mock('FlexApp')
+        element = Element.new(flex_app, nil, {:id => 'box'})
+        flex_app.should_receive(:fire_event).exactly(3).times.and_return(flex_error)
+
+        begin
+          element.fire_event("keydown")
+          violated
+        rescue => e
+          e.message.should == "Error: Unable to resolve child for part 'undefined':'undefined' in parent 'FlexObjectTest'."
+        end
+      end
+
+      after(:all) do
+        FunFX.fire_max_tries = nil
+      end
     end
   end
 end

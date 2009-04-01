@@ -9,7 +9,6 @@ module FunFX
 
     # Base class for all Flex proxy elements
     class Element
-      MAX_TRIES = 10
 
       attr_reader :flex_app, :flex_locator
 
@@ -17,8 +16,6 @@ module FunFX
         @flex_app = flex_app
 
         @flex_locator  = build_flex_locator(parent_locator, locator_hashes)
-        
-        @tries = 0
       end
 
       def fire_event(event_name, *args)
@@ -51,20 +48,28 @@ module FunFX
       end
 
       def flex_invoke
-        @tries += 1
-        raw_value = yield
-        if raw_value.nil?
-          if @tries < MAX_TRIES
-            sleep 0.1
-            raw_value = yield
-          else
-            raise "Flex app is busy and seems to stay busy!"
+        raw_value = nil
+        tries = 0
+        loop do
+          tries += 1
+          raw_value = yield
+          break unless (raw_value.nil? || funfx_error?(raw_value))
+
+          if tries > FunFX.fire_max_tries
+            raise "Flex app is busy and seems to stay busy!" if raw_value.nil?
+            # raw_value is an error, break
+            break
           end
+
+          sleep 0.1
         end
-        FunFX.debug "Passed after #{@tries} tries"
-        @tries = 0
+        FunFX.debug "Passed after #{tries} tries"
 
         raise_if_funfx_error(raw_value)
+      end
+
+      def funfx_error?(result)
+        result =~ /^____FUNFX_ERROR:\n(.*)/m
       end
 
       def raise_if_funfx_error(result)
