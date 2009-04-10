@@ -265,7 +265,9 @@ public class AQAdapter implements IAQCodecHelper
             else {
               setTestingEnvironment(AutoQuickEnv);
             }
-            PopUpManager.createPopUp(DisplayObject(Application.application), AQToolBar);
+            
+            if(paramObj["NoRecorder"] == null)
+              PopUpManager.createPopUp(DisplayObject(Application.application), AQToolBar);
              
             funFXProxy = new Proxy();
             funFXRecording = new FunFXRecording();
