@@ -1,0 +1,438 @@
+<ClassInfo Name="FlexSimpleClassWithGetMethod" Extends="FlexSimpleClass">
+<Implementation Class="SimpleClassWithGetMethod"/>
+	<Properties>
+		<Property Name="publicProperty" ForVerification="true">
+			<PropertyType Type="String"/>
+		</Property>
+		<Property Name="testProperty" ForVerification="true">
+			<PropertyType Type="Boolean"/>
+		</Property>
+	</Properties>
+</ClassInfo>
+
+<ClassInfo Name="FlexSimpleClass" Extends="FlexObject">
+<Implementation Class="SimpleClass"/>
+	<Properties>
+		<Property Name="testProperty" ForVerification="true">
+			<PropertyType Type="Boolean"/>
+		</Property>
+	</Properties>
+</ClassInfo>
+
+<ClassInfo Name="FlexSimpleClassWithGetMethod" Extends="FlexObject">
+<Implementation Class="SimpleClassWithGetMethod"/>
+	<Properties>
+		<Property Name="publicProperty" ForVerification="true">
+			<PropertyType Type="String"/>
+		</Property>
+		<Property Name="testProperty" ForVerification="true">
+			<PropertyType Type="Boolean"/>
+		</Property>
+	</Properties>
+</ClassInfo>
+
+<ClassInfo Name="FlexSimpleClass" Extends="FlexParent">
+<Implementation Class="SimpleClass"/>
+	<Properties>
+		<Property Name="testProperty" ForVerification="true">
+			<PropertyType Type="Boolean"/>
+		</Property>
+	</Properties>
+</ClassInfo>
+
+<ClassInfo Name="FlexBarBoxItemGridRenderer" Extends="FlexBarBoxItemRenderer">
+<Implementation Class="BarBoxItemGridRenderer"/>
+	<Properties>
+	</Properties>
+</ClassInfo>
+
+<ClassInfo Name="FlexBarBoxItemRenderer" Extends="FlexBoxItemRenderer">
+<Implementation Class="BarBoxItemRenderer"/>
+	<Properties>
+	</Properties>
+</ClassInfo>
+
+<ClassInfo Name="FlexCenterCircleRenderer" Extends="FlexCircleItemRenderer">
+<Implementation Class="CenterCircleRenderer"/>
+	<Properties>
+	</Properties>
+</ClassInfo>
+
+<ClassInfo Name="FlexVariableWidthLineRenderer" Extends="FlexProgrammaticSkin">
+<Implementation Class="VariableWidthLineRenderer"/>
+	<Properties>
+		<Property Name="data" ForVerification="true">
+			<PropertyType Type="Object"/>
+		</Property>
+	</Properties>
+</ClassInfo>
+
+<ClassInfo Name="FlexVariableWidthLineSeriesItem" Extends="FlexLineSeriesItem">
+<Implementation Class="VariableWidthLineSeriesItem"/>
+	<Properties>
+		<Property Name="zValue" ForVerification="true">
+			<PropertyType Type="Object"/>
+		</Property>
+		<Property Name="zNumber" ForVerification="true">
+			<PropertyType Type="Number"/>
+		</Property>
+		<Property Name="zFilter" ForVerification="true">
+			<PropertyType Type="Number"/>
+		</Property>
+		<Property Name="z" ForVerification="true">
+			<PropertyType Type="Number"/>
+		</Property>
+	</Properties>
+</ClassInfo>
+
+<ClassInfo Name="FlexVariableWidthLineSeries" Extends="FlexLineSeries">
+<Implementation Class="VariableWidthLineSeries"/>
+	<Properties>
+		<Property Name="widthAxis" ForVerification="true">
+			<PropertyType Type="IAxis"/>
+		</Property>
+		<Property Name="widthField" ForVerification="true">
+			<PropertyType Type="String"/>
+		</Property>
+	</Properties>
+</ClassInfo>
+
+<ClassInfo Name="FlexVcBarSeries" Extends="FlexBarSeries">
+<Implementation Class="VcBarSeries"/>
+	<Properties>
+		<Property Name="dataSeries" ForVerification="true">
+			<PropertyType Type="ChartDataSeries"/>
+		</Property>
+		<Property Name="ranges" ForVerification="true">
+			<PropertyType Type="SeriesRangeSet"/>
+		</Property>
+		<Property Name="chartDisplay" ForVerification="true">
+			<PropertyType Type="ChartDisplay"/>
+		</Property>
+		<Property Name="labelAttributes" ForVerification="true">
+			<PropertyType Type="Array"/>
+		</Property>
+	</Properties>
+</ClassInfo>
+
+<ClassInfo Name="FlexVcColumnSeries" Extends="FlexColumnSeries">
+<Implementation Class="VcColumnSeries"/>
+	<Properties>
+		<Property Name="dataSeries" ForVerification="true">
+			<PropertyType Type="ChartDataSeries"/>
+		</Property>
+		<Property Name="ranges" ForVerification="true">
+			<PropertyType Type="SeriesRangeSet"/>
+		</Property>
+		<Property Name="chartDisplay" ForVerification="true">
+			<PropertyType Type="ChartDisplay"/>
+		</Property>
+		<Property Name="labelAttributes" ForVerification="true">
+			<PropertyType Type="Array"/>
+		</Property>
+	</Properties>
+</ClassInfo>
+
+<ClassInfo Name="FlexZeroWidthBubbleSeries" Extends="FlexBubbleSeries">
+<Implementation Class="ZeroWidthBubbleSeries"/>
+	<Properties>
+		<Property Name="colorRange" ForVerification="true">
+			<PropertyType Type="DataSetColumnRange"/>
+		</Property>
+		<Property Name="colorAttribute" ForVerification="true">
+			<PropertyType Type="ChartAttributeMapping"/>
+		</Property>
+		<Property Name="dotSizeRange" ForVerification="true">
+			<PropertyType Type="DataSetColumnRange"/>
+		</Property>
+		<Property Name="dotSizeAttribute" ForVerification="true">
+			<PropertyType Type="ChartAttributeMapping"/>
+		</Property>
+		<Property Name="dataSeries" ForVerification="true">
+			<PropertyType Type="ChartDataSeries"/>
+		</Property>
+		<Property Name="ranges" ForVerification="true">
+			<PropertyType Type="SeriesRangeSet"/>
+		</Property>
+		<Property Name="chartDisplay" ForVerification="true">
+			<PropertyType Type="ChartDisplay"/>
+		</Property>
+		<Property Name="labelAttributes" ForVerification="true">
+			<PropertyType Type="Array"/>
+		</Property>
+	</Properties>
+</ClassInfo>
+
+<ClassInfo Name="FlexZeroWidthPlotSeries" Extends="FlexPlotSeries">
+<Implementation Class="ZeroWidthPlotSeries"/>
+	<Properties>
+		<Property Name="colorRange" ForVerification="true">
+			<PropertyType Type="DataSetColumnRange"/>
+		</Property>
+		<Property Name="colorAttribute" ForVerification="true">
+			<PropertyType Type="ChartAttributeMapping"/>
+		</Property>
+		<Property Name="dataSeries" ForVerification="true">
+			<PropertyType Type="ChartDataSeries"/>
+		</Property>
+		<Property Name="ranges" ForVerification="true">
+			<PropertyType Type="SeriesRangeSet"/>
+		</Property>
+		<Property Name="chartDisplay" ForVerification="true">
+			<PropertyType Type="ChartDisplay"/>
+		</Property>
+		<Property Name="labelAttributes" ForVerification="true">
+			<PropertyType Type="Array"/>
+		</Property>
+	</Properties>
+</ClassInfo>
+
+<ClassInfo Name="FlexCartesianDataLabel" Extends="FlexLabel">
+<Implementation Class="CartesianDataLabel"/>
+	<Properties>
+		<Property Name="canvasXValue" ForVerification="true">
+			<PropertyType Type="CartesianCanvasValue"/>
+		</Property>
+		<Property Name="canvasYValue" ForVerification="true">
+			<PropertyType Type="CartesianCanvasValue"/>
+		</Property>
+	</Properties>
+</ClassInfo>
+
+<ClassInfo Name="FlexChartFactory" Extends="FlexObject">
+<Implementation Class="ChartFactory"/>
+	<Properties>
+	</Properties>
+</ClassInfo>
+
+<ClassInfo Name="FlexCircleAreaAxis" Extends="FlexNumericAxis">
+<Implementation Class="CircleAreaAxis"/>
+	<Properties>
+		<Property Name="maximum" ForVerification="true">
+			<PropertyType Type="Number"/>
+		</Property>
+		<Property Name="minimum" ForVerification="true">
+			<PropertyType Type="Number"/>
+		</Property>
+	</Properties>
+</ClassInfo>
+
+<ClassInfo Name="FlexDateWhiskerAxis" Extends="FlexDateTimeAxis">
+<Implementation Class="DateWhiskerAxis"/>
+	<Properties>
+	</Properties>
+</ClassInfo>
+
+<ClassInfo Name="FlexLinearWhiskerAxis" Extends="FlexLinearAxis">
+<Implementation Class="LinearWhiskerAxis"/>
+	<Properties>
+	</Properties>
+</ClassInfo>
+
+<ClassInfo Name="FlexVcAxisRenderer" Extends="FlexDualStyleObject">
+<Implementation Class="VcAxisRenderer"/>
+	<Properties>
+		<Property Name="lineOffset" ForVerification="true">
+			<PropertyType Type="Number"/>
+		</Property>
+		<Property Name="axisLineOffset" ForVerification="true">
+			<PropertyType Type="Boolean"/>
+		</Property>
+		<Property Name="highlightElements" ForVerification="true">
+			<PropertyType Type="Boolean"/>
+		</Property>
+		<Property Name="labelFunction" ForVerification="true">
+			<PropertyType Type="Function"/>
+		</Property>
+		<Property Name="axis" ForVerification="true">
+			<PropertyType Type="IAxis"/>
+		</Property>
+		<Property Name="gutters" ForVerification="true">
+			<PropertyType Type="Rectangle"/>
+		</Property>
+		<Property Name="heightLimit" ForVerification="true">
+			<PropertyType Type="Number"/>
+		</Property>
+		<Property Name="horizontal" ForVerification="true">
+			<PropertyType Type="Boolean"/>
+		</Property>
+		<Property Name="labelRenderer" ForVerification="true">
+			<PropertyType Type="IFactory"/>
+		</Property>
+		<Property Name="titleRenderer" ForVerification="true">
+			<PropertyType Type="IFactory"/>
+		</Property>
+		<Property Name="length" ForVerification="true">
+			<PropertyType Type="Number"/>
+		</Property>
+		<Property Name="minorTicks" ForVerification="true">
+			<PropertyType Type="Array"/>
+		</Property>
+		<Property Name="placement" ForVerification="true">
+			<PropertyType Type="String"/>
+		</Property>
+		<Property Name="ticks" ForVerification="true">
+			<PropertyType Type="Array"/>
+		</Property>
+		<Property Name="centeringAxis" ForVerification="true">
+			<PropertyType Type="Boolean"/>
+		</Property>
+		<Property Name="value" ForVerification="true">
+			<PropertyType Type="AxisLabel"/>
+		</Property>
+		<Property Name="position" ForVerification="true">
+			<PropertyType Type="Number"/>
+		</Property>
+		<Property Name="width" ForVerification="true">
+			<PropertyType Type="Number"/>
+		</Property>
+		<Property Name="height" ForVerification="true">
+			<PropertyType Type="Number"/>
+		</Property>
+		<Property Name="instance" ForVerification="true">
+			<PropertyType Type="DisplayObject"/>
+		</Property>
+		<Property Name="text" ForVerification="true">
+			<PropertyType Type="String"/>
+		</Property>
+	</Properties>
+</ClassInfo>
+
+<ClassInfo Name="FlexVcCartesianChart" Extends="FlexCartesianChart">
+<Implementation Class="VcCartesianChart"/>
+	<Properties>
+		<Property Name="zeroOrigin" ForVerification="true">
+			<PropertyType Type="Boolean"/>
+		</Property>
+		<Property Name="gridIsShown" ForVerification="true">
+			<PropertyType Type="Boolean"/>
+		</Property>
+	</Properties>
+</ClassInfo>
+
+<ClassInfo Name="FlexVcGridLines" Extends="FlexGridLines">
+<Implementation Class="VcGridLines"/>
+	<Properties>
+	</Properties>
+</ClassInfo>
+
+<ClassInfo Name="FlexAnnotationArrow" Extends="FlexUIComponent">
+<Implementation Class="AnnotationArrow"/>
+	<Properties>
+		<Property Name="model" ForVerification="true">
+			<PropertyType Type="TextBox"/>
+		</Property>
+		<Property Name="callOut" ForVerification="true">
+			<PropertyType Type="UIComponent"/>
+		</Property>
+	</Properties>
+</ClassInfo>
+
+<ClassInfo Name="FlexDataSetGuide" Extends="FlexIGuideDisplay">
+<Implementation Class="DataSetGuide"/>
+	<Properties>
+		<Property Name="myDisplay" ForVerification="true">
+			<PropertyType Type="DataSetDisplay"/>
+		</Property>
+		<Property Name="guideDisplay" ForVerification="true">
+			<PropertyType Type="GuideDisplay"/>
+		</Property>
+		<Property Name="state" ForVerification="true">
+			<PropertyType Type="GuideState"/>
+		</Property>
+		<Property Name="useGuide" ForVerification="true">
+			<PropertyType Type="Boolean"/>
+		</Property>
+		<Property Name="parentDisplay" ForVerification="true">
+			<PropertyType Type="Container"/>
+		</Property>
+	</Properties>
+</ClassInfo>
+
+<ClassInfo Name="FlexGuideTip" Extends="FlexToolTip">
+<Implementation Class="GuideTip"/>
+	<Properties>
+		<Property Name="buttonLabels" ForVerification="true">
+			<PropertyType Type="Array"/>
+		</Property>
+		<Property Name="primaryButtonLabels" ForVerification="true">
+			<PropertyType Type="Array"/>
+		</Property>
+	</Properties>
+</ClassInfo>
+
+<ClassInfo Name="FlexPopUpCheckBoxListButton" Extends="FlexPopUpButton">
+<Implementation Class="PopUpCheckBoxListButton"/>
+	<Properties>
+		<Property Name="closeOnActivity" ForVerification="true">
+			<PropertyType Type="Boolean"/>
+		</Property>
+		<Property Name="dataProvider" ForVerification="true">
+			<PropertyType Type="Object"/>
+		</Property>
+		<Property Name="labelField" ForVerification="true">
+			<PropertyType Type="String"/>
+		</Property>
+		<Property Name="labelFunction" ForVerification="true">
+			<PropertyType Type="Function"/>
+		</Property>
+	</Properties>
+</ClassInfo>
+
+<ClassInfo Name="FlexPopUpListButton" Extends="FlexPopUpButton">
+<Implementation Class="PopUpListButton"/>
+	<Properties>
+		<Property Name="dataProvider" ForVerification="true">
+			<PropertyType Type="Object"/>
+		</Property>
+		<Property Name="labelField" ForVerification="true">
+			<PropertyType Type="String"/>
+		</Property>
+		<Property Name="labelFunction" ForVerification="true">
+			<PropertyType Type="Function"/>
+		</Property>
+	</Properties>
+</ClassInfo>
+
+<ClassInfo Name="FlexPopUpMenuButton" Extends="FlexPopUpButton">
+<Implementation Class="PopUpMenuButton"/>
+	<Properties>
+		<Property Name="dataDescriptor" ForVerification="true">
+			<PropertyType Type="IMenuDataDescriptor"/>
+		</Property>
+		<Property Name="dataProvider" ForVerification="true">
+			<PropertyType Type="Object"/>
+		</Property>
+		<Property Name="labelField" ForVerification="true">
+			<PropertyType Type="String"/>
+		</Property>
+		<Property Name="labelFunction" ForVerification="true">
+			<PropertyType Type="Function"/>
+		</Property>
+		<Property Name="showRoot" ForVerification="true">
+			<PropertyType Type="Boolean"/>
+		</Property>
+	</Properties>
+</ClassInfo>
+
+<ClassInfo Name="FlexRangeSelector" Extends="FlexChartElement">
+<Implementation Class="RangeSelector"/>
+	<Properties>
+		<Property Name="minX" ForVerification="true">
+			<PropertyType Type="Object"/>
+		</Property>
+		<Property Name="minY" ForVerification="true">
+			<PropertyType Type="Object"/>
+		</Property>
+		<Property Name="maxX" ForVerification="true">
+			<PropertyType Type="Object"/>
+		</Property>
+		<Property Name="maxY" ForVerification="true">
+			<PropertyType Type="Object"/>
+		</Property>
+		<Property Name="enabled" ForVerification="true">
+			<PropertyType Type="Boolean"/>
+		</Property>
+	</Properties>
+</ClassInfo>
+

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%">
+	<mx:Panel title="TabNavigator Container" height="90%" width="90%" 
+	      showInAutomationHierarchy="false"
+        paddingTop="10" paddingLeft="10" paddingRight="10" paddingBottom="10">
+
+        <mx:Script>
+			<![CDATA[
+				// data array
+				[Bindable]
+				private var myArray:Array=[0,1,2,3,4,5,6,7,8,9];
+				// handler for tile
+				private function setStatus(item:Object):void
+				{
+					tilePanel.status="Revenue: "+item.revenue+" Volume: "+item.volume;
+				}
+				
+				[Bindable]
+				private var myArrayOfObjects:Array=[{label:"Q1",volume:"1600", revenue:"10000"},
+				{label:"Q2",volume:"1500", revenue:"9000"},
+				{label:"Q3",volume:"1900", revenue:"13000"},
+				{label:"Q4",volume:"2300", revenue:"14000"},
+				];
+			]]>
+		</mx:Script>
+
+		<!-- global navigation -->
+		<mx:TabNavigator id="tabNav">
+			<!-- view 1 -->
+			<mx:HBox label="View 1: Form/Tile" width="500" height="400">
+				<!-- section navigation -->
+				<mx:LinkBar id="lb" dataProvider="{vStack}" direction="vertical"/>
+				<mx:ViewStack id="vStack" width="80%" height="100%">
+					<!-- form view -->
+					<mx:Panel title="Form" label="Form" id="Form">
+						<mx:Form id="fForm">
+							<mx:FormItem label="Pick a Number">
+								<mx:ComboBox id="myCombo" dataProvider="{myArray}"/>
+							</mx:FormItem>
+						</mx:Form>
+						<mx:ControlBar id="cBar" label="Test">
+							<mx:Label id="lBar" text="You chose: {myCombo.selectedItem}"/>
+						</mx:ControlBar>
+					</mx:Panel>
+					<!-- tile view -->
+					<mx:Panel id="tilePanel" title="Tile" label="Tile" width="220" height="210">				
+						<mx:TileList dataProvider="{myArrayOfObjects}" change="setStatus(event.target.selectedItem)" width="100%" height="100%"/>
+					</mx:Panel>
+				</mx:ViewStack>
+			</mx:HBox>
+			<!-- view 2 -->
+			<mx:Panel id="vbSales" label="View 2: Sales Trends Chart">
+				<mx:LineChart id="lChart" dataProvider="{myArrayOfObjects}" height="100%">
+					<mx:horizontalAxis>
+						<mx:CategoryAxis dataProvider="{myArrayOfObjects}"
+						 categoryField="label"/>
+					</mx:horizontalAxis>
+					<mx:series>
+						<mx:Array>
+							<mx:LineSeries yField="volume" form="curve" name="Volume"/>
+							<mx:LineSeries yField="revenue" form="curve" name="Revenue"/>
+						</mx:Array>
+					</mx:series>
+				</mx:LineChart>
+				<mx:ControlBar>
+				</mx:ControlBar>
+			</mx:Panel>
+		</mx:TabNavigator>
+    </mx:Panel>
+</mx:VBox>

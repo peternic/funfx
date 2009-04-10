@@ -18,6 +18,8 @@ module FunFX
           Date
         when :enumeration
           Array
+        when :array
+          Array
         else
           raise "I don't know how to convert #{sym.inspect} to Ruby"
         end

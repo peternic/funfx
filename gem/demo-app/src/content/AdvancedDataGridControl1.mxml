@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%">
+	<mx:Script>
+        <![CDATA[
+            import mx.collections.ArrayCollection;
+                  
+            [Bindable]
+            private var dpFlat:ArrayCollection = new ArrayCollection([
+              {Region:"Southwest", Territory:"Arizona"},
+              {Region:"Southwest", Territory:"Arizona"},
+              {Region:"Southwest", Territory:"Central California"},
+              {Region:"Southwest", Territory:"Nevada"},
+              {Region:"Southwest", Territory:"Northern California"}, 
+              {Region:"Southwest", Territory:"Northern California"},  
+              {Region:"Southwest", Territory:"Southern California"},
+              {Region:"Southwest", Territory:"Territory With,Comma"}
+            ]);
+        ]]>
+    </mx:Script>
+
+    <mx:Panel title="AdvancedDataGrid Control Example"
+        height="75%" width="75%" layout="horizontal" showInAutomationHierarchy="false"
+        paddingTop="10" paddingBottom="10" paddingLeft="10" paddingRight="10">
+
+        <mx:AdvancedDataGrid id="myADG" 
+            width="100%" height="100%" 
+            initialize="gc.refresh();">        
+            <mx:dataProvider>
+                <mx:GroupingCollection id="gc" source="{dpFlat}">
+                    <mx:grouping>
+                        <mx:Grouping>
+                            <mx:GroupingField name="Region"/>
+                            <mx:GroupingField name="Territory"/>
+                        </mx:Grouping>
+                    </mx:grouping>
+                </mx:GroupingCollection>
+            </mx:dataProvider>        
+            
+            <mx:columns>
+                <mx:AdvancedDataGridColumn dataField="Region"/>
+                <mx:AdvancedDataGridColumn dataField="Territory"/>
+            </mx:columns>
+       </mx:AdvancedDataGrid>
+    </mx:Panel>
+</mx:VBox>

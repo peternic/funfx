@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%">
+	<mx:Panel title="TextInput Control Example" height="75%" width="75%" 
+        paddingTop="10" paddingLeft="10"
+        showInAutomationHierarchy="false">
+        
+        <mx:TextInput id="tSrc"/>
+
+        <mx:Button label="Copy Text" click="tDest.text = tSrc.text"/>
+
+        <mx:TextInput id="tDest"/>
+
+    </mx:Panel>
+</mx:VBox>

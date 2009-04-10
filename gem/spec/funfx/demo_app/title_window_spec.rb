@@ -19,12 +19,8 @@ describe "DemoApp" do
     
     title_window = @flex.title_window({:automationName => 'login'})
     
-    puts title_window.null?.to_s
-    
     button = @flex.button({:id => 'myButton'})
     button.click
-    
-    puts title_window.null?.to_s
     
     title_window = @flex.title_window({:automationName => 'login'})
     title_window.should be_visible

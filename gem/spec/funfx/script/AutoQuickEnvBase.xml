@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TypeInformation>
+    <ClassInfo Name="FlexDisplayObject" >
+        <Implementation Class="flash.display::DisplayObject"/>
+        <Events>
+        </Events>
+        <Properties>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexObject"  Extends="FlexDisplayObject">
+        <Implementation Class="mx.core::UIComponent"/>
+        <Methods>
+        </Methods>
+        <Events>
+        </Events>
+        <Properties>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexContainer" Extends="FlexObject" SupportsTabularData="true">
+        <Implementation Class="mx.core::Container"/>
+        <Events>
+        </Events>
+        <Properties>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexForm" Extends="FlexContainer" SupportsTabularData="true">
+        <Implementation Class="mx.containers::Form"/>
+        <Events>
+        </Events>
+        <Properties>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexBox" Extends="FlexContainer" SupportsTabularData="true">
+        <Implementation Class="mx.containers::Box"/>
+        <Implementation Class="mx.containers::Tile"/>
+        <Events>
+        </Events>
+        <Properties>
+        </Properties>
+    </ClassInfo>
+    
+    <ClassInfo Name="FlexTile" Extends="FlexBox" SupportsTabularData="true">
+        <Implementation Class="mx.containers::Tile"/>
+        <Events>
+        </Events>
+        <Properties>
+        </Properties>
+    </ClassInfo>
+</TypeInformation>
+

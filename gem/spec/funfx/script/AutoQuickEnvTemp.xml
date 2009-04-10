@@ -1,0 +1,34 @@
+    <ClassInfo Name="FlexTestNoParent" >
+        <Implementation Class="flash.display::DisplayObject"/>
+        <Events>
+        </Events>
+        <Properties>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexParentOne"  Extends="FlexParentDoesNotExist">
+        <Implementation Class="mx.core::UIComponent"/>
+        <Methods>
+        </Methods>
+        <Events>
+        </Events>
+        <Properties>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexChildOne" Extends="FlexParentOne">
+        <Implementation Class="mx.core::Container"/>
+        <Events>
+        </Events>
+        <Properties>
+        </Properties>
+    </ClassInfo>
+
+    <ClassInfo Name="FlexChildTwo" Extends="FlexContainer" SupportsTabularData="true">
+        <Implementation Class="mx.containers::Form"/>
+        <Events>
+        </Events>
+        <Properties>
+        </Properties>
+    </ClassInfo>
+

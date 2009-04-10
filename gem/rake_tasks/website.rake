@@ -13,5 +13,10 @@ task :website_upload do
   sh %{rsync -aCv #{local_dir}/ #{host}:#{remote_dir}}
 end
 
+desc 'Start local demo_app http server'
+task :start_local_httpd do
+  ruby "website/demo-app/httpd.rb"
+end
+
 desc 'Generate and upload website files'
 task :website => [:website_generate, :website_upload, :publish_docs]

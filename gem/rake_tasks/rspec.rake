@@ -9,6 +9,14 @@ namespace :spec do
     t.spec_opts = ['--options', "spec/spec.opts"]
     t.spec_files = FileList['spec/funfx/flex/**/*_spec.rb']
   end
+  
+  desc "Run the script specs"
+  Spec::Rake::SpecTask.new(:script) do |t|
+    t.rcov = true
+    t.rcov_opts = ["--exclude gems,spec"]
+    t.spec_opts = ['--options', "spec/spec.opts"]
+    t.spec_files = FileList['spec/funfx/script/**/*_spec.rb']
+  end
 
   desc "Run the meta specs (code generation)"
   Spec::Rake::SpecTask.new(:meta) do |t|
@@ -25,4 +33,4 @@ namespace :spec do
   end
 end
 
-task :spec => ['spec:api', 'spec:meta', 'spec:demo_app']
+task :spec => ['spec:api', 'spec:script', 'spec:meta', 'spec:demo_app']

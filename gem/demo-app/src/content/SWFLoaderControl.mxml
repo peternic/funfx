@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%">
+	<mx:Panel title="SWFLoader"  height="90%" width="90%"
+        paddingTop="10" paddingBottom="10" paddingLeft="10" paddingRight="10"
+        showInAutomationHierarchy="false">
+
+        <mx:Label text="The control of the outer application."/>
+
+        <mx:SWFLoader id="swf" source="@Embed(source='../swf/FlexSWFLoaderFile.swf')"/>
+		
+    </mx:Panel>
+</mx:VBox>

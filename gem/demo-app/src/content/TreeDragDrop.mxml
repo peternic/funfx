@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%">
+	<mx:Script>
+        <![CDATA[
+
+            import mx.events.DragEvent;
+            import mx.managers.DragManager;
+            import mx.core.DragSource;
+            import mx.core.UIComponent;
+            import mx.controls.Tree;
+            /**
+             * Called as soon as the dragProxy enters the target. You can add logic
+             * to determine if the target will accept the drop based on the
+             * dragInitiator, the data available in the dragSource.
+             * Here the drop is blindly accepted.
+             */
+
+            private function onDragEnter( event:DragEvent ) : void
+
+            {
+                DragManager.acceptDragDrop(UIComponent(event.currentTarget));
+            }
+            /**
+             * Called while the dragProxy is over the drop target. You can
+             * use this function to determine the type of feedback to show.
+             * Since the List is set to allow MOVE (the item is deleted
+             * once dropped), different feedback possibilities are given.
+             *
+             * Also, for this application, the Tree control node the dragProxy is
+             * over is selected. As the dragProxy moves, the Tree control's
+             * selection changes.
+             *
+             * For a bit more complication, the drop is being allowed
+             * only over nodes whose type is NOT 'state'.
+             * The feedback is removed.
+             */
+            private function onDragOver( event:DragEvent ) : void
+
+            {
+                var dropTarget:Tree = Tree(event.currentTarget);
+                var r:int = dropTarget.calculateDropIndex(event);
+                tree.selectedIndex = r;
+                var node:XML = tree.selectedItem as XML;
+                if( node.@type == "state" ) {
+
+                    DragManager.showFeedback(DragManager.NONE);
+                    return;
+                }
+                if (event.ctrlKey)
+
+                    DragManager.showFeedback(DragManager.COPY);
+                else if (event.shiftKey)
+                    DragManager.showFeedback(DragManager.LINK);
+                else {
+
+                    DragManager.showFeedback(DragManager.MOVE);
+                }
+            }
+            /**
+             * Called when the dragProxy is released
+             * over the drop target. The information in the dragSource
+             * is extracted and processed.
+             *
+             * The target node is determined and 
+            * all of the data selected (the List has allowMultipleSection
+            * set) is added.
+             */
+            private function onDragDrop( event:DragEvent ) : void
+
+            {
+                var ds:DragSource = event.dragSource;
+                var dropTarget:Tree = Tree(event.currentTarget);
+                var items:Array = ds.dataForFormat("items") as Array;
+                var r:int = tree.calculateDropIndex(event);
+                tree.selectedIndex = r;
+                var node:XML = tree.selectedItem as XML;
+                var p:*;
+                // if the selected node has children (it is type==city),
+
+                // then add the items at the beginning
+                if( tree.dataDescriptor.hasChildren(node) ) {
+                    p = node;
+                    r = 0;
+                } else {
+
+                    p = node.parent();
+                }
+                for(var i:Number=0; i < items.length; i++) {
+
+                    var insert:XML = <node />;
+                    insert.@label = items[i];
+                    insert.@type  = "restaurant";
+                    tree.dataDescriptor.addChildAt(p, insert, r+i);
+                }
+
+            }
+            /**
+             * Called when the drag operation completes, whether 
+             * successfully or not. The tree is cleared of its
+             * selection.
+             */
+            private function onDragComplete( event:DragEvent ) : void
+
+            {
+                tree.selectedIndex = -1;
+            }        
+        ]]>
+    </mx:Script>    
+    <mx:XML id="treeData" xmlns="">
+
+        <root>
+            <node label="Massachusetts" type="state" data="MA">
+                <node label="Boston" type="city" >
+                    <node label="Smoke House Grill" type="restaurant" />
+                    <node label="Equator" type="restaurant" />
+                    <node label="Aquataine" type="restaurant" />
+
+                    <node label="Grill 23" type="restaurant" />
+                </node>
+                <node label="Provincetown" type="city" >
+                    <node label="Lobster Pot" type="restaurant" />
+                    <node label="The Mews" type="restaurant" />
+                </node>
+
+            </node>
+            <node label="California" type="state" data="CA">
+                <node label="San Francisco" type="city" >
+                    <node label="Frog Lane" type="restaurant" />
+                </node>
+            </node>
+
+        </root>
+    </mx:XML>    
+    <mx:Array id="listData">
+        <mx:String>Johnny Rocket's</mx:String>
+
+        <mx:String>Jet Pizza</mx:String>
+        <mx:String>Steve's Greek</mx:String>
+        <mx:String>Sonsie</mx:String>
+        <mx:String>The Border Cafe</mx:String>
+
+    </mx:Array> 
+    <mx:Panel x="48" y="125" width="447" height="351" layout="absolute" title="Drag onto Tree" showInAutomationHierarchy="false">    
+        <mx:Tree width="186" left="10" top="10" bottom="10" id="tree"
+            labelField="@label"
+            dataProvider="{treeData.node}"
+            dropEnabled="false"
+            dragMoveEnabled="false"
+            dragEnter="onDragEnter(event)"
+            dragOver="onDragOver(event)"
+            dragDrop="onDragDrop(event)">
+
+        </mx:Tree>        
+        <mx:List width="188" height="206" right="10" bottom="10" id="list"
+            allowMultipleSelection="true"
+            dataProvider="{listData}"
+            dragEnabled="true"
+            dragMoveEnabled="true"
+            dragComplete="onDragComplete(event)">
+
+        </mx:List>        
+        <mx:Text x="229" y="10" text="Drag from the list below to the tree" width="188" height="39"/>
+
+        <mx:Label x="229" y="69" text="restaurants"/>
+    </mx:Panel>
+</mx:VBox>
