@@ -30,5 +30,16 @@ module FunFX
     def fire_pause
       @fire_pause || 2
     end
+
+    # Set how many times retry invoking flex
+    def fire_max_tries=(t)
+      @fire_max_tries = t
+    end
+
+    # Set how many times retry invoking flex. Defaults to 10 times.
+    # Every time try failed would sleep 0.1
+    def fire_max_tries
+      @fire_max_tries || 10
+    end
   end
 end
