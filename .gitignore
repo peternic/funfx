@@ -1,5 +1,6 @@
 .settings
 commit_msg.txt
+git-remove-history.sh
 *~
 .DS_Store
 *.orig
