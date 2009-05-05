@@ -5,33 +5,33 @@ package funfx {
     import custom.utilities.CSVUtility;
     import custom.utilities.FlexObjectLocatorUtility;
     import custom.utilities.FlexObjectLocatorUtilityHelper;
-    
+
     import flash.display.DisplayObject;
     import flash.external.ExternalInterface;
-    
+
     import funfx.flexlocator.FlexObjectLocator;
     import funfx.log.LogElement;
     import funfx.log.Logger;
-    
+
     import mx.automation.IAutomationManager;
     import mx.automation.IAutomationObject;
-    
+
     public class Proxy
     {
     	private var flexObjectlocator:FlexObjectLocator;
-    	
+
         public function Proxy()
         {
         	flexObjectlocator = new FlexObjectLocator();
         	flexObjectlocator.flexObjectLocatorUtility = new FlexObjectLocatorUtility();
         	flexObjectlocator.flexObjectLocatorUtility.flexLocatorhelper = new FlexObjectLocatorUtilityHelper();
-        	
+
 	        ExternalInterface.addCallback("fireFunFXEvent", fireFunFXEvent);
 	        ExternalInterface.addCallback("getFunFXPropertyValue", getFunFXPropertyValue);
 	        ExternalInterface.addCallback("getFunFXTabularPropertyValue", getFunFXTabularPropertyValue);
 	        ExternalInterface.addCallback("invokeFunFXTabularMethod", invokeFunFXTabularMethod);
         }
-        
+
         private function fireFunFXEvent(locator:Object, eventName:String, args:String) : String{
           Logger.addInfo("Started fire event", new LogElement("Locator", Logger.convertLocator(locator)), new LogElement("Event", eventName), new LogElement("Args", args));
         	return replayFunFXEvent(locator, eventName, convertArrayFromStringToAs(args));
@@ -57,7 +57,7 @@ package funfx {
                   Logger.addError("Target is not visible", new LogElement("Target", Logger.createComponentText(target as DisplayObject)), new LogElement("Locator", Logger.convertLocator(locator)));
                   throw new Error("Target is not visible: " + flexObjectlocator.toString(locator["id"]) + (locator["parent"] != null ? ", and parent: " + flexObjectlocator.toString(locator["parent"]["id"]) : ""));
                 }
-                
+
                 var result:Object = AQAdapter.aqAdapter.replay(target, eventName, args);
                 Logger.addInfo("Replay ended successfully");
                 return "OK";
@@ -77,11 +77,14 @@ package funfx {
           try {
               var target:IAutomationObject = flexObjectlocator.findAutomationObject(locator);
               var o:Object = Object(target);
-              if (o.hasOwnProperty(fieldName))
+              if (o.hasOwnProperty(fieldName)) {
                   return o[fieldName];
-              else if(fieldName == "null")
-                  return "true";
-              else {
+              } else if(fieldName == "null") {
+                  if (target == null)
+                      return "true";
+
+                  return "false";
+              } else {
                   Logger.addError("Field not found", new LogElement("Property", fieldName), new LogElement("Target", Logger.createComponentText(target as DisplayObject)), new LogElement("Locator", Logger.convertLocator(locator)));
                   throw new Error("Field not found: " + target + " doesn't have a field named '" + fieldName + "'");
               }
@@ -122,7 +125,7 @@ package funfx {
             }
 
             try {
-                var target:IAutomationObject = flexObjectlocator.findAutomationObject(locator);              
+                var target:IAutomationObject = flexObjectlocator.findAutomationObject(locator);
                 var tab:Object = target.automationTabularData;
                 if (tab.hasOwnProperty(methodName)) {
                 	var result:* = tab[methodName].apply(null, args);
@@ -140,7 +143,7 @@ package funfx {
             }
             return null;
         }
-        
+
         private function errorMessage(e:Error) : String {
             // We have to escape backslashes or else they get interpreted as meta characters on the Ruby side.
             Logger.addError("FunFX faild", new LogElement("Error", e.message), new LogElement("Stacktrace", e.getStackTrace()));
