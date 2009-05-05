@@ -9,7 +9,9 @@ package funfx {
     import flash.display.DisplayObject;
     import flash.external.ExternalInterface;
     
-    import funfx.flexlocator.FlexObjectLocator;
+    import funfx.external.External;
+    import funfx.external.ExternalFactory;
+import funfx.flexlocator.FlexObjectLocator;
     import funfx.log.LogElement;
     import funfx.log.Logger;
     
@@ -19,17 +21,21 @@ package funfx {
     public class Proxy
     {
     	private var flexObjectlocator:FlexObjectLocator;
+        private static var external:External;
     	
         public function Proxy()
         {
         	flexObjectlocator = new FlexObjectLocator();
         	flexObjectlocator.flexObjectLocatorUtility = new FlexObjectLocatorUtility();
         	flexObjectlocator.flexObjectLocatorUtility.flexLocatorhelper = new FlexObjectLocatorUtilityHelper();
-        	
-	        ExternalInterface.addCallback("fireFunFXEvent", fireFunFXEvent);
-	        ExternalInterface.addCallback("getFunFXPropertyValue", getFunFXPropertyValue);
-	        ExternalInterface.addCallback("getFunFXTabularPropertyValue", getFunFXTabularPropertyValue);
-	        ExternalInterface.addCallback("invokeFunFXTabularMethod", invokeFunFXTabularMethod);
+        	if (external == null)
+            {
+                external = ExternalFactory.getExternal();
+            }
+	        external.addCallback("fireFunFXEvent", fireFunFXEvent);
+	        external.addCallback("getFunFXPropertyValue", getFunFXPropertyValue);
+	        external.addCallback("getFunFXTabularPropertyValue", getFunFXTabularPropertyValue);
+	        external.addCallback("invokeFunFXTabularMethod", invokeFunFXTabularMethod);
         }
         
         private function fireFunFXEvent(locator:Object, eventName:String, args:String) : String{

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="*"
+                xmlns:funfx="funfx.remote.*"
+                creationComplete="onCreationComplete()">
+
+    <mx:Script>
+		<![CDATA[
+        import funfx.external.RemoteProxy;
+        [Bindable]
+        private var proxy : RemoteProxy;
+
+        private function onCreationComplete() : void
+        {
+            status.text = "Please wait running funfx test suite...";
+            proxy = new RemoteProxy();
+            status.text = "Creating Proxy...";
+            proxy.initiateCommunication();
+            status.text = "Communicating via proxy...";
+        }
+
+		]]>
+    </mx:Script>
+    <mx:Label id="status"/>
+</mx:Application>

@@ -45,6 +45,13 @@ task :httpd do
   end
 end
 
+desc 'Start air application'
+task :air do
+  Dir.chdir('gem') do
+    sh "rake flex:run_air_app"
+  end
+end
+
 namespace :components do
   desc 'Create xml for custom components'
   task :generate_xml_for_custom_components, :directory do |t, args|
