@@ -135,9 +135,7 @@ flex/src/main/flex/src/custom/CustomAutomationEventDescriptor.as
 flex/src/main/flex/src/custom/CustomAutomationMethodDescriptor.as
 flex/src/main/flex/src/custom/CustomAutomationPropertyDescriptor.as
 flex/src/main/flex/src/funfx/flexlocator/FlexObjectLocator.as
-flex/src/main/flex/src/funfx/log/LogElement.as
-flex/src/main/flex/src/funfx/log/Logger.as
-flex/src/main/flex/src/funfx/log/LogMessage.as
+flex/src/main/flex/src/funfx/Logging.as
 flex/src/main/flex/src/funfx/model/FunFXRecordedCommand.as
 flex/src/main/flex/src/funfx/model/FunFXRecordingModel.as
 flex/src/main/flex/src/funfx/recording/FunFXRecording.as

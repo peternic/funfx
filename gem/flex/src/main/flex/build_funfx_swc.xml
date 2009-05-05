@@ -25,9 +25,7 @@
     <class>funfx.events.AdvancedDataGridEvent</class>
     <class>funfx.Proxy</class>
     <class>funfx.recording.FunFXRecording</class>
-    <class>funfx.log.LogMessage</class>
-    <class>funfx.log.LogElement</class>
-    <class>funfx.log.Logger</class>
+    <class>funfx.Logging</class>
     <class>funfx.model.FunFXRecordedCommand</class>
     <class>funfx.model.FunFXRecordingModel</class>
     <class>custom.CustomAutomationEventDescriptor</class>

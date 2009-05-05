@@ -23,10 +23,7 @@
     <mx:Button id="btnRecord" label="Record" click="startRecording()" visible="{currentState != HIDDEN}"/>
     <mx:Button id="btnStop" label="Stop"  mouseDown="stopRecording()" enabled="false" visible="{currentState != HIDDEN}"/>
     <mx:Button id="btnReplay" label="Play" click="startReplay()" visible="{currentState != HIDDEN}"/>
-    <mx:HBox width="100%" horizontalAlign="right">
-		  <mx:Button id="btnLog" label="Log" click="showLog()" />
-			<mx:Button id="btnFlexSpy" label="FlexSpy" click="FlexSpy.show()" />
-		</mx:HBox>
+    <mx:Button id="btnFlexSpy" label="FlexSpy" click="FlexSpy.show()" />
   </mx:HBox>
 
   <mx:states>
@@ -63,7 +60,6 @@
   
 <mx:Script>
 	<![CDATA[
-	  import funfx.log.Logger;
 		import com.flexspy.FlexSpy;
 		import funfx.model.FunFXRecordedCommand;
 		import mx.collections.ArrayCollection;
@@ -88,11 +84,6 @@
 		private var funfxProxy:funfx.Proxy = new funfx.Proxy();
 		
 		[Bindable] private var buttonText:String = SHOW;
-		
-		private function showLog():void{
-		  log.text = Logger.printLog();
-		  currentState = LOG_STATE;
-		}
 		
 		private function showAdobeRecording():void{
 			currentState = ADOBE_STATE;
