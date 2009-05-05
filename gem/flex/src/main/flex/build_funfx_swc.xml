@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<flex-config>
+  <compiler>
+    <verbose-stacktraces>true</verbose-stacktraces>
+
+    <include-libraries>
+      <library>libs/FlexSpy.swc</library>
+      <library>libs/automation.swc</library>
+      <library>libs/automation_dmv.swc</library>
+      <library>libs/automation_agent.swc</library>
+      <library>libs/automation_agent_rb.swc</library>
+      <library>libs/automation_rb.swc</library>
+      <library>libs/datavisualization.swc</library>
+      <library>libs/datavisualization_rb.swc</library>
+    </include-libraries>
+
+    <source-path>
+      <path-element>src</path-element>
+    </source-path>
+  </compiler>
+
+  <include-classes>
+    <class>AQPropertyDescriptor</class>
+    <class>funfx.flexlocator.FlexObjectLocator</class>
+    <class>funfx.events.AdvancedDataGridEvent</class>
+    <class>funfx.Proxy</class>
+    <class>funfx.recording.FunFXRecording</class>
+    <class>funfx.log.LogMessage</class>
+    <class>funfx.log.LogElement</class>
+    <class>funfx.log.Logger</class>
+    <class>funfx.model.FunFXRecordedCommand</class>
+    <class>funfx.model.FunFXRecordingModel</class>
+    <class>custom.CustomAutomationEventDescriptor</class>
+    <class>custom.CustomAutomationPropertyDescriptor</class>
+    <class>custom.CustomAutomationClass</class>
+    <class>custom.CustomAutomationMethodDescriptor</class>
+    <class>custom.utilities.XMLUtility</class>
+    <class>custom.utilities.EnvXMLParser</class>
+    <class>custom.utilities.FlexObjectLocatorUtilityHelper</class>
+    <class>custom.utilities.CSVUtility</class>
+    <class>custom.utilities.IFlexObjectLocatorUtility</class>
+    <class>custom.utilities.IFlexObjectLocatorUtilityHelper</class>
+    <class>custom.utilities.FlexObjectLocatorUtility</class>
+    <class>AQEnvironment</class>
+    <class>IAQCodecHelper</class>
+    <class>codec.AutomationObjectPropertyCodec</class>
+    <class>codec.ScrollDirectionPropertyCodec</class>
+    <class>codec.TriggerEventPropertyCodec</class>
+    <class>codec.ListDataObjectCodec</class>
+    <class>codec.DatePropertyCodec</class>
+    <class>codec.HitDataCodec</class>
+    <class>codec.KeyModifierPropertyCodec</class>
+    <class>codec.ScrollDetailPropertyCodec</class>
+    <class>codec.ColorPropertyCodec</class>
+    <class>codec.ArrayPropertyCodec</class>
+    <class>codec.DefaultPropertyCodec</class>
+    <class>codec.TabObjectCodec</class>
+    <class>codec.KeyCodePropertyCodec</class>
+    <class>codec.DateRangePropertyCodec</class>
+    <class>codec.IAutomationPropertyCodec</class>
+    <class>codec.AssetPropertyCodec</class>
+    <class>codec.DateScrollDetailPropertyCodec</class>
+    <class>AQEventDescriptor</class>
+    <class>IAQMethodDescriptor</class>
+    <class>AQAdapter</class>
+    <class>AQMethodDescriptor</class>
+    <class>IAQPropertyDescriptor</class>
+  </include-classes>
+
+  <metadata>
+    <creator>Peter Nicolai Motzfeldt</creator>
+    <description>http://github.com/peternic/funfx</description>
+    <language>EN</language>
+    <title>Ruby tool for functional testing of Flex applications</title>
+  </metadata>
+</flex-config>
