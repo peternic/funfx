@@ -7,44 +7,43 @@ describe "DemoApp" do
   end
   
   it "should select mastercard" do
-    tree = @flex.tree({:id => 'objectTree'})
+    tree = @flex.objectTree
     tree.open('Button controls')
     tree.select('Button controls>RadioButtonGroup1')
   
-    radio_button = @flex.radio_button({:id => 'masterCard'})
+    radio_button = @flex.masterCard
     
-    radio_button.selected?.should == false
+    radio_button.should_not be_selected
     radio_button.click
-    @flex.button({:automationName => 'Selection'}, {:automationName => 'OK'}).click
-    radio_button.selected?.should == true
+    (@flex > {:automationName => 'Selection'} > {:automationName => 'OK'}).click
+    radio_button.should be_selected
   end
   
   it "should check that the group hangs together" do
-    tree = @flex.tree({:id => 'objectTree'})
+    tree = @flex.objectTree
     tree.open('Button controls')
     tree.select('Button controls>RadioButtonGroup1')
   
-    radio_button_american_express = @flex.radio_button({:id => 'americanExpress'})
-    radio_button_mastercard = @flex.radio_button({:id => 'masterCard'})
-    radio_button_visa = @flex.radio_button({:id => 'visa'})
+    radio_button_american_express = @flex.americanExpress
+    radio_button_mastercard = @flex.masterCard
+    radio_button_visa = @flex.visa
     
-    radio_button_american_express.selected?.should == false
-    radio_button_mastercard.selected?.should == false
-    radio_button_visa.selected?.should == false
+    radio_button_american_express.should_not be_selected
+    radio_button_mastercard.should_not be_selected
+    radio_button_visa.should_not be_selected
         
     radio_button_mastercard.click
-    @flex.button({:automationName => 'Selection'}, {:automationName => 'OK'}).click
+    (@flex > {:automationName => 'Selection'} > {:automationName => 'OK'}).click
     
-    radio_button_american_express.selected?.should == false
-    radio_button_mastercard.selected?.should == true
-    radio_button_visa.selected?.should == false
+    radio_button_american_express.should_not be_selected
+    radio_button_mastercard.should be_selected
+    radio_button_visa.should_not be_selected
 
     radio_button_visa.click
-    @flex.button({:automationName => 'Selection'}, {:automationName => 'OK'}).click
+    (@flex > {:automationName => 'Selection'} > {:automationName => 'OK'}).click
     
-    radio_button_american_express.selected?.should == false
-    radio_button_mastercard.selected?.should == false
-    radio_button_visa.selected?.should == true
-  
+    radio_button_american_express.should_not be_selected
+    radio_button_mastercard.should_not be_selected
+    radio_button_visa.should be_selected
   end
 end

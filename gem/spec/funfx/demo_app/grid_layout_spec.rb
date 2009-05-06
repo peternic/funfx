@@ -7,17 +7,15 @@ describe "DemoApp" do
   end
   
   it "should click on button in a grid" do
-    tree = @flex.tree({:id => 'objectTree'})
+    tree = @flex.objectTree
     tree.open('Container controls')
     tree.select('Container controls>GridLayout1')
   
-    button = @flex.button({:automationName => 'Row 2 Col 1'})
+    button = @flex > {:automationName => 'Row 2 Col 1'}
     
     button.click
     
-    label = @flex.label({:id => 'lLabel'})
+    label = @flex.lLabel
     label.text.strip.should == "Row 2 Col 1"
-    
-    
   end
 end

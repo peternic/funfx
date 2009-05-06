@@ -5,11 +5,11 @@ describe "DataGrid" do
     browser.goto(DEMO_APP)
     @flex = browser.flex_app('DemoAppId', 'DemoAppName')
 	
-		tree = @flex.tree({:id => 'objectTree'})
+    tree = @flex.objectTree
     tree.open('General controls')
     tree.select('General controls>DataGrid1')
 
-		@data_grid = @flex.data_grid({:id => 'dg'})
+    @data_grid = @flex.dg
   end
 
   it "should get columnnames from a datagrid" do
@@ -42,7 +42,7 @@ describe "DataGrid" do
   it "should select row" do
     @data_grid.select("*Joanne Wall* | 555-219-2012 | jwall@fictitious.com")
     
-    @data_grid.selected_index.should == 1
+    @data_grid.selectedIndex.should == 1
   end
   
   it "should deselect row" do

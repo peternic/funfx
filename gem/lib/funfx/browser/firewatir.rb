@@ -1,6 +1,6 @@
 require 'rubygems'
 require 'firewatir'
-require 'funfx'
+require File.join(File.dirname(__FILE__), %w(.. .. funfx))
 
 module FireWatir
   # FireWatir extension for FunFX. Allows lookup of FlexApp objects via FunFX::Browser::FlexAppLookup#flex_app.
@@ -26,11 +26,13 @@ module FireWatir
     end
 
     class FlexApp < ::Element #:nodoc:
-      include FunFX::Flex::Elements
       include FunFX::Flex::FlexAppId
+      include FunFX::Flex::Locator
+      include FunFX::LocatorOverride
 
       def initialize(dom_id, app_name)
         @dom_id, @app_name = dom_id, app_name
+        @flex_app = self
       end
 
       def fire_event(flex_locator, event_name, args) # :nodoc:

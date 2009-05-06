@@ -5,17 +5,17 @@ describe "DemoApp" do
     browser.goto(DEMO_APP)
     @flex = browser.flex_app('DemoAppId', 'DemoAppName')
     
-    tree = @flex.tree({:id => 'objectTree'})
+    tree = @flex.objectTree
     tree.open('General controls')
     tree.select('General controls>Tree2')
   end
 
   it "should drag and drop item by move" do
-    tree = @flex.tree({:id => 'tree'})
+    tree = @flex.tree
     tree.open('California')
     tree.open('California>San Francisco')
 
-    list = @flex.list({:id => 'list'})
+    list = @flex.list
     
     list.values(0,4).should == [
       ["Johnny Rocket's"], 

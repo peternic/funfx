@@ -7,7 +7,7 @@ describe "DemoApp" do
   end
 
   it "should be able to navigate an alert" do
-    tree = @flex.tree({:id => 'objectTree'})
+    tree = @flex.objectTree
     tree.open('General controls')
     sleep(1) 
     # sleep command: I Have a small screen on my computer, and when the tree is expanded a scrollbar appears
@@ -15,15 +15,15 @@ describe "DemoApp" do
     # Hav tried to do some more sync work on the flex side, but it seems to be a bug
     tree.select('General controls>Alert1')
     
-    button = @flex.button({:id => 'bWorld'})
+    button = @flex.bWorld
     button.click
     
-    alert = @flex.alert({:automationName => 'Message'})
+    alert = @flex > {:automationName => 'Message'}
     alert.should be_visible
     
     alert.text.strip.should == "Hello World!"
     
-    button = @flex.alert({:automationName => 'Message'}).button({:automationName => 'OK'})
+    button = @flex > {:automationName => 'Message'} > {:automationName => 'OK'}
     button.click
     
     lambda do

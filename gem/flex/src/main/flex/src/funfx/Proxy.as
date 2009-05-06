@@ -86,6 +86,9 @@ package funfx {
         var target:IAutomationObject = flexObjectlocator.findAutomationObject(locator);
         var o:Object = Object(target);
         if (o.hasOwnProperty(fieldName)) {
+          if (o[fieldName] is String)
+            return "\"" + o[fieldName] + "\"";
+            
           return o[fieldName];
         } else if(fieldName == "null") {
           if (target == null)

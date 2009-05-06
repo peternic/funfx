@@ -7,13 +7,13 @@ describe "DemoApp" do
   end
   
   it "should click toggle button" do
-    tree = @flex.tree({:id => 'objectTree'})
+    tree = @flex.objectTree
     tree.open('Button controls')
     tree.select('Button controls>ToggleButtonBar1')
   
-    toggle_button_bar = @flex.toggle_button_bar({:id => 'toggleButtonBar'})
+    toggle_button_bar = @flex.toggleButtonBar
     
     toggle_button_bar.change('Director')
-    toggle_button_bar.selected_index.should == "1"
+    toggle_button_bar.selectedIndex.should == 1
   end
 end

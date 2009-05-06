@@ -42,7 +42,7 @@ module FunFX
           flex_app = mock('FlexApp')
 
           parent = Element.new(flex_app, nil, {:id => 'parent'})
-          child = parent.box({:id => 'child'})
+          child = parent.child
           
           flex_app.should_receive(:get_property_value).
             with("{parent: {parent: null, id: {id: 'parent'}}, id: {id: 'child'}}", 'WhatEver').

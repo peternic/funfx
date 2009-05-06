@@ -5,11 +5,11 @@ describe "EditableDataGrid" do
     browser.goto(DEMO_APP)
     @flex = browser.flex_app('DemoAppId', 'DemoAppName')
 	
-		tree = @flex.tree({:id => 'objectTree'})
+    tree = @flex.objectTree
     tree.open('General controls')
     tree.select('General controls>EditableDataGrid1')
 
-		@data_grid = @flex.data_grid({:id => 'dgEditable'})
+    @data_grid = @flex.dgEditable
   end
 
   it "should edit a cell in the datagrid by using automationIndex" do
@@ -21,10 +21,10 @@ describe "EditableDataGrid" do
     ]
     
     @data_grid.select("*Joanne Wall* | 555-219-2012 | jwall@fictitious.com | true")
-    @data_grid.text_area({:automationIndex => 'name:1'}).input('Peter')
+    (@data_grid > {:automationIndex => 'name:1'}).input('Peter')
     @data_grid.select("Peter | *555-219-2012* | jwall@fictitious.com | true")
-    @data_grid.text_area({:automationIndex => 'phone:1'}).input('7777')
-    @flex.box({:id => 'dgPanel'}).click
+    (@data_grid > {:automationIndex => 'phone:1'}).input('7777')
+    @flex.dgPanel.click
     
     @data_grid.values(0,3).should == [
       ["Christina Coenraets", "555-219-2270", "ccoenraets@fictitious.com", "true" ],
@@ -43,9 +43,9 @@ describe "EditableDataGrid" do
     ]
     
     @data_grid.select("Joanne Wall | 555-219-2012 | jwall@fictitious.com | *true*")
-    @data_grid.combo_box({:automationIndex => 'active:1'}).open
-    @data_grid.combo_box({:automationIndex => 'active:1'}).select('false')
-    @flex.box({:id => 'dgPanel'}).click
+    (@data_grid > {:automationIndex => 'active:1'}).open
+    (@data_grid > {:automationIndex => 'active:1'}).select('false')
+    @flex.dgPanel.click
     
     @data_grid.values(0,3).should == [
       ["Christina Coenraets", "555-219-2270", "ccoenraets@fictitious.com", "true" ],
@@ -64,8 +64,8 @@ describe "EditableDataGrid" do
     ]
     
     @data_grid.select("*Joanne Wall* | 555-219-2012 | jwall@fictitious.com | true")
-    @data_grid.text_area({:automationValue => 'Joanne Wall'}).input('Peter')
-    @flex.box({:id => 'dgPanel'}).click
+    (@data_grid > {:automationValue => 'Joanne Wall'}).input('Peter')
+    @flex.dgPanel.click
     
     @data_grid.values(0,3).should == [
       ["Christina Coenraets", "555-219-2270", "ccoenraets@fictitious.com", "true" ],

@@ -8,23 +8,23 @@ describe "DemoApp" do
   end
   
   it "should click on a checkbox" do
-    tree = @flex.tree({:id => 'objectTree'})
+    tree = @flex.objectTree
     tree.open('Button controls')
     tree.select('Button controls>CheckBox1')
 
-    check_box = @flex.check_box({:id => 'milkCB'})
+    check_box = @flex.milkCB
     check_box.click
 
-    message = @flex.text_area({:id => 'cartItems'})
+    message = @flex.cartItems
     message.text.strip.should == "milk"
   end
   
   it "should assert that it is checked" do
-    tree = @flex.tree({:id => 'objectTree'})
+    tree = @flex.objectTree
     tree.open('Button controls')
     tree.select('Button controls>CheckBox1')
 
-    check_box = @flex.check_box({:id => 'milkCB'})
+    check_box = @flex.milkCB
     
     check_box.selected? == false
     
@@ -36,26 +36,26 @@ describe "DemoApp" do
   end
   
   it "should select multiple checkboxes" do
-    tree = @flex.tree({:id => 'objectTree'})
+    tree = @flex.objectTree
     tree.open('Button controls')
     tree.select('Button controls>CheckBox1')
 
-    check_box = @flex.check_box({:id => 'milkCB'})
+    check_box = @flex.milkCB
     check_box.click
-    check_box = @flex.check_box({:id => 'eggsCB'})
+    check_box = @flex.eggsCB
     check_box.click
     
 
-    message = @flex.text_area({:id => 'cartItems'})
+    message = @flex.cartItems
     message.text.strip.should == "milk\reggs"
   end
   
   it "should check the label" do
-    tree = @flex.tree({:id => 'objectTree'})
+    tree = @flex.objectTree
     tree.open('Button controls')
     tree.select('Button controls>CheckBox1')
 
-    check_box = @flex.check_box({:id => 'milkCB'})
+    check_box = @flex.milkCB
     check_box.label.strip.should == "milk"
   end
 

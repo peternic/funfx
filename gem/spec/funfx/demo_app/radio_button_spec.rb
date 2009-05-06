@@ -7,20 +7,20 @@ describe "DemoApp" do
   end
   
   it "should select radiobutton" do
-    tree = @flex.tree({:id => 'objectTree'})
+    tree = @flex.objectTree
     tree.open('Button controls')
     tree.select('Button controls>RadioButton1')
   
-    radio_button = @flex.radio_button({:automationName => '1942'})
+    radio_button = @flex > {:automationName => '1942'}
     
-    radio_button.selected?.should == false
+    radio_button.should_not be_selected
     radio_button.click
-    radio_button.selected?.should == true
+    radio_button.should be_selected
     radio_button.label.strip.should == "1942"
-    radio_button = @flex.radio_button({:automationName => '1972'})
-    radio_button.selected?.should == false
+    radio_button = @flex > {:automationName => '1972'}
+    radio_button.should_not be_selected
     radio_button.click
-    radio_button.selected?.should == true
+    radio_button.should be_selected
     radio_button.label.strip.should == "1972" 
   end
 end

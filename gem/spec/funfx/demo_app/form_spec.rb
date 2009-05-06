@@ -7,12 +7,12 @@ describe "DemoApp" do
   end
   
   it "should enter information in a form" do
-    tree = @flex.tree({:id => 'objectTree'})
+    tree = @flex.objectTree
     tree.open('Container controls')
     tree.select('Container controls>Form1')
   
-    text_area_first_name = @flex.text_area({:id => 'frmFname'})
-    text_area_email_address = @flex.text_area({:id => 'frmEmail'})
+    text_area_first_name = @flex.frmFname
+    text_area_email_address = @flex.frmEmail
     
     text_area_first_name.input("Test Testing")
     text_area_first_name.text.strip.should == "Test Testing"

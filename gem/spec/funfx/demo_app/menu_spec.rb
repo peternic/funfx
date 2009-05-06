@@ -5,19 +5,19 @@ describe "DemoApp" do
     browser.goto(DEMO_APP)
     @flex = browser.flex_app('DemoAppId', 'DemoAppName')
     
-    tree = @flex.tree({:id => 'objectTree'})
+    tree = @flex.objectTree
     tree.open('Menu controls')
     tree.select('Menu controls>Menu1')
   end
 
   it "should select from menu" do
-    button = @flex.button({:id => 'mybutton'})
+    button = @flex.mybutton
     button.click
     
-    menu = @flex.menu({:automationName => 'menu'})
+    menu = @flex > {:automationName => 'menu'}
     menu.select('MenuItem 1')
     
-    alert = @flex.alert({:automationName => 'Clicked%20menu%20item'})
+    alert = @flex > {:automationName => 'Clicked%20menu%20item'}
     
     lambda do
       alert.visible?

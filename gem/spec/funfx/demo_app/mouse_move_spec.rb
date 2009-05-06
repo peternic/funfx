@@ -7,15 +7,15 @@ describe "DemoApp" do
   end
   
   it "should click on a exact x and y point on the component" do
-    tree = @flex.tree({:id => 'objectTree'})
+    tree = @flex.objectTree
     tree.open('General controls')
     tree.select('General controls>MouseMoveControl')
   
-    canvas = @flex.canvas({:id => 'canvas'})
+    canvas = @flex.canvas
     canvas.click(400, 200)
     
-    @flex.label({:id => 'tX'}).text.to_i.should == 400
-    @flex.label({:id => 'tY'}).text.to_i.should == 200
+    @flex.tX.text.to_i.should == 400
+    @flex.tY.text.to_i.should == 200
   end
   
 end

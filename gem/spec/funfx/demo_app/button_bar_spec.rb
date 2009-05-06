@@ -7,14 +7,14 @@ describe "DemoApp" do
   end
       
   it "should click on button" do
-    tree = @flex.tree({:id => 'objectTree'})
+    tree = @flex.objectTree
     tree.open('Button controls')
     tree.select('Button controls>ButtonBar1')
     
-    button_bar = @flex.button_bar({:id => 'bBar'})
+    button_bar = @flex.bBar
     button_bar.change('Flash')
     
-    text_area = @flex.text_area({:id => 'myTA'})
+    text_area = @flex.myTA
     text_area.text.strip.should == "Selected button index: 0\rSelected button label: Flash"
   end
 

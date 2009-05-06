@@ -5,15 +5,15 @@ describe "DemoApp" do
     browser.goto(DEMO_APP)
     @flex = browser.flex_app('DemoAppId', 'DemoAppName')
     
-    tree = @flex.tree({:id => 'objectTree'})
+    tree = @flex.objectTree
     tree.open('General controls')
     tree.select('General controls>TabBar1')
   end
 
   it "click on bar and change view" do
-    tab_bar = @flex.tab_bar({:id => 'bar'})
-    tab_bar.selected_index.should == "0"
+    tab_bar = @flex.bar
+    tab_bar.selectedIndex.should == 0
     tab_bar.change('Alaska')
-    tab_bar.selected_index.should == "1"
+    tab_bar.selectedIndex.should == 1
   end
 end

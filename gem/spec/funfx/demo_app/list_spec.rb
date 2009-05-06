@@ -5,19 +5,16 @@ describe "DemoApp" do
     browser.goto(DEMO_APP)
     @flex = browser.flex_app('DemoAppId', 'DemoAppName')
 	
-	tree = @flex.tree({:id => 'objectTree'})
+    tree = @flex.objectTree
     tree.open('General controls')
     tree.select('General controls>List1')
   end
 
   it "should select a row" do
-    list = @flex.list({:id => 'source'})
+    list = @flex.source
     
-    list.selected_index.should == -1
+    list.selectedIndex.should == -1
     list.select('Arizona')
-    list.selected_index.should == 2
-    
+    list.selectedIndex.should == 2
   end
-  
-  
 end

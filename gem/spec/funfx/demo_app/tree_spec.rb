@@ -5,19 +5,19 @@ describe "DemoApp" do
     browser.goto(DEMO_APP)
     @flex = browser.flex_app('DemoAppId', 'DemoAppName')
     
-    tree = @flex.tree({:id => 'objectTree'})
+    tree = @flex.objectTree
     tree.open('General controls')
     tree.select('General controls>Tree1')
   end
 
   it "should open tree and select item" do
-    tree = @flex.tree({:id => 'myTree'})
+    tree = @flex.myTree
     tree.open('Inbox')
     tree.select('Inbox>Product Management')
   end
   
   it "should open tree and close item" do
-    tree = @flex.tree({:id => 'myTree'})
+    tree = @flex.myTree
     tree.open('Inbox')
     tree.close('Inbox')
   end

@@ -7,10 +7,10 @@ describe "DemoApp" do
   end
   
   it "null elements should be null" do
-    @flex.box(:id => "grenade").should be_null
+    @flex.grenade.should be_null
   end
   
   it "existing elements should not be null" do
-    @flex.tree(:id => "objectTree").should_not be_null
+    @flex.objectTree.should_not be_null
   end
 end

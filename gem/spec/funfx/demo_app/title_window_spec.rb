@@ -7,33 +7,33 @@ describe "DemoApp" do
   end
   
   it "should interact with title window" do
-    tree = @flex.tree({:id => 'objectTree'})
+    tree = @flex.objectTree
     tree.open('Container controls')
     tree.select('Container controls>TitleWindow1')
   
-    title_window = @flex.title_window({:automationName => 'login'})
+    title_window = @flex > {:automationName => 'login'}
       
      lambda do
       title_window.visible?
     end.should raise_error    
     
-    title_window = @flex.title_window({:automationName => 'login'})
+    title_window = @flex > {:automationName => 'login'}
     
-    button = @flex.button({:id => 'myButton'})
+    button = @flex.myButton
     button.click
     
-    title_window = @flex.title_window({:automationName => 'login'})
+    title_window = @flex > {:automationName => 'login'}
     title_window.should be_visible
-    title_window.should_not be_show_close_button
+    title_window.showCloseButton.should be_false
     title_window.title.strip.should == "Title Window"
     
-    text_area = @flex.text_area({:id => 'userName'})
+    text_area = @flex.userName
     text_area.input("Tester")
     
-    button = @flex.button({:automationName => 'OK'})
+    button = @flex > {:automationName => 'OK'}
     button.click
     
-    title_window = @flex.title_window({:automationName => 'login'})
+    title_window = @flex > {:automationName => 'login'}
     
     lambda do
       title_window.visible?

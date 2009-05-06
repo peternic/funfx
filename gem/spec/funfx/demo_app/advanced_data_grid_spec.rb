@@ -5,11 +5,11 @@ describe "DemoApp" do
     browser.goto(DEMO_APP)
     @flex = browser.flex_app('DemoAppId', 'DemoAppName')
 
-		tree = @flex.tree({:id => 'objectTree'})
+    tree = @flex.objectTree
     tree.open('General controls')
     tree.select('General controls>AdvancedDataGrid1')
 
-		@advanced_data_grid = @flex.advanced_data_grid({:id => 'myADG'})
+    @advanced_data_grid = @flex.myADG
   end
 
   it "should get data from an advanceddatagrid" do
@@ -35,24 +35,24 @@ describe "DemoApp" do
     ]
   end
 
-	it "should get data with commas" do
-	  @advanced_data_grid.item_open("*Southwest* |  ")
+  it "should get data with commas" do
+    @advanced_data_grid.item_open("*Southwest* |  ")
 		
-		@advanced_data_grid.values(0,8).last.should == ["Territory With,Comma", " "]
-	end
+    @advanced_data_grid.values(0,8).last.should == ["Territory With,Comma", " "]
+  end
 
-	it "should get the number of columns in the advanceddatagrid" do
-	  @advanced_data_grid.num_columns.should == 2
-	end
+  it "should get the number of columns in the advanceddatagrid" do
+    @advanced_data_grid.num_columns.should == 2
+  end
 
-	it "should get the number of rows with data in a closed advanceddatagrid" do
-	  @advanced_data_grid.num_rows.should == 1
-	end
+  it "should get the number of rows with data in a closed advanceddatagrid" do
+    @advanced_data_grid.num_rows.should == 1
+  end
 
-	it "should get the number of rows with data in an open advanceddatagrid" do
-		@advanced_data_grid.item_open("*Southwest* |  ")
-	  @advanced_data_grid.num_rows.should == 7
-	end	
+  it "should get the number of rows with data in an open advanceddatagrid" do
+    @advanced_data_grid.item_open("*Southwest* |  ")
+    @advanced_data_grid.num_rows.should == 7
+  end	
 
   it "should select a row" do
     @advanced_data_grid.select("*Southwest* |  ")

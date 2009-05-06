@@ -5,23 +5,21 @@ describe "DemoApp" do
     browser.goto(DEMO_APP)
     @flex = browser.flex_app('DemoAppId', 'DemoAppName')
 
-		tree = @flex.tree({:id => 'objectTree'})
+    tree = @flex.objectTree
     tree.open('Container controls')
     tree.select('Container controls>ViewStack1')
   end
   
   it "should switch tab in a view stack" do
-    @flex.box({:id => 'search'}).visible?.should == true
-    @flex.box({:id => 'custInfo'}).visible?.should == false
-    @flex.box({:id => 'accountInfo'}).visible?.should == false
+    @flex.search.should be_visible
+    @flex.custInfo.should_not be_visible
+    @flex.accountInfo.should_not be_visible
     
-    button = @flex.button({:id => 'aInfoButton'})
+    button = @flex.aInfoButton
     button.click
     
-    @flex.box({:id => 'search'}).visible?.should == false
-    @flex.box({:id => 'custInfo'}).visible?.should == false
-    @flex.box({:id => 'accountInfo'}).visible?.should == true
-    
-    
+    @flex.search.should_not be_visible
+    @flex.custInfo.should_not be_visible
+    @flex.accountInfo.should be_visible
   end
 end

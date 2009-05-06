@@ -7,14 +7,14 @@ describe "DemoApp" do
   end
   
   it "should click on linkbutton" do
-    tree = @flex.tree({:id => 'objectTree'})
+    tree = @flex.objectTree
     tree.open('Button controls')
     tree.select('Button controls>LinkButton1')
 
-    link_button = @flex.button({:id => 'lbButton'})
+    link_button = @flex.lbButton
     link_button.click
 
-    alert = @flex.alert({:automationName => 'LinkButtonMessage'})
+    alert = @flex > {:automationName => 'LinkButtonMessage'}
     alert.should be_visible
   end
   

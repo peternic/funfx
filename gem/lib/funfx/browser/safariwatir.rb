@@ -11,8 +11,9 @@ module Watir
     end
 
     class FlexApp < HtmlElement #:nodoc:
-      include FunFX::Flex::Elements
       include FunFX::Flex::FlexAppId
+      include FunFX::Flex::Locator
+      include FunFX::LocatorOverride
 
       def initialize(scripter, how, what, app_name)
         super(scripter, how, what)
