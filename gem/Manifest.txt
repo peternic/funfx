@@ -5,8 +5,6 @@ README.txt
 Rakefile
 config/hoe.rb
 config/requirements.rb
-demo-app/build.bat
-demo-app/build.sh
 demo-app/pom.xml
 demo-app/src/assets/Nokia_3100_blue.gif
 demo-app/src/assets/Nokia_3100_pink.gif
@@ -92,8 +90,6 @@ examples/cucumber/features/support/env.rb
 examples/cucumber/features/select_date.feature
 examples/cucumber/README.textile
 flex/src/main/flex/libs/FlexSpy.swc
-flex/src/main/flex/build.bat
-flex/src/main/flex/build.sh
 flex/src/main/flex/build.xml
 flex/src/main/flex/src/AQAdapter.as
 flex/src/main/flex/src/AQEnvironment.as
