@@ -91,10 +91,6 @@ module FunFX
           result
         end
       end
-
-      def shift_case(str)
-        return "Flex" + str.to_s.gsub(/^[a-z]|[_][a-z]/) { |a| a.upcase}.delete("_")
-      end
     end
   end
 end

@@ -19,9 +19,9 @@ module FunFX
         if RUBY_METHODS[name]
           decode(flex_invoke { @flex_app.get_property_value(parent_locator, @flex_locator[:id]) }).send(name, *args)
         elsif name[-1] == ??
-          flex_invoke { @flex_app.get_property_value(flex_locator, name.chop) } == "true"
+          flex_invoke { @flex_app.get_property_value(flex_locator, camelize(name.chop)) } == "true"
         elsif args.empty?
-          Element.new(@flex_app, @flex_locator, {:id => name})
+          Element.new(@flex_app, @flex_locator, {:id => camelize(name)})
         else
           super(name, *args)
         end
@@ -36,7 +36,6 @@ module FunFX
 
         build_locator(@flex_locator[:parent])
       end
-      
       
       def build_locator(locator)
         return "null" if locator.nil?
@@ -55,6 +54,10 @@ module FunFX
       end
       
       protected
+      
+      def camelize(str)
+        str.gsub(/_([a-z])/) { |m| $1.upcase }
+      end
 
       def decode(raw_value)
         case raw_value

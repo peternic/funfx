@@ -4,6 +4,41 @@ module FunFX
   module Flex
     describe Element do
       
+      describe "propery name rewriting" do
+        before do
+          @flex_app = mock('FlexApp')
+          @element = Element.new(@flex_app, nil, {:id => 'box'})
+        end
+        
+        it "should rewrite the property name to camel case" do
+          Element.should_receive(:new).with(@flex_app, {:parent => nil, :id => 'box'}, {:id => 'camelCase'})
+        
+          @element.camel_case
+        end
+      
+        it "should rewrite the property name to camel case when it ends with ?" do
+          @flex_app.should_receive(:get_property_value).
+            with("{parent: null, id: {id: 'box'}}", 'camelCase').
+            and_return('true')
+        
+          @element.camel_case?
+        end
+        
+        it "should send a camel case property name unchanged" do
+          Element.should_receive(:new).with(@flex_app, {:parent => nil, :id => 'box'}, {:id => 'camelCase'})
+        
+          @element.camelCase
+        end
+        
+        it "should strip ? off a camel case property" do
+          @flex_app.should_receive(:get_property_value).
+            with("{parent: null, id: {id: 'box'}}", 'camelCase').
+            and_return('true')
+        
+          @element.camelCase?
+        end
+      end
+      
       describe '#get_property_value' do
         it "should convert array of id hashes to flex automation id" do
           flex_app = mock('FlexApp')
@@ -61,26 +96,6 @@ module FunFX
         end
       end
 
-      describe 'shift_case' do
-        it "should rename rubysyntax to automationenv notation" do
-          flex_app = mock('FlexApp')
-          element = Element.new(flex_app, nil, {:id => 'element'})
-          element.shift_case("box").should == "FlexBox"
-        end
-        
-        it "should rename mutiple names with _ to automationenv notation" do
-          flex_app = mock('FlexApp')
-          element = Element.new(flex_app, nil, {:id => 'element'})
-          element.shift_case("menu_bar_item").should == "FlexMenuBarItem"
-        end
-        
-        it "should rename mutiple names with _ to automationenv notation where each word is single character" do
-          flex_app = mock('FlexApp')
-          element = Element.new(flex_app, nil, {:id => 'element'})
-          element.shift_case("v_scroll_bar").should == "FlexVScrollBar"
-        end
-      end
-       
       it "should raise error with Flex backtrace formatted as Ruby backtrace" do
         flex_error = %{____FUNFX_ERROR:
 Error: Unable to resolve child for part 'undefined':'undefined' in parent 'FlexObjectTest'.
