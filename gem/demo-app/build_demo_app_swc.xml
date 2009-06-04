@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<flex-config>
+  <compiler>
+    <verbose-stacktraces>true</verbose-stacktraces>
+  </compiler>
+
+  <metadata>
+    <creator>Peter Nicolai Motzfeldt</creator>
+    <description>http://github.com/peternic/funfx</description>
+    <language>EN</language>
+    <title>Demo app</title>
+  </metadata>
+  
+  <file-specs>
+    <path-element>src/FlexObjectTest.mxml</path-element>
+  </file-specs>
+
+  <output>../website/demo-app/DemoApp.swf</output>
+</flex-config>

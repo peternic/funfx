@@ -39,9 +39,13 @@ import flash.net.URLRequest;
 import flash.utils.getDefinitionByName;
 
 import funfx.Proxy;
-import funfx.log.LogElement;
-import funfx.log.Logger;
 import funfx.recording.FunFXRecording;
+
+  import mx.logging.ILogger;
+  import mx.logging.Log;
+
+  import funfx.Logging;
+
 
 import mx.automation.Automation;
 import mx.automation.AutomationError;
@@ -60,6 +64,8 @@ import mx.core.UIComponent;
 import mx.core.mx_internal;
 import mx.events.FlexEvent;
 import mx.managers.PopUpManager;
+
+import mx.utils.ObjectUtil;
 
 use namespace mx_internal;
 
@@ -93,6 +99,7 @@ public class AQAdapter implements IAQCodecHelper
 	//  Class methods
 	//
 	//--------------------------------------------------------------------------
+  private var log:ILogger = Log.getLogger("funfx.Proxy");
   
   private var myLoader:URLLoader;
 	private static var _root:DisplayObject;
@@ -255,11 +262,11 @@ public class AQAdapter implements IAQCodecHelper
                 return;
             }*/
            
-            Logger.addInfo("Automation environment creation");
+            log.debug("Automation environment creation");
             
             var paramObj:Object = LoaderInfo(_root.loaderInfo).parameters;
             if(paramObj["UseCustomFunFXAutEnv"] != null){
-              Logger.addInfo("Using custom automation environment file, AutoQuickEnv.xml should be placed in the same directory as the swf");
+              log.debug("Using custom automation environment file, AutoQuickEnv.xml should be placed in the same directory as the swf");
               setCustomTestingEnvironment("AutoQuickEnv.xml");
             }
             else {
@@ -555,6 +562,9 @@ public class AQAdapter implements IAQCodecHelper
         var eventDescriptor:IAutomationEventDescriptor =
             automationClass.getDescriptorForEventByName(eventName);
 
+        trace(ObjectUtil.toString(eventDescriptor));
+        trace(ObjectUtil.toString(args));
+        
         if (!eventDescriptor)
             throw new Error(eventName + " event description not found for " + automationClass);
     
@@ -599,12 +609,12 @@ public class AQAdapter implements IAQCodecHelper
         {
 	        try
 	        {
-	          Logger.addError("Replay failed", new LogElement("Error", e.message));
+	          log.error(Logging.toString("Replay failed", "Error", e.message));
 			      o.result = replayEvent(target, method, args);        	
 	        }
 	        catch(e:Error)
     	    {
-    	      Logger.addError("Replay failed", new LogElement("Error", e.message));
+    	      log.error(Logging.toString("Replay failed", "Error", e.message));
 		        automationManager.decrementCacheCounter();
     	    	throw e;
     	    }

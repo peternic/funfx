@@ -3,20 +3,18 @@ namespace :flex do
   win = Config::CONFIG['host_os'] =~ /mswin|mingw/
   suffix = win ? '.bat' : ''
   build = win ? 'build.bat' : './build.sh'
-  set_path='export PATH="/Applications/Adobe Flex Builder 3/sdks/3.0.0/bin":$PATH'
-  run = "#{set_path};adl applicationdescriptor.xml"
-  
+
   desc 'Compile FunFX Flex code'
   task :compile do
     Dir.chdir('flex/src/main/flex') do
-      sh build
+      sh "#{compiler("compc")} -load-config+=build_funfx_swc.xml -o bin/funfx-#{VERS}.swc"
     end
   end
-  
+
   desc 'Compile FunFX demo app code'
   task :compile_demo_app => :compile do
     Dir.chdir('demo-app') do
-      sh build
+      sh "#{compiler("mxmlc")} -include-libraries ../flex/src/main/flex/bin/funfx-#{VERS}.swc -load-config+=build_demo_app_swc.xml"
     end
   end
 
@@ -27,4 +25,14 @@ namespace :flex do
     end
   end
 
-end
+  def compiler(binary)
+    flex_home = (ENV['FLEX_HOME'] || ENV['FLEX_SDK_HOME']).to_s
+
+    if flex_home != "" && File.directory?(flex_home)
+      File.expand_path(File.join(flex_home, 'bin', binary))
+    elsif system("which #{binary}")
+      "#{binary}"
+    else
+      raise "Unable to find #{binary}. Please ensure that $FLEX_HOME or $FLEX_SDK_HOME are pointing to the Flex base dir."
+    end
+  end
