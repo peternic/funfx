@@ -29,10 +29,11 @@ namespace :flex do
     flex_home = (ENV['FLEX_HOME'] || ENV['FLEX_SDK_HOME']).to_s
 
     if flex_home != "" && File.directory?(flex_home)
-      File.expand_path(File.join(flex_home, 'bin', binary))
+      File.expand_path(File.join(flex_home, 'bin', binary))      
     elsif system("which #{binary}")
       "#{binary}"
     else
       raise "Unable to find #{binary}. Please ensure that $FLEX_HOME or $FLEX_SDK_HOME are pointing to the Flex base dir."
     end
   end
+end

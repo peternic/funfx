@@ -186,6 +186,22 @@
         </Properties>
     </ClassInfo>
     
+    <ClassInfo Name="FlexHBox" Extends="FlexBox" SupportsTabularData="true">
+        <Implementation Class="mx.containers::HBox"/>
+        <Events>
+        </Events>
+        <Properties>
+        </Properties>
+    </ClassInfo>
+    
+    <ClassInfo Name="FlexVBox" Extends="FlexBox" SupportsTabularData="true">
+        <Implementation Class="mx.containers::VBox"/>
+        <Events>
+        </Events>
+        <Properties>
+        </Properties>
+    </ClassInfo>
+    
     <ClassInfo Name="FlexTile" Extends="FlexBox" SupportsTabularData="true">
         <Implementation Class="mx.containers::Tile"/>
         <Events>

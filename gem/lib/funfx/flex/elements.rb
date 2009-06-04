@@ -1609,6 +1609,14 @@ module FunFX
         FlexBox.new(self, nil, *locator_hash)
       end
 
+      class FlexVBox < FlexBox
+        include TabularData
+      end
+      
+      def v_box(*locator_hash)
+        FlexVBox.new(self, nil, *locator_hash)
+      end
+
       class FlexDividedBox < FlexBox
         include TabularData
 
@@ -1636,6 +1644,14 @@ module FunFX
       
       def tile(*locator_hash)
         FlexTile.new(self, nil, *locator_hash)
+      end
+
+      class FlexHBox < FlexBox
+        include TabularData
+      end
+      
+      def h_box(*locator_hash)
+        FlexHBox.new(self, nil, *locator_hash)
       end
 
       class FlexNavBar < FlexBox

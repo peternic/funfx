@@ -9,67 +9,77 @@ module FunFX
       end
       
       it "should parse and return class name when it does noe inherit from anything" do
-        result = @parser.check_class_expression("public class TestClass")
+        result = @parser.check_class_expression_for_as("public class TestClass")
         result[1].should == "TestClass"
         result[2].should == ""
       end
       
       it "should parse and return class name when it does noe inherit from anything and curly brace is last on line" do
-        result = @parser.check_class_expression("public class TestClass {")
+        result = @parser.check_class_expression_for_as("public class TestClass {")
         result[1].should == "TestClass"
         result[2].should == ""
       end
       
       it "should parse and return class name when it does noe inherit from anything and curly brace is part of classname" do
-        result = @parser.check_class_expression("public class TestClass{")
+        result = @parser.check_class_expression_for_as("public class TestClass{")
         result[1].should == "TestClass"
         result[2].should == ""
       end
       
       it "should parse and return class name and parent where parent is last word on line" do
-        result = @parser.check_class_expression("public class TestClass extends TestParent")
+        result = @parser.check_class_expression_for_as("public class TestClass extends TestParent")
         result[1].should == "TestClass"
         result[2].should == "TestParent"
       end
       
       it "should parse and return class name and parent where parent is last word on line when curly brace is last on line" do
-        result = @parser.check_class_expression("public class TestClass extends TestParent {")
+        result = @parser.check_class_expression_for_as("public class TestClass extends TestParent {")
         result[1].should == "TestClass"
         result[2].should == "TestParent"
       end
       
       it "should parse and return class name and parent where parent is last word on line when curly brace is part of classparent" do
-        result = @parser.check_class_expression("public class TestClass extends TestParent{")
+        result = @parser.check_class_expression_for_as("public class TestClass extends TestParent{")
         result[1].should == "TestClass"
         result[2].should == "TestParent"
       end
       
       it "should parse and return class name and parent where it implements one interface" do
-        result = @parser.check_class_expression("public class TestClass extends TestParent implements TestInterface")
+        result = @parser.check_class_expression_for_as("public class TestClass extends TestParent implements TestInterface")
         result[1].should == "TestClass"
         result[2].should == "TestParent"
       end
       
       it "should parse and return class name and parent where it implements one interface with curly brace" do
-        result = @parser.check_class_expression("public class TestClass extends TestParent implements TestInterface {")
+        result = @parser.check_class_expression_for_as("public class TestClass extends TestParent implements TestInterface {")
         result[1].should == "TestClass"
         result[2].should == "TestParent"
       end
       
       it "should parse and return class name and parent where it implements one interface with curly brace as part of interface" do
-        result = @parser.check_class_expression("public class TestClass extends TestParent implements TestInterface{")
+        result = @parser.check_class_expression_for_as("public class TestClass extends TestParent implements TestInterface{")
         result[1].should == "TestClass"
         result[2].should == "TestParent"
       end
       
       it "should parse and return class name and parent where it implements three interfaces with curly brace as part of interface" do
-        result = @parser.check_class_expression("public class TestClass extends TestParent implements TestInterfaceOne, TestInterface2, Test_InterFace_Three{")
+        result = @parser.check_class_expression_for_as("public class TestClass extends TestParent implements TestInterfaceOne, TestInterface2, Test_InterFace_Three{")
         result[1].should == "TestClass"
         result[2].should == "TestParent"
       end
       
+      it "should parse and return parent for mxml component" do
+        result = @parser.check_class_expression_for_mxml("<testComponent:TestComponent")
+        result[1].should == "TestComponent"
+      end
+      
+      it "should parse and return parent for mxml component where properties is on same line" do
+        result = @parser.check_class_expression_for_mxml("<testComponent:TestComponent creationComplete=\"create()\"")
+        result[1].should == "TestComponent"
+      end
+      
       it "should parse and return class name and parent where it implements three interfaces with curly brace as part of interface" do
-        result = @parser.check_class_expression("public class TestClass extends TestParent implements TestInterfaceOne, TestInterface2, Test_InterFace_Three{")
+        result = @parser.check_class_expression_for_as("public class TestClass extends TestParent implements TestInterfaceOne, TestInterface2, Test_InterFace_Three{")
         result[1].should == "TestClass"
         result[2].should == "TestParent"
       end
@@ -125,16 +135,27 @@ module FunFX
         result.nil?.should == true
       end
       
+      it "should strip the fileending of the filename when it is mxml" do
+        result = @parser.strip_extname("TestComponent.mxml")
+        result.should == "TestComponent"
+      end
+      
       it "should parse a simple class and get the classname" do
-        result = @parser.get_class_info(File.new(File.dirname(__FILE__) +"/SimpleClass.as", "r"))
+        result = @parser.get_class_info_for_as(File.dirname(__FILE__), "/SimpleClass.as")
         result.should == "<ClassInfo Name=\"FlexSimpleClass\" Extends=\"FlexObject\">\n" +
                          "<Implementation Class=\"SimpleClass\"/>\n"
       end
       
       it "should parse a simple class and get the classname and the parent" do
-        result = @parser.get_class_info(File.new(File.dirname(__FILE__) +"/SimpleClassWithParent.as", "r"))
+        result = @parser.get_class_info_for_as(File.dirname(__FILE__), "/SimpleClassWithParent.as")
         result.should == "<ClassInfo Name=\"FlexSimpleClass\" Extends=\"FlexParent\">\n" +
                          "<Implementation Class=\"SimpleClass\"/>\n"
+      end
+      
+      it "should parse a simple mxml class and get the classname and the parent" do
+        result = @parser.get_class_info_for_mxml(File.dirname(__FILE__), "/TestMxmlFile.mxml")
+        result.should == "<ClassInfo Name=\"FlexTestMxmlFile\" Extends=\"FlexTestComponent\">\n" +
+                         "<Implementation Class=\"TestMxmlFile\"/>\n"
       end
       
       it "should parse a simple class and get the properties where one property is public and bindable" do
