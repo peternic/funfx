@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testComponent:TestComponent
+  xmlns:mx="http://www.adobe.com/2006/mxml"
+  horizontalAlign="center"
+  creationComplete="create()">
+
+<mx:Metadata>
+  [Event(name="testCommand", type="test.Command")]
+</mx:Metadata>
+  
+  <mx:Script>
+  <![CDATA[
+    private var testProperty : Boolean;
+    
+    [Bindable] public var publicProperty  : String = "Test";
+    
+    public function get testProperty():Boolean {
+      return true;
+    }
+  ]]>
+  </mx:Script>
+</testComponent:TestComponent>

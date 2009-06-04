@@ -7,14 +7,16 @@ namespace :flex do
   desc 'Compile FunFX Flex code'
   task :compile do
     Dir.chdir('flex/src/main/flex') do
-      sh "#{compiler("compc")} -load-config+=build_funfx_swc.xml -o bin/funfx-#{VERS}.swc"
+      #sh "#{compiler("compc")} -load-config+=build_funfx_swc.xml -o bin/funfx-#{VERS}.swc"
+      sh build
     end
   end
 
   desc 'Compile FunFX demo app code'
   task :compile_demo_app => :compile do
     Dir.chdir('demo-app') do
-      sh "#{compiler("mxmlc")} -include-libraries ../flex/src/main/flex/bin/funfx-#{VERS}.swc -load-config+=build_demo_app_swc.xml"
+      #sh "#{compiler("mxmlc")} -include-libraries ../flex/src/main/flex/bin/funfx-#{VERS}.swc -load-config+=build_demo_app_swc.xml"
+      sh build
     end
   end
 
