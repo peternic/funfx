@@ -25,7 +25,7 @@ module FireWatir
       FlexApp.new(dom_id, app_name)
     end
 
-    class FlexApp < ::Element #:nodoc:
+    class FlexApp < Element #:nodoc:
       include FunFX::Flex::FlexAppId
       include FunFX::Flex::Locator
       include FunFX::LocatorOverride
